@@ -31,6 +31,7 @@ Sastojak ima:
 Korisnik (admin) ima:
   - id
   - ime
+  - email
   - username
   - password
   - status 
