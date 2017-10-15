@@ -35,3 +35,8 @@ Korisnik (admin) ima:
   - username
   - password
   - status 
+  
+  
+
+
+Ovo je neki tekst od Aje
