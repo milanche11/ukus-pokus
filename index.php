@@ -17,6 +17,6 @@
 
 </body>
 </html>
-<php?
+<?php
   echo "023456789":    
 ?>
