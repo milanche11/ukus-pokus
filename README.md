@@ -14,7 +14,7 @@ Recept ima:
   - količinu sastojaka
   - vreme pripreme
   - uputstvo
-  - broj isprljanih sudova
+  - broj isprljanih sudova (šerpe i činije za mućenje)
   - prosečnu ocenu
   - status (on ili off)
   
