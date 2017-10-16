@@ -14,7 +14,7 @@
 	Ukus pokus! <br>
 	I klopa je gotova!<br>
 
-
+promenjeno sa kompa22.01
 </body>
 </html>
 <?php
