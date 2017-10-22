@@ -17,6 +17,8 @@
 promenjeno sa kompa22.01
 
 
+jos jedna izmena aja 22.10.
+
 druga izmen
 </body>
 </html>
