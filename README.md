@@ -36,7 +36,14 @@ Korisnik (admin) ima:
   - password
   - status 
   
-  
+Slika ima:
+  - id
+  - title
+  - alt
+  - link
+  - status
+
+
 Ivana ovde :)
 
 Ovo je neki tekst od Aje
