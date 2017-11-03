@@ -34,14 +34,21 @@ Korisnik (admin) ima:
   - email
   - username
   - password
-  - status 
+  - status (on ili off)
   
 Slika ima:
   - id
   - title
   - alt
   - link
-  - status
+  - status (on ili off)
+  
+Komentar ima:
+  - id
+  - ime osobe koja komentarise
+  - email
+  - tekst
+
 
 
 Ivana ovde :)
