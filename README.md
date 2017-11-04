@@ -48,6 +48,7 @@ Komentar ima:
   - ime osobe koja komentarise
   - email
   - tekst
+  - status
 
 
 
