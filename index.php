@@ -7,21 +7,15 @@
 <body>
 
 	Ćiribu ćiriba! <br>
-	Neka se ukusno i zdravo jelo brzo nađe na mom stolu!<br><br>
+	Neka se ukusno i zdravo jelo brzo nađe na našem stolu!<br><br>
 
 	Abrakadabra! <br>
-	Neka to jelo bude napravljeno od sastojaka koje imam u kući!<br>
+	Neka to jelo bude napravljeno od sastojaka koje imamo u kući!<br><br>
+	
 	Ukus pokus! <br>
 	I klopa je gotova!<br>
 
-promenjeno sa kompa22.01
 
-
-jos jedna izmena aja 22.10.
-
-druga izmen
 </body>
 </html>
-<?php
-  echo "231100000":    
-?>
+
