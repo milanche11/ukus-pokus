@@ -5,53 +5,50 @@ Sajt ima :
   - Admin deo koji služi za upravljanje receptima, kategorijama, namirnicama i ostalim unosima u bazu
 
 Recept ima:
-  - id
-  - kategoriju (slano, slatko, ljuto, jesenje, prolećno, popularno itd) - id kategorija
-  - naziv
-  - kratak opis
-  - sliku
-  - sastojke - id sastojaka
-  - količinu sastojaka
-  - vreme pripreme
-  - uputstvo
-  - broj isprljanih sudova (šerpe i činije za mućenje) - staviti u kategorije!
-  - prosečnu ocenu
-  - status (on ili off)
+  - id - int
+  - kategorija string explode id kategorija - string
+  - naziv - string
+  - kratak opis - text
+  - vreme pripreme izraženo u minutima - int
+  - sastav string explode id sastojaka - string
+  - tekstualno uputstvo po koracima - text
+  - broj isprljanih sudova - int
+  - status (on ili off) - int
+  
+ Sastojak ima:
+  - id - int
+  - količinu - int
+  - mernu jedinicu - string
+  - naziv sastojka - string
+  - status (on ili off) - int
+  - id recepta kome pripada - FK
   
 Kategorija recepata ima:
-  - id
-  - naziv 
-  - status (on ili off)
+  - id - int
+  - naziv  (slano, slatko, ljuto, jesenje, prolećno, popularno, 1 sud, itd) - string
+  - status (on ili off) - int
   
-Sastojak ima:
-  - id
-  - naziv
-  - status (on ili off)
+**************** Korisnik (admin) ima:
+  - id - int 
+  - ime - string
+  - email - string
+  - username - string
+  - password - string
+  - status (superadmin, admin i editor) - int
   
-Korisnik (admin) ima:
-  - id
-  - ime
-  - email
-  - username
-  - password
-  - status (on ili off)
-  
-Slika ima:
-  - id
-  - title
-  - alt
-  - link
-  - status (on ili off)
+**************** Slika ima:
+  - id - int
+  - title - string
+  - alt - string
+  - link - string
+  - status (on ili off) - int
+  - id recepta na koji se odnosi - FK
   
 Komentar ima:
-  - id
-  - ime osobe koja komentarise
-  - email
-  - tekst
-  - status
+  - id - int
+  - ime osobe koja komentarise - string
+  - email - string
+  - tekst komentara  string
+  - status (on ili off), default je nula, dok admin ne odobri - int
+  - id recepta na koji se odnosi - FK
 
-
-
-Ivana ovde :)
-
-Ovo je neki tekst od Aje
