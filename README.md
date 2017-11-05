@@ -4,7 +4,7 @@ Sajt ima :
   - Public deo koji prikazuje recepte sa mogućnošću čitanja, ocenjivanja i filtriranja prikaza po sastojcima
   - Admin deo koji služi za upravljanje receptima, kategorijama, namirnicama i ostalim unosima u bazu
 
- **************** Recept ima:
+ **************** Recept ima: **************** 
   - id - int
   - kategorija string explode id kategorija - string
   - naziv - string
@@ -18,7 +18,7 @@ Sajt ima :
   - status (on ili off) - int
   - id usera koji ga je postavio - FK
   
- **************** Sastojak ima:
+ **************** Sastojak ima: **************** 
   - id - int
   - količinu - int
   - mernu jedinicu - string
@@ -26,12 +26,12 @@ Sajt ima :
   - status (on ili off) - int
   - id recepta kome pripada - FK
   
-**************** Kategorija recepata ima:
+**************** Kategorija recepata ima: **************** 
   - id - int
   - naziv  (slano, slatko, ljuto, jesenje, prolećno, popularno, 1 sud, itd) - string
   - status (on ili off) - int
   
-**************** Korisnik (admin) ima:
+**************** Korisnik (admin) ima: **************** 
   - id - int 
   - ime - string
   - email - string
@@ -39,7 +39,7 @@ Sajt ima :
   - password - string
   - status (superadmin, admin i editor) - int
   
-**************** Slika ima:
+**************** Slika ima: **************** 
   - id - int
   - title - string
   - alt - string
@@ -47,7 +47,7 @@ Sajt ima :
   - status (on ili off) - int
   - id recepta na koji se odnosi - FK
   
-**************** Komentar ima:
+**************** Komentar ima: **************** 
   - id - int
   - ime osobe koja komentarise - string
   - email - string
