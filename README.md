@@ -16,6 +16,7 @@ Sajt ima :
   - broj isprljanih sudova - int
   - vreme postavljanja recepta - timestamp
   - status (on ili off) - int
+  - id usera koji ga je postavio - FK
   
  **************** Sastojak ima:
   - id - int
