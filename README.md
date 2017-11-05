@@ -47,6 +47,13 @@ Sajt ima :
   - status (on ili off) - int
   - id recepta na koji se odnosi - FK
   
+
+**************** Rating ima: **************** 
+  - id - int
+  - naziv - enum (1,2,3,4,5)
+  - vreme postavljanja ratinga - timestamp
+  - id recepta na koji se odnosi - FK
+  
 **************** Komentar ima: **************** 
   - id - int
   - ime osobe koja komentarise - string
