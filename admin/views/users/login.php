@@ -1,8 +1,9 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">User Login</h3>
-  </div>
-  <div class="panel-body">
+<div class="row justify-content-center">
+
+    
+
+  <div class="panel-body col-5"">
+    <h3>User Login</h3>
     <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
     	<div class="form-group">
     		<label>Email</label>
@@ -16,3 +17,9 @@
     </form>
   </div>
 </div>
+
+
+
+  <div class="row justify-content-center">
+
+  </div>

@@ -1,5 +1,5 @@
 <div class="text-center">
-	<h1>Welcome To ShareBoard</h1>
-	<p class="lead">Git radi ponovo</p>
-	<a class="btn btn-primary text-center" href="<?php echo ROOT_PATH;?>shares">Start</a>
+	<h1>Dobrodošli Na Ukus Pokus Admins</h1>
+	<p class="lead">Morate biti ulogovani</p>
+	<p class=""><a href="<?php echo ROOT_URL; ?>users/login">Login</a></p>
 </div>
