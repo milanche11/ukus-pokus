@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Pangolin|Berkshire+Swash|Caveat+Brush|Shadows+Into+Light+Two|Tillana|Montserrat|Open+Sans+Condensed:300|Raleway|Source+Sans+Pro|Baloo|Cherry+Swash|Corben|Kelly+Slab|Modak|Mogra|Oregano|Ribeye+Marrow|Sacramento|Allura|Amatic+SC|Courgette|Dancing+Script|Didact+Gothic|Dosis|Englebert|Forum|Glass+Antiqua|Grand+Hotel|Great+Vibes|Kalam|Kaushan+Script|Life+Savers|Limelight|Marck+Script|Mukta+Malar|News+Cycle|Nunito|Pacifico|Patrick+Hand|Playball|Poiret+One|Rajdhani|Varela+Round');
+
+
+/*
+
+font-family: 'Dosis', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Nunito', sans-serif;
+font-family: 'Didact Gothic', sans-serif;
+font-family: 'Varela Round', sans-serif;
+font-family: 'Rajdhani', sans-serif;
+font-family: 'News Cycle', sans-serif;
+font-family: 'Mukta Malar', sans-serif;
+font-family: 'Englebert', sans-serif;
+font-family: 'Dancing Script', cursive;
+font-family: 'Amatic SC', cursive;
+font-family: 'Poiret One', cursive;  naravno
+font-family: 'Courgette', cursive;
+font-family: 'Great Vibes', cursive;
+font-family: 'Kaushan Script', cursive;
+font-family: 'Kalam', cursive;
+font-family: 'Pacifico', cursive;  zanimljivo?
+font-family: 'Limelight', cursive;  predebeo?
+font-family: 'Allura', cursive;
+font-family: 'Forum', cursive;
+font-family: 'Grand Hotel', cursive;
+font-family: 'Glass Antiqua', cursive;
+font-family: 'Sacramento', cursive;
+font-family: 'Kelly Slab', cursive;
+font-family: 'Oregano', cursive;
+font-family: 'Cherry Swash', cursive;
+font-family: 'Corben', cursive;
+font-family: 'Mogra', cursive;
+font-family: 'Ribeye Marrow', cursive;
+font-family: 'Baloo', cursive;
+font-family: 'Berkshire Swash', cursive;
+font-family: 'Shadows Into Light Two', cursive;
+font-family: 'Caveat Brush', cursive;
+font-family: 'Patrick Hand', cursive;
+font-family: 'Tillana', cursive;
+font-family: 'Pangolin', cursive;
+font-family: 'Patrick Hand SC', cursive;
+*/
+
+@font-face {
+	font-family: "SUNN Line";
+	src: url("fonts/SUNN-Line-Regular.otf") format("opentype");
+	src: url("fonts/SUNN-Line-Bold.otf") format("opentype");
+}
+
+.btn-share {
+	margin: 30px !important;
+}
+
+body p {
+	font-size: 1rem;
+	font-family: 'Dosis', sans-serif;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+nav.navbar {
+
+	background-color: #fff !important;
+	/* border-bottom: 1px solid #d4d4d4; */
+	margin-bottom: 10px;
+	padding-bottom: 0;
+	padding-top: 0;
+	font-family: 'SUNN Line', cursive;
+	font-weight: bold;
+}
+
+a.nav-link:link, a.nav-link:visited {
+	color: #59b956;
+	font-size: 2.7rem;
+}
+
+a.nav-link:hover, a.nav-link:active {
+	color: #59b956;
+	font-size: 2.7rem;
+}
+
+
+.navbar img {
+	height: 100px;
+}
+
+
+
+.neon {
+  margin: 0 auto;
+  text-align: center;
+  color: #ff02f6;
+  text-shadow: 0 0 10px #ff02f6, 0 0 15px #ff02f6;
+}
+
+#logging a:link, #logging a:visited {
+
+	font-size: 0.5 rem;
+	font-family: 'Nunito', sans-serif;
+	color: #fff;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 2px;
+	margin-right: 5px;
+	margin-left: 5px;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Pacifico', cursive !important;
+}
+
+.lead {
+
+	font-family: 'Englebert', cursive;
+}
+
+a.animated{
+    color:#59b956;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    position: relative;
+}
+a.animated:after {
+    width: 0%;
+    height: 2px;
+    background: #59b956;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    -webkit-transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    -ms-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+}
+a.animated:hover {
+    color: #59b956;
+}
+a.animated:hover:after {
+   width: 100%;
+}
+
+footer a.nav-link:link, footer a.nav-link:visited {
+	color: #59b956;
+	font-size: 0.9rem;
+}
+
+footer a.nav-link:hover, footer a.nav-link:active {
+	color: #2c9d29;
+	font-size: 0.9rem;
+}
+
+footer {
+	padding-bottom: 20px;
+	padding-top: 0px;
+
+
+}
+
+
+
+
+
+
+
+
