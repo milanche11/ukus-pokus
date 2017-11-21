@@ -15,21 +15,18 @@ Sajt ima :
   - tekstualno uputstvo po koracima - text
   - broj isprljanih sudova - int
   - vreme postavljanja recepta - timestamp
-  - status (on ili off) - int
+  - status (on ili off) - int (default je 1)
   - id usera koji ga je postavio - FK
   
  **************** Sastojak ima: **************** 
   - id - int
-  - količinu - int
-  - mernu jedinicu - string
   - naziv sastojka - string
-  - status (on ili off) - int
-  - id recepta kome pripada - FK
+  - status (on ili off) - int (default je 1)
   
 **************** Kategorija recepata ima: **************** 
   - id - int
   - naziv  (slano, slatko, ljuto, jesenje, prolećno, popularno, 1 sud, itd) - string
-  - status (on ili off) - int
+  - status (on ili off) - int (default je 1)
   
 **************** Korisnik (admin) ima: **************** 
   - id - int 
@@ -37,21 +34,20 @@ Sajt ima :
   - email - string
   - username - string
   - password - string
-  - status (superadmin, admin i editor) - int
+  - status (superadmin=1, admin=2 i editor=3, 0=isključen) - int (default je 1)
   
 **************** Slika ima: **************** 
   - id - int
   - title - string
   - alt - string
   - link - string
-  - status (on ili off) - int
-  - id recepta na koji se odnosi - FK
-  
-
+  - status (on ili off) - int (default je 1)
+ 
 **************** Rating ima: **************** 
   - id - int
   - naziv - enum (1,2,3,4,5)
   - vreme postavljanja ratinga - timestamp
+  - status (on ili off) - int (default je 1)
   - id recepta na koji se odnosi - FK
   
 **************** Komentar ima: **************** 
@@ -62,4 +58,9 @@ Sajt ima :
   - vreme postavljanja komentara - timestamp
   - status (on ili off), default je nula, dok admin ne odobri - int
   - id recepta na koji se odnosi - FK
+  
+**************** Merna jedinica ima: **************** 
+  - id - int
+  - naziv merne jedinice - string
+  - status (on ili off) - int (default je 1)
 
