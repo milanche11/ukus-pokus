@@ -3,9 +3,9 @@
 // Define DB Params
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
-define("DB_PASS", "123456");
+define("DB_PASS", "");
 define("DB_NAME", "shareboard");
 
 // Define URL
-define("ROOT_PATH", "/php.dev/");
-define("ROOT_URL", "http://localhost/php.dev/");
+define("ROOT_PATH", "/okus-pokus/admin/");
+define("ROOT_URL", "http://localhost/okus-pokus/admin/");
