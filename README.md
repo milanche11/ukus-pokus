@@ -2,7 +2,7 @@
 
 Sajt ima :
   - Public deo koji prikazuje recepte sa mogućnošću čitanja, ocenjivanja i filtriranja prikaza po sastojcima
-  - Admin deo koji služi za upravljanje receptima, kategorijama, namirnicama i ostalim unosima u bazu
+  - Admin deo koji služi za upravljanje receptima, kategorijama, namirnicama i ostalim baznim momentima
 
  **************** Recept ima: **************** 
   - id - int
