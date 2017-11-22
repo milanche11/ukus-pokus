@@ -19,7 +19,7 @@
       <ul class="navbar-nav nav-pills">
         <?php if(isset($_SESSION['is_logged_in'])) : ?>
         <li class="nav-item">
-          <a class="nav-link">Welcome <?php echo $_SESSION['user_data']['name']; ?></a>
+          <a class="nav-link">Welcome <?php echo $_SESSION['user_data']['user_name']; ?></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo ROOT_URL; ?>users/logout">Logout</a>

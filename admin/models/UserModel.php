@@ -35,18 +35,19 @@ class UserModel extends Model{
 
 		if($post['submit']){
 			// Compare Login
-			$this->query('SELECT * FROM users WHERE email = :email AND password = :password');
+			$this->query('SELECT * FROM users WHERE user_email = :email AND password = :password');
 			$this->bind(':email', $post['email']);
 			$this->bind(':password', $password);
 			
 			$row = $this->single();
-
+			
 			if($row){
 				$_SESSION['is_logged_in'] = true;
 				$_SESSION['user_data'] = array(
-					"id"	=> $row['id'],
-					"name"	=> $row['name'],
-					"email"	=> $row['email']
+					"user_id"	=> $row['user_id'],
+					"user_name"	=> $row['user_name'],
+					"user_email"	=> $row['user_email'],
+					"status"	=> $row['status']
 				);
 				header('Location: '.ROOT_URL.'dashboard');
 			} else {
