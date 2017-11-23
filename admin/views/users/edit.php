@@ -1,6 +1,6 @@
 <div class="panel panel-default col-6">
   <div class="panel-heading">
-    <h3 class="panel-title">Register User</h3>
+    <h3 class="panel-title">Edit User</h3>
   </div>
   <div class="panel-body">
     <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
@@ -20,12 +20,13 @@
     		<label>Password</label>
     		<input type="password" name="password" class="form-control" />
     	</div>
-
         <label>Status</label><br>
           <input type="radio" name="status" value="1"> Super admin<br>
           <input type="radio" name="status" value="2"> Admin<br>
           <input type="radio" name="status" value="3" checked> Editor<br><br>
-    	<input class="btn btn-primary" name="submit" type="submit" value="Add" />
+    	<input class="btn btn-primary" name="submit" type="submit" value="edit_user" />
     </form>
   </div>
 </div>
+
+<?php  print_r($_GET["id"]) ;?>

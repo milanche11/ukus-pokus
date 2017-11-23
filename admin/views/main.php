@@ -45,7 +45,7 @@
         <a href="<?php echo ROOT_URL.'dashboard'?>">Dashboard</a>
       </li>
       <li>
-        <a href="#">User</a>
+        <a href="<?php echo ROOT_URL.'users/viev'?>">User</a>
       </li>
       <li>
         <a href="#">Recept</a>
