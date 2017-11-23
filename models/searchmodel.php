@@ -1,12 +1,14 @@
 <?php
 
-class HomeModel extends Model{
+class SearchModel extends Model{
 	
 	public function Index(){
 
-		$this->query('SELECT * FROM recipes ORDER BY posting_time DESC');
+		$this->query('SELECT * FROM recipes');
 		$recipeRows = $this->resultSet();
 		//print_r($rows);
 		return $recipeRows;
 	}
+
+
 }

@@ -12,8 +12,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <!-- Awesomeplete JS - autocomplete javascipt -->
+
+  <link rel="stylesheet" href=" <?php echo ROOT_URL; ?>assets/css/awesomplete.css" />        
+
+
+
        <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+  <!-- Awesomeplete JS -->
+    <script src=" <?php echo ROOT_URL; ?>assets/js/awesomplete.js" async></script>   
 </head>
 <body>
   <div class="container-fluid">
@@ -27,7 +36,10 @@
             <a class="nav-link animated" href="<?php echo ROOT_URL; ?>">Početna</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>recipes">Vidi šta sve ima!</a>
+            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>category">Vidi šta sve ima!</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>recipes">Recepti</a>
           </li>
           <li class="nav-item">
             <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Pretraga</a>
@@ -39,7 +51,7 @@
 
               <div>
                 <ul class="nav" id="logging">
-                  <?php 
+                 <?php 
                     if(isset($_SESSION['is_logged_in'])) : ?>
 
                       <li class="nav-item"><a type="button" class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>">Dobrodošli, <?php echo $_SESSION['user_data']['name']; ?></a>
@@ -75,10 +87,7 @@
 
     <br>
     <hr>
-
-   
-
-
+    
     <footer>
       <nav >
 
@@ -105,6 +114,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 23, 2017 at 10:16 PM
+-- Generation Time: Nov 23, 2017 at 10:23 PM
 -- Server version: 5.7.20-log
 -- PHP Version: 5.6.31
 
@@ -144,16 +144,16 @@ CREATE TABLE IF NOT EXISTS `photos` (
 --
 
 INSERT INTO `photos` (`photo_id`, `photo_title`, `photo_alt`, `photo_link`, `status`) VALUES
-(1, 'pita sa mesom', 'pita sa mesom', '../assets/images/pita-sa-mesom.jpg', 1),
-(2, 'pita sa mesom', 'pita sa mesom', '../assets/images/pitasamesom.jpg', 1),
-(3, 'torta od šargarepe', 'torta od šargarepe', '../assets/images/pitasamesom.jpg', 1),
-(4, 'torta od šargarepe', 'torta od šargarepe', '../assets/images/pitasamesom.jpg', 1),
-(5, 'torta od šargarepe', 'torta od šargarepe', '../assets/images/pitasamesom.jpg', 1),
-(6, 'krempite', 'krempite', '../assets/images/krempite.jpg', 1),
-(7, 'krempite', 'krempite', '../assets/images/krempite2.jpg', 1),
-(8, 'krempite', 'krempite', '../assets/images/krempite3.jpg', 1),
-(9, 'jagode sa šlagom', 'jagode sa šlagom', '../assets/images/jagode-sa-slagom.jpg', 1),
-(10, 'jagode sa šlagom', 'jagode sa šlagom', '../assets/images/jagode-sa-slagom.jpg', 1);
+(1, 'pita sa mesom', 'pita sa mesom', 'pita-sa-mesom.jpg', 1),
+(2, 'pita sa mesom', 'pita sa mesom', 'pitasamesom.jpg', 1),
+(3, 'torta od šargarepe', 'torta od šargarepe', 'pitasamesom3.jpg', 1),
+(4, 'torta od šargarepe', 'torta od šargarepe', 'pitasa-mesom4.jpg', 1),
+(5, 'torta od šargarepe', 'torta od šargarepe', 'pitasamesom.jpg', 1),
+(6, 'krempite', 'krempite', 'krempite.jpg', 1),
+(7, 'krempite', 'krempite', 'krempite2.jpg', 1),
+(8, 'krempite', 'krempite', 'krempite3.jpg', 1),
+(9, 'jagode sa šlagom', 'jagode sa šlagom', 'jagode-sa-slagom.jpg', 1),
+(10, 'jagode sa šlagom', 'jagode sa šlagom', 'jagode-sa-slagom.jpg', 1);
 
 -- --------------------------------------------------------
 
