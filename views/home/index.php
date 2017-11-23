@@ -6,7 +6,25 @@
 
 	<br><br>
 
-<a class="btn btn-success text-center" href="<?php echo ROOT_PATH;?>shares">Neko dugme</a>
+	<div class="row">
+  <div class="col-lg-6 offset-lg-3">
+
+  	<small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br>
+  	<small>Između željenih namirnica unesite zarez.</small><br><br>
+    <div class="input-group input-group-lg">
+      
+      <input type="text" class="form-control" placeholder="U kući imam..." aria-label="Search for...">
+
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="button">Traži!</button>
+      </span>
+
+    </div>
+  </div>
+
+</div>
+<br>
+<!-- <a class="btn btn-success text-center" href="<?php echo ROOT_PATH;?>shares">Neko dugme</a> -->
 
 <br><br>
 <h4>What is Lorem Ipsum?</h4>
