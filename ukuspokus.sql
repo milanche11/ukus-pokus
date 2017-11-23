@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 23, 2017 at 12:24 PM
+-- Generation Time: Nov 23, 2017 at 10:16 PM
 -- Server version: 5.7.20-log
 -- PHP Version: 5.6.31
 
@@ -190,6 +190,8 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `status` int(11) NOT NULL DEFAULT '1',
   `recipe_cats` varchar(255) NOT NULL COMMENT 'string explode cat_ids',
   `recipe_ingrs` varchar(255) NOT NULL COMMENT 'string: ingr_id, ammount, unit_id/ingr_id, ammount, unit_id/.... double explode',
+  `recipe_ammounts` varchar(255) NOT NULL,
+  `recipe_units` varchar(255) NOT NULL,
   `recipe_photos` varchar(255) NOT NULL COMMENT 'string explode photo_ids',
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`recipe_id`),
@@ -200,11 +202,11 @@ CREATE TABLE IF NOT EXISTS `recipes` (
 -- Dumping data for table `recipes`
 --
 
-INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, `dirty_dishes`, `instructions`, `posting_time`, `status`, `recipe_cats`, `recipe_ingrs`, `recipe_photos`, `user_id`) VALUES
-(1, 'Pita sa mesom', 'Hladno predjelo na brzaka', 30, 2, 'fgdsfgsdfgdf', '2017-11-23 10:26:42', 1, '1,3,6,9', '1,5,6/5,200,3/6,7,11/9,5,10', '1,2', 1),
-(2, 'Torta od šargarepe', 'Zekina omiljena', 45, 3, 'dfjhjkhkhjkhjkhjk', '2017-11-23 10:45:11', 1, '2,4,5,8', '1,2,3/4,5,6/7,8,9', '3,4,5', 2),
-(3, 'Krempite', 'Mamin specijalitet', 15, 6, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, '7,10', '2,5,9/8,6,12/5,6,3', '6,7,8', 1),
-(4, 'Jagode sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, '7,8,9', '1,4,5/2,3,4', '9,10', 3);
+INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, `dirty_dishes`, `instructions`, `posting_time`, `status`, `recipe_cats`, `recipe_ingrs`, `recipe_ammounts`, `recipe_units`, `recipe_photos`, `user_id`) VALUES
+(1, 'Pita sa mesom', 'Hladno predjelo na brzaka', 30, 2, 'fgdsfgsdfgdf', '2017-11-23 10:26:42', 1, '1,3,6,9', '1,5,9', '5,200,1', '5,3,13', '1,2', 1),
+(2, 'Torta od šargarepe', 'Zekina omiljena', 45, 3, 'dfjhjkhkhjkhjkhjk', '2017-11-23 10:45:11', 1, '2,4,5,8', '2,5', '6,52', '1,5', '3,4,5', 2),
+(3, 'Krempite', 'Mamin specijalitet', 15, 6, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, '7,10', '3,4,9,5,6', '9,5,4,6,19', '1,2,9,5,8', '6,7,8', 1),
+(4, 'Jagode sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, '7,8,9', '2,3,7,6,11', '56,5,6,36,500', '1,2,3,4,5', '9,10', 3);
 
 -- --------------------------------------------------------
 
