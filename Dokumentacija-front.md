@@ -3,6 +3,7 @@
 
 * Početna 
   - polje za pretragu po namirnicama sa unosom po dva slova i tagovima, 
+  - izlistavanje rezultata pretrage po kriterijumima,
   - par najpopularnijih recepata, 
   - par najnovijih poslednjih recepata
   
