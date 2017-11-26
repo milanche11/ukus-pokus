@@ -11,6 +11,8 @@ session_start();
 
 require('config.php');
 
+//Aja komentar
+
 /*
 
 require('classes/Messages.php');
