@@ -11,6 +11,10 @@
 
 $pretraga = '5,6,25';
 
+'1,200,5/6,5,9/5,65,81'
+
+
+
 $niz1 = array();
 
 
@@ -31,17 +35,20 @@ echo "<br><br>";
 
 
 
-/*
 $noviniz = array();
-$noviniz= implode("/", $niz);
+$noviniz= implode(",", $niz);
 
 echo "<br><br>";
 
 var_dump($noviniz);
 
-*/
 
 
+
+
+
+
+$pretraga = (5, 6 , 21);
 
 
 
