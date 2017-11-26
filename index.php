@@ -11,7 +11,6 @@ session_start();
 
 require('config.php');
 
-//Aja komentar
 
 /*
 
@@ -31,9 +30,6 @@ require('models/recipe.php');
 require('models/user.php');
 
 */
-
-
-
 
 
 function autoloadClasses($cname){ 
