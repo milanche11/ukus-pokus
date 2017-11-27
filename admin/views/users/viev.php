@@ -1,4 +1,4 @@
-<a class="btn btn-primary" href="<?php echo ROOT_URL; ?>users/register" role="button">Add user</a>
+
 <table class="table">
   <thead>
     <tr>
@@ -20,7 +20,7 @@
       <td><?php echo $item['user_email']; ?></td>
       <td><?php echo $item['username']; ?></td>
       <td><?php echo $item['status']; ?></td>
-      <td><a style="font-size: 12px;" href="<?php echo ROOT_URL; ?>users/edit?id=<?php echo $item['user_id']; ?>">Edit</a><br><a style="font-size: 12px;" href="">Delete</a> <?php //echo $item['user_id']; ?></td>
+      <td><a style="font-size: 12px;" href="<?php echo ROOT_URL; ?>users/edit/<?php echo $item['user_id']; ?>">Edit</a><br><a style="font-size: 12px;" href="">Delete</a> <?php //echo $item['user_id']; ?></td>
     </tr>
 
 <?php endforeach; ?>
@@ -28,3 +28,5 @@
 </table>
 
 <p style="font-size: 12px;" class="text-right">STATUS 0 = off 1 = superadmin 2 = admin 3 = editor</p>
+
+<a class="btn btn-primary" href="<?php echo ROOT_URL; ?>users/register" role="button">Add user</a>

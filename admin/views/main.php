@@ -51,6 +51,9 @@
         <a href="#">Recept</a>
       </li>
       <li>
+        <a href="<?php echo ROOT_URL.'categories'?>">Kategorije</a>
+      </li>
+      <li>
         <a href="#">Sastojak</a>
       </li>
       <li>
