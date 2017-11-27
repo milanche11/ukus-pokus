@@ -47,10 +47,10 @@ class UserModel extends Model{
 			if($row){
 				$_SESSION['is_logged_in'] = true;
 				$_SESSION['user_data'] = array(
-					"user_id"	=> $row['user_id'],
-					"user_name"	=> $row['user_name'],
+					"user_id"		=> $row['user_id'],
+					"user_name"		=> $row['user_name'],
 					"user_email"	=> $row['user_email'],
-					"status"	=> $row['status']
+					"status"		=> $row['status']
 				);
 				header('Location: '.ROOT_URL.'dashboard');
 			} else {

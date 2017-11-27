@@ -4,5 +4,4 @@ class Categories extends Controller{
 		$viewmodel = new CategoriesModel();
 		$this->returnView($viewmodel->Index(), true);
 	}
-
 }

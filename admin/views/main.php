@@ -60,15 +60,6 @@
         <a href="#">Komentar</a>
       </li>
       <li>
-        <a href="#">Ocena</a>
-      </li>
-      <li>
-        <a href="#">Kolicina</a>
-      </li>
-      <li>
-        <a href="#">Slika</a>
-      </li>
-      <li>
         <a href="#">Setings </a>
       </li>
     </ul>
