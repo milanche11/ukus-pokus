@@ -1,6 +1,5 @@
 <div>
 
-	
 <br><br>
 <?php foreach ($viewmodel as $item) : ?>
 

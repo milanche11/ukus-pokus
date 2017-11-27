@@ -6,20 +6,66 @@
 
 	<br><br>
 
-	<div class="row">
-  <div class="col-lg-6 offset-lg-3">
-  	<small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br>
-  	<small>Između željenih namirnica unesite zarez.</small><br><br>
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="U kući imam..." aria-label="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-success" type="button">Traži!</button>
-      </span>
-    </div>
-  </div>
+	<div class="container-fluid">
+ 
+
+    <!-- Form search -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
+
+    <form action="" method="POST">
+      <div class="container-fluid">
+        <label>Pretraga po namirnicama</label>
+
+        <div class="col-lg-10 offset-lg-1">
+          
+            <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..."  >
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="Šunka">Šunka</option>
+            </select>
+
+            <span class="btn btn-success" type="submit">
+             Traži!
+          </span>
+
+        </div>
+      </div>
+    </form>
+
+
+<div class="container-fluid">
+  <small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
 </div>
+
+     
 <br><br><br>
-<h4>What is Lorem Ipsum?</h4>
+
+    <!-- End form -->  
+      
+     
+    </div>
+ 
+
+ </div>
+
+<br><br><br>
+
+<div class="text-center">
+
+<?php if (true) : ?>
+
+<h4>Recepti koji sadrže tražene namirnice</h4>
+
+<?php else : ?>
+
+<h4>Recepti koji sadrže tražene namirnice</h4>
+
+<?php endif; ?>
+
+
 <p>
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 
@@ -30,4 +76,18 @@ It is a long established fact that a reader will be distracted by the readable c
 </p>
 
 </div>
+
+<!-- jQuery for search field -->
+
+<script type="text/javascript">
+  $("select").select2();
+
+  $("select").on("select2:unselect", function (evt) {
+  if (!evt.params.originalEvent) {
+    return;
+  }
+  
+  evt.params.originalEvent.stopPropagation();
+  });
+</script>
 

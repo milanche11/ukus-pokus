@@ -160,9 +160,19 @@ footer a.nav-link:hover, footer a.nav-link:active {
 footer {
 	padding-bottom: 20px;
 	padding-top: 0px;
-
-
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #d1e3d2;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #28a745 !important;
+  color: white; }
+
+  .select2-container--classic .select2-results__option--highlighted[aria-selected] {
+  background-color: #28a745;
+  color: white; }
 
 
 

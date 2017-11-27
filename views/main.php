@@ -2,9 +2,10 @@
 <html lang="sr">
 <head>
 
-  <!-- styling -->
 	<title>Ukus pokus | Brzi recepti od onoga što imate u kući</title>
-  
+
+  <!-- styling -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>
 	<link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/style.css">
   <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo ROOT_URL; ?>assets/images/favicon/android-icon-192x192.png">
@@ -12,24 +13,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Awesomeplete JS - autocomplete javascipt -->
+  <!-- Autocomplete search -->
 
-  <link rel="stylesheet" href=" <?php echo ROOT_URL; ?>assets/css/awesomplete.css" />        
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>        
 
-
-
-       <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
-  <!-- Awesomeplete JS -->
-    <script src=" <?php echo ROOT_URL; ?>assets/js/awesomplete.js" async></script>   
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">  
 </head>
+
 <body>
+
   <div class="container-fluid">
+
     <nav class="navbar">
+
+      <!-- LOGO -->
       <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>">
           <img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
 
+      <!-- Navigacija -->
       <div>
         <ul class="nav">
           <li class="nav-item">
@@ -46,34 +48,11 @@
           </li>
         </ul>
       </div> 
-
-        <!-- Admin linkovi
-
-              <div>
-                <ul class="nav" id="logging">
-                 <?php 
-                    if(isset($_SESSION['is_logged_in'])) : ?>
-
-                      <li class="nav-item"><a type="button" class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>">Dobrodošli, <?php echo $_SESSION['user_data']['name']; ?></a>
-                      </li>
-                      <li class="nav-item"><a type="button" class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>users/logout">Izloguj se</a>
-                      </li>
-
-                  <?php else : ?>
-
-                      <li><a class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>users/login">Uloguj se</a>
-                      </li>
-                      <li ><a class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>users/register">Registruj se</a>
-                      </li>
-
-                  <?php endif; ?> 
-                </ul>
-              </div>    
-          
-        -->
     </nav>
 
     <br><br>
+
+    <!-- Main -->
 
     <div class="container-fluid">
       <div class="row justify-content-center">
@@ -83,11 +62,14 @@
       <div class="row justify-content-center">
         <?php Messages::display(); ?>
       </div>
-    </div><!-- /.container -->
+    </div> 
 
     <br>
     <hr>
     
+    <!-- End main -->
+
+    <!-- Footer -->
     <footer>
       <nav >
 
@@ -105,11 +87,13 @@
         
       </ul>
       </nav>
-
     </footer>
+    <!-- End footer -->
+
   </div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
