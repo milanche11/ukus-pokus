@@ -11,13 +11,5 @@ class CategoryModel extends Model{
 	
 	}
 
-	public function Pretraga(){
-			
-			$this->query('SELECT * FROM recipes');
-			$recipeRows = $this->resultSet();
-			//print_r($recipeRows);
-			return $recipeRows;
-
-			
-		}
+	
 }
