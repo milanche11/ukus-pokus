@@ -57,7 +57,7 @@ if (isset($ingrRows)) {
 
   foreach ($ingrRows as $row) {
 
-    $query .= "recipe_ingrs_id like '%" . $row. "%' AND ";
+    $query .= "recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
   }
 
   $query = rtrim($query, "AND ");
