@@ -9,7 +9,7 @@ class CategoriesModel extends Model{
 			$this->execute();
 			// Redirect
 			header('Location: '.ROOT_URL.'categories');
-		}elseif(!isset($_POST['submit'])) {
+		}else{
 			$this->query('SELECT * FROM categories '); // WHERE status >= 1
 			$rows = $this->resultSet();
 			return $rows;
