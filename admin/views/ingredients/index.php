@@ -1,5 +1,5 @@
 <h1>Ingredient</h1>
-<table class="table table-sm">
+<table id="ingredient_table" class="table table-sm">
   <thead>
     <tr>
 	  <th scope="col">#</th>
@@ -28,9 +28,9 @@
 		<?php
 		$id = $item['ingredient_id']; 
 		if($item['status'] == 0){	
-			echo '<button type="button" onclick="activate('."'ingredients','ingredient_id',".$id.')" class="btn btn-warning btn-sm">Activate</button>';
+			echo '<button type="button" onclick="ajax('."'activate','ingredients','ingredient_id',".$id.')" class="btn btn-warning btn-sm">Activate</button>';
 		}else{
-			echo "<button type='button' onclick='del(".'"ingredients","ingredient_id",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
+			echo "<button type='button' onclick='ajax(".'"delete","ingredients","ingredient_id",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
 		}?>   <button type="button" class="btn btn-success btn-sm">Edit</button></td>
     </tr>
 
@@ -39,27 +39,3 @@
 
   </tbody>
 </table>
-
-<script>
-	function del(table,row,value){
-		var xhr = new XMLHttpRequest();
-		xhr.open("get", "delete.php?table="+table+"&row="+row+"&value="+value, false);
-		xhr.send();
-		var odgovor = xhr.responseText;
-		if(odgovor!==""){
-			alert(odgovor);
-		}
-	}
-	
-	function activate(table,row,value){
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("get", "activate.php?table="+table+"&row="+row+"&value="+value, false);
-		xhr.send();
-		var odgovor = xhr.responseText;
-		if(odgovor!==""){
-			alert(odgovor);
-		}
-	}
-</script>
-

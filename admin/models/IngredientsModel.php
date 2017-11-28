@@ -8,7 +8,7 @@ class IngredientsModel extends Model{
 			$this->bind(':status', 1);
 			$this->execute();
 			// Redirect
-			header('Location: '.ROOT_URL.'categories');
+			header('Location: '.ROOT_URL.'ingredients');
 		}elseif(!isset($_POST['submit'])) {
 			$this->query('SELECT * FROM ingredients '); // WHERE status >= 1
 			$rows = $this->resultSet();
