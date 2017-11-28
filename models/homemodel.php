@@ -4,9 +4,16 @@ class HomeModel extends Model{
 	
 	public function Index(){
 
-		$this->query('SELECT * FROM recipes ORDER BY posting_time DESC');
-		$recipeRows = $this->resultSet();
-		//print_r($rows);
-		return $recipeRows;
+		$this->query('SELECT * FROM ingredients ORDER BY ingredient_name ASC');
+		$ingrRows = $this->resultSet();
+		//print_r($ingrRows);
+		return $ingrRows;
+
+
 	}
-}
+
+
+
+
+
+}	
