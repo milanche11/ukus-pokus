@@ -54,7 +54,7 @@
         <a href="<?php echo ROOT_URL.'categories'?>">Kategorije</a>
       </li>
       <li>
-        <a href="#">Sastojak</a>
+        <a href="<?php echo ROOT_URL.'ingredients'?>">Sastojak</a>
       </li>
       <li>
         <a href="#">Komentar</a>
