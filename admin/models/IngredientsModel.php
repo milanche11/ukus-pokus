@@ -14,7 +14,6 @@ class IngredientsModel extends Model{
 			$rows = $this->resultSet();
 			return $rows;
 		}
-
 	}
 }
 ?>

@@ -1,11 +1,11 @@
-
-<table class="table">
+<h1>Ingredient</h1>
+<table class="table table-sm">
   <thead>
     <tr>
 	  <th scope="col">#</th>
       <th scope="col">Naziv</th>
       <th scope="col">id</th>
-      <th scope="col">#</th>
+      <th scope="col">Options</th>
     </tr>
   </thead>
 	
@@ -14,7 +14,7 @@
 		  <td></td>
 		  <td><input type="text" name="ingredient_name" class="form-control" /></td>
 		  <td></td>
-		  <td><input class="btn btn-primary" name="submit" type="submit" value="Add" /></td>
+		  <td><input class="btn btn-primary btn-sm" name="submit" type="submit" value="Add Ingredients" /></td>
 		</tr>
 	</form>
 
@@ -28,10 +28,10 @@
 		<?php
 		$id = $item['ingredient_id']; 
 		if($item['status'] == 0){	
-			echo '<button type="button" onclick="activate('."'ingredients','ingredient_id',".$id.')" class="btn btn-success">Activate</button></td>';
+			echo '<button type="button" onclick="activate('."'ingredients','ingredient_id',".$id.')" class="btn btn-warning btn-sm">Activate</button>';
 		}else{
-			echo "<button type='button' onclick='del(".'"ingredients","ingredient_id",'.$id.")' class='btn btn-danger btn-sm'>Delete</button></td>";
-		}?>
+			echo "<button type='button' onclick='del(".'"ingredients","ingredient_id",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
+		}?>   <button type="button" class="btn btn-success btn-sm">Edit</button></td>
     </tr>
 
 <?php endforeach; ?>

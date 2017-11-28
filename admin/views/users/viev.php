@@ -1,4 +1,4 @@
-
+<h1>Users</h1>
 <table class="table table-sm">
   <thead>
     <tr>
@@ -20,7 +20,10 @@
       <td><?php echo $item['user_email']; ?></td>
       <td><?php echo $item['username']; ?></td>
       <td><?php echo $item['status']; ?></td>
-      <td><a style="font-size: 12px;" href="<?php echo ROOT_URL; ?>users/edit/<?php echo $item['user_id']; ?>">Edit</a><br><a style="font-size: 12px;" href="">Delete</a> <?php //echo $item['user_id']; ?></td>
+      <td></a><button type="button" class="btn btn-danger btn-sm" name"xxx" onclick="myFunction()" >Delete</button> <a href="<?php echo ROOT_URL; ?>users/edit/<?php echo $item['user_id']; ?>"><button type="button" class="btn btn-success btn-sm">Edit</button></a>
+       <!--  <a style="font-size: 12px;" >Edit</a><br><a style="font-size: 12px;" href="">Delete</a> <?php //echo $item['user_id']; ?> -->
+
+      </td>
     </tr>
 
 <?php endforeach; ?>
