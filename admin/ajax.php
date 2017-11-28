@@ -30,6 +30,17 @@ if(isset($_GET['action'])){
 			
 		echo "Aktivirano";
 	}
+	
+/*	if($action == "edit"){	
+		
+			
+		$db->query("UPDATE $table_name SET status=:status WHERE $row='$value'");
+		$db->bind(':status', 1);
+		$db->execute();
+			
+		echo "Aktivirano";
+	}
+*/
 }
 	
 ?>

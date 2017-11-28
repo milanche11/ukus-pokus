@@ -9,5 +9,14 @@
 			alert(odgovor);
 			location.reload();
 		}
+		
+		if(action == 'edit'){
+			$("#td_name"+value).html("<form method='post' action=''> <input type='text' name='"+value+"' value='NESTO' class='form-control'>");
+			$("#td"+value).html("<button type='submit' name='edit' class='btn btn-success btn-sm' >Submit</button> </form>");
+			
+		//	<button type='submit' name='edit' class='btn btn-success btn-sm' >Edit</button>
+		}
 	}
+	
+	
 
