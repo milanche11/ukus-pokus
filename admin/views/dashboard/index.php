@@ -1,5 +1,2 @@
-<h1>Dashboard</h1>
+<h1>Dashboard</h1><hr>
 
-<?php
-
-echo "Ovde ce biti naslovna strana kada se Admin uloguje";

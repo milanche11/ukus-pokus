@@ -1,4 +1,4 @@
-<h1>Categories</h1><hr>
+<h1>Categories</h1><br>
 
 <table class="table table-sm">
   <thead>
@@ -24,6 +24,7 @@
       <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
         <tr>
           <td><?php  echo $i.'.'; $i++ ?></td>
+<<<<<<< HEAD
           <td id="td_name<?php echo $id; ?>"><?php echo $item['cat_name']; ?></td>
           <td id="td<?php echo $id; ?>">
 		  <?php if ($item['status'] == 0 ) { ?>
@@ -32,12 +33,31 @@
             <button type="submit" class="btn btn-danger btn-sm" name="delete" value="<?php echo $item['cat_id']; ?>">Delete</button> <?php } ?>
    <!--         <button type="submit" class="btn btn-success btn-sm" name="edit" onclick="">Edit</button>  -->
 			<button type="button" onclick="edit('edit','categories','cat_id','cat_name','<?php echo $name; ?>','<?php echo $id; ?>')"  class="btn btn-success btn-sm">Edit</button>
+=======
+          <td id="edit<?php echo $item['cat_id']; ?>"><?php echo $item['cat_name']; ?></td>
+          <td><?php if ($item['status'] == 0 ) { ?>
+            <button type="submit" class="btn btn-warning btn-sm" name="activate" value="<?php echo $item['cat_id']; ?>">Activate</button>
+          <?php }else{ ?> 
+            <button type="submit" class="btn btn-danger btn-sm" name="delete" value="<?php echo $item['cat_id']; ?>">Delete</button> <?php } ?>
+            <button type="submit" class="btn btn-success btn-sm" name="edit"  value="<?php echo $item['cat_id']; ?>" onclick="start(<?php echo $item['cat_id']; ?>)">Edit</button>
+>>>>>>> 8be98fc996ee8f8ed25c2ea0a21091bfff84bc3a
          </td>
         </tr>
       </form>
     <?php endforeach; ?>
     </tbody>
 </table>
+<<<<<<< HEAD
+=======
+
+
+<?php print_r($_POST);?>
+<script type="text/javascript">
+  function start($id){
+   alert(aaaaaaa);
+   break;
+  }
+>>>>>>> 8be98fc996ee8f8ed25c2ea0a21091bfff84bc3a
 
 
 
