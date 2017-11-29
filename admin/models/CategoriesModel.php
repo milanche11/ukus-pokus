@@ -6,7 +6,6 @@ class CategoriesModel extends Model{
 			$post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			if ($post['cat_name'] == '') {
 				Messages::setMsg('Potrebno je popuniti polje name', 'error');
-				
 			}else{
 			// Insert into MySQL
 			$this->query('INSERT INTO categories (cat_name, status) VALUES (:name, :status)');
