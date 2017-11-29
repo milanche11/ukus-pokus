@@ -5,7 +5,7 @@ class CategoriesModel extends Model{
 		if(isset($_POST['submit'])){
 			$post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			if ($post['cat_name'] == '') {
-				Messages::setMsg('Potrebno je popuniti polje', 'error');
+				Messages::setMsg('Potrebno je popuniti polje name', 'error');
 				
 			}else{
 			// Insert into MySQL
@@ -13,11 +13,12 @@ class CategoriesModel extends Model{
 			$this->bind(':name', $_POST['cat_name']);
 			$this->bind(':status', 1);
 			$this->execute();
+			
 			// Redirect
 			header('Location: '.ROOT_URL.'categories');
+
 			}
 	
-
 		}elseif(isset($_POST['delete'])){
 			$this->query('UPDATE categories SET status = :status WHERE cat_id = :id');
 			$this->bind(':id', $_POST['delete']);
