@@ -16,32 +16,29 @@
       </tr>
   </form>
 
-    <?php $i=1; foreach($viewmodel as $item) : ?>
+    <?php $i=1; foreach($viewmodel as $item) : 
+		$name= $item["cat_name"];
+		$id=$item["cat_id"];
+	?>
     <tbody>
       <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
         <tr>
           <td><?php  echo $i.'.'; $i++ ?></td>
-          <td id="<?php echo $item['cat_id']; ?>"><?php echo $item['cat_name']; ?></td>
-          <td><?php if ($item['status'] == 0 ) { ?>
+          <td id="td_name<?php echo $id; ?>"><?php echo $item['cat_name']; ?></td>
+          <td id="td<?php echo $id; ?>">
+		  <?php if ($item['status'] == 0 ) { ?>
             <button type="submit" class="btn btn-warning btn-sm" name="activate" value="<?php echo $item['cat_id']; ?>">Activate</button>
           <?php }else{ ?> 
             <button type="submit" class="btn btn-danger btn-sm" name="delete" value="<?php echo $item['cat_id']; ?>">Delete</button> <?php } ?>
-            <button type="submit" class="btn btn-success btn-sm" name="edit" onclick="start(<?php echo $item['cat_id']; ?>)">Edit</button>
+   <!--         <button type="submit" class="btn btn-success btn-sm" name="edit" onclick="">Edit</button>  -->
+			<button type="button" onclick="edit('edit','categories','cat_id','cat_name','<?php echo $name; ?>','<?php echo $id; ?>')"  class="btn btn-success btn-sm">Edit</button>
          </td>
         </tr>
       </form>
     <?php endforeach; ?>
     </tbody>
 </table>
-<script type="text/javascript">
-  function start($id){
-    document.getElementById($id).innerHTML = "YOU CLICKED ME!";
-  }
 
-  function myFunction() {
-       = "YOU CLICKED ME!";
-  }
-</script>
 
 
 
