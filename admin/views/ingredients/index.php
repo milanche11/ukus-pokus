@@ -18,12 +18,17 @@
 		</tr>
 	</form>
 
-<?php $i = 1; foreach($viewmodel as $item) : $id = $item['ingredient_id']; ?>
+	<?php $i = 1; 
+		foreach($viewmodel as $item) : 
+			$name = $item['ingredient_name'];
+			$id = $item['ingredient_id']; 
+			$status = $item['status']
+	?>
 	  <tbody>
     <tr>
 		<td><?php echo $i; $i++ ?></td>
-		<td id="td_name<?php echo $id; ?>"><?php echo $item['ingredient_name']; ?></td>
-		<td><?php echo $item['status']; ?></td>
+		<td id="td_name<?php echo $id; ?>"><?php echo $name; ?></td>
+		<td><?php echo $status; ?></td>
 		<td id="td<?php echo $id; ?>">
 			<?php
 
@@ -32,7 +37,7 @@
 			}else{
 				echo "<button type='button' onclick='ajax(".'"delete","ingredients","ingredient_id",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
 			}?>   
-				<button id="delete<?php echo $id; ?>" onclick="ajax('edit','ingredients','ingredient_id',<?php echo $id; ?>)" type="button" class="btn btn-success btn-sm">Edit</button>
+				<button id="edit<?php echo $id; ?>" onclick="edit('ingredients','<?php echo $name; ?>','<?php echo $id; ?>')" type="button" class="btn btn-success btn-sm">Edit</button>
 		</td>
     </tr>
 
