@@ -27,8 +27,6 @@ class HomeModel extends Model{
   			 	
 			}
 
-			
-
 		} 
 	}
 
