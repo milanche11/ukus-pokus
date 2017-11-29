@@ -9,39 +9,24 @@ $db = new Dbconect;
 
 if(isset($_GET['action'])){
 	
-	$action = $_GET['action'];
-	$table_name = $_GET['table'];
-	$row = $_GET['row'];
-	$value = $_GET['value'];
+	$action = strip_tags($_GET['action']);
+	$table_name = strip_tags($_GET['table']);
+	$row = strip_tags($_GET['row']);
+	$value = strip_tags($_GET['value']);
+	$edited_column = strip_tags($_GET['edited_column']);
+	$new_value = strip_tags($_GET['new_value']);
 	
-	if($action == "delete"){
-		$db->query("UPDATE $table_name SET status=:status WHERE $row='$value'");
-		$db->bind(':status', 0);
-		$db->execute();
-			
-		echo "obrisano";
-	}
 
-	if($action == "activate"){		
-			
-		$db->query("UPDATE $table_name SET status=:status WHERE $row='$value'");
-		$db->bind(':status', 1);
+	if($action == "edit" || $action == "delete" || $action == "activate"){	
+		
+		$db->query("UPDATE $table_name SET $edited_column=:new_value WHERE $row='$value'");
+		$db->bind(':new_value', $new_value);
 		$db->execute();
 			
-		echo "Aktivirano";
-	}
+		echo $action;
 	
-	if($action == "edit"){	
-		echo "EDIT EDIT EDIT";
-	/*		
-		$db->query("UPDATE $table_name SET status=:status WHERE $row='$value'");
-		$db->bind(':status', 1);
-		$db->execute();
-			
-		echo "Aktivirano";
-	*/
 	}
 
 }
-	
+
 ?>
