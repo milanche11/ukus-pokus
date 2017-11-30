@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 26, 2017 at 03:57 PM
+-- Generation Time: Nov 30, 2017 at 11:44 AM
 -- Server version: 5.7.20-log
 -- PHP Version: 5.6.31
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ingredient_id`),
   UNIQUE KEY `ingredient_name_UNIQUE` (`ingredient_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ingredients`
@@ -106,7 +106,7 @@ INSERT INTO `ingredients` (`ingredient_id`, `ingredient_name`, `status`) VALUES
 (6, 'ulje', 1),
 (7, 'biber', 1),
 (8, 'jogurt', 1),
-(9, 'pavlaka', 1),
+(9, 'pavlaka 12% mm', 1),
 (10, 'kiselo mleko', 1),
 (11, 'slatka pavlaka', 1),
 (12, 'majonez', 1),
@@ -121,7 +121,10 @@ INSERT INTO `ingredients` (`ingredient_id`, `ingredient_name`, `status`) VALUES
 (21, 'grašak', 1),
 (22, 'boranija', 1),
 (23, 'kukuruzno brašno', 1),
-(24, 'pirinčano brašno', 1);
+(24, 'pirinčano brašno', 1),
+(25, 'pavlaka 16% mm', 1),
+(26, 'pavlaka 20% mm', 1),
+(27, 'mileram 30% mm', 1);
 
 -- --------------------------------------------------------
 
@@ -202,10 +205,10 @@ CREATE TABLE IF NOT EXISTS `recipes` (
 --
 
 INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, `dirty_dishes`, `instructions`, `posting_time`, `status`, `recipe_cats`, `recipe_ingrs`, `recipe_ingrs_id`, `recipe_photos`, `user_id`) VALUES
-(1, 'Pita sa mesom', 'Hladno predjelo na brzaka', 30, 2, 'fgdsfgsdfgdf', '2017-11-23 10:26:42', 1, '1,3,6,9', '1,5,9', '', '1,2', 1),
-(2, 'Torta od šargarepe', 'Zekina omiljena', 45, 3, 'dfjhjkhkhjkhjkhjk', '2017-11-23 10:45:11', 1, '2,4,5,8', '2,5', '', '3,4,5', 2),
-(3, 'Krempite', 'Mamin specijalitet', 15, 6, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, '7,10', '3,4,9,5,6', '', '6,7,8', 1),
-(4, 'Jagode sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, '7,8,9', '2,3,7,6,11', '', '9,10', 3);
+(1, 'Pita sa mesom', 'Hladno predjelo na brzaka', 30, 2, 'fgdsfgsdfgdf', '2017-11-23 10:26:42', 1, '1,3,6,9', '1,5,9/2,5,9/6,5,12/1,6,8', ',1,5,9,', '1,2', 1),
+(2, 'Torta od šargarepe', 'Zekina omiljena', 45, 3, 'dfjhjkhkhjkhjkhjk', '2017-11-23 10:45:11', 1, '2,4,5,8', '2,5', ',2,5,9,', '3,4,5', 2),
+(3, 'Krempite', 'Mamin specijalitet', 15, 6, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, '7,10', '3,4,9,5,6', ',1,3,4,9,6,', '6,7,8', 1),
+(4, 'Jagode sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, '7,8,9', '2,3,7,6,11', ',2,3,7,6,11,55,', '9,10', 3);
 
 -- --------------------------------------------------------
 
