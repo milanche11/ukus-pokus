@@ -8,8 +8,5 @@ class CategoryModel extends Model{
 		$catRows = $this->resultSet();
 		//print_r($rows);
 		return $catRows;
-	
-	}
-
-	
+	}	
 }

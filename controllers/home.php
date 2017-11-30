@@ -12,5 +12,7 @@ class Home extends Controller {
 		$this->returnView($viewmodel->result(), true);
 	}
 
+	
+
 }
 

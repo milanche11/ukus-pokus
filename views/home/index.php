@@ -1,5 +1,4 @@
 
-
 <!-- Gornji deo -->
 <div class="text-center">
 	<h1>Dobrodošli na Ukus pokus!</h1>
@@ -74,7 +73,6 @@
 
     echo "<h4 class='text-center'>Ukupno recepata koji sadrže tražene namirnice : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4><br>";
 
-    
       foreach ($recRows as $item) {
         echo '<p>';
         echo $item['recipe_title'];
@@ -85,8 +83,7 @@
   }
 ?>
 
-<br><br><br>
-</div>
+
 
 <br><br><br>
 
@@ -99,6 +96,8 @@
 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
 
 </div>
+
+
 
 <!-- jQuery for search field -->
 
