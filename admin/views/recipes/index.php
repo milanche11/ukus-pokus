@@ -1,32 +1,32 @@
 <h1>Recipes</h1><hr>
+
+
+
 <?php $q = new Query; 
 
-print_r($q->listAllrecipes());
-?>
+foreach($q->allquery('recipes') as $item) : ?>
 
-<select name="categories" multiple>
-<?php foreach($q->listAllcategories() as $item) : ?>
-	<option value=""> <?php echo $item['cat_name']; ?> </option>
-<?php endforeach; ?>
-</select>
-<select name="ingredient" multiple>
-<?php foreach($q->listAllingredients() as $item) : ?>
-	<option value=""> <?php echo $item['ingredient_name']; ?> </option>
-<?php endforeach; ?>
-</select>
+NASLOV - <?php echo $item['recipe_title']; ?><br>
+OPIS - <?php echo $item['description']; ?><br>
+VREME PRIPREME - <?php echo $item['prep_time']; ?><br>
+PLJAVO SUDE - <?php echo $item['dirty_dishes']; ?><br>
+DATUM POSTAVKE - <?php echo $item['posting_time']; ?><br>
+KATEGORIJA - <?php $arr = explode(",",$item['recipe_cats']);
+		foreach($arr as $id){
+			$ress = $q->soloquery('categories', 'cat_id' , $id)['cat_name']; echo $ress. ', ';
+		}?><br>
 
-<?php foreach($q->listAllrecipes() as $item) : ?>
+SASTOJCI - 	<?php $arr = explode("/",$item['recipe_ingrs']);
+		foreach($arr as $id){
+			$soloing = explode(",",$id);
+				$oneing = $q->soloquery('ingredients', 'ingredient_id' , $soloing[0])['ingredient_name'];	
+				$oneunit = $q->soloquery('units', 'unit_id' , $soloing[2])['unit_name'];
+				echo $oneing. ' '. $soloing[1]. ''. $oneunit. '<br> ';
+		}?><br>
 
-<?php echo $item['recipe_title']; ?><br>
-<?php echo $item['description']; ?><br>
-<?php echo $item['prep_time']; ?><br>
-<?php echo $item['dirty_dishes']; ?><br>
-<?php echo $item['posting_time']; ?><br>
-<?php echo $item['recipe_cats']; ?><br>
-<?php echo $item['recipe_ingrs']; ?><br>
-<?php echo $item['recipe_ammounts']; ?><br>
-<?php echo $item['recipe_units']; ?><br>
-<?php echo $item['user_id']; ?><br>
+PHOTO - <?php echo $item['recipe_photos']; ?><br> 
+
+USER - <?php echo $q->soloquery('users', 'user_id' , $item['user_id'])['username']; ?><br> 
 
 <hr><?php endforeach; ?>
 
