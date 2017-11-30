@@ -1,7 +1,5 @@
 <h1>Recipes</h1><hr>
 
-
-
 <?php $q = new Query; 
 
 foreach($q->allquery('recipes') as $item) : ?>
@@ -30,3 +28,9 @@ USER - <?php echo $q->soloquery('users', 'user_id' , $item['user_id'])['username
 
 <hr><?php endforeach; ?>
 
+<?php 
+
+var_dump(lastInsertId());
+
+
+?>

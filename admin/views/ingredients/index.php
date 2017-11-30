@@ -1,4 +1,4 @@
-<h1>Ingredient</h1>
+<h1>Ingredient</h1><hr>
 <table class="table table-sm">
   <thead>
     <tr>

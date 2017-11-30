@@ -1,3 +1,7 @@
+<?php if(isset($_SESSION['is_logged_in'])) {
+  header('Location: '.ROOT_URL.'dashboard');
+} ?>
+
 <div class="row justify-content-center">
 
     

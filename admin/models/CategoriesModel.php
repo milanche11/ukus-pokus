@@ -38,7 +38,6 @@ class CategoriesModel extends Model{
 			$this->query('SELECT * FROM categories ORDER BY categories . status DESC'); // WHERE status >= 1
 			$rows = $this->resultSet();
 			return $rows;
-		
-
+	
 	}
 }

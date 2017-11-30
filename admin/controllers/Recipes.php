@@ -4,4 +4,8 @@ class Recipes extends Controller{
 		$viewmodel = new RecipesModel();
 		$this->returnView($viewmodel->Index(), true);
 	}
+	protected function insert(){
+		$viewmodel = new RecipesModel();
+		$this->returnView($viewmodel->insert(), true);
+	}
 }

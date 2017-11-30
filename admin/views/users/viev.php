@@ -1,4 +1,4 @@
-<h1>Users</h1>
+<h1>Users</h1><hr>
 <table class="table table-sm">
   <thead>
     <tr>
@@ -10,8 +10,7 @@
       <th scope="col">#</th>
     </tr>
   </thead>
-
-
+  
 <?php $i = 1; foreach($viewmodel as $item) : ?>
 	  <tbody>
     <tr>

@@ -13,4 +13,5 @@ class Query extends Model {
 		$rows = $this->single();
 		return $rows;	
 	}
+	
 }
