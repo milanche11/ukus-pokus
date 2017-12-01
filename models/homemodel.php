@@ -20,13 +20,10 @@ class HomeModel extends Model{
 
 				$pretraga = $_POST['pretraga'];
 
-
 				//print_r($_POST['pretraga']);
   			 	return $pretraga;
-
   			 	
 			}
-
 		} 
 	}
 
@@ -37,10 +34,7 @@ class HomeModel extends Model{
 		$recRows = $this->resultSet();
 		//print_r($recRows);
 		return $recRows;
-
 	}
-
-
 }
 
 	

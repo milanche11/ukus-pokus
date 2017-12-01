@@ -1,4 +1,6 @@
 
+ 
+   
 <!-- Gornji deo -->
 <div class="text-center">
 	<h1>Dobrodošli na Ukus pokus!</h1>
@@ -73,19 +75,22 @@
 
     echo "<h4 class='text-center'>Ukupno recepata koji sadrže tražene namirnice : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4><br>";
 
+$mouseover = '"#28a745"';
+$mouseout = '"#212121"';
       foreach ($recRows as $item) {
         echo '<p>';
-        echo $item['recipe_title'];
+        $id=$item['recipe_id'];
+        echo "<a href=' recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
         echo "</p>";
     }
-
-
   }
 ?>
 
+<br>
 
+<p class="recipelist">Ovde dođe paginacija... 1 ... 5 6 7 8 9 10 11 ... 128</p>
 
-<br><br><br>
+<br>
 
 <div class="text-center">
 
@@ -112,6 +117,9 @@
   
   evt.params.originalEvent.stopPropagation();
   });
+
+
+
 </script>
 
 
