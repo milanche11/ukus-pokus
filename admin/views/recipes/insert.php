@@ -19,7 +19,7 @@
   <div class="row">
     <div class="col">
       <label>Vreme pripreme</label>
-      <input type="text" class="form-control" name="time" placeholder="Preparation time">
+      <input type="text" class="form-control" name="time" placeholder="Preparation time min">
     </div>
     <div class="col">
       <label>Prljavo posudje</label>
@@ -30,7 +30,9 @@
 
 <?php $b=1; ?>
   <label>Sastojci</label>
-  <div class="row"> 
+  <div id="sastojakall">
+  <div id="sastojak">
+  <div class="row"> <!-- Java script kopira od ovog mesta class="row" --> 
     <div class="col-4">
 
       <select class="form-control" name="ingredients<?php echo $b; ?>" id="">
@@ -54,11 +56,12 @@
       </select>
     </div>
     <div class="col-1">
-      <button type="button" class="btn btn-success btn-sm">+</button>
+     <button onclick="cloneFunction()">clone it</button>
     </div>
     <?php $b++ ?>
-  </div>
-
+  </div> <!-- Zavrsetak kopiranja java scripta -->
+</div>
+</div>
 
     <label>Kategorije</label>
       <select class="form-control form-control-lg custom-select" name="categories[]" multiple aria-label="Search for...">
@@ -110,4 +113,14 @@ $("select").on("select2:unselect", function (evt) {
   
   evt.params.originalEvent.stopPropagation();
 });
+
+function cloneFunction() {
+    var para = document.getElementById("sastojak");
+    var cln = para.cloneNode(true);
+    document.getElementById("sastojakall").appendChild(cln);
+    break;
+}
+
 </script>
+
+

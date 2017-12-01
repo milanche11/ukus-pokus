@@ -26,3 +26,10 @@
 			}
 		}
 	}
+		// Milan
+
+		function cloneFunction() {
+		    var para = document.getElementById("sastojak");
+		    var cln = para.cloneNode(true);
+		    document.getElementById("sastojakall").appendChild(cln);
+		}

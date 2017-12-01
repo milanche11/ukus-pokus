@@ -19,7 +19,7 @@ SASTOJCI - 	<?php $arr = explode("/",$item['recipe_ingrs']);
 			$soloing = explode(",",$id);
 				$oneing = $q->soloquery('ingredients', 'ingredient_id' , $soloing[0])['ingredient_name'];	
 				$oneunit = $q->soloquery('units', 'unit_id' , $soloing[2])['unit_name'];
-				echo $oneing. ' '. $soloing[1]. ''. $oneunit. '<br> ';
+				echo $oneing. ' '. $soloing[1]. ' '. $oneunit. '<br> ';
 		}?><br>
 
 PHOTO - <?php echo $item['recipe_photos']; ?><br> 
