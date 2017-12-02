@@ -30,17 +30,31 @@ class RecipeModel extends Model{
 		return $recipe;
 	}
 
-	public function photos($id){
-		$this->query("SELECT * FROM photos WHERE " . $id);
+	public function photos($ids){
+		$this->query("SELECT * FROM photos WHERE " . $ids );
 		$photos = $this->resultSet();
 		return $photos;
 	}
 
-	public function categories(){
-		$this->query("SELECT * FROM categories " );
+	public function categories($ids){
+		$this->query("SELECT * FROM categories WHERE " . $ids );
 		$categories = $this->resultSet();
 		return $categories;
 	}
+
+	public function units(){
+		$this->query("SELECT * FROM units WHERE status=1");
+		$units = $this->resultSet();
+		return $units;
+	}
+
+	public function ingrs($ids){
+		$this->query("SELECT * FROM ingredients WHERE ingredient_id=$ids AND status=1" );
+		$ingrs = $this->single();
+		return $ingrs;
+	} 
+
+
 	
 
 

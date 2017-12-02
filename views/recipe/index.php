@@ -1,5 +1,9 @@
 <?php
+//upit za jedinice mere 
+$unit = new RecipeModel();
+$units = $unit->units();
 
+//povlacenje get parametra
 $recept = new RecipeModel();
 $id = $recept->getid();
 $receptPrikaz = $recept->recipe($id);
@@ -17,18 +21,20 @@ $recipeCats = $receptPrikaz['recipe_cats'];
 $recipeIngrs = $receptPrikaz['recipe_ingrs'];
 $recipePhotos = $receptPrikaz['recipe_photos'];
 
+if($recipeStatus == 0){
+	header('Location: ' . ROOT_URL);
+}else{	
+
 //upit za slike
 $slike = array();
 $slike = explode(",", $recipePhotos);
 
- $ids = '';
+ $ids = '(';
 foreach ($slike as $item) {
 	$ids .=  "photo_id=" . $item . " OR ";
 }
  $ids = rtrim($ids, "OR ");
- $ids = $ids . " LIMIT 3";
-
- //echo $ids;
+ $ids = $ids . ") AND (status=1) LIMIT 3 ";
 
 $fotke = new RecipeModel();
 $fotkeAll = $fotke->photos($ids);
@@ -37,28 +43,35 @@ $fotkeAll = $fotke->photos($ids);
 $kategorije = array();
 $kategorije = explode(",", $recipeCats);
 
-$idscats = '';
+$idscats = '(';
 foreach ($kategorije as $key) {
 	$idscats .= "cat_id=" . $key . " OR ";
 }
 $idscats = rtrim($idscats, "OR ");
-
-echo $idscats;
+$idscats = $idscats . ") AND (status=1) ";
 
 $categories = new RecipeModel();
-$catAll = $categories->categories();
+$catAll = $categories->categories($idscats);
 
-//print_r($catAll);
+//upit za dobavljanje sastojaka
+$sastojci = array();
+//razbijanje po slash-u
+$sastojci = explode("/", $recipeIngrs);
+echo "<br>";
+
+$ing = new RecipeModel();
+
 
 ?>
 
 <div class="container-fluid">
 	<div class="text-center">
 		<h1><?php  echo $recipeTitle;   ?></h1>
-		<br><br>
+		<br>
 	</div>	
 	
 	<div class="col-lg-8 offset-lg-2">
+		<p class="desc"><?php echo $recipeDesc; ?> </p>
 		<!-- Carousel -->
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -92,37 +105,120 @@ $catAll = $categories->categories();
 
 	<!--Carousel end -->
 	<br>
+
 </div>
+
+
+
+
+
 
 <div class="container-fluid">
 	<div class="col-lg-10 offset-lg-1">
 		<div class="col-lg-10 offset-lg-1">
-		<p class="desc"><?php echo $recipeDesc; ?> </p>
-		<br>
+		<small><strong>&nbsp;&nbsp;&nbsp;Nalazi se u kategorijama: </strong><?php foreach ($catAll as $key) {
+	echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
+}?> <br> </small><br><br><br>
+		
 		</div>
-		<p><strong>Pripada kategorijama: </strong><?php echo $recipeCats; ?> <br>
-		<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min<br>
-		<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom<br>
-		<strong>Sastojci: </strong><?php echo $recipeIngrs; ?> </p>
+
+
+		<p><strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min<br>
+		<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom<br></p>
+
+		<p><strong>Sastojci: </strong></p>
+<?php 
+
+//upit za dobavljanje sastojaka
+$sastojci = array();
+//razbijanje po slash-u
+$sastojci = explode("/", $recipeIngrs);
+$ing = new RecipeModel();
+
+echo "<div class='col-lg-5'>";
+echo '<table class="table  sastojci table-sm"><tbody>';
+foreach ($sastojci as $set) {
+	$niz = $set;
+	
+	echo "<tr>";
+	//razbijanje po zarezu
+	$particles = array();
+	$particles = explode(",", $niz);
+
+	//ispis liste sastojaka i njihovih kolicina i jedinica mere
+	echo "<td  style='width: 130px;'>";
+	$ingrId = $particles[0]; 
+	$ingAll = $ing->ingrs($ingrId);
+	echo $ingAll['ingredient_name'];  
+	echo "</td>";
+	
+	echo "<td style='width: 40px;'>";
+	$ammount = $particles[1]; 
+	echo $ammount;
+	echo "</td>";
+	
+	$unitId = $particles[2]; 
+	echo "<td  style='width: 100px;'>";
+	//upit za naziv jedinice mere
+	foreach ($units as $mera) {
+
+		$red = $mera;
+		//echo $red['unit_id'];
+		if ($red['unit_id'] == $unitId) {
+			echo $red['unit_name'];
+		}
+	}
+	echo "</td>";
+	echo "</tr>";		
+}
+echo "</tbody></table>";
+echo "</div>";
+?> 
+<br><br>		
 		<div class="text-center">
 			<h4>Uputstvo za pripremu: </h4>
 		</div>
 		<p><?php echo $recipeInst; ?> </p>
 		
 	</div>
+
+		
+<br><br>	
 </div>	
-<div class="text-center">
-	<h4>Prijatno! </h4>
+
+
+<!-- prijatno -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 text-center">
+			<h4>Prijatno! </h4><br><br><br>
+		</div>
+	
+	</div>
+</div>
+
+<!-- ponovljene kategorije -->
+<div class="container-fluid">
+	<div  class="row">
+		<div class="col-11 offset-1">
+			<small><strong>Potražite i druge recepte u kategorijama: </strong>
+				<?php 
+				foreach ($catAll as $key) {
+					echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
+				}?> <br> 
+			</small>
+		</div>
+		
+	</div>
 </div>
 
 <?php
-/*
-echo "<br>";
-echo $recipeCats;
-echo "<br>";
-echo $recipeIngrs;
-echo "<br>";
-*/
 
-
+}
 ?>
+
+
+
+
+
+

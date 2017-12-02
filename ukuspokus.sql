@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 30, 2017 at 08:36 PM
+-- Generation Time: Dec 02, 2017 at 10:46 PM
 -- Server version: 5.7.20-log
 -- PHP Version: 5.6.31
 
@@ -199,23 +199,26 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `photo_link` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`photo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `photos`
 --
 
 INSERT INTO `photos` (`photo_id`, `photo_title`, `photo_alt`, `photo_link`, `status`) VALUES
-(1, 'pita sa mesom', 'pita sa mesom', 'pita-sa-mesom.jpg', 1),
-(2, 'pita sa mesom', 'pita sa mesom', 'pitasamesom.jpg', 1),
-(3, 'torta od šargarepe', 'torta od šargarepe', 'pitasamesom3.jpg', 1),
-(4, 'torta od šargarepe', 'torta od šargarepe', 'pitasa-mesom4.jpg', 1),
-(5, 'torta od šargarepe', 'torta od šargarepe', 'pitasamesom.jpg', 1),
-(6, 'krempite', 'krempite', 'krempite.jpg', 1),
-(7, 'krempite', 'krempite', 'krempite2.jpg', 1),
-(8, 'krempite', 'krempite', 'krempite3.jpg', 1),
-(9, 'jagode sa šlagom', 'jagode sa šlagom', 'jagode-sa-slagom.jpg', 1),
-(10, 'jagode sa šlagom', 'jagode sa šlagom', 'jagode-sa-slagom.jpg', 1);
+(1, 'pita sa mesom', 'pita sa mesom', '1.jpg', 1),
+(2, 'pita sa mesom', 'pita sa mesom', '2.jpg', 1),
+(3, 'torta od šargarepe', 'torta od šargarepe', '3.jpg', 1),
+(4, 'torta od šargarepe', 'torta od šargarepe', '4.jpg', 1),
+(5, 'torta od šargarepe', 'torta od šargarepe', '5.jpg', 1),
+(6, 'krempite', 'krempite', '6.jpg', 1),
+(7, 'krempite', 'krempite', '7.jpg', 1),
+(8, 'krempite', 'krempite', '8.jpg', 1),
+(9, 'jagode sa šlagom', 'jagode sa šlagom', '9.jpg', 1),
+(10, 'jagode sa šlagom', 'jagode sa šlagom', '10.jpg', 1),
+(11, 'američke palačinke', 'američke palačinke', '11.jpg', 1),
+(12, 'američke palačinke', 'američke palačinke', '12.jpg', 1),
+(13, 'američke palačinke', 'američke palačinke', '13.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -257,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`recipe_id`),
   KEY `user_id_fk_idx` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `recipes`
@@ -267,7 +270,9 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, 
 (1, 'Pita sa mesom', 'Hladno predjelo na brzaka', 30, 2, 'fgdsfgsdfgdf', '2017-11-23 10:26:42', 1, '1,3,6,9', '1,5,9/2,5,9/6,5,12/1,6,8', ',1,5,9,', '1,2', 1),
 (2, 'Torta od šargarepe', 'Zekina omiljena', 45, 3, 'dfjhjkhkhjkhjkhjk', '2017-11-23 10:45:11', 1, '2,4,5,8', '2,5', ',2,5,9,', '3,4,5', 2),
 (3, 'Krempite', 'Mamin specijalitet', 15, 6, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, '7,10', '3,4,9,5,6', ',1,3,4,9,6,', '6,7,8', 1),
-(4, 'Jagode sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, '7,8,9', '2,3,7,6,11', ',2,3,7,6,11,55,', '9,10', 3);
+(4, 'Jagode sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, '7,8,9', '2,3,7,6,11', ',2,3,7,6,11,55,', '9,10', 3),
+(5, 'Američke palačinke sa medom i šumskim voćem', 'Omiljeni doručak ili užina onima koji žure, a dosadili su im sendviči i kaše od pahuljica. Odlične i sa slanim i sa slatkim nadevima. Nije vam potrebno puno iskustva da bi vam ispale odlično.', 15, 2, '<br><br><strong>Korak 1:</strong><br>U jednoj većoj posudi umutiti sve sastojke zajedno.\r\n\r\n<br><br><strong>Korak 2:</strong><br>Tiganj srednje veličine podmazati sa vrlo malo ulja, zagrejati na najjačoj temperaturi i manjom kutlačom razlivati palačinkice prečnika oko 15 cm. Čim dobije zlatno braon boju sa jedne strane odmah okretati i pržiti kratko i sa druge strane. <br><br><strong>Korak 3:</strong><br>Filovati slanim ili slatkim nadevima, i služiti tople.', '2017-12-01 00:28:56', 1, '3,12', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,17', ',4,8,5,1,3,', '11,12,13', 1),
+(6, 'Ananas sa šlagom i keksom', 'Njam njam pojesti sveeeee', 5, 1, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2017-11-23 10:45:11', 1, '7,8,9,11', '2,5,8/3,5,4/7,1,2/6,6,6/12,5,6', ',2,3,7,6,12,5,', '9,10', 3);
 
 -- --------------------------------------------------------
 
@@ -302,7 +307,7 @@ INSERT INTO `units` (`unit_id`, `unit_name`, `status`) VALUES
 (12, 'kockice', 1),
 (13, 'šolja', 1),
 (14, 'šolje', 1),
-(15, 'malo', 1),
+(15, 'malo', 0),
 (16, 'par', 1),
 (17, 'kolutića', 1),
 (18, 'štapić', 1),
