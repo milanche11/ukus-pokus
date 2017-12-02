@@ -13,9 +13,11 @@
           <!-- Form search -->
           <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
           <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
+
+          <h4>Pretraga po namirnicama</h4>
           <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
             
-            <label>Pretraga po namirnicama</label>
+            
 
             <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." name="pretraga[]">
 
@@ -44,7 +46,7 @@
 
         <div class="container-fluid">
           <small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
-        </div><br><br><br>
+        </div><br><br>
     <!-- End form -->  
   </div>
 
@@ -83,14 +85,12 @@ $mouseout = '"#212121"';
         echo "<a href=' recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
         echo "</p>";
     }
+
+    echo '<br><p class="recipelist">Ovde dođe paginacija... 1 ... 5 6 7 8 9 10 11 ... 128</p><br>';
   }
 ?>
 
-<br>
 
-<p class="recipelist">Ovde dođe paginacija... 1 ... 5 6 7 8 9 10 11 ... 128</p>
-
-<br>
 
 <div class="text-center">
 

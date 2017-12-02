@@ -1,6 +1,6 @@
 <?php
 
-class Recipes extends Controller {
+class Recipe extends Controller {
 
 	protected function Index(){
 		$viewmodel = new RecipeModel();
