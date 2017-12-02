@@ -27,6 +27,42 @@
     </div>
   </div>
 
+<<<<<<< HEAD
+<?php $b=1; ?>
+  <label>Sastojci</label>
+  <div id="sastojakall">
+  <div id="sastojak">
+  <div class="row"> <!-- Java script kopira od ovog mesta class="row" --> 
+    <div class="col-4">
+
+      <select class="form-control" name="ingredients<?php echo $b; ?>" id="">
+
+        <?php foreach($query->allquery('ingredients') as $item) : ?>  
+          <option value="<?php echo $item['ingredient_id']; ?>"><?php echo $item['ingredient_name']; ?></option>
+        <?php endforeach; ?>
+
+      </select>
+    </div>
+    <div class="col-3">
+      <input type="text" class="form-control" name="kolicina<?php echo $b; ?>" placeholder="kolicina">
+    </div>
+    <div class="col-4">
+      <select class="form-control" name="units<?php echo $b; ?>" >
+
+        <?php foreach($query->allquery('units') as $item) : ?>  
+          <option value="<?php echo $item['unit_id']; ?>"><?php echo $item['unit_name']; ?></option>
+        <?php endforeach; ?>
+
+      </select>
+    </div>
+    <div class="col-1">
+     <a href="#" onclick="cloneFunction()">clone it</a>
+    </div>
+    <?php $b++ ?>
+  </div> <!-- Zavrsetak kopiranja java scripta -->
+</div>
+</div>
+=======
   
 <!----- PETAR  ------>
 	<?php 
@@ -77,6 +113,7 @@
 <!----- END PETAR  ------------>
 
 
+>>>>>>> fac1d331d40429ca53fc30ef4390ea9f849edb7f
 
     <label>Kategorije</label>
       <select class="form-control form-control-lg custom-select" name="categories[]" multiple aria-label="Search for...">
@@ -117,6 +154,10 @@
   <input type="hidden" name="ime" value="<?php echo $_SESSION['user_data']['user_id'];?>">
    <input type="hidden" name="b" value="<?php echo $b ;?>">
 </form>
+
+
+
+
 
 <script>
  /* $("select").select2();

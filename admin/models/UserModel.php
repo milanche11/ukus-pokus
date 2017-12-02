@@ -93,9 +93,7 @@ class UserModel extends Model{
 		$row = $this->single();
 		return $row;
 	}
-
-
-
+	
 	public function viev(){
 		$this->query('SELECT * FROM users');
 		$rows = $this->resultSet();

@@ -1,9 +1,14 @@
 <?php
 class RecipesModel extends Model{
 	public function Index(){
-		return;
+	$this->query("SELECT * FROM recipes WHERE status >= 1"); // WHERE status >= 1
+		$rows = $this->resultSet();
+		return $rows;
+
 	}
+	
 	public function insert(){
+		
 		if(isset($_POST['submit'])){
 			var_dump($_POST);
 
@@ -38,5 +43,8 @@ class RecipesModel extends Model{
 			// $this->bind(':user_id', $_POST['ime']);
 			// $this->execute();
 		}
+	}
+	public function delete(){
+		
 	}
 }
