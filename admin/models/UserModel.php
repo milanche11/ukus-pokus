@@ -31,6 +31,9 @@ class UserModel extends Model{
 	}
 
 	public function login(){
+
+
+		
 		// Sanitize POST
 		$post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 

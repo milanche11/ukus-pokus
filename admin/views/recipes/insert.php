@@ -1,7 +1,17 @@
 <h1>Insert recipes</h1><hr>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
+
+=======
+<<<<<<< HEAD
+>>>>>>> 3b8a2bebe452908a7db7ed2497f50e63d6b4d11b
 <!--    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
 -->
+>>>>>>> 04b8db62c38570b44157801974f184896c442a59
 <?php $query = new Query; ?>
 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
     <label>Ime Recepta</label>
@@ -123,7 +133,6 @@
 
 
 
-
 <script>
  /* $("select").select2();
 
@@ -134,6 +143,57 @@ $("select").on("select2:unselect", function (evt) {
   
   evt.params.originalEvent.stopPropagation();
 });
+
+</script> 
+
+<script>
+function cloneFunction(b,ingrs,units) {
+    var c = Number(b) + 1 ;
+    var ingr_array = ingrs.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (ingredient_id i ingredient_name) u niz
+    var unit_array = units.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (unit_id i unit_name) u niz
+
+    var ingr_arrayLength = ingr_array.length-1;
+    var options_ingredient = "";
+    
+    for (var i = 0; i < ingr_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "ingredients"
+      var options_ingr = ingr_array[i].split(',');
+      
+      var option_ingredient = '<option value="' +options_ingr[0]+ '">'+options_ingr[1]+'</option>';
+      var options_ingredient = options_ingredient + option_ingredient; // variabla koja sadrzi sve ingredient <options>
+    }
+  
+  
+  
+  var unit_arrayLength = unit_array.length-1;
+  var options_unit = "";
+  
+  for (var i = 0; i < unit_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "units"
+    var options_un = unit_array[i].split(',');
+    
+    var option_unit = '<option value="' +options_un[0]+ '">'+options_un[1]+'</option>';
+    var options_unit = options_unit + option_unit; // variabla koja sadrzi sve unit <options>
+  }
+  
+//  alert (options_unit);
+
+  $("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
+  
+  var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
+  var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
+  var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
+  var button = "<div class='col-1'><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>+</button></div>";
+  
+  $("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
+  $("#button"+b).css("display", "none");
+
+}
+    
+    
+
+
+</script>
+=======
+<<<<<<< HEAD
 
 function cloneFunction() {
     var para = document.getElementById("sastojak");
@@ -195,3 +255,4 @@ function cloneFunction(b,ingrs,units) {
 
 
 
+>>>>>>> 04b8db62c38570b44157801974f184896c442a59
