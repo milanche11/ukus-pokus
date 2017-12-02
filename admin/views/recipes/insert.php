@@ -160,7 +160,6 @@ function cloneFunction(b,ingrs,units) {
     }
   
   
-  
   var unit_arrayLength = unit_array.length-1;
   var options_unit = "";
   
