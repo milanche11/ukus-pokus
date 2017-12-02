@@ -122,7 +122,7 @@
     </div>
   </div>
   <input type="hidden" name="ime" value="<?php echo $_SESSION['user_data']['user_id'];?>">
-   <input type="hidden" id="" name="b" value="<?php echo $b ;?>">
+   <input type="hidden" id="num_of_ingredients" name="num_of_ingredients" value="">
 </form>
 
 
@@ -160,27 +160,27 @@ function cloneFunction(b,ingrs,units) {
     }
   
   
-  var unit_arrayLength = unit_array.length-1;
-  var options_unit = "";
-  
-  for (var i = 0; i < unit_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "units"
-    var options_un = unit_array[i].split(',');
-    
-    var option_unit = '<option value="' +options_un[0]+ '">'+options_un[1]+'</option>';
-    var options_unit = options_unit + option_unit; // variabla koja sadrzi sve unit <options>
-  }
-  
+	var unit_arrayLength = unit_array.length-1;
+	var options_unit = "";
+
+	for (var i = 0; i < unit_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "units"
+		var options_un = unit_array[i].split(',');
+
+		var option_unit = '<option value="' +options_un[0]+ '">'+options_un[1]+'</option>';
+		var options_unit = options_unit + option_unit; // variabla koja sadrzi sve unit <options>
+	}
+
 //  alert (options_unit);
 
-  $("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
-  
-  var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
-  var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
-  var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
-  var button = "<div class='col-1'><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>+</button></div>";
-  
-  $("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
-  $("#button"+b).css("display", "none");
+	$("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
 
+	var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
+	var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
+	var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
+	var button = "<div class='col-1'><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>+</button></div>";
+
+	$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
+	$("#button"+b).css("display", "none");
+	$("#num_of_ingredients").val(c);
 }
 </script>
