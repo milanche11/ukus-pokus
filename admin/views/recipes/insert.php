@@ -171,8 +171,9 @@ function cloneFunction(b,ingrs,units) {
 	var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
 	var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
 	var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
+	var button = '<div class="col-1"><button type="button" onclick="cloneFunction(' + "'" +c+ "," +ingrs+ "," +units+ "'" + ')">clone it</button></div>';
 	
-	$("#sastojak"+c).append(select_ingredient + kolicina + select_unit);
+	$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
 
 }
 
