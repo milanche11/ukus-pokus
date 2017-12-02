@@ -27,7 +27,6 @@
     </div>
   </div>
 
-
 <?php $b=1; ?>
   <label>Sastojci</label>
   <div id="sastojakall">
@@ -56,7 +55,7 @@
       </select>
     </div>
     <div class="col-1">
-     <button onclick="cloneFunction()">clone it</button>
+     <a href="#" onclick="cloneFunction()">clone it</a>
     </div>
     <?php $b++ ?>
   </div> <!-- Zavrsetak kopiranja java scripta -->
@@ -102,6 +101,10 @@
   <input type="hidden" name="ime" value="<?php echo $_SESSION['user_data']['user_id'];?>">
    <input type="hidden" name="b" value="<?php echo $b ;?>">
 </form>
+
+
+
+
 
 <script>
   $("select").select2();
