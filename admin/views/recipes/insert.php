@@ -48,7 +48,7 @@
 	<label>Sastojci</label>
 	<div id="sastojakall">
 		<div id="sastojak">
-			<div class="row"> <!-- Java script kopira od ovog mesta class="row" --> 
+			<div class="row" id="sastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
 			
 				<div class="col-4">
 					<select class="form-control" name="ingredients<?php echo $b; ?>" id="">
@@ -138,6 +138,7 @@ function cloneFunction() {
 */
 
 function cloneFunction(b,ingrs,units) {
+	var c = Number(b) + 1 ;
 	var ingr_array = ingrs.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (ingredient_id i ingredient_name) u niz
 	var unit_array = units.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (unit_id i unit_name) u niz
 
@@ -163,10 +164,20 @@ function cloneFunction(b,ingrs,units) {
 		var options_unit = options_unit + option_unit; // variabla koja sadrzi sve unit <options>
 	}
 	
-	alert (options_unit);
+//	alert (options_unit);
+
+	$("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
+	
+	var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
+	var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
+	var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
+	
+	$("#sastojak"+c).append(select_ingredient + kolicina + select_unit);
 
 }
 
+
+//style='background-color:red; width:500px; height:50px;'
 </script>
 
 
