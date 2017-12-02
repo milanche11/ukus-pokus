@@ -70,6 +70,7 @@
     }
 
     $query = rtrim($query, "AND ");
+    
 
     $recRows = $sastojci->recipes($query);
 
@@ -80,9 +81,10 @@
 $mouseover = '"#28a745"';
 $mouseout = '"#212121"';
       foreach ($recRows as $item) {
+        
         echo '<p>';
         $id=$item['recipe_id'];
-        echo "<a href=' recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
+        echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
         echo "</p>";
     }
 

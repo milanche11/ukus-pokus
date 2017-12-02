@@ -12,7 +12,7 @@
   --red: #dc3545;
   --orange: #fd7e14;
   --yellow: #ffc107;
-  --green: #28a745;
+  --green: #59b956;
   --teal: #20c997;
   --cyan: #17a2b8;
   --white: #fff;
@@ -20,7 +20,7 @@
   --gray-dark: #343a40;
   --primary: #28a745;
   --secondary: #868e96;
-  --success: #28a745;
+  --success: #59b956;
   --info: #17a2b8;
   --warning: #ffc107;
   --danger: #dc3545;
@@ -1566,7 +1566,7 @@ pre code {
 
 .table th,
 .table td {
-  padding: 0.75rem;
+  padding: 1rem;
   vertical-align: top;
   border-top: none !important;
   border: none !important;
@@ -2366,13 +2366,13 @@ fieldset[disabled] a.btn {
 }
 
 .btn-success {
-  color: #fff;
+  color: #ffffff;
   background-color: #28a745;
   border-color: #28a745;
 }
 
 .btn-success:hover {
-  color: #fff;
+  color: #ffffff;
   background-color: #218838;
   border-color: #1e7e34;
 }
@@ -2547,7 +2547,7 @@ fieldset[disabled] a.btn {
 }
 
 .btn-outline-primary:hover {
-  color: #fff;
+  color: #fff !important;
   background-color: #28a745;
   border-color: #28a745;
 }
@@ -2607,7 +2607,7 @@ fieldset[disabled] a.btn {
 }
 
 .btn-outline-success:hover {
-  color: #fff;
+  color: #ffffff !important;
   background-color: #28a745;
   border-color: #28a745;
 }

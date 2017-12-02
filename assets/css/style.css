@@ -127,6 +127,7 @@ a.animated{
     display: inline-block;
     position: relative;
 }
+
 a.animated:after {
     width: 0%;
     height: 2px;
@@ -180,6 +181,10 @@ footer {
 	size: 2rem;
 }  
 
+.green a:hover {
+	color: #ffffff !important;
+}
+
 .recipelist {
 	font-family: 'Nunito', sans-serif;
 	text-transform: uppercase;
@@ -207,6 +212,33 @@ p.desc  {
 	font-style: italic;
 
 }
+
+.cats {
+	padding-right: 15px !important;
+	padding-left: 15px !important;
+	padding-top: 2px !important;
+	padding-bottom: 2px !important;
+	margin-left: 15px;
+	margin-right: 5px;
+	color: #ffffff !important;
+	font-size: 0.6rem;
+}
+
+.cats:hover {
+	color: #ffffff !important;
+}
+
+.table td {
+	font-size: 1.1rem !important;
+	margin-left: -5px !important;
+}
+
+.table {
+	margin-left: -5px !important;
+}
+
+
+
 
 
 
