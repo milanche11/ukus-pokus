@@ -1,7 +1,7 @@
 <h1>Insert recipes</h1><hr>
-<!--    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
--->
+
 <?php $query = new Query; ?>
 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
     <label>Ime Recepta</label>
@@ -31,7 +31,7 @@
 
 
   
-<!----- PETAR  ------>
+<!-- PETAR  -->
 	<?php 
 		$b=1; 
 		$ingr_options = $units_options = $ingrs = $units = "";
@@ -51,7 +51,7 @@
 	<label>Sastojci</label>
 	<div id="sastojakall">
 		<div id="sastojak">
-			<div class="row" id="sastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
+			<div class="row" id="sastojak<?php echo $b; ?>" name="test[]"> <!-- Java script kopira od ovog mesta class="row" --> 
 			
 				<div class="col-4">
 					<select class="form-control" name="ingredients<?php echo $b; ?>" id="">
@@ -70,14 +70,14 @@
 				</div>
 				
 				<div class="col-1">
-				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>clone it</button>
+				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
 				</div>
 				
 			<?php $b++ ?>
 			</div> <!-- Zavrsetak kopiranja java scripta -->
 		</div>
 	</div>
-<!----- END PETAR  ------------>
+<!-- END PETAR  -->
 
 
     <label>Kategorije</label>
@@ -125,7 +125,7 @@
 
 
 <script>
- /* $("select").select2();
+  $("select").select2();
 
 $("select").on("select2:unselect", function (evt) {
   if (!evt.params.originalEvent) {
@@ -134,14 +134,6 @@ $("select").on("select2:unselect", function (evt) {
   
   evt.params.originalEvent.stopPropagation();
 });
-
-function cloneFunction() {
-    var para = document.getElementById("sastojak");
-    var cln = para.cloneNode(true);
-    document.getElementById("sastojakall").appendChild(cln);
-    break;
-}
-*/
 
 function cloneFunction(b,ingrs,units) {
 	var c = Number(b) + 1 ;
@@ -177,7 +169,7 @@ function cloneFunction(b,ingrs,units) {
 	var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
 	var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
 	var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
-	var button = "<div class='col-1'><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>clone it</button></div>";
+	var button = "<div class='col-1'><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>+</button></div>";
 	
 	$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
 	$("#button"+b).css("display", "none");
@@ -187,11 +179,4 @@ function cloneFunction(b,ingrs,units) {
 
 //style='background-color:red; width:500px; height:50px;'
 </script>
-
-
-
-
-
-
-
 

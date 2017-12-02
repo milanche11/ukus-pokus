@@ -12,9 +12,7 @@ class RecipesModel extends Model{
 		if(isset($_POST['submit'])){
 			var_dump($_POST);
 
-
-
-			$ing = $_POST['ingredients1'].",".$_POST['kolicina1'].",".$_POST['units1'];
+			$ing = $_POST['ingredients1'].",".$_POST['kolicina1'].",".$_POST['units1']; // pripremanje ingridients, kolicine, units stringa za upis
 
 			if(isset($_POST['categories'])){
 				// iscitavanje kategorije i trimovanje pre unosa
@@ -47,4 +45,6 @@ class RecipesModel extends Model{
 	public function delete(){
 		
 	}
+
+	
 }
