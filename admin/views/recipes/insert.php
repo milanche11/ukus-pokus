@@ -1,5 +1,9 @@
 <h1>Insert recipes</h1><hr>
+<<<<<<< HEAD
 <!--    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+=======
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+>>>>>>> aa9a346101ab6845a1f5167f40a2770348b2472f
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
 -->
 <?php $query = new Query; ?>
@@ -75,6 +79,9 @@
 				
 			<?php $b++ ?>
 			</div> <!-- Zavrsetak kopiranja java scripta -->
+
+
+
 		</div>
 	</div>
 <!----- END PETAR  ------------>
@@ -134,6 +141,7 @@ $("select").on("select2:unselect", function (evt) {
   
   evt.params.originalEvent.stopPropagation();
 });
+<<<<<<< HEAD
 
 function cloneFunction() {
     var para = document.getElementById("sastojak");
@@ -186,6 +194,8 @@ function cloneFunction(b,ingrs,units) {
 
 
 //style='background-color:red; width:500px; height:50px;'
+=======
+>>>>>>> aa9a346101ab6845a1f5167f40a2770348b2472f
 </script>
 
 
