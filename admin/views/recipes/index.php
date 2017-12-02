@@ -11,7 +11,9 @@
   	</thead>
 
 <?php $i=1; foreach($viewmodel as $item) : ?>
-<?php $date = date_create($item['posting_time']);?><!-- Formatiranje datuma dobijenog u bazi -->
+<?php $date = date_create($item['posting_time']);  // Formatiranje datuma dobijenog u bazi
+		$id = $item["recipe_id"];
+?>
 	
 	<tbody>
 	    <tr>
@@ -19,7 +21,17 @@
 	      <td><a href="<?PHP ROOT_URL ?>recipes/view/<?php echo $item['recipe_id']; ?>"><?php echo $item['recipe_title']; ?></a></td>
 	      <td><?php echo date_format($date, 'Y-m-d'); ?></td>
 	      <td></td>
-	      <td><button type="submit" class="btn btn-danger btn-sm" name="delete" value="">Delete</button>
+	      <td>
+		  <!-------  PETAR  ------>
+			<?php
+			if($item['status'] == 0){	
+				echo '<button type="button" onclick="edit('."'activate','ingredients','ingredient_id','status','1',".$id.')" class="btn btn-warning btn-sm">Activate</button>';
+			}else{
+				echo "<button type='button' onclick='edit(".'"delete","ingredients","ingredient_id","status","0",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
+			}?>  
+		  
+		  
+<!--		  <button type="submit" class="btn btn-danger btn-sm" name="delete" onclick value="">Delete</button>   END PETAR-->
 	      	  <button type="button" class="btn btn-success btn-sm" name="edit">Edit</button></td>
 	    </tr>
 	<?php endforeach; ?>
