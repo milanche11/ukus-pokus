@@ -70,7 +70,7 @@
 				</div>
 				
 				<div class="col-1">
-				 <button type="button" onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>clone it</button>
+				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>clone it</button>
 				</div>
 				
 			<?php $b++ ?>
@@ -177,13 +177,15 @@ function cloneFunction(b,ingrs,units) {
 	var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
 	var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
 	var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
-	var button = '<div class="col-1"><button type="button" onclick="cloneFunction(' + "'" +c+ "," +ingrs+ "," +units+ "'" + ')">clone it</button></div>';
+	var button = "<div class='col-1'><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>clone it</button></div>";
 	
 	$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
+	$("#button"+b).css("display", "none");
 
 }
 
 
+//style='background-color:red; width:500px; height:50px;'
 </script>
 
 
