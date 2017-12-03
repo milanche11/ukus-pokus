@@ -11,6 +11,10 @@
 </head>
 <body>
 
+<div id="pop_up"> <!--PETAR div za popupove -->
+	<div id="pop_up_box"></div>
+</div>
+
 <div class="container">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">DASHBOARD</a>
