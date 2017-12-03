@@ -101,15 +101,16 @@
 	
 	<label>Slike</label>
 	
-	<div class="row">
-	
+	<div>	
+		<div>
+			<button type="button" id="add_photo" onclick="addImage()" class="">Add image</button>	
+		</div>
 		
+		<div>
+			<div id="added_images"></div>
+		</div>
 		
-		<button type="button" id="add_photo" onclick="addImage()" class="">Add image</button>	
-		
-		<div id="added_images"></div>
-		
-		<input type="hidden" id="images_i" name="images_i" value=""><br>
+		<input type="hidden" id="images_id" name="images_id" value=""><br>
 	</div>
 	
 
