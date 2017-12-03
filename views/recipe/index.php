@@ -61,9 +61,10 @@ echo "<br>";
 
 $ing = new RecipeModel();
 
-
 ?>
 
+
+<!-- carousel -->
 <div class="container-fluid">
 	<div class="text-center">
 		<h1><?php  echo $recipeTitle;   ?></h1>
@@ -105,7 +106,6 @@ $ing = new RecipeModel();
 
 	<!--Carousel end -->
 	<br>
-
 </div>
 
 
@@ -114,76 +114,82 @@ $ing = new RecipeModel();
 
 
 <div class="container-fluid">
-	<div class="col-lg-10 offset-lg-1">
-		<div class="col-lg-10 offset-lg-1">
-		<small><strong>&nbsp;&nbsp;&nbsp;Nalazi se u kategorijama: </strong><?php foreach ($catAll as $key) {
-	echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
-}?> <br> </small><br><br><br>
+	<div class="col-lg-10 offset-lg-2">
 		
-		</div>
+		<small><strong>Nalazi se u kategorijama: </strong>
+			<?php foreach ($catAll as $key) {
+				echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
+			}?>
+		 </small><br> 
+		 <small><strong>Rejting: </strong><img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating"> (156 glasova)</small><br>
+		 
+		<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
+		<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br><br>
 
-
-		<p><strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min<br>
-		<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom<br></p>
-
-		<p><strong>Sastojci: </strong></p>
-<?php 
-
-//upit za dobavljanje sastojaka
-$sastojci = array();
-//razbijanje po slash-u
-$sastojci = explode("/", $recipeIngrs);
-$ing = new RecipeModel();
-
-echo "<div class='col-lg-5'>";
-echo '<table class="table  sastojci table-sm"><tbody>';
-foreach ($sastojci as $set) {
-	$niz = $set;
+	</div>
+	<h4 class="text-center">Sastojci:  </h4><br>
 	
-	echo "<tr>";
-	//razbijanje po zarezu
-	$particles = array();
-	$particles = explode(",", $niz);
+	<div class="col-lg-10 offset-lg-2">	
+		
+		<?php 
 
-	//ispis liste sastojaka i njihovih kolicina i jedinica mere
-	echo "<td  style='width: 130px;'>";
-	$ingrId = $particles[0]; 
-	$ingAll = $ing->ingrs($ingrId);
-	echo $ingAll['ingredient_name'];  
-	echo "</td>";
-	
-	echo "<td style='width: 40px;'>";
-	$ammount = $particles[1]; 
-	echo $ammount;
-	echo "</td>";
-	
-	$unitId = $particles[2]; 
-	echo "<td  style='width: 100px;'>";
-	//upit za naziv jedinice mere
-	foreach ($units as $mera) {
+		//upit za dobavljanje sastojaka
+		$sastojci = array();
+		//razbijanje po slash-u
+		$sastojci = explode("/", $recipeIngrs);
+		$ing = new RecipeModel();
 
-		$red = $mera;
-		//echo $red['unit_id'];
-		if ($red['unit_id'] == $unitId) {
-			echo $red['unit_name'];
+		echo "<div class='col-lg-6'>";
+		//ispis liste sastojaka
+		echo '<table class="table  sastojci table-sm"><tbody>';
+		foreach ($sastojci as $set) {
+			$niz = $set;
+			
+			echo "<tr>";
+			//razbijanje po zarezu
+			$particles = array();
+			$particles = explode(",", $niz);
+
+			//ispis liste sastojaka i njihovih kolicina i jedinica mere
+			echo "<td  class='ingrlist' >";
+			$ingrId = $particles[0]; 
+			$ingAll = $ing->ingrs($ingrId);
+			echo $ingAll['ingredient_name'];  
+			echo "</td>";
+			
+			echo "<td class='ingrlist' style='width: 60px;'>";
+			$ammount = $particles[1]; 
+			echo $ammount;
+			echo "</td>";
+			
+			$unitId = $particles[2]; 
+			echo "<td  class='ingrlist' style='width: 120px;'>";
+			//upit za naziv jedinice mere
+			foreach ($units as $mera) {
+
+				$red = $mera;
+				//echo $red['unit_id'];
+				if ($red['unit_id'] == $unitId) {
+					echo $red['unit_name'];
+				}
+			}
+			echo "</td>";
+			echo "</tr>";		
 		}
-	}
-	echo "</td>";
-	echo "</tr>";		
-}
-echo "</tbody></table>";
-echo "</div>";
-?> 
-<br><br>		
+		echo "</tbody></table>";
+		echo "</div>";
+		?> 
+		<br><br>
+	</div>
+	<div class="col-lg-10 offset-lg-1">			
 		<div class="text-center">
 			<h4>Uputstvo za pripremu: </h4>
 		</div>
-		<p><?php echo $recipeInst; ?> </p>
-		
-	</div>
 
+		<!-- ispis uputstva za pripremu -->
+		<p><?php echo $recipeInst; ?> </p><br><br>
+	</div>	
 		
-<br><br>	
 </div>	
 
 
@@ -199,23 +205,51 @@ echo "</div>";
 
 <!-- ponovljene kategorije -->
 <div class="container-fluid">
-	<div  class="row">
-		<div class="col-11 offset-1">
-			<small><strong>Potražite i druge recepte u kategorijama: </strong>
-				<?php 
-				foreach ($catAll as $key) {
-					echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
-				}?> <br> 
-			</small>
-		</div>
-		
+	
+	<div class="col-10 offset-1">
+		<small><strong>&nbsp;&nbsp;&nbsp;&nbsp;Potražite i druge recepte u kategorijama: </strong>
+			<?php 
+			foreach ($catAll as $key) {
+				echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
+			}?> <br> <br><br>
+		</small>
 	</div>
+	<hr>
 </div>
 
 <?php
-
 }
 ?>
+
+<!-- komentarisanje -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-6 offset-lg-2"><br>
+			<h5>Postavite svoj komentar :  </h5>
+			<small> Ispričajte kako je vama ispalo, da li ste nešto dodali ili drugačije uradili? Ideje za posluživanje i serviranje? Sa čim ste kombinovali?</small><br><br>
+			<form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
+				 <div class="form-group">
+				 <label for="exampleInputIme1">Vaše ime</label>
+				 <input type="text" class="form-control" id="exampleInputText1" name="ime" placeholder="Vaše ime" required>
+				  </div>	
+
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Vaša email adresa</label>
+				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesite email" name="email" required>
+				    <small id="emailHelp" class="form-text text-muted">Nikada nećemo proslediti vaš email bilo kome, niti ga zloupotrebiti na drugi način.</small>
+				  </div>
+
+				  <div class="form-group">
+				 <label for="exampleInputText1">Vaš komentar</label>
+				 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Unesite svoj komentar..." name="komentar" required></textarea>
+				<br>
+				  </div>	
+				  <button type="submit" class="btn btn-success" name="submit" >Pošalji</button>
+			</form>
+		</div>
+	
+	</div>
+</div>
 
 
 

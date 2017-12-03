@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-
 	<title>Ukus pokus | Brzi recepti od onoga što imate u kući</title>
 
   <!-- styling -->
   <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/style.css">
   <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo ROOT_URL; ?>assets/images/favicon/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="<?php echo ROOT_URL; ?>assets/images/favicon/favicon-96x96.png">
@@ -14,7 +13,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Autocomplete search -->
-
   <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>        
 
   <!-- Bootstrap CSS -->
@@ -24,36 +22,31 @@
 <body>
 
   <div class="container-fluid">
+      <nav class="navbar">
 
-    <nav class="navbar">
+        <!-- LOGO -->
+        <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
 
-      <!-- LOGO -->
-      <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>">
-          <img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
-
-      <!-- Navigacija -->
-      <div>
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>">Početna</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>category">Vidi šta sve ima!</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>recipes">Recepti</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Pretraga</a>
-          </li>
-        </ul>
-      </div> 
-    </nav>
+        <!-- Navigacija -->
+        <div>
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link animated" href="<?php echo ROOT_URL; ?>">Početna</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link animated" href="<?php echo ROOT_URL; ?>category">Vidi šta sve ima!</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Pretraga</a>
+            </li>
+          </ul>
+        </div> 
+     </nav>
+    <!-- Navigacija end -->
 
     <br><br>
 
     <!-- Main -->
-
     <div class="container-fluid">
       <div class="row justify-content-center">
      	  <?php require($view); ?>
@@ -71,22 +64,20 @@
 
     <!-- Footer -->
     <footer>
-      <nav >
+        <nav >
 
-      <ul class="nav justify-content-center">
-        
-        <li class="nav-item">
-                  <a class="nav-link" href="#"> © 2017 Ukus Pokus. Sva prava zadržana. </a>
-        </li>
-        <li class="nav-item">
-                  <a class="nav-link" href="<?php echo ROOT_URL; ?>kontakt">Kontakt</a>
-        </li>
-        <li class="nav-item">
-                  <a class="nav-link" href="https://www.kolezeeesolutions.com/" target="_blank"> Kreirao i održava Kolezeee Solutions</a>
-        </li>
-        
-      </ul>
-      </nav>
+          <ul class="nav justify-content-center">
+                 <li class="nav-item">
+                      <a class="nav-link" href="#"> © 2017 Ukus Pokus. Sva prava zadržana. </a>
+                 </li>
+                 <li class="nav-item">
+                      <a class="nav-link" href="<?php echo ROOT_URL; ?>kontakt">Kontakt</a>
+                 </li>
+                 <li class="nav-item">
+                      <a class="nav-link" href="https://www.kolezeeesolutions.com/" target="_blank"> Kreirao i održava Kolezeee Solutions</a>
+                </li>
+          </ul>
+        </nav>
     </footer>
     <!-- End footer -->
 

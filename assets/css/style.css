@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC|Pangolin|Berkshire+Swash|Caveat+Brush|Shadows+Into+Light+Two|Tillana|Montserrat|Open+Sans+Condensed:300|Raleway|Source+Sans+Pro|Baloo|Cherry+Swash|Corben|Kelly+Slab|Modak|Mogra|Oregano|Ribeye+Marrow|Sacramento|Allura|Amatic+SC|Courgette|Dancing+Script|Didact+Gothic|Dosis|Englebert|Forum|Glass+Antiqua|Grand+Hotel|Great+Vibes|Kalam|Kaushan+Script|Life+Savers|Limelight|Marck+Script|Mukta+Malar|News+Cycle|Nunito|Pacifico|Patrick+Hand|Playball|Poiret+One|Rajdhani|Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Caveat|Itim|Kalam|Patrick+Hand|Patrick+Hand+SC|Pangolin|Berkshire+Swash|Caveat+Brush|Shadows+Into+Light+Two|Tillana|Montserrat|Open+Sans+Condensed:300|Raleway|Source+Sans+Pro|Baloo|Cherry+Swash|Corben|Kelly+Slab|Modak|Mogra|Oregano|Ribeye+Marrow|Sacramento|Allura|Amatic+SC|Courgette|Dancing+Script|Didact+Gothic|Dosis|Englebert|Forum|Glass+Antiqua|Grand+Hotel|Great+Vibes|Kalam|Kaushan+Script|Life+Savers|Limelight|Marck+Script|Mukta+Malar|News+Cycle|Nunito|Pacifico|Patrick+Hand|Playball|Poiret+One|Rajdhani|Varela+Round');
 
 
 /*
@@ -43,6 +43,10 @@ font-family: 'Patrick Hand', cursive;
 font-family: 'Tillana', cursive;
 font-family: 'Pangolin', cursive;
 font-family: 'Patrick Hand SC', cursive;
+font-family: 'Caveat', cursive;
+font-family: 'Kalam', cursive;
+font-family: 'Patrick Hand', cursive;
+font-family: 'Itim', cursive;
 */
 
 @font-face {
@@ -236,6 +240,15 @@ p.desc  {
 .table {
 	margin-left: -5px !important;
 }
+
+.ingrlist {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 1rem;
+	text-transform: uppercase;
+}
+
+
 
 
 
