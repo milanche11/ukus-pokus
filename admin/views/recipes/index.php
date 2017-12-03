@@ -24,9 +24,6 @@
 	      <td><?php echo date_format($date, 'Y-m-d'); ?></td>
 	      <td></td>
 	      <td>
-
-		  
-		  
 			<button type="delete" class="btn btn-danger btn-sm" name="delete" value="<?php echo $item['recipe_id']; ?>">Delete</button>  
 	      	<button type="button" class="btn btn-success btn-sm" name="edit">Edit</button></td>
 	    </tr>

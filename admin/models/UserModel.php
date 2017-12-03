@@ -98,6 +98,19 @@ class UserModel extends Model{
 	}
 	
 	public function viev(){
+		if(isset($_POST['delete'])){
+		$this->query('UPDATE users SET status = :status WHERE user_id = :id');
+		$this->bind(':id', $_POST['delete']);
+		$this->bind(':status', 0);
+		$this->execute();
+
+		}elseif(isset($_POST['activate'])){
+		$this->query('UPDATE users SET status = :status WHERE user_id = :id');
+		$this->bind(':id', $_POST['activate']);
+		$this->bind(':status', 3);
+		$this->execute();
+		}
+
 		$this->query('SELECT * FROM users');
 		$rows = $this->resultSet();
 		return $rows;

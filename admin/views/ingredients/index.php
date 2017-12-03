@@ -4,7 +4,7 @@
     <tr>
 	  <th scope="col">#</th>
       <th scope="col">Naziv</th>
-      <th scope="col">id</th>
+      <th scope="col"></th>
       <th scope="col">Options</th>
     </tr>
   </thead>
@@ -28,7 +28,7 @@
     <tr>
 		<td><?php echo $i; $i++ ?></td>
 		<td id="td_name<?php echo $id; ?>"><?php echo $name; ?></td>
-		<td><?php echo $status; ?></td>
+		<td></td>
 		<td id="td<?php echo $id; ?>">
 			<?php
 
