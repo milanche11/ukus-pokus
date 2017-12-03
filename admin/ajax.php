@@ -54,7 +54,7 @@ if ($_POST["label"]) { //UPLOAD slika
 
 
 			if (file_exists("../".$link)) {
-				echo $filename . " already exists. ";
+				$filename = $filename . "-". rand(8,100);
 			} else {
 				move_uploaded_file($_FILES["file"]["tmp_name"],
 			   "../".$link);

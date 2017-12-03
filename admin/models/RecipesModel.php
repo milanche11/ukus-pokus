@@ -27,8 +27,23 @@ class RecipesModel extends Model{
 		
 		if(isset($_POST['submit'])){
 			var_dump($_POST);
-
-			$ing = $_POST['ingredients1'].",".$_POST['kolicina1'].",".$_POST['units1']; // pripremanje ingridients, kolicine, units stringa za upis
+			if ($_POST['num_of_ingredients'] == '') { // parametri za recipe_ingrs
+				$i = 1;
+			}else{
+				$i = $_POST['num_of_ingredients'];
+			}
+			$ingarr = '';
+			$ingidarr = ',';
+			for ($s=1; $s <= $i ; $s++) { 
+				if ($_POST['kolicina'. $s] == '') {
+					$_POST['kolicina'. $s] = 0;
+				}
+				$ingarr .= $_POST['ingredients'. $s].','. $_POST['kolicina'. $s].','.$_POST['units'. $s].'/';
+				$ingidarr .=$_POST['ingredients'. $s].',';
+			}
+			$ing = trim($ingarr, "/"); // pripremanje ingridients, kolicine, units stringa za upis
+			//$ingid = trim($ingidarr, ","); // kraj parametara recipe_ingrs
+			//echo $ingid;
 
 			if(isset($_POST['categories'])){
 				// iscitavanje kategorije i trimovanje pre unosa
@@ -42,20 +57,25 @@ class RecipesModel extends Model{
 				$cat = "";
 			}
 
+			$image = $_POST['images_id']; // slike
+			$imagearr = trim($image, ",");
 
-			// $this->query('INSERT INTO recipes (recipe_title, description, prep_time, dirty_dishes, instructions, status, recipe_cats, recipe_ingrs, recipe_ingrs_id, recipe_photos, user_id) VALUES (:recipe_title, :description, :prep_time, :dirty_dishes, :instructions, :status, :recipe_cats, :recipe_ingrs, :recipe_ingrs_id, :recipe_photos, :user_id)');
-			// $this->bind(':recipe_title', $_POST['name_recipes']);
-			// $this->bind(':description', $_POST['descriptions']);
-			// $this->bind(':prep_time', $_POST['time']);
-			// $this->bind(':dirty_dishes', $_POST['drty']);
-			// $this->bind(':instructions', $_POST['recept']);
-			// $this->bind(':status', 1);
-			// $this->bind(':recipe_cats', $cat);
-			// $this->bind(':recipe_ingrs', $ing);
-			// $this->bind(':recipe_ingrs_id', 2);
-			// $this->bind(':recipe_photos', 2);
-			// $this->bind(':user_id', $_POST['ime']);
-			// $this->execute();
+
+			$this->query('INSERT INTO recipes (recipe_title, description, prep_time, dirty_dishes, instructions, status, recipe_cats, recipe_ingrs, recipe_ingrs_id, recipe_photos, user_id) VALUES (:recipe_title, :description, :prep_time, :dirty_dishes, :instructions, :status, :recipe_cats, :recipe_ingrs, :recipe_ingrs_id, :recipe_photos, :user_id)');
+			$this->bind(':recipe_title', $_POST['name_recipes']);
+			$this->bind(':description', $_POST['descriptions']);
+			$this->bind(':prep_time', $_POST['time']);
+			$this->bind(':dirty_dishes', $_POST['drty']);
+			$this->bind(':instructions', $_POST['recept']);
+			$this->bind(':status', 1);
+			$this->bind(':recipe_cats', $cat);
+			$this->bind(':recipe_ingrs', $ing);
+			$this->bind(':recipe_ingrs_id', $ingidarr);
+			$this->bind(':recipe_photos', $imagearr);
+			$this->bind(':user_id', $_POST['ime']);
+			$this->execute();
+
+			header('Location: '.ROOT_URL.'recipes');
 		}
 	}
 	public function delete(){
