@@ -28,33 +28,52 @@
 	}
 
 
-	function addImage(){
+	function addImage(){ //Pop-up za dodavanje slika
 		$("#pop_up").css("display", "block");
-		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "400px", "height": "52%", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001"});
+		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "360px", "height": "340px", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001"});
 		
 		var header = "<h2>Add new image</h2>";
 		var br = '<br><br>';
 		var x = '<button type="button" onclick="closeDiv()" class="close" aria-label="Close">X</button>';
-		var title = 'Image Title: <input type="text" name="title" id="title">';
-		var alt = 'Image Alt: <input type="text" name="alt" id="alt">';
-		var file = '<input class="new" multiple="multiple" id="img" name="documents[background]" type="file" />'
-		var button = '<button type="button" onclick="add()" id="upload" name="upload" class="btn btn-success btn-sm upload">Upload</button>';
-		$("#pop_up_box").html(x+header+br+title+br+alt+br+file+button);
+		var title = '<form method="post" id="file_to_upload" name="file_to_upload" >Image Title: <input type="text" class="float-right" name="title" id="title">';
+		var alt = 'Image Alt: <input type="text" class="float-right" name="alt" id="alt">';
+		var file = ' <label>Select a file:</label><input class="new" id="file" name="file" type="file" />'
+		var button = '<button type="button" onclick="uploadFile()" id="upload" name="upload" class="btn btn-success btn-sm upload">Upload</button></form>';
+		$("#pop_up_box").html(x+header+br+title+br+alt+br+file+br+button);
 	}
 	
-	function add(){
-		var i = $("#images_i").val();
-		var ii = Number(i)+1;
+	 function uploadFile() { //funkcija koja vrsi upload slike, upis slike u bazu i vraca id slike u hidden input "images_id"
+			
+		var title = $("#title").val(); //vrednost uneta u input polje "title"
+		var alt = $("#alt").val();  //vrednost uneta u input polje "alt"
+		var img = $("#file").val(); // fajl koji je odabran za upload
 		
-		var title = $("#title").val();
-		var alt = $("#alt").val();
-		var img = $("#img").val();
-		alert(title+" / "+alt+" / "+img);
-	}
+		if(title != "" && alt != "" && img != ""){ 
+			var fd = new FormData(document.getElementById("file_to_upload"));
+			fd.append("label", "ukus-pokus");
+			$.ajax({
+			  url: "../ajax.php",
+			  type: "POST",
+			  data: fd,
+			  processData: false,  // tell jQuery not to process the data
+			  contentType: false   // tell jQuery not to set contentType
+			}).done(function( data ) {
+				if(data != ""){
+					var old_id = $("#images_id").val();
+					var id = old_id + "," + data;
+					$("#images_id").val(id)
+					$("#added_images").append("<div>"+img+"</div>");
+
+					closeDiv();
+				}
+			});
+			return false;
+		}
+    }
 	
 	
 	
-	function closeDiv(){
+	function closeDiv(){//isklucivanje pop-up prozora
 		$("#pop_up").css("display", "none");
 	}
 		
