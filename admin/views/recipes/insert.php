@@ -109,7 +109,7 @@
 		
 		<div id="added_images"></div>
 		
-		<input type="hidden" id="images_ides" name="images_ides" value=""><br>
+		<input type="hidden" id="images_i" name="images_i" value=""><br>
 	</div>
 	
 

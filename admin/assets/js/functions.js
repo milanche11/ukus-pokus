@@ -37,14 +37,25 @@
 		var x = '<button type="button" onclick="closeDiv()" class="close" aria-label="Close">X</button>';
 		var title = 'Image Title: <input type="text" name="title" id="title">';
 		var alt = 'Image Alt: <input type="text" name="alt" id="alt">';
-		var file = '<input class="new" multiple="multiple" name="documents[background]" type="file" />'
-		var button = '<button type="button" id="upload" name="upload" class="btn btn-success btn-sm upload">Upload</button>';
+		var file = '<input class="new" multiple="multiple" id="img" name="documents[background]" type="file" />'
+		var button = '<button type="button" onclick="add()" id="upload" name="upload" class="btn btn-success btn-sm upload">Upload</button>';
 		$("#pop_up_box").html(x+header+br+title+br+alt+br+file+button);
 	}
 	
+	function add(){
+		var i = $("#images_i").val();
+		var ii = Number(i)+1;
+		
+		var title = $("#title").val();
+		var alt = $("#alt").val();
+		var img = $("#img").val();
+		alert(title+" / "+alt+" / "+img);
+	}
+	
+	
+	
 	function closeDiv(){
 		$("#pop_up").css("display", "none");
-	//	alert("nesto");
 	}
 		
 		
