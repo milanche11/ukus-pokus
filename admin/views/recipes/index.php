@@ -32,9 +32,7 @@
 						echo "<button type='button' onclick='edit(".'"delete","recipes","recipe_id","status","0",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
 					}?>   
 
-				<!--
-					<button type="delete" class="btn btn-danger btn-sm" name="delete" value="<?php echo $item['recipe_id']; ?>">Delete</button>  
-				-->	<button type="button" class="btn btn-success btn-sm" name="edit">Edit</button></td>
+					<button type="button" class="btn btn-success btn-sm" name="edit">Edit</button></td>
 				
 	    </tr>
 	</form>
