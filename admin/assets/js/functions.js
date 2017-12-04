@@ -12,8 +12,9 @@
 			});
 		}
 		else{
-			var val = value;
+		/*	var val = value;
 			ajax(val);
+		*/ alert("nesto");
 		}	
 		
 		function ajax(val){	//AJAX

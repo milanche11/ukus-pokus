@@ -17,7 +17,7 @@ class RecipesModel extends Model{
 
 	}
 
-	$this->query("SELECT * FROM recipes WHERE status >= 1");
+	$this->query("SELECT * FROM recipes"); //PETAR
 //	$this->query("SELECT * FROM recipes WHERE status >= 1"); // WHERE status >= 1
 			$rows = $this->resultSet();
 			return $rows;
