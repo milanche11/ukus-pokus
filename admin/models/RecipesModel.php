@@ -82,6 +82,7 @@ class RecipesModel extends Model{
 	public function delete(){
 		
 	}
+	
 	public function view(){
 	$id = $_GET['id'];
 	$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
