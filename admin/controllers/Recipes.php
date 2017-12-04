@@ -12,4 +12,11 @@ class Recipes extends Controller{
 		$viewmodel = new RecipesModel();
 		$this->returnView($viewmodel->view(), true);
 	}
+	protected function edit(){
+		$viewmodel = new RecipesModel();
+		if (isset($_GET['id'])) {
+			$this->returnView($viewmodel->view(), true);
+		}else{$this->returnView($viewmodel->edit(), true);}
+		
+	}
 }

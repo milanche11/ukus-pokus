@@ -5,7 +5,7 @@
 		  <th scope="col">#</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Datum objave</th>
-	      <th scope="col">Postavio</th>
+	      <th scope="col"></th>
 	      <th scope="col">Options</th>
 	    </tr>
   	</thead>

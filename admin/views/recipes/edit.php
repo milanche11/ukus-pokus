@@ -1,4 +1,7 @@
-<h1>Insert recipes</h1><hr>
+<?php
+
+var_dump($viewmodel);?>
+<h1>Edit recipes</h1><hr>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
@@ -8,23 +11,23 @@
     <label>Ime Recepta</label>
   <div class="row">
     <div class="col">
-      <input type="text" class="form-control" name="name_recipes" placeholder="Name recipes"><br>
+      <input type="text" class="form-control" name="name_recipes" value="<?php echo $viewmodel['recipe_title'];?>" placeholder="Name recipes"><br>
     </div>
   </div>
     <label>Kratak opis</label>
   <div class="row">
     <div class="col">
-      <input type="text" class="form-control" name="descriptions" placeholder="Do 200 karaktera"><br>
+      <input type="text" class="form-control" name="descriptions" value="<?php echo $viewmodel['recipe_title'];?>" placeholder="Do 200 karaktera"><br>
     </div>
   </div>
   <div class="row">
     <div class="col">
       <label>Vreme pripreme</label>
-      <input type="text" class="form-control" name="time" placeholder="Preparation time min">
+      <input type="text" class="form-control" name="time" value="<?php echo $viewmodel['prep_time'];?>" placeholder="Preparation time min">
     </div>
     <div class="col">
       <label>Prljavo posudje</label>
-      <input type="text" class="form-control" name="drty" placeholder="Drty dishes"><br>
+      <input type="text" class="form-control" name="drty" value="<?php echo $viewmodel['dirty_dishes'];?>" placeholder="Drty dishes"><br>
     </div>
   </div>
 
@@ -48,9 +51,18 @@
 		}
 
 	?>
-	
+
+
+	<!-- Milan logika citanja -->
+	<?php 
+ 
+
+
+	?>
+	<!-- Krak logike -->
 	<label>Sastojci</label>
 	<div id="sastojakall">
+		<?php //foreach ($viewmodel['prep_time'] as $key => $value) :?>
 		<div id="sastojak">
 			<div class="row" id="sastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
 			
@@ -71,7 +83,7 @@
 				</div>
 				
 				<div class="col-1">
-				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>clone it</button>
+				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
 				</div>
 				
 			<?php $b++ ?>
@@ -85,17 +97,25 @@
 
 
     <label>Kategorije</label>
+    <?php $viewmodel['recipe_cats'] ; ?>
 	<select class="form-control form-control-lg custom-select" name="categories[]" multiple aria-label="Search for...">
-
+		<?php $rezultat = explode(",", $viewmodel['recipe_cats']); ?>
 		<?php foreach($query->allquery('categories') as $item) :?>
-		  <option value="<?php echo $item['cat_id']; ?>"> <?php echo $item['cat_name']; ?> </option>
+				<?php foreach($rezultat as $cat) :?>
+		  			<?php if ($item['cat_id'] == $cat){ ?>
+						<option value="<?php echo $item['cat_id']; ?>" selected> <?php echo $item['cat_name']; ?> </option>
+		  			<?php } else { ?>
+						
+		  			<?php } ?>
+				<?php endforeach; ?>
+				<option value="<?php echo $item['cat_id']; ?>"> <?php echo $item['cat_name']; ?> </option>
 		<?php endforeach; ?>
 
 	</select> 
 
 	<div class="form-group">
-		<label for="exampleFormControlTextarea1">Opis recepta</label>
-		<textarea class="form-control" name="recept" id="exampleFormControlTextarea1" rows="3"></textarea>
+		<label>Opis recepta</label>
+		<textarea class="form-control" name="recept" id="exampleFormControlTextarea1" rows="10"><?php echo $viewmodel['instructions'];?></textarea>
 	</div>
 	
 	
@@ -125,7 +145,12 @@
 	<input type="hidden" id="num_of_ingredients" name="num_of_ingredients" value="">
 </form>
 
+<?php print_r($_SERVER); ?>
 
+
+		  		<?php
+
+ ?>
 
 
 <script>

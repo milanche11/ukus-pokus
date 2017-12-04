@@ -78,8 +78,12 @@ class RecipesModel extends Model{
 			header('Location: '.ROOT_URL.'recipes');
 		}
 	}
-	public function delete(){
+	public function edit(){
 		
+		if (isset($_GET['id'])) {
+
+		}
+
 	}
 	public function view(){
 	$id = $_GET['id'];
