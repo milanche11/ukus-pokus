@@ -1,3 +1,5 @@
 
 config.php
 admin/config.php
+*.jpg
+*.png
