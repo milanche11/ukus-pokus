@@ -1,6 +1,6 @@
  // Petar
 	
-	function edit(action,table,id_column,edited_column,value,id){
+	function edit1(action,table,id_column,edited_column,value,id){
 
 		if(action == "edit"){
 			$("#td_name"+id).html("<form method='post' action=''> <input type='text' id='input"+id+"' name='name"+id+"' value='"+value+"' class='form-control'>");
@@ -12,9 +12,9 @@
 			});
 		}
 		else{
-		/*	var val = value;
+			var val = value;
 			ajax(val);
-		*/ alert("nesto");
+		
 		}	
 		
 		function ajax(val){	//AJAX

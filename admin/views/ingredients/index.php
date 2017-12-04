@@ -33,9 +33,9 @@
 			<?php
 
 			if($item['status'] == 0){	
-				echo '<button type="button" onclick="edit('."'activate','ingredients','ingredient_id','status','1',".$id.')" class="btn btn-warning btn-sm">Activate</button>';
+				echo '<button type="button" onclick="edit1('."'activate','ingredients','ingredient_id','status','1',".$id.')" class="btn btn-warning btn-sm">Activate</button>';
 			}else{
-				echo "<button type='button' onclick='edit(".'"delete","ingredients","ingredient_id","status","0",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
+				echo "<button type='button' onclick='edit1(".'"delete","ingredients","ingredient_id","status","0",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
 			}?>   
 				<button type="button" onclick="edit('edit','ingredients','ingredient_id','ingredient_name','<?php echo $name; ?>','<?php echo $id; ?>')"  class="btn btn-success btn-sm">Edit</button>
 		</td>
