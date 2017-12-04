@@ -93,7 +93,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
 	
-	   <script src="<?php echo ROOT_PATH; ?>assets/js/functions.js"></script>	<!--  PETAR  -->
+	<script src="<?php echo ROOT_PATH; ?>assets/js/functions.js"></script>	<!--  PETAR  -->
 
 </body>
 </html>
