@@ -32,8 +32,7 @@
 					}else{
 						echo "<button type='button' onclick='edit1(".'"delete","recipes","recipe_id","status","0",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
 					}?>   
-
-					<button type="button" onclick="proba()" class="btn btn-success btn-sm" name="edit">Edit</button>
+					<a class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>recipes/edit/<?php echo $item['recipe_id']; ?>" role="button">Edit</a>
 				</td>
 	    </tr>
 	</form>

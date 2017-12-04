@@ -80,14 +80,16 @@ class RecipesModel extends Model{
 		}
 	}
 	public function edit(){
-		
-		if (isset($_GET['id'])) {
-
+	if (isset($_POST)) {
+			var_dump($_POST);
 		}
-
+	$id = $_GET['id'];
+	$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
+		$rows = $this->single();
+		return $rows;
 	}
 	
-	public function view(){
+	public function view(){		
 	$id = $_GET['id'];
 	$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
 		$rows = $this->single();

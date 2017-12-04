@@ -14,9 +14,7 @@ class Recipes extends Controller{
 	}
 	protected function edit(){
 		$viewmodel = new RecipesModel();
-		if (isset($_GET['id'])) {
-			$this->returnView($viewmodel->view(), true);
-		}else{$this->returnView($viewmodel->edit(), true);}
-		
+		$this->returnView($viewmodel->edit(), true);
 	}
+	
 }

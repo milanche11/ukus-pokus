@@ -1,6 +1,3 @@
-<?php
-
-var_dump($viewmodel);?>
 <h1>Edit recipes</h1><hr>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
