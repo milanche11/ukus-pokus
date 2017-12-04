@@ -3,3 +3,5 @@ config.php
 admin/config.php
 *.jpg
 *.png
+admin/views/recipes/index.php
+admin/views/recipes/index.php
