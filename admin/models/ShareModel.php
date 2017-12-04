@@ -1,7 +1,7 @@
 <?php
 class ShareModel extends Model{
 	public function Index(){
-		$this->query('SELECT * FROM shares ORDER BY create_date DESC');
+		$this->query('SELECT * FROM comments WHERE status=2 ORDER BY comment_time DESC');
 		$rows = $this->resultSet();
 		return $rows;
 	}

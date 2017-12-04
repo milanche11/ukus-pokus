@@ -63,7 +63,7 @@
         <a href="<?php echo ROOT_URL.'ingredients'?>">Sastojak</a>
       </li>
       <li>
-        <a href="#">Komentar</a>
+        <a href="<?php echo ROOT_URL.'shares'?>">Komentar</a>
       </li>
       <li>
         <a href="#">Setings </a>
