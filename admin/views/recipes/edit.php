@@ -29,13 +29,8 @@ var_dump($viewmodel);?>
       <label>Prljavo posudje</label>
       <input type="text" class="form-control" name="drty" value="<?php echo $viewmodel['dirty_dishes'];?>" placeholder="Drty dishes"><br>
     </div>
-  </div>
+  </div> 
 
-
-
-
-  
-<!-- PETAR  -->
 	<?php 
 		$b=1; 
 		$ingr_options = $units_options = $ingrs = $units = "";
@@ -51,16 +46,39 @@ var_dump($viewmodel);?>
 		}
 
 	?>
-
+	<label><b>Sastojci</b></label>
 
 	<!-- Milan logika citanja -->
-	<?php 
- 
+	<?php // izvaenje ingr, kol, i unit iz baze
+	$res = explode("/", $viewmodel['recipe_ingrs']);
+	foreach ($res as $value) {
+		$q = explode(",", $value);
 
+		$ingredients = $query->soloquery('ingredients', 'ingredient_id', $q[0]);?>
+		<div class="row">
+		<div class="col-4">
+				<?php echo $ingredients['ingredient_name']; ?>
+		</div>
+	  <?php   $kol = $q[1];?>
+		<div class="col-3">
+		  <?php echo $kol;?>
+		</div>
+	  <?php
 
-	?>
+	    $units = $query->soloquery('units', 'unit_id', $q[2]);?>
+	 	<div class="col-4">
+			<?php echo $units['unit_name']; ?>	
+		</div>
+		<div class="clo-1">
+			<button type="button" id='button<?php echo $b; ?>' '> - </button>
+		</div>
+	</div>
+<?php
+	   // echo $ingredients['ingredient_name']." ".$kol." ".$units['unit_name']."<br>";
+	}?><br>
 	<!-- Krak logike -->
-	<label>Sastojci</label>
+
+
 	<div id="sastojakall">
 		<?php //foreach ($viewmodel['prep_time'] as $key => $value) :?>
 		<div id="sastojak">
@@ -83,7 +101,7 @@ var_dump($viewmodel);?>
 				</div>
 				
 				<div class="col-1">
-				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
+				 <button type="button" id='button<?php echo $b; ?>' '> + </button>
 				</div>
 				
 			<?php $b++ ?>
@@ -93,7 +111,6 @@ var_dump($viewmodel);?>
 
 		</div>
 	</div>
-<!--- END PETAR  -->
 
 
     <label>Kategorije</label>
@@ -105,7 +122,7 @@ var_dump($viewmodel);?>
 		  			<?php if ($item['cat_id'] == $cat){ ?>
 						<option value="<?php echo $item['cat_id']; ?>" selected> <?php echo $item['cat_name']; ?> </option>
 		  			<?php } else { ?>
-						
+						<?php //?>
 		  			<?php } ?>
 				<?php endforeach; ?>
 				<option value="<?php echo $item['cat_id']; ?>"> <?php echo $item['cat_name']; ?> </option>
@@ -119,11 +136,20 @@ var_dump($viewmodel);?>
 	</div>
 	
 	
-	<label>Slike</label>
-	
+	<label>Slike</label><br>	
+	<?php
+
+		$soloimage = explode(",",$viewmodel['recipe_photos']);
+
+	 foreach($soloimage as $id) {
+
+			$imageprint = $query->soloquery('photos', 'photo_id', $id);
+			echo $imageprint['photo_link']. '<br>';
+
+		 }?>
 	<div>	
 		<div>
-			<button type="button" id="add_photo" onclick="addImage()" class="">Add image</button>	
+			<br><button type="button" id="add_photo" onclick="addImage()" class="">Add image</button>	
 		</div>
 		
 		<div>
@@ -145,7 +171,7 @@ var_dump($viewmodel);?>
 	<input type="hidden" id="num_of_ingredients" name="num_of_ingredients" value="">
 </form>
 
-<?php print_r($_SERVER); ?>
+<?php// print_r($_SERVER); ?>
 
 
 		  		<?php

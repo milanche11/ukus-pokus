@@ -41,7 +41,7 @@
 	</tbody>
 </table><!-- Kraj crtanja tabele -->
 Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
-<a type="button" href="<?PHP ROOT_URL ?>recipes/insert" class="btn btn-primary btn-sm" name="insert">UNESI RECEPT</a>
+<a type="button" href="<?PHP ROOT_URL ?>recipes/insert" class="btn btn-primary btn-sm" name="insert">UNESI RECEPT</a><br><br><br>
 
 <?php 
 
