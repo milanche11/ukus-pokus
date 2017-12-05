@@ -9,8 +9,12 @@
 	      <th scope="col">Options</th>
 	    </tr>
   	</thead>
+<?php 
+$pag = new Pagination();
+$w = $pag->allres('recipes', 3, $viewmodel);
 
-<?php $i=1; foreach($viewmodel as $item) : ?>
+?>
+<?php $i=1; foreach ($w[0] as $item) : ?>
 <?php $date = date_create($item['posting_time']);  // Formatiranje datuma dobijenog u bazi
 		$id = $item["recipe_id"];
 ?>
@@ -20,7 +24,7 @@
 	    <tr>
 			 
 
-				<td><?php  echo $i.'.'; $i++ ?></td>
+				<td><?php  //echo $i.'.'; $i++ ?></td>
 				<td><a href="<?PHP ROOT_URL ?>recipes/view/<?php echo $item['recipe_id']; ?>"><?php echo $item['recipe_title']; ?></a></td>
 				<td><?php echo date_format($date, 'Y-m-d'); ?></td>
 				<td></td>
@@ -39,7 +43,17 @@
 	<?php endforeach; ?>
 	</tbody>
 </table><!-- Kraj crtanja tabele -->
-Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
+
+  <ul class="pagination">
+		<?php echo $pag->ispis(); ?>
+  </ul>
+
+<br>Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
+
+
+
+
+
 <a type="button" href="<?PHP ROOT_URL ?>recipes/insert" class="btn btn-primary btn-sm" name="insert">UNESI RECEPT</a><br><br><br>
 
 <?php 
