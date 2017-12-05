@@ -1,4 +1,16 @@
  // Petar
+
+	$(document).ready(function(){
+		$("#hide").click(function(){
+			$(".toggle-hide").hide(500);
+			$(".toggle-show").show(500);
+		});
+		$("#show").click(function(){
+			$(".toggle-hide").show(500);
+			$(".toggle-show").hide(500);
+		});
+	});
+
 	
 	function edit1(action,table,id_column,edited_column,value,id){
 

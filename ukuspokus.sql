@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 02, 2017 at 10:46 PM
--- Server version: 5.7.20-log
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Dec 05, 2017 at 10:05 AM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,14 +26,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
-  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories` (
+  `cat_id` int(11) NOT NULL,
   `cat_name` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`cat_id`),
-  UNIQUE KEY `cat_name_UNIQUE` (`cat_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
@@ -65,18 +60,27 @@ INSERT INTO `categories` (`cat_id`, `cat_name`, `status`) VALUES
 -- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `comments`;
-CREATE TABLE IF NOT EXISTS `comments` (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
   `comment_name` varchar(255) NOT NULL,
   `comment_email` varchar(255) NOT NULL,
   `comment_text` text NOT NULL,
   `comment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(11) NOT NULL DEFAULT '0' COMMENT 'default status is 2, means that it is new and waits approval, 1 is approved and visible, 0 is unapproved',
-  `recipe_id` int(11) NOT NULL,
-  PRIMARY KEY (`comment_id`),
-  KEY `recipe_id_fk_idx` (`recipe_id`)
+  `status` int(11) NOT NULL DEFAULT '2' COMMENT 'default status is 2, means that it is new and waits approval, 1 is approved and visible, 0 is unapproved',
+  `recipe_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `comment_name`, `comment_email`, `comment_text`, `comment_time`, `status`, `recipe_id`) VALUES
+(1, 'Petar', 'petar.cvetic@gmail.com', 'Neki tekst probni koji ce biti koriscen za testiranje komentara...', '2017-12-05 07:50:52', 2, 1),
+(2, 'Zoran', 'zoran@gmail.com', 'sdfsd sdf sdf dfoigoj gsdosdfig dof dfsg df ggsdf o  gdfs df s gsdf oi gfdfgdji gdfoijgdf gdf gsdfoij ', '2017-12-05 07:52:51', 2, 2),
+(3, 'Djura', 'djura@gmail.com', 'sdfjasdf sdfkj dsak  aslk sdalk jsda dsk dlsk sd ldkfj ldkfj dlskafaskdlfj asdlfk asdflk sdfkl ', '2017-12-05 07:52:51', 0, 3),
+(4, 'Dragana', 'dragana@gmail.com', 'kdsad asdlksadpefwre ewrpo retkl jslkd vklasdjf s fdglij dsfgoids fg fgdsiog sdofigjd fgiojdfg  odfsig idoj', '2017-12-05 07:54:20', 2, 2),
+(5, 'Marija', 'marija@gmail.com', 'posdfk asdpfok asdpofk sdpfo kpasdofjnaskdf njskdnf asjkdnf jskdferk jtjker  cvkjnvkjdfsnkjndg ', '2017-12-05 07:54:20', 0, 2),
+(6, 'Jelena', 'jelena@gmail.com', 'dkljf sadflkdjf laskdj asdfkl jsdlak jasdlfkj sdlfk jsdfkl sdfkl jasdfklasdf jlaskdfj askdlfj askdlfj sdfklj sdfklja lk', '2017-12-05 08:00:48', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -84,14 +88,11 @@ CREATE TABLE IF NOT EXISTS `comments` (
 -- Table structure for table `ingredients`
 --
 
-DROP TABLE IF EXISTS `ingredients`;
-CREATE TABLE IF NOT EXISTS `ingredients` (
-  `ingredient_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ingredients` (
+  `ingredient_id` int(11) NOT NULL,
   `ingredient_name` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`ingredient_id`),
-  UNIQUE KEY `ingredient_name_UNIQUE` (`ingredient_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ingredients`
@@ -191,15 +192,13 @@ INSERT INTO `ingredients` (`ingredient_id`, `ingredient_name`, `status`) VALUES
 -- Table structure for table `photos`
 --
 
-DROP TABLE IF EXISTS `photos`;
-CREATE TABLE IF NOT EXISTS `photos` (
-  `photo_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `photos` (
+  `photo_id` int(11) NOT NULL,
   `photo_title` varchar(255) NOT NULL,
   `photo_alt` varchar(255) NOT NULL,
   `photo_link` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`photo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `photos`
@@ -226,15 +225,12 @@ INSERT INTO `photos` (`photo_id`, `photo_title`, `photo_alt`, `photo_link`, `sta
 -- Table structure for table `ratings`
 --
 
-DROP TABLE IF EXISTS `ratings`;
-CREATE TABLE IF NOT EXISTS `ratings` (
-  `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ratings` (
+  `rating_id` int(11) NOT NULL,
   `rating_name` enum('1','2','3','4','5') NOT NULL,
   `rating_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '1',
-  `recipe_id` int(11) NOT NULL,
-  PRIMARY KEY (`rating_id`),
-  KEY `recipe_id_fk6_idx` (`recipe_id`)
+  `recipe_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -243,9 +239,8 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 -- Table structure for table `recipes`
 --
 
-DROP TABLE IF EXISTS `recipes`;
-CREATE TABLE IF NOT EXISTS `recipes` (
-  `recipe_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `recipes` (
+  `recipe_id` int(11) NOT NULL,
   `recipe_title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `prep_time` int(11) NOT NULL,
@@ -257,10 +252,8 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `recipe_ingrs` varchar(255) NOT NULL COMMENT 'string: ingr_id, ammount, unit_id/ingr_id, ammount, unit_id/.... double explode',
   `recipe_ingrs_id` varchar(255) NOT NULL,
   `recipe_photos` varchar(255) NOT NULL COMMENT 'string explode photo_ids',
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`recipe_id`),
-  KEY `user_id_fk_idx` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `user_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `recipes`
@@ -280,13 +273,11 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, 
 -- Table structure for table `units`
 --
 
-DROP TABLE IF EXISTS `units`;
-CREATE TABLE IF NOT EXISTS `units` (
-  `unit_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `units` (
+  `unit_id` int(11) NOT NULL,
   `unit_name` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`unit_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `units`
@@ -329,18 +320,14 @@ INSERT INTO `units` (`unit_id`, `unit_name`, `status`) VALUES
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1' COMMENT '0 = off\n1 = superadmin\n2 = admin\n3 = editor',
-  PRIMARY KEY (`user_id`,`user_email`),
-  UNIQUE KEY `user_email_UNIQUE` (`user_email`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1' COMMENT '0 = off\n1 = superadmin\n2 = admin\n3 = editor'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
@@ -352,8 +339,110 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `username`, `password
 (3, 'Milan', 'mirkovicmilan0211@gmail.com', 'milanche', 'f0aeddf5d2e8e0eac746ba986b7f0080', 3),
 (4, 'Ivana', 'sapic.iva@gmail.com', 'sapiciva', 'f0aeddf5d2e8e0eac746ba986b7f0080', 1),
 (5, 'Boris', 'bvatovec@gmail.com', 'bvatovec', 'f0aeddf5d2e8e0eac746ba986b7f0080', 1);
-COMMIT;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`cat_id`),
+  ADD UNIQUE KEY `cat_name_UNIQUE` (`cat_name`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `recipe_id_fk_idx` (`recipe_id`);
+
+--
+-- Indexes for table `ingredients`
+--
+ALTER TABLE `ingredients`
+  ADD PRIMARY KEY (`ingredient_id`),
+  ADD UNIQUE KEY `ingredient_name_UNIQUE` (`ingredient_name`);
+
+--
+-- Indexes for table `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`photo_id`);
+
+--
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`rating_id`),
+  ADD KEY `recipe_id_fk6_idx` (`recipe_id`);
+
+--
+-- Indexes for table `recipes`
+--
+ALTER TABLE `recipes`
+  ADD PRIMARY KEY (`recipe_id`),
+  ADD KEY `user_id_fk_idx` (`user_id`);
+
+--
+-- Indexes for table `units`
+--
+ALTER TABLE `units`
+  ADD PRIMARY KEY (`unit_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`,`user_email`),
+  ADD UNIQUE KEY `user_email_UNIQUE` (`user_email`),
+  ADD UNIQUE KEY `username_UNIQUE` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `ingredients`
+--
+ALTER TABLE `ingredients`
+  MODIFY `ingredient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+--
+-- AUTO_INCREMENT for table `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `photo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `recipes`
+--
+ALTER TABLE `recipes`
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `units`
+--
+ALTER TABLE `units`
+  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

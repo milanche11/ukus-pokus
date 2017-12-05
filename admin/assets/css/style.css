@@ -29,3 +29,7 @@
 .float-right{
 	float: right;
 }
+
+.toggle-hide{
+	display:none;
+}
