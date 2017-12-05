@@ -22,11 +22,6 @@ class Pagination extends Model {
 	}
 
 	public function ispis(){
-			 $this->rew1 = '';
-
-
-
-
 
 		for ( $this->page1=1; $this->page1<=$this->brredova; $this->page1++) {
 		  $this->rew1 .=  "<a class='page-link' href='".ROOT_URL. "" .$this->tabela."/".$this->page1."'>" . $this->page1 . "</a>";
