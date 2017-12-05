@@ -54,7 +54,7 @@
         <a href="<?php echo ROOT_URL.'users/viev'?>">User</a>
       </li>
       <li>
-        <a href="<?php echo ROOT_URL.'recipes'?>">Recepti</a>
+        <a href="<?php echo ROOT_URL.'recipes/1'?>">Recepti</a>
       </li>
       <li>
         <a href="<?php echo ROOT_URL.'categories'?>">Kategorije</a>

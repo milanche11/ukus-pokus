@@ -2,7 +2,7 @@
 <table class="table table-sm"><!-- Pocetak crtanja tabele -->
   	<thead>
 	    <tr>
-		  <th scope="col">#</th>
+		  <th scope="col"></th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Datum objave</th>
 	      <th scope="col"></th>
@@ -10,11 +10,11 @@
 	    </tr>
   	</thead>
 <?php 
-$pag = new Pagination();
-$w = $pag->allres('recipes', 2, $viewmodel);
+$pagination = new Pagination();
+$paginationpage = $pagination->allres('recipes', 7, $viewmodel);
 
 ?>
-<?php $i=1; foreach ($w[0] as $item) : ?>
+<?php $i=1; foreach ($paginationpage[0] as $item) : ?>
 <?php $date = date_create($item['posting_time']);  // Formatiranje datuma dobijenog u bazi
 		$id = $item["recipe_id"];
 ?>
@@ -25,7 +25,7 @@ $w = $pag->allres('recipes', 2, $viewmodel);
 			 
 
 				<td><?php  //echo $i.'.'; $i++ ?></td>
-				<td><a href="<?PHP ROOT_URL ?>recipes/view/<?php echo $item['recipe_id']; ?>"><?php echo $item['recipe_title']; ?></a></td>
+				<td><a href="<?PHP ROOT_URL ?>view/<?php echo $item['recipe_id']; ?>"><?php echo $item['recipe_title']; ?></a></td>
 				<td><?php echo date_format($date, 'Y-m-d'); ?></td>
 				<td></td>
 				<td>
@@ -43,9 +43,9 @@ $w = $pag->allres('recipes', 2, $viewmodel);
 	<?php endforeach; ?>
 	</tbody>
 </table><!-- Kraj crtanja tabele -->
-
+<hr>
   <ul class="pagination">
-		<?php echo $pag->ispis(); ?>
+		<?php echo $pagination->printPagination(); ?>
   </ul>
 
 <br>Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
