@@ -31,7 +31,7 @@
           <?php }else{ ?> 
             <button type="submit" class="btn btn-danger btn-sm" name="delete" value="<?php echo $item['cat_id']; ?>">Delete</button> <?php } ?>
    <!--         <button type="submit" class="btn btn-success btn-sm" name="edit" onclick="">Edit</button>  -->
-			<button type="button" onclick="edit('edit','categories','cat_id','cat_name','<?php echo $name; ?>','<?php echo $id; ?>')"  class="btn btn-success btn-sm">Edit</button>
+			<button type="button" onclick="edit1('edit','categories','cat_id','cat_name','<?php echo $name; ?>','<?php echo $id; ?>')"  class="btn btn-success btn-sm">Edit</button>
 
 
          </td>

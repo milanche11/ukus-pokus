@@ -14,7 +14,7 @@
 	
 	function edit1(action,table,id_column,edited_column,value,id){
 
-		if(action == "edit"){
+		if(action == "edit"){ 
 			$("#td_name"+id).html("<form method='post' action=''> <input type='text' id='input"+id+"' name='name"+id+"' value='"+value+"' class='form-control'>");
 			$("#td"+id).html("<button type='button' name='edit' id='edited"+id+"'  class='btn btn-success btn-sm' >Submit</button> </form>");
 			
@@ -23,10 +23,9 @@
 				ajax(val);
 			});
 		}
-		else{
+		else{  // Deleta/Activate
 			var val = value;
-			ajax(val);
-		
+			ajax(val);	
 		}	
 		
 		function ajax(val){	//AJAX
