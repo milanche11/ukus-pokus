@@ -19,7 +19,7 @@
 		$name= $item["cat_name"];
 		$id=$item["cat_id"];
 	?>
-    <tbody>
+    <tbody >
       <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
         <tr>
           <td><?php  echo $i.'.'; $i++ ?></td>
