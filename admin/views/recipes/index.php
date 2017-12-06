@@ -50,11 +50,7 @@ $paginationpage = $pagination->allres('recipes', 7, $viewmodel);
 
 <br>Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
 
-
-
-
-
-<a type="button" href="<?PHP ROOT_URL ?>recipes/insert" class="btn btn-primary btn-sm" name="insert">UNESI RECEPT</a><br><br><br>
+<a type="button" href="<?PHP ROOT_URL ?>insert" class="btn btn-primary btn-sm" name="insert">UNESI RECEPT</a><br><br><br>
 
 <?php 
 

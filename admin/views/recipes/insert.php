@@ -71,7 +71,7 @@
 				</div>
 				
 				<div class="col-1">
-				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>clone it</button>
+				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
 				</div>
 				
 			<?php $b++ ?>
@@ -123,7 +123,7 @@
 	
 	<input type="hidden" name="ime" value="<?php echo $_SESSION['user_data']['user_id'];?>">
 	<input type="hidden" id="num_of_ingredients" name="num_of_ingredients" value="">
-</form>
+</form><br><br>
 
 
 

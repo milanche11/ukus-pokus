@@ -26,7 +26,7 @@ class RecipesModel extends Model{
 	
 	public function insert(){
 		
-		if(isset($_POST['submit'])){
+		if(isset($_POST['add'])){
 			var_dump($_POST);
 			if ($_POST['num_of_ingredients'] == '') { // parametri za recipe_ingrs
 				$i = 1;
@@ -81,7 +81,7 @@ class RecipesModel extends Model{
 	}
 	public function edit(){
 	if (isset($_POST)) {
-			var_dump($_POST);
+			//var_dump($_POST);
 		}
 	$id = $_GET['id'];
 	$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
