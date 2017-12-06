@@ -52,7 +52,7 @@
 	<label>Sastojci</label>
 	<div id="sastojakall">
 		<div id="sastojak">
-			<div class="row" id="sastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
+			<div class="row" id="noviSastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
 			
 				<div class="col-4">
 					<select class="form-control" name="ingredients<?php echo $b; ?>" id="">
@@ -64,14 +64,15 @@
 				  <input type="text" class="form-control" name="kolicina<?php echo $b; ?>" placeholder="kolicina">
 				</div>
 				
-				<div class="col-4">
+				<div class="col-3">
 					<select class="form-control" name="units<?php echo $b; ?>" >
 						<?php echo $units_options; ?>	
 					</select>
 				</div>
 				
-				<div class="col-1">
-				 <button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
+				<div id="button-div<?php echo $b; ?>" class="col-2">
+					<button type="button" class="button-del" id='button-del<?php echo $b; ?>' onclick="closeDiv('noviSastojak<?php echo $b;?>')"'>-</button>
+					<button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
 				</div>
 				
 			<?php $b++ ?>

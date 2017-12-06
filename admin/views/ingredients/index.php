@@ -37,7 +37,7 @@
 			}else{
 				echo "<button type='button' onclick='edit1(".'"delete","ingredients","ingredient_id","status","0",'.$id.")' class='btn btn-danger btn-sm'>Delete</button>";
 			}?>   
-				<button type="button" onclick="edit('edit','ingredients','ingredient_id','ingredient_name','<?php echo $name; ?>','<?php echo $id; ?>')"  class="btn btn-success btn-sm">Edit</button>
+				<button type="button" onclick="edit1('edit','ingredients','ingredient_id','ingredient_name','<?php echo $name; ?>','<?php echo $id; ?>')"  class="btn btn-success btn-sm">Edit</button>
 		</td>
     </tr>
 
