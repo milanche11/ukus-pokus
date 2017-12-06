@@ -37,8 +37,8 @@
 
 <div>	
 	<h2 class="text-center">Blokirani komentari 
-		<img src="assets/images/hide1.png" class="toggle-hide" id="hide" alt="hide-arrow">
-		<img src="assets/images/show1.png" class="toggle-show" id="show" alt="show-arrow">
+		<img src="assets/images/hide.png" class="toggle-hide" id="hide" alt="hide-arrow">
+		<img src="assets/images/show.png" class="toggle-show" id="show" alt="show-arrow">
 	</h2>
 	<div class="toggle-hide">
 	<?php	
