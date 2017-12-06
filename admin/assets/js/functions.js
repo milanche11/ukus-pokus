@@ -24,18 +24,29 @@
 			});
 		}
 		else{  // Deleta/Activate
-			var val = value;
-			ajax(val);	
+			var val = value;			
+			ajax(val); //pozivanje funkcije ajax()
 		}	
 		
 		function ajax(val){	//AJAX
+			var url = window.location.pathname.substring(1); //dobijanje URL-a stranice sa koje se poziva funkcija (sa bez prvog karaktera)
+			var count = (url.match(new RegExp("/", "g")) || []).length; //broj sleseva "/" u URL-u
+			
+			if(count == 2){ //ako u urlu ima 2 kose crte netreba dodatak linku
+				root_folder = "";
+			}
+			else if(count == 3){ // ako u urlu ima 3 kose crte treba se vratiti u root folder
+				root_folder = "../";
+			}
+		
 			var xhr = new XMLHttpRequest(); 
-			xhr.open("get", "ajax.php?action="+action+"&table="+table+"&row="+id_column+"&value="+id+"&edited_column="+edited_column+"&new_value="+val, false);
+			xhr.open("get", root_folder+"ajax.php?action="+action+"&table="+table+"&row="+id_column+"&value="+id+"&edited_column="+edited_column+"&new_value="+val, false);
 			xhr.send();
 			var odgovor = xhr.responseText;
 			if(odgovor!==""){
 				location.reload();
-			}
+			} 
+		
 		}
 	}
 
@@ -44,9 +55,10 @@
 		$("#pop_up").css("display", "block");
 		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "360px", "height": "340px", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001"});
 		
+		var div = "pop_up";
 		var header = "<h2>Add new image</h2>";
 		var br = '<br><br>';
-		var x = '<button type="button" onclick="closeDiv()" class="close" aria-label="Close">X</button>';
+		var x = "<button type='button' onclick='closeDiv("+'"' +div+ '"'+")' class='close' aria-label='Close'>X</button>";
 		var title = '<form method="post" id="file_to_upload" name="file_to_upload" >Image Title: <input type="text" class="float-right" name="title" id="title">';
 		var alt = 'Image Alt: <input type="text" class="float-right" name="alt" id="alt">';
 		var file = ' <label>Select a file:</label><input class="new" id="file" name="file" type="file" />'
@@ -76,7 +88,7 @@
 					$("#images_id").val(id)
 					$("#added_images").append("<div>"+img+"</div>");
 
-					closeDiv();
+					closeDiv('pop_up');
 				}
 			});
 			return false;
@@ -85,14 +97,51 @@
 	
 	
 	
-	function closeDiv(){//isklucivanje pop-up prozora
-		$("#pop_up").css("display", "none");
+	function closeDiv(d){//isklucivanje pop-up prozora
+		$("#"+d).css("display", "none");
 	}
+
+	
+	function cloneFunction(b,ingrs,units) { //funkcija za kloniranje polja za unos sastojaka
+		var c = Number(b) + 1 ;
+		var ingr_array = ingrs.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (ingredient_id i ingredient_name) u niz
+		var unit_array = units.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (unit_id i unit_name) u niz
+
+		var ingr_arrayLength = ingr_array.length-1;
+		var options_ingredient = "";
 		
-		
-		
-		
-		
+		for (var i = 0; i < ingr_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "ingredients"
+		  var options_ingr = ingr_array[i].split(',');
+		  
+		  var option_ingredient = '<option value="' +options_ingr[0]+ '">'+options_ingr[1]+'</option>';
+		  var options_ingredient = options_ingredient + option_ingredient; // variabla koja sadrzi sve ingredient <options>
+		}
+	  
+	  
+		var unit_arrayLength = unit_array.length-1;
+		var options_unit = "";
+
+		for (var i = 0; i < unit_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "units"
+			var options_un = unit_array[i].split(',');
+
+			var option_unit = '<option value="' +options_un[0]+ '">'+options_un[1]+'</option>';
+			var options_unit = options_unit + option_unit; // variabla koja sadrzi sve unit <options>
+		}
+
+	//  alert (options_unit);
+
+		$("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
+
+		var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
+		var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
+		var select_unit = '<div class="col-3"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
+		var button = "<div class='col-2'><button type='button' class='button-deld' id='button-del"+c+"' onclick='closeDiv("+'"sastojak'+c+'"'+")'> - </button><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>+</button></div>";
+
+		$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
+		$("#button"+b).css("display", "none");
+		$("#button-del"+b).css({"display": "inline", "float": "left"});
+		$("#num_of_ingredients").val(c);
+	}	
 		
 		
 		
