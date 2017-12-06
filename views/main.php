@@ -22,44 +22,51 @@
 <body>
 
   <div class="container-fluid">
-      <nav class="navbar">
+    <div class="row beige text-right">
+      <p>nesto</p>
+    </div>
+    <div class="row navigacija">
+      <!-- Navigacija -->
+          <div class="col-12 nopadding">
+              <nav class="navbar">
 
-        <!-- LOGO -->
-        <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
+                <!-- LOGO -->
+                <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
 
-        <!-- Navigacija -->
-        <div>
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link animated" href="<?php echo ROOT_URL; ?>">Početna</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link animated" href="<?php echo ROOT_URL; ?>category">Vidi šta sve ima!</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Pretraga</a>
-            </li>
-          </ul>
-        </div> 
-     </nav>
-    <!-- Navigacija end -->
+              <!-- Navigacija -->
+               <div>
+                  <ul class="nav">
+                      <li class="nav-item">
+                        <a class="nav-link animated" href="<?php echo ROOT_URL; ?>">Početna</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link animated" href="<?php echo ROOT_URL; ?>categories">Vidi šta sve ima!</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Pretraga</a>
+                      </li>
+                  </ul>
+                </div> 
+              </nav>
+          </div>
+      </div>
+     <!-- Navigacija end -->
 
     <br><br>
 
-    <!-- Main -->
+    <!-- Main  -->
     <div class="container-fluid">
-      <div class="row justify-content-center">
+       <div class="row justify-content-center">
      	  <?php require($view); ?>
-      </div> 
-      <br><br>
-      <div class="row justify-content-center">
-        <?php Messages::display(); ?>
-      </div>
+       </div> 
+       <br><br>
+       <div class="row justify-content-center">
+      <?php Messages::display(); ?>
+       </div>
     </div> 
 
     <br>
     <hr>
-    
     <!-- End main -->
 
     <!-- Footer -->
@@ -92,5 +99,5 @@
 
 	<script src="//code.jquery.com/jquery-1.9.1.js"></script> <!-- Skripta za funkcionisanje uploada slika preko ajax-a  -->
 
-</body>
+  </body>
 </html>

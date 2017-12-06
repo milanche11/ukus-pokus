@@ -2,16 +2,15 @@
 
 class Query extends Model {
 	
-	public function allResults($tablename){
-		$this->query("SELECT * FROM $tablename WHERE status >= 1");
+	public function allRows($tablename, $querystring){
+		$this->query("SELECT * FROM $tablename WHERE (status = 1) AND $querystring");
 		$rows = $this->resultSet();
 		return $rows;
 	}
 
-	public function oneResult($tablename,$columnname,$refid){
-		$this->query("SELECT * FROM $tablename WHERE '$columnname'='$id'");
+	public function singleRow($tablename,$querystring){
+		$this->query("SELECT * FROM $tablename WHERE (status = 1) AND ($querystring)");
 		$row = $this->single();
 		return $row;
 	}
-
 }

@@ -59,6 +59,13 @@ font-family: 'Itim', cursive;
 	margin: 30px !important;
 }
 
+body {
+	background-image: url('bgr.png') !important;
+             background-repeat: repeat;
+    	background-attachment: fixed;
+    	background-position: left-top; 
+}
+
 body p {
 	font-size: 1.1rem;
 	font-family: 'Nunito', sans-serif;
@@ -70,11 +77,11 @@ nav.navbar {
 
 	background-color: #fff !important;
 	/* border-bottom: 1px solid #d4d4d4; */
-	margin-bottom: 10px;
-	padding-bottom: 0;
-	padding-top: 0;
+	margin: 0 0 10px 0;
+	padding: 0 0 0 0;
 	font-family: 'SUNN Line', cursive;
 	font-weight: bold;
+
 }
 
 
@@ -247,6 +254,46 @@ p.desc  {
 	font-size: 1rem;
 	text-transform: uppercase;
 }
+
+
+.razmak {
+	padding: 25px !important;
+	margin: 30px !important;
+	border: 1px solid #ddd;
+	box-shadow: 0 0 6px #ddd;
+	text-align: center;
+	background-color: #fff;
+}
+
+.margins {
+	margin-left: 20px !important;
+	margin-right: 20px !important;
+}
+
+img.img-fluid {
+	border: 1px solid #ddd;
+}
+
+.beige {
+	background-color: #ead09f !important;
+	height: 35px;
+	position: fixed;
+	width: 100%;
+	z-index: 999;
+}
+
+.navigacija {
+	position: fixed;
+	margin-top: 35px;
+	z-index: 1000;
+	width: 100%;
+}
+
+.nopadding {
+	padding: 0 !important;
+}
+
+
 
 
 

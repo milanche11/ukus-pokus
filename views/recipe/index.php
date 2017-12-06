@@ -1,12 +1,11 @@
 <?php
 //upit za jedinice mere 
-$unit = new RecipeModel();
-$units = $unit->units();
+$recipemodel = new RecipeModel();
+$units = $recipemodel->units();
 
 //povlacenje get parametra
-$recept = new RecipeModel();
-$id = $recept->getid();
-$receptPrikaz = $recept->recipe($id);
+$id = $recipemodel->getid();
+$receptPrikaz = $recipemodel->recipe($id);
 
 //promenljive koje sluze za prikazivanje trazenog recepta
 $recipeId = $receptPrikaz['recipe_id'];
@@ -20,22 +19,21 @@ $recipeStatus = $receptPrikaz['status'];
 $recipeCats = $receptPrikaz['recipe_cats'];
 $recipeIngrs = $receptPrikaz['recipe_ingrs'];
 $recipePhotos = $receptPrikaz['recipe_photos'];
-
 if($recipeStatus == 0){
 	header('Location: ' . ROOT_URL);
 }else{	
-
 //upit za slike
 $slike = array();
 $slike = explode(",", $recipePhotos);
-
  $ids = '(';
+ 
 foreach ($slike as $item) {
 	$ids .=  "photo_id=" . $item . " OR ";
 }
  $ids = rtrim($ids, "OR ");
  $ids = $ids . ") AND (status=1) LIMIT 3 ";
 
+echo $ids;
 $fotke = new RecipeModel();
 $fotkeAll = $fotke->photos($ids);
 
@@ -76,8 +74,8 @@ $ing = new RecipeModel();
 		<!-- Carousel -->
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="0"  class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1" ></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
 		  <div class="carousel-inner">
@@ -121,7 +119,7 @@ $ing = new RecipeModel();
 				echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
 			}?>
 		 </small><br> 
-		 <small><strong>Rejting: </strong><img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating"> (156 glasova)</small><br>
+		 <small><strong>Rejting: </strong>3.7 (156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
 		 
 		<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
 		<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br><br>

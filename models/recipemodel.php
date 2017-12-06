@@ -3,7 +3,6 @@
 class RecipeModel extends Model{
 
 	public function Index(){
-
 		$this->query('SELECT * FROM recipes');
 		$recipeRow = $this->single();
 		//print_r($rows);
@@ -11,20 +10,15 @@ class RecipeModel extends Model{
 	}
 
 	public function getid(){
-
 		if (isset($_GET['id'])) {
-
 			$id = $_GET['id'];
-
 			//echo $id;
 		 	return $id;
 		}
 	} 
 
 	public function recipe($id){
-
 		$this->query("SELECT * FROM recipes WHERE  recipe_id=$id AND status=1" );
-
 		$recipe = $this->single();
 		//print_r($recRows);
 		return $recipe;
@@ -36,8 +30,8 @@ class RecipeModel extends Model{
 		return $photos;
 	}
 
-	public function categories($ids){
-		$this->query("SELECT * FROM categories WHERE " . $ids );
+	public function categories($petar){
+		$this->query("SELECT * FROM categories WHERE " . $petar );
 		$categories = $this->resultSet();
 		return $categories;
 	}
