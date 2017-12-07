@@ -62,7 +62,7 @@ font-family: 'Itim', cursive;
 body {
 	background-image: url('bgr.png') !important;
              background-repeat: repeat;
-    	background-attachment: fixed;
+    	background-attachment: scroll;
     	background-position: left-top; 
 }
 
@@ -105,7 +105,7 @@ a.nav-link:hover, a.nav-link:active {
 
 
 .navbar img {
-	height: 80px;
+	height: 90px;
 }
 
 
@@ -132,6 +132,7 @@ a.nav-link:hover, a.nav-link:active {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Pacifico', cursive !important;
+	color: #503723 !important;
 }
 
 .lead {
@@ -330,6 +331,11 @@ div.row.beige img {
 
 a.nav-link.animated {
 	padding-bottom: 3px;
+}
+
+a.kats {
+	margin: 3px !important;
+	color: #ffffff !important;
 }
 
 

@@ -1,8 +1,11 @@
 <?php
 $homemodel = new HomeModel();
-$ingrRows = $homemodel->ingredients();
-  //print_r($ingrRows);
 $queryInstance = new Query();
+// upit za dobijanje sastojaka za upis u formu za pretragu
+$ingrRows = $homemodel->ingredients();
+//upit za dobijanje svih kategorija
+$query = "";
+$catsAll = $queryInstance->allRows("categories",$query);
 ?>
 
 <!-- Gornji deo -->
@@ -10,13 +13,25 @@ $queryInstance = new Query();
 
   <div class="row">
     <div class="col-12 text-center">
-      <h1>Dobrodošli na Ukus pokus!</h1>
-      <p class="lead">Ovde možete pronaći proverene brze recepte od namirnica koje imate u kući</p><br><br>
+      <br>
+      <h2>Dobrodošli na Ukus pokus!</h2>
+      <p class="lead">Ovde možete pronaći proverene brze recepte od namirnica koje imate u kući</p><br><br><br>
     </div>
   </div> <!-- end row -->
 
   <div class="row">
-    <div class="col-12 text-center">
+    <div class="col-3">
+       <h4>Pretraga po kategorijama</h4>
+       <br>
+      <?php
+      foreach ($catsAll as $item) {
+        $id = $item['cat_id'];
+        $catname = $item['cat_name'];
+        echo "<a class='btn btn-success btn-sm kats' href='category/$id'>" . $catname . "</a><br>";
+      }
+      ?>
+    </div>
+    <div class="col-9 text-center">
 
       <!-- Form search -->
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
@@ -37,19 +52,14 @@ $queryInstance = new Query();
       <small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
       <!-- End form --> 
       <br><br>
-    </div>
-  </div><!-- end row -->
-  <!-- Gornji deo kraj -->
 
-  <!-- Prikaz rezultata pretrage -->
-  <div class="row">
-    <div class="col-12 text-center">
-      <?php  
+ <!-- Prikaz rezultata pretrage ako ih ima-->
+ <?php  
   //Ispis recepata po osnovu upita
   $query = "";
   if (isset($ingrRows)) {
     foreach ($ingrRows as $row) {
-      $query .= "recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
+      $query .= "AND recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
     }
     $query = rtrim($query, "AND ");
     $recRows = $queryInstance->allRows("recipes",$query);
@@ -66,11 +76,15 @@ $queryInstance = new Query();
     echo '<br><p class="recipelist">Ovde dođe paginacija... 1 ... 5 6 7 8 9 10 11 ... 128</p><br>';
   }
 ?>
+<!-- Kraj prikaza rezultata pretrage -->
+
     </div>
-  </div> <!-- end row --> <!-- Kraj prikaza rezultata pretrage -->
+  </div><!-- end row -->
+  <!-- Gornji deo kraj -->
 
     <div class="row">
       <div class="col-12 text-center">
+        <br><br>
         <h4>Najpopularniji recepti</h4>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
       </div>
