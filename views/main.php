@@ -22,8 +22,14 @@
 <body>
 
   <div class="container-fluid">
-    <div class="row beige text-right">
-      <p>nesto</p>
+    
+    <div class="row beige">
+      <div class="top-right">
+        <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/fb.png" class="float-right"></a>&nbsp;
+        <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/inst.png" class="float-right"></a>&nbsp;
+        <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/twitter.png" class="float-right"></a>&nbsp;
+      </div>
+      
     </div>
     <div class="row navigacija">
       <!-- Navigacija -->
@@ -56,6 +62,7 @@
 
     <!-- Main  -->
     <div class="container-fluid">
+      <div class="main">
        <div class="row justify-content-center">
      	  <?php require($view); ?>
        </div> 
@@ -66,11 +73,11 @@
     </div> 
 
     <br>
-    <hr>
-    <!-- End main -->
+
+    </div><!-- End main -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="nopadding">
         <nav >
 
           <ul class="nav justify-content-center">
