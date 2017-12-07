@@ -98,6 +98,7 @@
 	
 	
 	function closeDiv(d){//isklucivanje pop-up prozora
+		$("#"+d).html("");
 		$("#"+d).css("display", "none");
 	}
 

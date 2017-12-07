@@ -51,6 +51,7 @@
 			echo "<div class='col-4'>".$ingredients['ingredient_name']."</div>"; 
 			echo "<div class='col-3'>".$kol."</div>";	
 			echo "<div class='col-3'>".$units['unit_name']."</div>"; 
+			echo "<input type='hidden' name='ingr".$b."' value='".$ingredients['ingredient_id'].",".$kol.",".$units['unit_id']."'>";
 			?>	
 		
 			<div class="clo-2">
@@ -58,15 +59,14 @@
 			</div>
 		</div><br>
 	<?php
-	   // echo $ingredients['ingredient_name']." ".$kol." ".$units['unit_name']."<br>";
-	}?>
-	<!-- Krak logike -->
+		$b++;
+	}
 
+		echo $b;
 	
-	
-	<!-- PETAR  -->
-	<?php 
-		$c=1; 
+		//------------------  PETAR  ----------------
+
+
 		$ingr_options = $units_options = $ingrs = $units = "";
 	
 		foreach($query->allquery('ingredients') as $item){
@@ -84,27 +84,27 @@
 
 	<div id="sastojakall">
 		<div id="sastojak">
-			<div class="row" id="noviSastojak<?php echo $c; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
+			<div class="row" id="noviSastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
 			
 				<div class="col-4">
-					<select class="form-control" name="ingredients<?php echo $c; ?>" id="">
+					<select class="form-control" name="ingredients<?php echo $b; ?>" id="">
 						<?php echo $ingr_options; ?>
 					</select>
 				</div>
 				
 				<div class="col-3">
-				  <input type="text" class="form-control" name="kolicina<?php echo $c; ?>" placeholder="kolicina">
+				  <input type="text" class="form-control" name="kolicina<?php echo $b; ?>" placeholder="kolicina">
 				</div>
 				
 				<div class="col-3">
-					<select class="form-control" name="units<?php echo $c; ?>" >
+					<select class="form-control" name="units<?php echo $b; ?>" >
 						<?php echo $units_options; ?>	
 					</select>
 				</div>
 				
-				<div id="button-div<?php echo $c; ?>" class="col-2">
-					<button type="button" class="button-del" id='button-del<?php echo $c; ?>' onclick="closeDiv('noviSastojak<?php echo $c;?>')"> - </button>
-					<button type="button" id='button<?php echo $c; ?>' onclick='cloneFunction("<?php echo $c; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
+				<div id="button-div<?php echo $b; ?>" class="col-2">
+					<button type="button" class="button-del" id='button-del<?php echo $b; ?>' onclick="closeDiv('noviSastojak<?php echo $b;?>')"> - </button>
+					<button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
 				</div>
 			</div>
 		</div>
@@ -117,8 +117,8 @@
 	<select class="form-control form-control-lg custom-select" name="categories[]" multiple aria-label="Search for...">
 		<?php $rezultat = explode(",", $viewmodel['recipe_cats']); ?>
 		<?php foreach($query->allquery('categories') as $item) :?>
-				<?php foreach($rezultat as $cat) :?>
-		  			<?php if ($item['cat_id'] == $cat){ ?>
+				<?php foreach($rezultat as $bat) :?>
+		  			<?php if ($item['cat_id'] == $bat){ ?>
 						<option value="<?php echo $item['cat_id']; ?>" selected> <?php echo $item['cat_name']; ?> </option>
 		  			<?php } else { ?>
 						<?php //?>
