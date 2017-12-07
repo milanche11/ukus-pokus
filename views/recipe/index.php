@@ -1,11 +1,16 @@
 <?php
-//upit za jedinice mere 
-$recipemodel = new RecipeModel();
+ $recipemodel = new RecipeModel();
+ $queryInstance = new Query();
+
+//upit za jedinice mere
 $units = $recipemodel->units();
 
 //povlacenje get parametra
 $id = $recipemodel->getid();
-$receptPrikaz = $recipemodel->recipe($id);
+
+//upit za jedan recept
+$query = "recipe_id=$id";
+$receptPrikaz = $queryInstance->singleRow("recipes",$query);
 
 //promenljive koje sluze za prikazivanje trazenog recepta
 $recipeId = $receptPrikaz['recipe_id'];
@@ -19,37 +24,34 @@ $recipeStatus = $receptPrikaz['status'];
 $recipeCats = $receptPrikaz['recipe_cats'];
 $recipeIngrs = $receptPrikaz['recipe_ingrs'];
 $recipePhotos = $receptPrikaz['recipe_photos'];
+
 if($recipeStatus == 0){
 	header('Location: ' . ROOT_URL);
 }else{	
+
 //upit za slike
 $slike = array();
 $slike = explode(",", $recipePhotos);
- $ids = '(';
+ $query = ' AND (';
  
 foreach ($slike as $item) {
-	$ids .=  "photo_id=" . $item . " OR ";
+	$query .=  " photo_id=" . $item . " OR ";
 }
- $ids = rtrim($ids, "OR ");
- $ids = $ids . ") AND (status=1) LIMIT 3 ";
-
-echo $ids;
-$fotke = new RecipeModel();
-$fotkeAll = $fotke->photos($ids);
+ $query = rtrim($query, "OR ");
+ $query = $query . ")";
+$fotkeAll = $queryInstance->allRows("photos",$query);
+$counter = count($fotkeAll);
 
 //upit za kategorije
 $kategorije = array();
 $kategorije = explode(",", $recipeCats);
-
-$idscats = '(';
+$query = 'AND (';
 foreach ($kategorije as $key) {
-	$idscats .= "cat_id=" . $key . " OR ";
+	$query .= "cat_id=" . $key . " OR ";
 }
-$idscats = rtrim($idscats, "OR ");
-$idscats = $idscats . ") AND (status=1) ";
-
-$categories = new RecipeModel();
-$catAll = $categories->categories($idscats);
+$query = rtrim($query, "OR ");
+$query = $query . ")";
+$catAll = $queryInstance->allRows("categories", $query);
 
 //upit za dobavljanje sastojaka
 $sastojci = array();
@@ -57,58 +59,61 @@ $sastojci = array();
 $sastojci = explode("/", $recipeIngrs);
 echo "<br>";
 
-$ing = new RecipeModel();
-
 ?>
-
-
 <!-- carousel -->
 <div class="container-fluid">
-	<div class="text-center">
-		<h1><?php  echo $recipeTitle;   ?></h1>
-		<br>
-	</div>	
-	
-	<div class="col-lg-8 offset-lg-2">
-		<p class="desc"><?php echo $recipeDesc; ?> </p>
-		<!-- Carousel -->
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0"  class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1" ></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img class="d-block w-100" src="<?php echo ROOT_URL; ?>/assets/images/<?php echo $fotkeAll[0]['photo_link'] ?>" alt="<?php echo $fotkeAll[0]['photo_alt'] ?>">
-		    </div>
-		    <div class="carousel-item">
-		      <img class="d-block w-100" src="<?php echo ROOT_URL; ?>/assets/images/<?php echo $fotkeAll[1]['photo_link']  ?>" alt="<?php echo $fotkeAll[1]['photo_alt'] ?>">
-		    </div>
-		    <div class="carousel-item">
-		      <img class="d-block w-100" src="<?php echo ROOT_URL; ?>/assets/images/<?php echo $fotkeAll[2]['photo_link']  ?>" alt="<?php echo $fotkeAll[2]['photo_alt'] ?>">
-		    </div>
-		  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Prethodna</span>
-  </a>
-
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Sledeća</span>
-  </a>
-
+	<div class="row">
+		<div class="col-12 text-center">
+			<br><h1><?php  echo $recipeTitle;   ?></h1><br>
 		</div>
 	</div>
 
-	<!--Carousel end -->
-	<br>
+	<div class="row">
+		<div class="col-8 offset-2">
+			<p class="desc"><?php echo $recipeDesc; ?> </p>
+
+			<!-- Carousel start-->
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			  	<ol class="carousel-indicators">
+			  	<li data-target="#carouselExampleIndicators" data-slide-to="0"  class="active"></li>
+
+		  	<?php
+		  	for ($i=1; $i < $counter; $i++) { 
+		  	    echo '<li data-target="#carouselExampleIndicators" data-slide-to="$i" ></li>';
+		  	}
+		  	?>
+		  </ol>
+
+		  <div class="carousel-inner">
+
+		      <div class="carousel-item active">		  
+		      <img class="d-block w-100" src="<?php echo ROOT_URL; ?>assets/images/<?php echo $fotkeAll[0]['photo_link']?>" alt="<?php echo $fotkeAll[0]['photo_alt']?>">
+		      </div>
+		  	<?php
+		  	for ($i=1; $i < $counter; $i++) { 
+		  	    echo '<div class="carousel-item">';
+		  	    echo '<img class="d-block w-100" src=" '. ROOT_URL . '/assets/images/' . $fotkeAll[$i]['photo_link'] . ' " alt="' . $fotkeAll[$i]['photo_alt'] . '">
+		  	    </div>';		  	   
+		  	}
+		  	?>
+		  </div>
+
+		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Prethodna</span>
+		  </a>
+
+		  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Sledeća</span>
+		  </a>
+
+		</div><!--Carousel end -->
+	</div>
 </div>
+<br>
 
-
-
-
+</div> <!-- container fluid end -->
 
 
 <div class="container-fluid">
@@ -116,9 +121,10 @@ $ing = new RecipeModel();
 		
 		<small><strong>Nalazi se u kategorijama: </strong>
 			<?php foreach ($catAll as $key) {
-				echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
+				$catId = $key['cat_id'];
+				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
 			}?>
-		 </small><br> 
+		 </small><br> <br>
 		 <small><strong>Rejting: </strong>3.7 (156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
 		 
 		<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
@@ -206,9 +212,9 @@ $ing = new RecipeModel();
 	
 	<div class="col-10 offset-1">
 		<small><strong>&nbsp;&nbsp;&nbsp;&nbsp;Potražite i druge recepte u kategorijama: </strong>
-			<?php 
-			foreach ($catAll as $key) {
-				echo "<a class='btn btn-success btn-sm cats'>" . $key['cat_name'] . " </a>";
+			<?php foreach ($catAll as $key) {
+				$catId = $key['cat_id'];
+				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
 			}?> <br> <br><br>
 		</small>
 	</div>

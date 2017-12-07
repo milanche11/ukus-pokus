@@ -84,7 +84,7 @@ nav.navbar {
 
 	background-color: #fff !important;
 	/* border-bottom: 1px solid #d4d4d4; */
-	margin: 35px -30px 10px 0;
+	margin: 32px -30px 10px 0;
 	padding: 0 0 0 0;
 	font-family: 'SUNN Line', cursive;
 	font-weight: bold;
@@ -287,7 +287,7 @@ img.img-fluid {
 
 div.beige {
 	background-color: #ead09f !important;
-	height: 35px;
+	height: 32px;
 	position: absolute;
 	top: 0;
 	width: 100%;
