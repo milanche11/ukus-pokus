@@ -295,8 +295,17 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 
 
 
+<div>
+	
+</div>
+<div>
+	
+</div>
+<div>
+	
+</div>
 
-
+<?php
 
 
 

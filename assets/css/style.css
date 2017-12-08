@@ -62,7 +62,7 @@ font-family: 'Itim', cursive;
 body {
 	background-image: url('bgr.png') !important;
              background-repeat: repeat;
-    	background-attachment: scroll;
+    	background-attachment: fixed;
     	background-position: left-top; 
 }
 
@@ -76,7 +76,7 @@ body p {
 .main {
 	background-color: #ffffff;
 	box-shadow: 0 0 6px #ddd;
-	margin: -50px 40px 0 40px;
+	margin: -50px 70px 0 70px;
 	padding: 10px 50px;
 }
 

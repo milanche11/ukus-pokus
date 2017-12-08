@@ -6,7 +6,9 @@ $ingrRows = $homemodel->ingredients();
 //upit za dobijanje svih kategorija
 $query = "";
 $catsAll = $queryInstance->allRows("categories",$query);
+
 ?>
+
 
 <!-- Gornji deo -->
 <div class="container-fluid">
@@ -20,19 +22,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
   </div> <!-- end row -->
 
   <div class="row">
-    <div class="col-3">
-      <!-- ispis kategorija -->
-       <h4>Pretraga po kategorijama</h4>
-       <br>
-      <?php
-      foreach ($catsAll as $item) {
-        $id = $item['cat_id'];
-        $catname = $item['cat_name'];
-        echo "<a class='btn btn-success btn-sm kats' href='category/$id' href='category/$id'>" . $catname . "</a><br>";
-      }
-      ?>
-    </div>
-    <div class="col-9 text-center">
+   
+    <div class="col-8 text-center">
 
       <!-- Form search -->
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
@@ -85,6 +76,22 @@ $catsAll = $queryInstance->allRows("categories",$query);
       </div>
 
     </div>
+
+    <!-- ispis kategorija -->
+    <div class="col-3 offset-1 borderleft">      
+       <h4>Pretraga po kategorijama</h4>
+       <br>
+      <?php
+      foreach ($catsAll as $item) {
+        $id = $item['cat_id'];
+        $catname = $item['cat_name'];
+        echo "<a class='btn btn-success btn-sm kats' href='category/$id' href='category/$id'>" . $catname . "</a><br>";
+      }
+      ?>
+    </div><!-- kraj ispisa kategorija -->
+
+
+
   </div><!-- end row -->
   <!-- Gornji deo kraj -->
 
@@ -116,7 +123,6 @@ $catsAll = $queryInstance->allRows("categories",$query);
   evt.params.originalEvent.stopPropagation();
   });
 </script>
-
 
 
 
