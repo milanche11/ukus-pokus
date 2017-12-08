@@ -17,24 +17,30 @@ class RecipeModel extends Model{
 		}
 	} 
 
-	public function recipe($id){
-		$this->query("SELECT * FROM recipes WHERE  recipe_id=$id AND status=1" );
-		$recipe = $this->single();
-		//print_r($recRows);
-		return $recipe;
-	}
+	public function comments(){
+		if (isset($_POST['submit'])) {
+			if ( isset($_POST['ime'])  AND isset($_POST['email']) AND isset($_POST['komentar'])  AND isset($_POST['recipeid']) ) {
+				var_dump($_POST);
 
-	public function units(){
-		$this->query("SELECT * FROM units WHERE status=1");
-		$units = $this->resultSet();
-		return $units;
-	}
+				$ime = $_POST['ime'];
+				$email = $_POST['email'];
+				$komentar = $_POST['komentar'];
+				$recipeid = $_POST['recipeid'];
+				$this->query('INSERT INTO comments (comment_name,comment_email,comment_text,recipe_id) VALUES (:comment_name,:comment_email,:comment_text,:recipe_id');
+				$this->bind(':comment_name', $_POST['ime']);
+				$this->bind(':comment_email', $_POST['email']);
+				$this->bind(':comment_text', $_POST['komentar']);
+				$this->bind(':recipe_id', $_POST['recipeid']);
+				$this->execute();
 
-	public function ingrs($ids){
-		$this->query("SELECT * FROM ingredients WHERE ingredient_id=$ids AND status=1" );
-		$ingrs = $this->single();
-		return $ingrs;
-	} 
+				header('Location: '.ROOT_URL.'recipe/'.$recipeid);
+			
+			}
+		} 
+	}
+	
+
+
 
 
 }

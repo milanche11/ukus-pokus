@@ -76,15 +76,15 @@ body p {
 .main {
 	background-color: #ffffff;
 	box-shadow: 0 0 6px #ddd;
-	margin: 0 50px 50px 50px;
-	padding: 30px 50px;
+	margin: -50px 40px 0 40px;
+	padding: 10px 50px;
 }
 
 nav.navbar {
 
 	background-color: #fff !important;
 	/* border-bottom: 1px solid #d4d4d4; */
-	margin: 32px -30px 10px 0;
+	margin: 32px -30px 0 0;
 	padding: 0 0 0 0;
 	font-family: 'SUNN Line', cursive;
 	font-weight: bold;
@@ -307,6 +307,7 @@ div.beige {
 
 footer {
 	margin: -15px !important;
+	margin-top: -25px !important;
 }
 
 .beige {

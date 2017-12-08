@@ -3,7 +3,7 @@
  $queryInstance = new Query();
 
 //upit za jedinice mere
-$units = $recipemodel->units();
+$units = $queryInstance->allRows("units","");
 
 //povlacenje get parametra
 $id = $recipemodel->getid();
@@ -59,6 +59,9 @@ $sastojci = array();
 $sastojci = explode("/", $recipeIngrs);
 echo "<br>";
 
+//upit za komentare
+$query = " AND (recipe_id=$recipeId)";
+$commentsAll = $queryInstance->allRows("comments",$query);
 ?>
 <!-- carousel -->
 <div class="container-fluid">
@@ -115,145 +118,183 @@ echo "<br>";
 
 </div> <!-- container fluid end -->
 
-
 <div class="container-fluid">
-	<div class="col-lg-10 offset-lg-2">
-		
-		<small><strong>Nalazi se u kategorijama: </strong>
+	<div class="row">
+		<div class="col-8 offset-2">
+			<small><strong>Nalazi se u kategorijama: </strong>
 			<?php foreach ($catAll as $key) {
 				$catId = $key['cat_id'];
 				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
 			}?>
-		 </small><br> <br>
-		 <small><strong>Rejting: </strong>3.7 (156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
-		 
-		<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
-		<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br><br>
-
-	</div>
-	<h4 class="text-center">Sastojci:  </h4><br>
-	
-	<div class="col-lg-10 offset-lg-2">	
-		
-		<?php 
-
-		//upit za dobavljanje sastojaka
-		$sastojci = array();
-		//razbijanje po slash-u
-		$sastojci = explode("/", $recipeIngrs);
-		$ing = new RecipeModel();
-
-		echo "<div class='col-lg-6'>";
-		//ispis liste sastojaka
-		echo '<table class="table  sastojci table-sm"><tbody>';
-		foreach ($sastojci as $set) {
-			$niz = $set;
-			
-			echo "<tr>";
-			//razbijanje po zarezu
-			$particles = array();
-			$particles = explode(",", $niz);
-
-			//ispis liste sastojaka i njihovih kolicina i jedinica mere
-			echo "<td  class='ingrlist' >";
-			$ingrId = $particles[0]; 
-			$ingAll = $ing->ingrs($ingrId);
-			echo $ingAll['ingredient_name'];  
-			echo "</td>";
-			
-			echo "<td class='ingrlist' style='width: 60px;'>";
-			$ammount = $particles[1]; 
-			echo $ammount;
-			echo "</td>";
-			
-			$unitId = $particles[2]; 
-			echo "<td  class='ingrlist' style='width: 120px;'>";
-			//upit za naziv jedinice mere
-			foreach ($units as $mera) {
-
-				$red = $mera;
-				//echo $red['unit_id'];
-				if ($red['unit_id'] == $unitId) {
-					echo $red['unit_name'];
-				}
-			}
-			echo "</td>";
-			echo "</tr>";		
-		}
-		echo "</tbody></table>";
-		echo "</div>";
-		?> 
-		<br><br>
-	</div>
-	<div class="col-lg-10 offset-lg-1">			
-		<div class="text-center">
-			<h4>Uputstvo za pripremu: </h4>
+		 	</small><br> <br>
+		 	<small><strong>Rejting: </strong>3.7 (156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
+		 	<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
+			<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br><br>
 		</div>
-
-		<!-- ispis uputstva za pripremu -->
-		<p><?php echo $recipeInst; ?> </p><br><br>
-	</div>	
-		
-</div>	
+	</div>
 
 
-<!-- prijatno -->
-<div class="container-fluid">
+	<!-- Ispis liste sastojaka -->
+	<div class="row">
+		<div class="col-12 text-center">
+			<h4>Sastojci:  </h4><br>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-5 offset-2">
+			<?php 
+			//upit za dobavljanje sastojaka
+			$sastojci = array();
+			//razbijanje po slash-u
+			$sastojci = explode("/", $recipeIngrs);
+
+			echo "<div>";
+			//ispis liste sastojaka
+			echo '<table class="table  sastojci table-sm"><tbody>';
+			foreach ($sastojci as $set) {
+				$niz = $set;			
+				echo "<tr>";
+
+				//razbijanje po zarezu
+				$particles = array();
+				$particles = explode(",", $niz);
+
+				//ispis liste sastojaka i njihovih kolicina i jedinica mere
+				echo "<td  class='ingrlist' >";
+				$ingrId = $particles[0]; 
+				$query = " ingredient_id=$ingrId";
+				
+				$ingAll = $queryInstance->singleRow("ingredients",$query);
+				echo $ingAll['ingredient_name'];  
+				echo "</td>";
+				
+				echo "<td class='ingrlist' style='width: 60px;'>";
+				$ammount = $particles[1]; 
+				echo $ammount;
+				echo "</td>";
+				
+				$unitId = $particles[2]; 
+				echo "<td  class='ingrlist' style='width: 120px;'>";
+				//upit za naziv jedinice mere
+				foreach ($units as $measure) {
+					$row = $measure;
+					//echo $red['unit_id'];
+					if ($row['unit_id'] == $unitId) {
+						echo $row['unit_name'];
+					}
+				}
+				echo "</td>";
+				echo "</tr>";		
+			}
+			echo "</tbody></table>";
+			echo "</div>";
+			?> 
+			<br><br>
+		</div>
+	</div><!-- Kraj liste sastojaka -->
+
+	<!-- Ispis uputstva za pripremu -->
+	<div class="row">
+		<div class="col-12 text-center">
+			<h4>Uputstvo za pripremu: </h4>
+		</div>			
+	</div>
+	<div class="row">
+		<div class="col-10 offset-1">
+			<p><?php echo $recipeInst; ?> </p><br><br>
+		</div>
+	</div><!-- kraj uputstva za pripremu -->
+
+	<!-- prijatno -->
 	<div class="row">
 		<div class="col-12 text-center">
 			<h4>Prijatno! </h4><br><br><br>
-		</div>
-	
+		</div>	
 	</div>
-</div>
 
-<!-- ponovljene kategorije -->
-<div class="container-fluid">
-	
-	<div class="col-10 offset-1">
-		<small><strong>&nbsp;&nbsp;&nbsp;&nbsp;Potražite i druge recepte u kategorijama: </strong>
+	<!-- ponovljene kategorije -->
+	<div class="row">
+		<div class="col-10 offset-1">
+			<small><strong>&nbsp;&nbsp;&nbsp;&nbsp;Potražite i druge recepte u kategorijama: </strong>
 			<?php foreach ($catAll as $key) {
 				$catId = $key['cat_id'];
 				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
 			}?> <br> <br><br>
-		</small>
-	</div>
+			</small>
+		</div>
+	</div> <!-- kategorije kraj -->
 	<hr>
-</div>
 
-<?php
-}
-?>
-
-<!-- komentarisanje -->
-<div class="container-fluid">
+	<!-- komentarisanje -->
 	<div class="row">
-		<div class="col-lg-6 offset-lg-2"><br>
+		<div class="col-6 offset-2"><br>
 			<h5>Postavite svoj komentar :  </h5>
 			<small> Ispričajte kako je vama ispalo, da li ste nešto dodali ili drugačije uradili? Ideje za posluživanje i serviranje? Sa čim ste kombinovali?</small><br><br>
 			<form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
+
+				<input type="hidden" name="recipeid" value="<?php echo $recipeId; ?>">
+
 				 <div class="form-group">
 				 <label for="exampleInputIme1">Vaše ime</label>
-				 <input type="text" class="form-control" id="exampleInputText1" name="ime" placeholder="Vaše ime" required>
+				 <input type="text" class="form-control" name="ime" placeholder="Vaše ime" required>
 				  </div>	
 
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Vaša email adresa</label>
-				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesite email" name="email" required>
+				    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Unesite email" name="email" required>
 				    <small id="emailHelp" class="form-text text-muted">Nikada nećemo proslediti vaš email bilo kome, niti ga zloupotrebiti na drugi način.</small>
 				  </div>
 
 				  <div class="form-group">
 				 <label for="exampleInputText1">Vaš komentar</label>
-				 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Unesite svoj komentar..." name="komentar" required></textarea>
+				 <textarea class="form-control" rows="3" placeholder="Unesite svoj komentar..." name="komentar" required></textarea>
 				<br>
 				  </div>	
-				  <button type="submit" class="btn btn-success" name="submit" >Pošalji</button>
+				  <button type="submit" class="btn btn-success" name="submit" value="submit">Pošalji</button>
 			</form>
+
+			<?php var_dump($_POST); ?>
 		</div>
-	
+	</div><!-- kraj komentarisanja -->
+	<br><hr>
+
+	<!-- ispis postojećih komentara -->
+	<div class="row">
+		<div class="col-6 offset-2">
+			<?php
+			foreach ($commentsAll as $item) {	
+				$time = $item['comment_time'];
+				$date = date_create($time);				
+				$day = date_format($date, "d.m.Y");
+				$comment = $item['comment_text'];
+				$name = $item['comment_name'];
+				//echo "<p>" . $comment . "<br>";
+				//echo "<small><strong>Korisnik: </strong>" . $name . "</small><br>";
+				//echo "<small><strong>Datum: </strong>" . $day . "</small></p>";
+			?>
+				<div class="card" style="width: 40rem;">
+				  <div class="card-body">
+				    <h4 class="card-title"><?php echo $name; ?></h4>
+				    <h6 class="card-subtitle mb-2 text-muted"><?php echo $day; ?></h6>
+				    <p class="card-text"><?php echo $comment; ?></p>
+				  </div>
+				</div><br><br>
+			<?php
+			}
+			?>
+		</div>
 	</div>
-</div>
+
+	
+			
+</div><!-- container fluid end -->
+
+<?php
+}
+?>
+
+
+
 
 
 
