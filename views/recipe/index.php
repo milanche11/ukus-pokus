@@ -2,6 +2,8 @@
  $recipemodel = new RecipeModel();
  $queryInstance = new Query();
 
+ $recipemodel->comments();
+
 //upit za jedinice mere
 $units = $queryInstance->allRows("units","");
 
@@ -225,6 +227,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 	</div> <!-- kategorije kraj -->
 	<hr>
 
+
 	<!-- komentarisanje -->
 	<div class="row">
 		<div class="col-6 offset-2"><br>
@@ -253,7 +256,9 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 				  <button type="submit" class="btn btn-success" name="submit" value="submit">Pošalji</button>
 			</form>
 
-			<?php var_dump($_POST); ?>
+
+
+
 		</div>
 	</div><!-- kraj komentarisanja -->
 	<br><hr>
@@ -295,17 +300,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 
 
 
-<div>
-	
-</div>
-<div>
-	
-</div>
-<div>
-	
-</div>
 
-<?php
 
 
 

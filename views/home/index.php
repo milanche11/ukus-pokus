@@ -16,7 +16,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
   <div class="row">
     <div class="col-12 text-center">
       <br>
-      <h2>Dobrodošli na Ukus pokus! Jupiiiiii!</h2>
+      <h2>Dobrodošli na Ukus pokus!</h2>
       <p class="lead">Ovde možete pronaći proverene brze recepte od namirnica koje imate u kući</p><br><br><br>
     </div>
   </div> <!-- end row -->

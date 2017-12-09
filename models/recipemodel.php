@@ -22,18 +22,22 @@ class RecipeModel extends Model{
 			if ( isset($_POST['ime'])  AND isset($_POST['email']) AND isset($_POST['komentar'])  AND isset($_POST['recipeid']) ) {
 				var_dump($_POST);
 
-				$ime = $_POST['ime'];
-				$email = $_POST['email'];
-				$komentar = $_POST['komentar'];
-				$recipeid = $_POST['recipeid'];
+				$ime = $_POST['ime']; echo $ime;
+				$email = $_POST['email']; echo $email;
+				$komentar = $_POST['komentar']; echo $komentar;
+				$recipeid = intval($_POST['recipeid']); var_dump($recipeid);
+
 				$this->query('INSERT INTO comments (comment_name,comment_email,comment_text,recipe_id) VALUES (:comment_name,:comment_email,:comment_text,:recipe_id');
-				$this->bind(':comment_name', $_POST['ime']);
-				$this->bind(':comment_email', $_POST['email']);
-				$this->bind(':comment_text', $_POST['komentar']);
-				$this->bind(':recipe_id', $_POST['recipeid']);
+				$this->bind(":comment_name",$ime);
+				$this->bind(":comment_email",$email);
+				$this->bind(":comment_text",$komentar);
+				$this->bind(":recipe_id",$recipeid);
 				$this->execute();
 
-				header('Location: '.ROOT_URL.'recipe/'.$recipeid);
+				echo "nesto";
+				var_dump ($this->lastInsertId());
+
+				//header('Location: '.ROOT_URL.'recipe/'.$recipeid);
 			
 			}
 		} 
