@@ -29,8 +29,11 @@ $catsAll = $queryInstance->allRows("categories",$query);
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
       <h4>Pretraga po namirnicama</h4>
-      <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-         <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." name="pretraga[]">
+     <!-- <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">  
+      
+       <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." name="pretraga[]">  izbačeno zbog Ajax-a -->
+          <form>
+           <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." >
             <?php
                // Izlistavanje sastojaka - za unos u pretragu
                foreach ($viewmodel as $item) {
@@ -39,15 +42,18 @@ $catsAll = $queryInstance->allRows("categories",$query);
                 } 
              ?>
           </select>
-          <button class="btn btn-success" type="submit" name="submit">Traži!</button>      
+       <!-- <button class="btn btn-success" type="submit" name="submit">Traži!</button> izbačeno zbog Ajax-a -->  
       </form>
       <small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
       <!-- End form --> 
       <br><br>
+      <span id="result"></span> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
 
  <!-- Prikaz rezultata pretrage ako ih ima-->
- <?php  
-  //Ispis recepata po osnovu upita
+  
+  
+<!--  <?php   
+//Ispis recepata po osnovu upita
   $query = "";
   if (isset($ingrRows)) {
     foreach ($ingrRows as $row) {
@@ -67,7 +73,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
     }
     echo '<br><p class="recipelist">Ovde dođe paginacija... 1 ... 5 6 7 8 9 10 11 ... 128</p><br>';
   }
-?>
+?>  izbačeno zbog Ajax-a  -->
 <!-- Kraj prikaza rezultata pretrage -->
     <br><br>
     <h4>Najpopularniji recepti</h4><br>
@@ -115,13 +121,66 @@ $catsAll = $queryInstance->allRows("categories",$query);
 <!-- jQuery for search field -->
 
 <script type="text/javascript">
-  $("select").select2();
-  $("select").on("select2:unselect", function (evt) {
-  if (!evt.params.originalEvent) {
-    return;
+
+  var select_val;  
+
+$("select").select2({            //seclec2 
+  minimumInputLength: 1,
+  placeholder: 'Unesite namirnice',
+  
+   
+  language: {
+
+    inputTooShort: function () {
+    return 'Krenite da kucate...';
+  },
+  
+   noResults: function () {
+    return 'Nije pronađen nijedan rezultat';
+  },
+  
+}
+});
+
+$("select").on("select2:select", function (evt) {
+  
+  select_val = $(evt.currentTarget).val();
+ if(select_val != null && select_val !=""){ 
+
+  
+
+  return ajax_call(select_val);
+
+
+ }
+});
+
+$("select").on("select2:unselect", function (evt) {
+  select_val = $(evt.currentTarget).val();
+ if(select_val !=null && select_val !=""){
+
+   return ajax_call(select_val);
+
+  } else {
+
+    $("span#result").text("");
+      select_val = "";
+
+    return select_val;
+    
   }
-  evt.params.originalEvent.stopPropagation();
-  });
+});
+
+
+
+
+ function ajax_call() {               // ajax
+
+    $.post("assets/ajax.php", {data: select_val}, function(result){
+            $("span#result").html(result);
+    });
+}
+
 </script>
 
 
