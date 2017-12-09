@@ -105,7 +105,11 @@ if (isset($_POST['data'])) {
         $id=$item['recipe_id'];
         echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
         echo "</p>";
+
+
         }
+
+        echo "<hr><br><p class='text-center'>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
     } 
 
 
