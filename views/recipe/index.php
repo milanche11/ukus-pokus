@@ -24,10 +24,12 @@ $recipeInst = $receptPrikaz['instructions'];
 $recipeTime = $receptPrikaz['posting_time'];
 $recipeStatus = $receptPrikaz['status'];
 $recipeCats = $receptPrikaz['recipe_cats'];
+$recipeCats = rtrim($recipeCats,",");
+$recipeCats = ltrim($recipeCats, ",");
 $recipeIngrs = $receptPrikaz['recipe_ingrs'];
 $recipePhotos = $receptPrikaz['recipe_photos'];
 
-if($recipeStatus == 0){
+if(($recipeStatus == 0) OR ($id == "")){
 	header('Location: ' . ROOT_URL);
 }else{	
 
@@ -62,7 +64,7 @@ $sastojci = explode("/", $recipeIngrs);
 echo "<br>";
 
 //upit za komentare
-$query = " AND (recipe_id=$recipeId)";
+$query = " AND (recipe_id=$recipeId) ORDER BY comment_time DESC";
 $commentsAll = $queryInstance->allRows("comments",$query);
 ?>
 <!-- carousel -->
@@ -273,9 +275,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 				$day = date_format($date, "d.m.Y");
 				$comment = $item['comment_text'];
 				$name = $item['comment_name'];
-				//echo "<p>" . $comment . "<br>";
-				//echo "<small><strong>Korisnik: </strong>" . $name . "</small><br>";
-				//echo "<small><strong>Datum: </strong>" . $day . "</small></p>";
+			
 			?>
 				<div class="card" style="width: 40rem;">
 				  <div class="card-body">
