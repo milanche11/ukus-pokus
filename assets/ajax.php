@@ -183,6 +183,7 @@ if (isset($_POST['data'])) {
         echo '<p>';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $id= mb_strtolower($item['recipe_title']." ".$item['recipe_id'], 'UTF-8');
         $id = str_replace(" ", "-", $id);
         $id = convertExtendedToNormal($id);
@@ -191,6 +192,8 @@ if (isset($_POST['data'])) {
 			echo $id."<br>" ;
 			
 =======
+=======
+>>>>>>> 501b36efa251f10de3a538f69b1d800e010ac8af
 =======
 >>>>>>> 501b36efa251f10de3a538f69b1d800e010ac8af
 
