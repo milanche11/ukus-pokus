@@ -24,10 +24,12 @@ $recipeInst = $receptPrikaz['instructions'];
 $recipeTime = $receptPrikaz['posting_time'];
 $recipeStatus = $receptPrikaz['status'];
 $recipeCats = $receptPrikaz['recipe_cats'];
+$recipeCats = rtrim($recipeCats,",");
+$recipeCats = ltrim($recipeCats, ",");
 $recipeIngrs = $receptPrikaz['recipe_ingrs'];
 $recipePhotos = $receptPrikaz['recipe_photos'];
 
-if($recipeStatus == 0){
+if(($recipeStatus == 0) OR ($id == "")){
 	header('Location: ' . ROOT_URL);
 }else{	
 
