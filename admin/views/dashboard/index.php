@@ -1,3 +1,13 @@
+<?php 
+
+if(isset($_GET['id'])){
+	echo $_GET['id'];
+	echo $_GET['name'];
+}
+
+?>
+
+
 <h1>Dashboard</h1><hr><hr>
 
 
