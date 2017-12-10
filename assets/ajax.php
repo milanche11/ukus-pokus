@@ -181,27 +181,12 @@ if (isset($_POST['data'])) {
 
 		foreach ($recRows as $item) {
         echo '<p>';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $id= mb_strtolower($item['recipe_title']." ".$item['recipe_id'], 'UTF-8');
+
+        $id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
         $id = str_replace(" ", "-", $id);
         $id = convertExtendedToNormal($id);
-        $true_id = substr($id, strripos($id, "-")+1);
-        echo $true_id."<br>";
-			echo $id."<br>" ;
-			
-=======
-=======
->>>>>>> 501b36efa251f10de3a538f69b1d800e010ac8af
-=======
->>>>>>> 501b36efa251f10de3a538f69b1d800e010ac8af
-
-
-
-        $id=$item['recipe_id'];
->>>>>>> 501b36efa251f10de3a538f69b1d800e010ac8af
-        echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
+        
+		echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
         echo "</p>";
 
 

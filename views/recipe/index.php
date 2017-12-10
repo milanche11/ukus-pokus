@@ -8,7 +8,14 @@
 $units = $queryInstance->allRows("units","");
 
 //povlacenje get parametra
-$id = $recipemodel->getid();
+//$id = $recipemodel->getid();
+if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+
+			$idq = explode("-", $id);
+			$id= $idq[0];
+			//echo $id[0];
+		}
 
 //upit za jedan recept
 $query = "recipe_id=$id";
