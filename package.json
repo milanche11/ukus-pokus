@@ -1,0 +1,23 @@
+{
+  "name": "ukus-pokus",
+  "version": "1.0.0",
+  "description": "Sajt ima :\r   - Public deo koji prikazuje recepte sa mogućnošću čitanja, ocenjivanja i filtriranja prikaza po sastojcima\r   - Admin deo koji služi za upravljanje receptima, kategorijama, namirnicama i ostalim baznim momentima",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayaromporas/ukus-pokus.git"
+  },
+  "author": "Aya Romporas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayaromporas/ukus-pokus/issues"
+  },
+  "homepage": "https://github.com/ayaromporas/ukus-pokus#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1"
+  }
+}

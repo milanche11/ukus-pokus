@@ -1,13 +1,5 @@
 
 config.php
 admin/config.php
-*.jpg
-*.png
-admin/views/recipes/index.php
-admin/views/recipes/index.php
-assets/images/cats/exotic.jpg
-assets/images/cats/15min.jpg
-assets/images/cats/alkohol.jpg
-assets/images/cats/15min.jpg
-assets/images/cats/bebe.jpg
-assets/images/cats/exotic.jpg
+
+
