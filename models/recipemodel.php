@@ -13,7 +13,8 @@ class RecipeModel extends Model{
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
 
-			$id = substr($id, strripos($id, "-")+1);
+			$idq = explode("-", $id);
+			$id= $idq[0];
 			//echo $id;
 
 		 	return $id;
