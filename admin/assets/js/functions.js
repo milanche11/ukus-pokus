@@ -101,9 +101,19 @@
 		$("#"+d).html("");
 		$("#"+d).css("display", "none");
 	}
-
 	
-	function cloneFunction(b,ingrs,units) { //funkcija za kloniranje polja za unos sastojaka
+	function delInput(id,input){
+		closeDiv(id);
+		var old_num=$("#"+input).val();
+		var new_num = old_num - 1;
+		
+		$("#"+input).val(new_num);
+		alert(input+" / "+id+" / "+new_num);
+	}
+	
+	function cloneFunction(b,ingrs,units,id) {  //funkcija za kloniranje polja za unos sastojaka (b-$b, ingrs-niz sastojaka, units-niz 		
+												//jedinica, id-redni broj inputa)
+		var new_id = Number(id) + 1;
 		var c = Number(b) + 1 ;
 		var ingr_array = ingrs.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (ingredient_id i ingredient_name) u niz
 		var unit_array = units.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (unit_id i unit_name) u niz
@@ -133,15 +143,15 @@
 
 		$("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
 
-		var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
-		var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
-		var select_unit = '<div class="col-3"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
-		var button = "<div class='col-2'><button type='button' class='button-deld' id='button-del"+c+"' onclick='closeDiv("+'"sastojak'+c+'"'+")'> - </button><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>+</button></div>";
+		var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+new_id+'" id="">'+options_ingredient+'</select></div>';
+		var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+new_id+'" placeholder="kolicina"></div>';
+		var select_unit = '<div class="col-3"><select class="form-control" name="units'+new_id+'" >'+options_unit+'</select></div>';
+		var button = "<div class='col-2'><button type='button' class='button-deld' id='button-del"+c+"' onclick='delInput("+'"sastojak'+c+'","num_of_ingredients"'+")'> - </button><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '","' + new_id + '"' +")'>+</button></div>";
 
 		$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
 		$("#button"+b).css("display", "none");
 		$("#button-del"+b).css({"display": "inline", "float": "left"});
-		$("#num_of_ingredients").val(c);
+		$("#num_of_ingredients").val(new_id);
 	}	
 		
 		

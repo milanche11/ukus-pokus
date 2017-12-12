@@ -51,18 +51,18 @@
 			echo "<div class='col-4'>".$ingredients['ingredient_name']."</div>"; 
 			echo "<div class='col-3'>".$kol."</div>";	
 			echo "<div class='col-3'>".$units['unit_name']."</div>"; 
-			echo "<input type='hidden' name='ingr".$b."' value='".$ingredients['ingredient_id'].",".$kol.",".$units['unit_id']."'>";
+			echo "<input type='hidden' name='ingrs".$b."' value='".$ingredients['ingredient_id'].",".$kol.",".$units['unit_id']."'>";
 			?>	
 		
 			<div class="clo-2">
-				&nbsp &nbsp <button type="button" id='button_del<?php echo $b; ?>' onclick="closeDiv('sastojak<?php echo $b;?>')" > - </button>
+				&nbsp &nbsp <button type="button" id='button_del<?php echo $b; ?>' onclick="delInput('sastojak<?php echo $b;?>','old_ingredients')" > - </button>
 			</div>
 		</div><br>
 	<?php
 		$b++;
 	}
-
-		echo $b;
+		$b = $b-1;
+		echo "<input type='text' name='old_ingredients' id='old_ingredients' value='".$b."'>".$b;
 	
 		//------------------  PETAR  ----------------
 
@@ -78,36 +78,40 @@
 			$units_options .= '<option value="'. $item['unit_id'] .'">'. $item['unit_name'] .'</option>';
 			$units .= $item['unit_id'] .','. $item['unit_name'] .'/';
 		}
-
+		
+		$b=$b+1
 	?>
 	
 
 	<div id="sastojakall">
 		<div id="sastojak">
-			<div class="row" id="noviSastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
+			<div class="row" id="sastojak<?php echo $b; ?>">
 			
 				<div class="col-4">
-					<select class="form-control" name="ingredients<?php echo $b; ?>" id="">
+					<select class="form-control" name="ingredients1" id="">
+						<option value=""></option>
 						<?php echo $ingr_options; ?>
 					</select>
 				</div>
 				
 				<div class="col-3">
-				  <input type="text" class="form-control" name="kolicina<?php echo $b; ?>" placeholder="kolicina">
+				  <input type="text" class="form-control" name="kolicina1" placeholder="kolicina">
 				</div>
 				
 				<div class="col-3">
-					<select class="form-control" name="units<?php echo $b; ?>" >
+					<select class="form-control" name="units1" >
+						<option value=""></option>
 						<?php echo $units_options; ?>	
 					</select>
 				</div>
 				
 				<div id="button-div<?php echo $b; ?>" class="col-2">
-					<button type="button" class="button-del" id='button-del<?php echo $b; ?>' onclick="closeDiv('noviSastojak<?php echo $b;?>')"> - </button>
-					<button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
+					<button type="button" class="button-del" id='button-del<?php echo $b; ?>' onclick="delInput('sastojak<?php echo $b;?>','num_of_ingredients')"> - </button>
+					<button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>",1)'>+</button>
 				</div>
 			</div>
 		</div>
+		<input type="text" id="num_of_ingredients" name="num_of_ingredients" value="1">
 	</div>
 <!--- END PETAR  -->
 
@@ -167,7 +171,7 @@
 	</div>
 	
 	<input type="hidden" name="ime" value="<?php echo $_SESSION['user_data']['user_id'];?>">
-	<input type="hidden" id="num_of_ingredients" name="num_of_ingredients" value="">
+	
 </form>
 
 <?php// print_r($_SERVER); ?>
