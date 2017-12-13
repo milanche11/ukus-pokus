@@ -143,13 +143,15 @@
 	<?php
 
 		$soloimage = explode(",",$viewmodel['recipe_photos']);
-
-	 foreach($soloimage as $id) {
+		
+		$ii=1;
+		foreach($soloimage as $id){
 
 			$imageprint = $query->soloquery('photos', 'photo_id', $id);
-			echo $imageprint['photo_link']. '<br>';
-
-		 }?>
+			echo '<div id="image'.$ii.'">'.$imageprint['photo_link']. ' <button class="btn btn-danger btn-sm" onclick="delPhoto('.$id.",'image".$ii."'".')"> Delete</button></div><br>';
+			$ii++;
+		}
+	?>
 	<div>	
 		<div>
 			<br><button type="button" id="add_photo" onclick="addImage()" class="">Add image</button>	

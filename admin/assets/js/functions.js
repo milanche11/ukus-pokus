@@ -102,6 +102,14 @@
 		$("#"+d).css("display", "none");
 	}
 	
+	function delPhoto(id, divId){
+		alert (id+ " / " +divId);
+		
+		
+		
+		closeDiv(divId);
+	}
+	
 	function delInput(id,input){
 		closeDiv(id);
 /*		var old_num=$("#"+input).val();
