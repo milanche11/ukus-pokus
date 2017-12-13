@@ -55,14 +55,14 @@
 			?>	
 		
 			<div class="clo-2">
-				&nbsp &nbsp <button type="button" id='button_del<?php echo $b; ?>' onclick="delInput('sastojak<?php echo $b;?>','old_ingredients')" > - </button>
+				&nbsp &nbsp <button type="button" id='button_del<?php echo $b; ?>' onclick="closeDiv('sastojak<?php echo $b;?>')" > - </button>
 			</div>
 		</div><br>
 	<?php
 		$b++;
 	}
 		$b = $b-1;
-		echo "<input type='text' name='old_ingredients' id='old_ingredients' value='".$b."'>".$b;
+		echo "<input type='hidden' name='old_ingredients' id='old_ingredients' value='".$b."'>";
 	
 		//------------------  PETAR  ----------------
 
@@ -106,12 +106,12 @@
 				</div>
 				
 				<div id="button-div<?php echo $b; ?>" class="col-2">
-					<button type="button" class="button-del" id='button-del<?php echo $b; ?>' onclick="delInput('sastojak<?php echo $b;?>','num_of_ingredients')"> - </button>
+					<button type="button" class="button-del" id='button-del<?php echo $b; ?>' onclick="closeDiv('sastojak<?php echo $b;?>')"> - </button>
 					<button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>",1)'>+</button>
 				</div>
 			</div>
 		</div>
-		<input type="text" id="num_of_ingredients" name="num_of_ingredients" value="1">
+		<input type="hidden" id="new_ingredients" name="new_ingredients" value="1">
 	</div>
 <!--- END PETAR  -->
 
