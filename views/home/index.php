@@ -23,7 +23,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
   <div class="row">
    
-    <div class="col-8 text-center">
+    <div class="col-12 text-center">
 
       <!-- Form search -->
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
@@ -84,7 +84,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
     </div>
 
     <!-- ispis kategorija -->
-    <div class="col-3 offset-1 borderleft">      
+    <div class="col-3 offset-1 borderleft" style="display: none !important;">      
        <h4>Pretraga po kategorijama</h4>
        <br>
       <?php
