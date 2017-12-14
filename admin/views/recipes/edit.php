@@ -1,3 +1,9 @@
+<?php if(isset($_POST)){
+
+	var_dump($_POST);
+
+}  ?>
+
 <h1>Edit recipes</h1><hr>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
@@ -62,7 +68,7 @@
 		$b++;
 	}
 		$b = $b-1;
-		echo "<input type='hidden' name='old_ingredients' id='old_ingredients' value='".$b."'>";
+		echo "<input type='text' name='old_ingredients' id='old_ingredients' value='".$b."'>";
 	
 		//------------------  PETAR  ----------------
 
@@ -111,7 +117,7 @@
 				</div>
 			</div>
 		</div>
-		<input type="hidden" id="new_ingredients" name="new_ingredients" value="1">
+		<input type="text" id="new_ingredients" name="new_ingredients" value="1">
 	</div>
 <!--- END PETAR  -->
 
