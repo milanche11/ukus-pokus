@@ -53,7 +53,7 @@
 
 	function addImage(){ //Pop-up za dodavanje slika
 		$("#pop_up").css("display", "block");
-		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "360px", "height": "340px", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001"});
+		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "360px", "height": "340px", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001", "display": "block"});
 		
 		var div = "pop_up";
 		var header = "<h2>Add new image</h2>";
