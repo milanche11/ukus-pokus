@@ -32,8 +32,10 @@ $catsAll = $queryInstance->allRows("categories",$query);
      <!-- <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">  
       
        <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." name="pretraga[]">  izbačeno zbog Ajax-a -->
+         <div class="row no-gutters">
+          <div class="col-8 offset-1 text-center"  >
           <form>
-           <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." >
+           <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..." >
             <?php
                // Izlistavanje sastojaka - za unos u pretragu
                foreach ($viewmodel as $item) {
@@ -43,8 +45,18 @@ $catsAll = $queryInstance->allRows("categories",$query);
              ?>
           </select>
        <!-- <button class="btn btn-success" type="submit" name="submit">Traži!</button> izbačeno zbog Ajax-a -->  
-      </form>
-      <small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
+        </form>
+      
+    </div>
+     <div class="col-2" >
+          <p>
+  <a class="btn btn-danger" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Dodatne opcije
+  </a>
+  </p>
+</div>
+</div>
+<small >Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
       <!-- End form --> 
       <br><br>
       <span id="result"></span> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
