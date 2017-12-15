@@ -60,6 +60,7 @@
 		$("#pop_up").html("<div id='pop_up_box'></div>"); // u div "pop_up" se upisuje div "pop_up_box"
 		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "380px", "height": "400px", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001", "display": "block"});
 		
+		var name_recipe = $("#name_recipes").val();
 		var div = "pop_up";
 		var header = "<h2>Add new image</h2>";
 		var br = '<br><br>';
@@ -67,11 +68,11 @@
 		var title = '<form method="post" id="file_to_upload" name="file_to_upload" >Image Title: <input type="text" class="float-right" name="title" id="title">';
 		var alt = 'Image Alt: <input type="text" class="float-right" name="alt" id="alt">';
 		var file = ' <label>Select a file:</label><input class="new" id="file" name="file" type="file" />'
-		var button = '<button type="button" onclick="uploadFile()" id="upload" name="upload" class="btn btn-success btn-sm upload">Upload</button></form>';
+		var button = '<button type="button" onclick="uploadFile('+"'"+name_recipe+"'"+')" id="upload" name="upload" class="btn btn-success btn-sm upload">Upload</button></form>';
 		$("#pop_up_box").html(x+header+br+title+br+alt+br+file+br+button);
 	}
 	
-	function uploadFile() { //funkcija koja vrsi upload slike, upis slike u bazu i vraca id slike u hidden input "images_id"
+	function uploadFile(name_recipe) { //funkcija koja vrsi upload slike, upis slike u bazu i vraca id slike u hidden input "images_id"
 		
 		var title = $("#title").val(); //vrednost uneta u input polje "title"
 		var alt = $("#alt").val();  //vrednost uneta u input polje "alt"
@@ -79,7 +80,7 @@
 		
 		if(title != "" && alt != "" && img != ""){ 
 			var fd = new FormData(document.getElementById("file_to_upload"));
-			fd.append("label", "ukus-pokus");
+			fd.append("name_recipe", name_recipe);
 			
 			$.ajax({
 			  url: root_folder+"ajax.php",
@@ -89,12 +90,15 @@
 			  contentType: false   // tell jQuery not to set contentType
 			}).done(function( data ) {
 				if(data != ""){
-					var old_id = $("#images_id").val();
-					var id = old_id + "," + data;
-					$("#images_id").val(id)
-					$("#added_images").append("<div>"+img+"</div>");
-
-					closeDiv('pop_up');
+					if($.isNumeric(data)){ //ako je primljeni rezultat ("data") broj, odnosno id onda se taj id upisuje u input "#images_id"
+						var old_id = $("#images_id").val();
+						var id = old_id + "," + data;
+						$("#images_id").val(id)
+						$("#added_images").append("<div>"+img+"</div>");
+						closeDiv('pop_up');
+					}else{ //ako je primljeni rezultat neki tekst (verovatno greska) ispisuje se u alert-u
+						alert(data);
+					}
 				}
 			});
 			return false;
@@ -106,27 +110,14 @@
 	
 	
 	function delPhoto(id, divId){	//Brisanje slika AJAX-om	
-		
-		$.ajax({
-			url: root_folder+'ajax.php',
-			type: 'GET',
-			data: 'action=delPhoto&id='+id,
-			success: function(data) {
-				if(data == "DELETED"){
-					closeDiv(divId);
-					alert(data);
-				}
-				else{
-					alert(data);
-				}
-				
-			},
-			error: function(e) {
-				console.log(e.message);
-			}
-		});
-		
-		
+		var xhr = new XMLHttpRequest(); 
+		xhr.open("get", root_folder+"ajax.php?action=delPhoto&id="+id, false);
+		xhr.send();
+		var odgovor = xhr.responseText;
+		if(odgovor!==""){
+			alert(odgovor);
+			closeDiv(divId);
+		} 		
 	}
 	
 	

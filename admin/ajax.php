@@ -33,15 +33,15 @@ if(isset($_GET['action'])){
 		$photo_link = $query->soloquery("photos", "photo_id", $id);
 		
 		if(file_exists('../assets/images/'.$photo_link["photo_link"])){
-			unlink('../assets/images/'.$photo_link["photo_link"]);
+		/*	unlink('../assets/images/'.$photo_link["photo_link"]);
 			$db->query("DELETE FROM photos WHERE photo_id='$id'");
-		/*	$db->bind(':photo_id', $id);
+			$db->bind(':photo_id', $id);
 			$db->execute();
-		*/	
-			echo "DELETED";
+		*/
+			echo 1;
 		}
 		else{
-			echo "SLIKA NE POSTOJI";
+			echo 2;
 		}
 	}
 }
@@ -50,11 +50,12 @@ if(isset($_GET['action'])){
 
 if(isset($_POST["title"])) { //UPLOAD slika
 
-	if(isset($_POST["lebel"])){$label = $_POST["label"];}
+	if(isset($_POST["name_recipe"])){$name_recipe = str_replace(' ','_',$_POST["name_recipe"]);}
 	if(isset($_POST["title"])){$title = $_POST["title"];}
 	if(isset($_POST["alt"])){$alt = $_POST["alt"];}
-
-	$allowedExts = array("gif", "jpeg", "jpg", "png");
+	$max_size = 1500000; // 1.500.000B = 1.5MB
+	
+	$allowedExts = array("gif", "jpeg", "jpg", "JPG", "JPEG", "png");
 	$temp = explode(".", $_FILES["file"]["name"]);
 	$extension = end($temp);
 	if ((($_FILES["file"]["type"] == "image/gif")
@@ -63,18 +64,21 @@ if(isset($_POST["title"])) { //UPLOAD slika
 		|| ($_FILES["file"]["type"] == "image/pjpeg")
 		|| ($_FILES["file"]["type"] == "image/x-png")
 		|| ($_FILES["file"]["type"] == "image/png"))
-		&& ($_FILES["file"]["size"] < 200000)
+		&& ($_FILES["file"]["size"] < $max_size)
 		&& in_array($extension, $allowedExts)) {
+			
 		if ($_FILES["file"]["error"] > 0) {
 			echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
-		} else {
+		} 
+		else {
 	   
-			$filename = $title.".".$extension;
+			$filename = $name_recipe."_".$title.".".$extension;
 			$link = "assets/images/".$filename;
 
 
 			if (file_exists("../".$link)) {
-				$filename = $filename . "-". rand(8,100);
+				echo "File name alredy exists";
+			//	$filename = $filename . "-". rand(8,100);
 			} else {
 				move_uploaded_file($_FILES["file"]["tmp_name"],
 			   "../".$link);
@@ -90,7 +94,11 @@ if(isset($_POST["title"])) { //UPLOAD slika
 			}
 		}
 	} else {
-		echo "Invalid file";
+		echo "Invalid file. ";
+		if($_FILES["file"]["size"] > $max_size){ // ako je fajl veci od maksimalne velicine koju smo odredili ($max_size)
+			$max_size = round($max_size/1000000,2); //pretvaranje bajta u megabajte sa dve decimale 
+			echo "File size is larger then ".$max_size."MB";
+		}
 	}
 }
 

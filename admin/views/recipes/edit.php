@@ -14,7 +14,7 @@
     <label>Ime Recepta</label>
   <div class="row">
     <div class="col">
-      <input type="text" class="form-control" name="name_recipes" value="<?php echo $viewmodel['recipe_title'];?>" placeholder="Name recipes"><br>
+      <input type="text" class="form-control" id="name_recipes" name="name_recipes" value="<?php echo $viewmodel['recipe_title'];?>" placeholder="Name recipes"><br>
     </div>
   </div>
     <label>Kratak opis</label>
@@ -155,12 +155,15 @@
 
 			$imageprint = $query->soloquery('photos', 'photo_id', $id);
 			echo '<div id="image'.$ii.'">';
-			echo 	$imageprint['photo_link'].'&nbsp <button class="btn-danger btn-sm" onclick="delPhoto('.$id.",'image".$ii."'".')"> Delete </button>';
+			echo 	$imageprint['photo_link'].'&nbsp <button class="btn btn-danger btn-sm" onclick="delPhoto('.$id.",'image".$ii."'".')"> Delete </button>';
 			echo	"<input type='hidden' name='old_image_id".$ii."' value='".$imageprint['photo_id']."' >";
 			echo '</div><br>';
 			
 			$ii++;
 		}
+		
+		$num_of_old_images = $ii-1; //broj starih slika u receptu (broj iteracija koje petlja treba da izvrsi da izcita stare fotke)
+		echo "<input type='text' id='num_of_old_images' name='num_of_old_images' value='".$num_of_old_images."'>";
 	?>
 	<div>	
 		<div>
@@ -171,7 +174,7 @@
 			<div id="added_images"></div>
 		</div>
 		
-		<input type="hidden" id="images_id" name="images_id" value=""><br>
+		<input type="text" id="images_id" name="images_id" value=""><br>
 	</div>
 	
 
