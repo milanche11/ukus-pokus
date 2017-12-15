@@ -26,19 +26,22 @@ if(isset($_GET['action'])){
 		echo $action;	
 	}
 	
-	if($action = "delPhoto"){
+	if($action = "delPhoto"){ //Briasanje slike u "recipes/edit"
 		$id = strip_tags($_GET["id"]);
 		$query = new Query;
 		
 		$photo_link = $query->soloquery("photos", "photo_id", $id);
 		
-		if(unlink('../assets/images/'.$photo_link["photo_link"])){
-			
+		if(file_exists('../assets/images/'.$photo_link["photo_link"])){
+			unlink('../assets/images/'.$photo_link["photo_link"]);
 			$db->query("DELETE FROM photos WHERE photo_id='$id'");
 		/*	$db->bind(':photo_id', $id);
 			$db->execute();
 		*/	
 			echo "DELETED";
+		}
+		else{
+			echo "SLIKA NE POSTOJI";
 		}
 	}
 }
