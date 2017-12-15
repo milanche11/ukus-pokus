@@ -154,7 +154,11 @@
 		foreach($soloimage as $id){
 
 			$imageprint = $query->soloquery('photos', 'photo_id', $id);
-			echo '<div id="image'.$ii.'">'.$imageprint['photo_link']. ' <button class="btn btn-danger btn-sm" onclick="delPhoto('.$id.",'image".$ii."'".')"> Delete</button></div><br>';
+			echo '<div id="image'.$ii.'">';
+			echo 	$imageprint['photo_link'].'&nbsp <button class="btn-danger btn-sm" onclick="delPhoto('.$id.",'image".$ii."'".')"> Delete </button>';
+			echo	"<input type='hidden' name='old_image_id".$ii."' value='".$imageprint['photo_id']."' >";
+			echo '</div><br>';
+			
 			$ii++;
 		}
 	?>

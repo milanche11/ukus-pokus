@@ -12,7 +12,7 @@
 <body>
 
 <div id="pop_up"> <!--PETAR div za popupove -->
-	<div id="pop_up_box"></div>
+	
 </div>
 
 <div class="container">
