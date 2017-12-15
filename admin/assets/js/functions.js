@@ -112,16 +112,21 @@
 			type: 'GET',
 			data: 'action=delPhoto&id='+id,
 			success: function(data) {
-				//called when successful
-				alert(data);
+				if(data == "DELETED"){
+					closeDiv(divId);
+					alert(data);
+				}
+				else{
+					alert(data);
+				}
+				
 			},
 			error: function(e) {
-				//called when there is an error
-				//console.log(e.message);
+				console.log(e.message);
 			}
 		});
 		
-		closeDiv(divId);
+		
 	}
 	
 	
