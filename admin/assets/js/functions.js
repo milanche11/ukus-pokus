@@ -1,4 +1,19 @@
  // Petar
+	var url = window.location.pathname.substring(1); //dobijanje URL-a stranice sa koje se poziva funkcija (sa bez prvog karaktera)
+	var count = (url.match(new RegExp("/", "g")) || []).length; //broj sleseva "/" u URL-u
+
+	if(count == 2){ //ako u urlu ima 2 kose crte netreba dodatak linku
+		root_folder = "";
+	}
+	else if(count == 3){ // ako u urlu ima 3 kose crte treba se vratiti u root folder
+		root_folder = "../";
+	}
+	else if(count == 4){
+		root_folder = "../../";
+	}
+ 
+ 
+ 
 
 	$(document).ready(function(){
 		$("#hide").click(function(){
@@ -28,32 +43,22 @@
 			ajax(val); //pozivanje funkcije ajax()
 		}	
 		
-		function ajax(val){	//AJAX
-			var url = window.location.pathname.substring(1); //dobijanje URL-a stranice sa koje se poziva funkcija (sa bez prvog karaktera)
-			var count = (url.match(new RegExp("/", "g")) || []).length; //broj sleseva "/" u URL-u
-			
-			if(count == 2){ //ako u urlu ima 2 kose crte netreba dodatak linku
-				root_folder = "";
-			}
-			else if(count == 3){ // ako u urlu ima 3 kose crte treba se vratiti u root folder
-				root_folder = "../";
-			}
-		
+		function ajax(val){	//AJAX		
 			var xhr = new XMLHttpRequest(); 
 			xhr.open("get", root_folder+"ajax.php?action="+action+"&table="+table+"&row="+id_column+"&value="+id+"&edited_column="+edited_column+"&new_value="+val, false);
 			xhr.send();
 			var odgovor = xhr.responseText;
 			if(odgovor!==""){
 				location.reload();
-			} 
-		
+			} 		
 		}
 	}
 
 
 	function addImage(){ //Pop-up za dodavanje slika
-		$("#pop_up").css("display", "block");
-		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "360px", "height": "340px", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001"});
+		$("#pop_up").css("display", "block"); // div "pop_up" postaje vidljiv
+		$("#pop_up").html("<div id='pop_up_box'></div>"); // u div "pop_up" se upisuje div "pop_up_box"
+		$("#pop_up_box").css({"background-color": "white", "padding": "25px", "width": "380px", "height": "400px", "position": "fixed", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", "z-index": "1001", "display": "block"});
 		
 		var div = "pop_up";
 		var header = "<h2>Add new image</h2>";
@@ -66,8 +71,8 @@
 		$("#pop_up_box").html(x+header+br+title+br+alt+br+file+br+button);
 	}
 	
-	 function uploadFile() { //funkcija koja vrsi upload slike, upis slike u bazu i vraca id slike u hidden input "images_id"
-			
+	function uploadFile() { //funkcija koja vrsi upload slike, upis slike u bazu i vraca id slike u hidden input "images_id"
+		
 		var title = $("#title").val(); //vrednost uneta u input polje "title"
 		var alt = $("#alt").val();  //vrednost uneta u input polje "alt"
 		var img = $("#file").val(); // fajl koji je odabran za upload
@@ -75,8 +80,9 @@
 		if(title != "" && alt != "" && img != ""){ 
 			var fd = new FormData(document.getElementById("file_to_upload"));
 			fd.append("label", "ukus-pokus");
+			
 			$.ajax({
-			  url: "../ajax.php",
+			  url: root_folder+"ajax.php",
 			  type: "POST",
 			  data: fd,
 			  processData: false,  // tell jQuery not to process the data
@@ -93,7 +99,30 @@
 			});
 			return false;
 		}
+		else{
+			alert("SVA POLJA MORAJU BITI POPUNJENA");
+		}
     }
+	
+	
+	function delPhoto(id, divId){	//Brisanje slika AJAX-om	
+		
+		$.ajax({
+			url: root_folder+'ajax.php',
+			type: 'GET',
+			data: 'action=delPhoto&id='+id,
+			success: function(data) {
+				//called when successful
+				alert(data);
+			},
+			error: function(e) {
+				//called when there is an error
+				//console.log(e.message);
+			}
+		});
+		
+		closeDiv(divId);
+	}
 	
 	
 	
@@ -102,13 +131,6 @@
 		$("#"+d).css("display", "none");
 	}
 	
-	function delPhoto(id, divId){
-		alert (id+ " / " +divId);
-		
-		
-		
-		closeDiv(divId);
-	}
 	
 	function delInput(id,input){
 		closeDiv(id);

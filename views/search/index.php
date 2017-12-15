@@ -5,6 +5,7 @@
 	<p>Pretraga po rejtingu</p>
 	<p>Pretraga po dužini pripreme</p>
 	<p>Pretraga po naslovu recepta</p>
+	<p>Pretraga po broju sudova</p>
 
 	<br><br>
 
