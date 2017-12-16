@@ -115,16 +115,16 @@
 		xhr.send();
 		var odgovor = xhr.responseText;
 		if(odgovor!==""){
-			alert(odgovor);
+		//	alert(odgovor);
 			closeDiv(divId);
 		} 		
 	}
 	
 	
 	
-	function closeDiv(d){//isklucivanje pop-up prozora
-		$("#"+d).html("");
-		$("#"+d).css("display", "none");
+	function closeDiv(id){//Brisanje odredjenog div-a (sa prosledjenim id-jem "id")
+		$("#"+id).html("");
+		$("#"+id).css("display", "none");
 	}
 	
 	
@@ -169,9 +169,9 @@
 
 		$("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
 
-		var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+new_id+'" id="">'+options_ingredient+'</select></div>';
+		var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+new_id+'" id=""><option value=""></option>'+options_ingredient+'</select></div>';
 		var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+new_id+'" placeholder="kolicina"></div>';
-		var select_unit = '<div class="col-3"><select class="form-control" name="units'+new_id+'" >'+options_unit+'</select></div>';
+		var select_unit = '<div class="col-3"><select class="form-control" name="units'+new_id+'" ><option value=""></option>'+options_unit+'</select></div>';
 		var button = "<div class='col-2'><button type='button' class='button-deld' id='button-del"+c+"' onclick='closeDiv("+'"sastojak'+c+'"'+")'> - </button><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '","' + new_id + '"' +")'>+</button></div>";
 
 		$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);

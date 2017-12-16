@@ -6,6 +6,7 @@ require_once('classes/Query.php');
 class Dbconect extends Model{}
 
 $db = new Dbconect;
+$query = new Query;
 
 if(isset($_GET['action'])){
 	
@@ -28,7 +29,6 @@ if(isset($_GET['action'])){
 	
 	if($action = "delPhoto"){ //Briasanje slike u "recipes/edit"
 		$id = strip_tags($_GET["id"]);
-		$query = new Query;
 		
 		$photo_link = $query->soloquery("photos", "photo_id", $id);
 		
@@ -50,7 +50,10 @@ if(isset($_GET['action'])){
 
 if(isset($_POST["title"])) { //UPLOAD slika
 
-	if(isset($_POST["name_recipe"])){$name_recipe = str_replace(' ','_',$_POST["name_recipe"]);}
+	if(isset($_POST["name_recipe"])){
+		$name_recipe = str_replace(' ','_',$_POST["name_recipe"]); //umesto razmaka stavlja se donja crta
+		$name_recipe = $query->normalize($name_recipe); //ciscenje stinga od "latin extended-a"
+	}
 	if(isset($_POST["title"])){$title = $_POST["title"];}
 	if(isset($_POST["alt"])){$alt = $_POST["alt"];}
 	$max_size = 1500000; // 1.500.000B = 1.5MB
