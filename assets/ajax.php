@@ -154,6 +154,7 @@ $upit = new Database;
 if (isset($_POST['data'])) {
 
 		$data = $_POST['data'];
+	
 		$query = "";
 		
 
@@ -191,8 +192,18 @@ if (isset($_POST['data'])) {
 
 
         }
+	if (isset($_POST['cat'])) {
+		$cat = $_POST['cat'];
+	
+foreach ($cat as $itm) {
+        echo '<b>'.$itm.'</b><br>';
 
+        
+
+        }
+        }
         echo "<hr><br><p class='text-center'>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+
 
 
 
