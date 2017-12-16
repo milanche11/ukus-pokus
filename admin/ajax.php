@@ -11,15 +11,14 @@ $query = new Query;
 if(isset($_GET['action'])){
 	
 	$action = strip_tags($_GET['action']);
+	$table_name = strip_tags($_GET['table']);
+	$row = strip_tags($_GET['row']);
+	$value = strip_tags($_GET['value']);
+	$edited_column = strip_tags($_GET['edited_column']);
+	$new_value = strip_tags($_GET['new_value']);
 	
 	if($action == "edit" || $action == "delete" || $action == "activate"){	// za dugmice "edit", "delete" i "activate"
 	
-		$table_name = strip_tags($_GET['table']);
-		$row = strip_tags($_GET['row']);
-		$value = strip_tags($_GET['value']);
-		$edited_column = strip_tags($_GET['edited_column']);
-		$new_value = strip_tags($_GET['new_value']);
-		
 		$db->query("UPDATE $table_name SET $edited_column=:new_value WHERE $row='$value'");
 		$db->bind(':new_value', $new_value);
 		$db->execute();
@@ -27,8 +26,15 @@ if(isset($_GET['action'])){
 		echo $action;	
 	}
 	
-	if($action = "delPhoto"){ //Briasanje slike u "recipes/edit"
-		$id = strip_tags($_GET["id"]);
+	if($action == "remove"){
+		$db->query("DELETE FROM $table_name WHERE $row='$value'");
+	//	$db->bind(':photo_id', $id);
+		$db->execute();
+		echo "Removed".$table_name." / ".$row." / ".$value;
+	}
+	
+	if($action == "delPhoto"){ //Briasanje slike u "recipes/edit"
+		$id = strip_tags($_GET["id"]); 
 		
 		$photo_link = $query->soloquery("photos", "photo_id", $id);
 		

@@ -49,7 +49,8 @@
 			xhr.send();
 			var odgovor = xhr.responseText;
 			if(odgovor!==""){
-				location.reload();
+				alert(odgovor);
+			//	location.reload();
 			} 		
 		}
 	}

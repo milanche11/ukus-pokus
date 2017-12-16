@@ -56,7 +56,7 @@
 				<div class="col"><?php echo $item['comment_time']; ?></div>
 				<div class="col">
 					<button type="button" onclick="edit1('activate','comments','comment_id','status','1','<?php echo $id; ?>')" class="btn btn-success">OK</button>
-					<button type='button' onclick="edit1('delete','comments','comment_id','status','0','<?php echo $id; ?>')" class='btn btn-danger'>Delete</button>
+					<button type='button' onclick="edit1('remove','comments','comment_id','status','0','<?php echo $id; ?>')" class='btn btn-danger'>Remove</button>
 				</div>
 			</div>
 			
