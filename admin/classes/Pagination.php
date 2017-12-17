@@ -31,4 +31,3 @@ class Pagination extends Model {
 }
 
 ?>
-
