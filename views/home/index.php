@@ -56,80 +56,103 @@ $catsAll = $queryInstance->allRows("categories",$query);
   </p>
 </div>
 </div>
-<div class="collapse" id="collapseExample">
+<div class="collapse" id="collapseExample"> <!--collapse div -->
   <div class="card card-body ">
     <div class="row no-gutters">
     <div class="col-3">
      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input" value ="4">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">&nbsp;Slano</span>
+      <span class="custom-control-description" style="padding-right: 71px !important">Slana jela</span>
       </label><br>
        <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input" value ="3">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Slatko</span>
+      <span class="custom-control-description" style="padding-right: 67px !important;">Slatka jela</span>
       </label><br>
        <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input" value ="2">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Ljuto&nbsp;&nbsp;</span>
+      <span class="custom-control-description" style="padding-right: 75px !important;">Ljuta jela</span>
+      </label><br>
+      <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value ="15">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description" style="padding-right: 35px !important;">Vegetarijansko</span>
       </label>
+      
+
     </div>
     <div class="col-3">
       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input" value ="1">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Gotovo za 15 minuta</span>
-      </label>
+      <span class="custom-control-description" style="padding-right: 18px !important;">U samo jednoj šerpi</span>
+      </label><br>
+      <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value ="17">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Priprema za 15 minuta</span>
+      </label><br>
        <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input"  value ="18">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Gotovo za 30 minuta</span>
-      </label>
+      <span class="custom-control-description">Priprema za 30 minuta</span>
+      </label><br>
        <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input" value ="19">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Gotovo za 60 minuta</span>
+      <span class="custom-control-description">Priprema za 60 minuta</span>
       </label>
     </div>
      <div class="col-3">
       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input" value ="8">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Za bebe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      </label>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <span class="custom-control-description" style="padding-right: 39px !important">Za bebe</span>
+      </label><br>
+      <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value ="5">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Bez alkohola&nbsp;</span>
-      </label>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <span class="custom-control-description" style="padding-right: 42px !important">Zimnica</span>
+      </label><br>
+      <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value ="21">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Posno &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span class="custom-control-description" style="padding-right: 9px !important">Bez alkohola</span>
+      </label><br>
+      <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input"  value ="9">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Sadrži alkohol</span>
       </label>
+       
     </div>
     <div class="col-3">
       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input" value ="20">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Sadrži alkohol &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      </label>
+      <span class="custom-control-description" style="padding-right: 89px !important;">Posna jela</span>
+      </label><br>
+      <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value ="7">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description" style="padding-right: 34px !important">Zgodno za poneti</span>
+      </label><br>
        <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input"  value ="6">
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Smooćkaj, popij i kreni</span>
-      </label>
+      </label><br>
        <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input">
+      <input type="checkbox" class="custom-control-input"  value ="12">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Prženo,spremi tiganj&nbsp;&nbsp;&nbsp;</span>
+      <span class="custom-control-description" style="padding-right: 11px !important;">Prženo, spremi tiganj</span>
       </label>
     </div>
   </div>
 </div>
-</div>
+</div> <!--kraj collapse div-a -->
 <small >Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
       <!-- End form --> 
       <br><br>
@@ -208,7 +231,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
 <script type="text/javascript">
 
-  var select_val;  
+  var select_val =[];  
+  var checkbox = [];
 
 $("select").select2({            //seclec2 
   minimumInputLength: 1,
@@ -233,9 +257,16 @@ $("select").on("select2:select", function (evt) {
   select_val = $(evt.currentTarget).val();
  if(select_val != null && select_val !=""){ 
 
-  
+    var n = $(".custom-control-input:checked").length;
+        if (n > 0){
+            checkbox =[];
+            $(".custom-control-input:checked").each(function(){
+                checkbox.push($(this).val());
+            });
+        }
+  //alert(checkbox);
 
-  return ajax_call(select_val);
+  return ajax_call(select_val, checkbox);
 
 
  }
@@ -244,8 +275,18 @@ $("select").on("select2:select", function (evt) {
 $("select").on("select2:unselect", function (evt) {
   select_val = $(evt.currentTarget).val();
  if(select_val !=null && select_val !=""){
+   
+   var n = $(".custom-control-input:checked").length;
+        if (n > 0){
+            checkbox =[];
+            $(".custom-control-input:checked").each(function(){
+                checkbox.push($(this).val());
+            });
+        }
+  //var checkbox = $("input[type='checkbox']").val();
 
-   return ajax_call(select_val);
+  //alert(checkbox);
+   return ajax_call(select_val, checkbox);
 
   } else {
 
@@ -257,14 +298,30 @@ $("select").on("select2:unselect", function (evt) {
   }
 });
 
-
+$(".custom-control-input").click(function(){
+  if(select_val !=null && select_val !=""){
+      
+      var n = $(".custom-control-input:checked").length;
+        if (n > 0){
+              checkbox =[];
+            $(".custom-control-input:checked").each(function(){
+                checkbox.push($(this).val());
+            });
+        }
+       // alert(checkbox+" and "+select_val);
+       return ajax_call(select_val, checkbox);
+     }
+    });
 
 
  function ajax_call() {               // ajax
 
-    $.post("assets/ajax.php", {data: select_val}, function(result){
+    $.post("assets/ajax.php", {data: select_val , cat: checkbox}, function(result){
             $("span#result").html(result);
     });
+
+
+    return select_val;
 }
 
 </script>
