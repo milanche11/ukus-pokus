@@ -337,6 +337,20 @@ a.nav-link.animated {
 a.kats {
 	margin: 3px !important;
 	color: #ffffff !important;
+
+}
+
+a.kats-pretraga {
+	margin: 5px !important;
+	padding:  0 4px 1px 4px !important;
+	color: #ffffff !important;
+	background-color: #8e949a !important;
+	border: 1px solid #a9b0b6 !important;
+	
+}
+
+div.check-rejting {
+	margin-left: 15px !important;
 }
 
 
