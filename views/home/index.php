@@ -156,7 +156,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 <small >Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
       <!-- End form --> 
       <br><br>
-      <span id="result"></span> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
+      <div id="result"></div> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
 
  <!-- Prikaz rezultata pretrage ako ih ima-->
   
@@ -274,7 +274,7 @@ $("select").on("select2:select", function (evt) {
 
 $("select").on("select2:unselect", function (evt) {
   select_val = $(evt.currentTarget).val();
- if(select_val !=null && select_val !=""){
+ if(select_val !=null && select_val !="" ){
    
    var n = $(".custom-control-input:checked").length;
         if (n > 0){
@@ -290,8 +290,8 @@ $("select").on("select2:unselect", function (evt) {
 
   } else {
 
-    $("span#result").text("");
-      select_val = "";
+    $("div#result").text("");
+      select_val = [];
 
     return select_val;
     
@@ -299,25 +299,31 @@ $("select").on("select2:unselect", function (evt) {
 });
 
 $(".custom-control-input").click(function(){
-  if(select_val !=null && select_val !=""){
-      
+        
       var n = $(".custom-control-input:checked").length;
         if (n > 0){
               checkbox =[];
             $(".custom-control-input:checked").each(function(){
                 checkbox.push($(this).val());
             });
-        }
-       // alert(checkbox+" and "+select_val);
-       return ajax_call(select_val, checkbox);
-     }
+            return ajax_call(select_val, checkbox);
+        } else {
+
+    $("div#result").text("");
+      checkbox = "";
+
+    return checkbox = [];
+    
+  }
+       
+     
     });
 
 
  function ajax_call() {               // ajax
 
     $.post("assets/ajax.php", {data: select_val , cat: checkbox}, function(result){
-            $("span#result").html(result);
+            $("div#result").html(result);
     });
 
 

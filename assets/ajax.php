@@ -153,6 +153,60 @@ $upit = new Database;
 
 if (isset($_POST['data'])) {
 
+	if (isset($_POST['cat'])) {
+		$cat = $_POST['cat'];
+		$data = $_POST['data'];
+	
+		$query = "";
+	
+  		foreach ($cat as $roww) {
+         $query .= "recipe_cats like '%" . "," .$roww. "," . "%' AND ";
+         foreach ($data as $row) {
+
+     		 $query .= "recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
+   
+   		 }
+
+       }
+        	$query= rtrim($query, "AND ");
+			
+
+			$upit->query("SELECT * FROM recipes WHERE ". $query );
+
+			$recRows = $upit->resultSet();
+
+
+			$numberRecipes = count($recRows);
+
+			echo "<h4 class='text-center'>Ukupno recepata koji sadrže tražene namirnice : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4><br>";
+
+			if($numberRecipes > 0){	
+				$mouseover = '"#28a745"';
+				$mouseout = '"#212121"';
+
+			foreach ($recRows as $item) {
+	        echo '<p>';
+
+	        $id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
+	        $id = str_replace(" ", "-", $id);
+	        $id = convertExtendedToNormal($id);
+	        
+			echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
+	        echo "</p>";
+
+
+	        }
+		
+	       echo "<hr><br><p class='text-center'>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+
+
+
+
+    		}
+
+
+        } else {
+
 		$data = $_POST['data'];
 	
 		$query = "";
@@ -192,16 +246,7 @@ if (isset($_POST['data'])) {
 
 
         }
-	if (isset($_POST['cat'])) {
-		$cat = $_POST['cat'];
 	
-foreach ($cat as $itm) {
-        echo '<b>'.$itm.'</b><br>';
-
-        
-
-        }
-        }
         echo "<hr><br><p class='text-center'>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
 
 
@@ -209,8 +254,64 @@ foreach ($cat as $itm) {
 
     } 
 
+    	}
+		} else {
 
-		} 
+		if (isset($_POST['cat'])) {
+			$cat = $_POST['cat'];
+			
+		
+			$query = "";
+		
+			foreach ($cat as $row) {
+
+	      $query .= "recipe_cats like '%" . "," .$row. "," . "%' AND ";
+	   
+	    }
+
+	    	$query= rtrim($query, "AND ");
+			
+
+			$upit->query("SELECT * FROM recipes WHERE ". $query );
+
+			$recRows = $upit->resultSet();
+
+
+			$numberRecipes = count($recRows);
+
+			echo "<h4 class='text-center'>Ukupno recepata koji sadrže tražene namirnice : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4><br>";
+
+			if($numberRecipes > 0){	
+				$mouseover = '"#28a745"';
+				$mouseout = '"#212121"';
+
+			foreach ($recRows as $item) {
+	        echo '<p>';
+
+	        $id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
+	        $id = str_replace(" ", "-", $id);
+	        $id = convertExtendedToNormal($id);
+	        
+			echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
+	        echo "</p>";
+
+
+	        }
+		
+	       echo "<hr><br><p class='text-center'>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+
+
+
+
+    		}
+
+        
+
+        }
+        }
+
+			
+		
 
 
 
