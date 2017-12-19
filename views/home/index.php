@@ -210,8 +210,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
 <script type="text/javascript">
 
-  var select_val =[];  
-  var checkbox = [];
+  var select_val;  
+  var checkbox ;
 
 $("select").select2({            //seclec2 
   minimumInputLength: 1,
@@ -243,8 +243,7 @@ $("select").on("select2:select", function (evt) {
                 checkbox.push($(this).val());
             });
         }
-  //alert(checkbox);
-
+  
   return ajax_call(select_val, checkbox);
 
 
@@ -252,50 +251,46 @@ $("select").on("select2:select", function (evt) {
 });
 
 $("select").on("select2:unselect", function (evt) {
-  select_val = $(evt.currentTarget).val();
- if(select_val !=null && select_val !="" ){
-   
-   var n = $(".custom-control-input:checked").length;
-        if (n > 0){
-            checkbox =[];
-            $(".custom-control-input:checked").each(function(){
-                checkbox.push($(this).val());
-            });
-        }
-  //var checkbox = $("input[type='checkbox']").val();
+    
+    select_val = $(evt.currentTarget).val();
+    checkbox =[];
+    $(".custom-control-input:checked").each(function(){
+                  
+               checkbox.push($(this).val());
+          });
 
-  //alert(checkbox);
-   return ajax_call(select_val, checkbox);
+ if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
+   
+   $("div#result").text("");
+     
 
   } else {
 
-    $("div#result").text("");
-      select_val = [];
-
-    return select_val;
+     
+            
+        
+  
+      return ajax_call(select_val, checkbox);
     
   }
 });
 
 $(".custom-control-input").click(function(){
-        
-      var n = $(".custom-control-input:checked").length;
-        if (n > 0){
-              checkbox =[];
-            $(".custom-control-input:checked").each(function(){
+
+      checkbox =[];
+     $(".custom-control-input:checked").each(function(){
                 checkbox.push($(this).val());
             });
-            return ajax_call(select_val, checkbox);
-        } else {
+      select_val = $("select").val();
 
-    $("div#result").text("");
-      checkbox = "";
+  if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
 
-    return checkbox = [];
-    
-  }
-       
+      $("div#result").text("");
      
+  } else {        
+            
+          return ajax_call(select_val, checkbox);        
+      }     
     });
 
 
@@ -306,7 +301,7 @@ $(".custom-control-input").click(function(){
     });
 
 
-    return select_val;
+    return select_val = [];
 }
 
 </script>
