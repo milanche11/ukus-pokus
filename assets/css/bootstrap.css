@@ -19,7 +19,7 @@
   --gray: #868e96;
   --gray-dark: #343a40;
   --primary: #28a745;
-  --secondary: #868e96;
+  --secondary: #a3abb2;
   --success: #59b956;
   --info: #17a2b8;
   --warning: #ffc107;
@@ -3315,7 +3315,7 @@ tbody.collapse.show {
 
 .custom-control-input:checked ~ .custom-control-indicator {
   color: #fff;
-  background-color: #28a745;
+  background-color: #8e949a !important;
 }
 
 .custom-control-input:focus ~ .custom-control-indicator {

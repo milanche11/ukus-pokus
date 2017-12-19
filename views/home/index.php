@@ -156,33 +156,12 @@ $catsAll = $queryInstance->allRows("categories",$query);
 <small >Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
       <!-- End form --> 
       <br><br>
-      <div id="result"></div> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
+      
 
  <!-- Prikaz rezultata pretrage ako ih ima-->
   
-  
-<!--  <?php   
-//Ispis recepata po osnovu upita
-  $query = "";
-  if (isset($ingrRows)) {
-    foreach ($ingrRows as $row) {
-      $query .= "AND recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
-    }
-    $query = rtrim($query, "AND ");
-    $recRows = $queryInstance->allRows("recipes",$query);
-    $numberRecipes = count($recRows);
-    echo "<h4 class='text-center'>Ukupno recepata koji sadrže tražene namirnice : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4><br>";
-    $mouseover = '"#28a745"';
-    $mouseout = '"#212121"';
+  <div id="result"></div> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
 
-    foreach ($recRows as $item) {
-        $id=$item['recipe_id'];
-        echo "<p><a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
-        echo "</p>";
-    }
-    echo '<br><p class="recipelist">Ovde dođe paginacija... 1 ... 5 6 7 8 9 10 11 ... 128</p><br>';
-  }
-?>  izbačeno zbog Ajax-a  -->
 <!-- Kraj prikaza rezultata pretrage -->
     <br><br>
     <h4>Najpopularniji recepti</h4><br>

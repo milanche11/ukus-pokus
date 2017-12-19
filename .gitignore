@@ -9,3 +9,7 @@ comments.sql
 *.png
 *.jpg
 >>>>>>> ec3ed56362c75ab4af387d0c847a2bd286da4595
+package.json
+package.json
+package-lock.json
+gulpfile.js
