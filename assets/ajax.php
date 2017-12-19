@@ -151,9 +151,9 @@ function convertExtendedToNormal($string) {
 $upit = new Database;
 
 
-if (isset($_POST['data'])) {
+if ($_POST['data'] !=null && $_POST['data'] !="") {
 
-	if (isset($_POST['cat'])) {
+	if (isset($_POST['cat']) && $_POST['cat'] !="" && $_POST['cat'] !=null) {
 		$cat = $_POST['cat'];
 		$data = $_POST['data'];
 	
@@ -257,7 +257,7 @@ if (isset($_POST['data'])) {
     	}
 		} else {
 
-		if (isset($_POST['cat'])) {
+		if (isset($_POST['cat']) && $_POST['cat'] !="" && $_POST['cat'] !=null) {
 			$cat = $_POST['cat'];
 			
 		
