@@ -306,15 +306,8 @@ $("select").on("select2:unselect", function (evt) {
   }
 });
 
- function ajax_call() {               // ajax
-    $.post("assets/ajax2.php", {data: select_val}, function(result){
-            $("div#result").html(result);
-    });
-}
-</script>
 
 
-<script type="text/javascript">
     $(document).ready(function() {
 
         $("button").click(function(){
@@ -323,24 +316,19 @@ $("select").on("select2:unselect", function (evt) {
             var posude = [];
             var kategorije = [];
             var vreme = [];
-            //var pretraga = [];
-
+            
             $.each($("input[name='rejting']:checked"), function(){            
                 rejting.push($(this).val());
 	 });
-
             $.each($("input[name='posude']:checked"), function(){            
                 posude.push($(this).val());
 	 });
-
             $.each($("input[name='kategorije']:checked"), function(){            
                 kategorije.push($(this).val());
 	 });
-
             $.each($("input[name='vreme']:checked"), function(){            
                 vreme.push($(this).val());
 	 });
-
 
 	            alert("Izabrali ste: " + rejting.join(", ") + "/" + posude.join(", ") + "/" + kategorije.join(", ") + "/" + vreme.join(", ") );
         });
@@ -350,7 +338,11 @@ $("select").on("select2:unselect", function (evt) {
     });
 
 
-
+ function ajax_call() {               // ajax
+    $.post("assets/ajax2.php", {data: select_val}, function(result){
+            $("div#result").html(result);
+    });
+}
 
 
 </script>
