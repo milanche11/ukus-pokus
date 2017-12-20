@@ -9,10 +9,17 @@ include ('../classes/Query.php');
 $ajax = new Ajax();
 $database = new Database();
 
+
 if (isset($_POST['data'])) {
 
-		$data = $_POST['data'];
-		$query = "";
+	print_r($_POST);
+
+	if(isset($_POST['cat'])){
+		print_r($_POST['cat']);
+	}
+	
+	$data = $_POST['data'];
+	$query = "";
 
 	  foreach ($data as $row) {
 

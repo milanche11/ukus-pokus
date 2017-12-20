@@ -246,7 +246,6 @@ $("select").on("select2:select", function (evt) {
   
   return ajax_call(select_val, checkbox);
 
-
  }
 });
 
@@ -263,13 +262,8 @@ $("select").on("select2:unselect", function (evt) {
    
    $("div#result").text("");
      
-
   } else {
-
-     
-            
-        
-  
+ 
       return ajax_call(select_val, checkbox);
     
   }
@@ -299,7 +293,6 @@ $(".custom-control-input").click(function(){
     $.post("assets/ajax.php", {data: select_val , cat: checkbox}, function(result){
             $("div#result").html(result);
     });
-
 
     return select_val = [];
 }

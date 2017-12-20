@@ -160,20 +160,21 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 		$query = "";
 	
   		foreach ($cat as $roww) {
-         $query .= "recipe_cats like '%" . "," .$roww. "," . "%' AND ";
-         foreach ($data as $row) {
+        			 $query .= "recipe_cats like '%" . "," .$roww. "," . "%' AND ";
+         			foreach ($data as $row) {
 
-     		 $query .= "recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
+     			 $query .= "recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
    
-   		 }
+   			 }
 
-       }
-        	$query= rtrim($query, "AND ");
+       		}
+
+        		$query= rtrim($query, "AND ");
 			
 
-			$upit->query("SELECT * FROM recipes WHERE ". $query );
+		$upit->query("SELECT * FROM recipes WHERE ". $query );
 
-			$recRows = $upit->resultSet();
+		$recRows = $upit->resultSet();
 
 
 			$numberRecipes = count($recRows);
