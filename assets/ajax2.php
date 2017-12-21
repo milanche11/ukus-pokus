@@ -17,32 +17,32 @@ $query = "";
 
 if(isset($_POST['data']) && is_array($_POST['data'])){
 	$data = $_POST['data'];
-	echo "Namirnice: ";
-	print_r($data);
+	//echo "Namirnice: ";
+	//print_r($data);
 }
 
 if(isset($_POST['posude']) && is_array($_POST['posude'])){
 	$posude = $_POST['posude'];
-	echo "Posude: ";
-	print_r($posude);
+	//echo "Posude: ";
+	//print_r($posude);
 }
 
 if(isset($_POST['kategorije']) && is_array($_POST['kategorije'])){
 	$kategorije = $_POST['kategorije'];
-	echo "Kategorije: ";
-	print_r($kategorije);
+	//echo "Kategorije: ";
+	//print_r($kategorije);
 }
 
 if(isset($_POST['vreme']) && is_array($_POST['vreme'])){
 	$vreme = $_POST['vreme'];
-	echo "Vreme: ";
-	print_r($vreme);
+	//echo "Vreme: ";
+	//print_r($vreme);
 }
 
 if(isset($_POST['rejting']) && is_array($_POST['rejting'])){
 	$rejting = $_POST['rejting'];
-	echo "Rejting: ";
-	print_r($rejting);
+	//echo "Rejting: ";
+	//print_r($rejting);
 }
 
 
@@ -138,7 +138,7 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 		//echo $query;
 	}
 
-	echo $query;
+	//echo $query;
 
 	$database->query("SELECT * FROM recipes WHERE (status = 1) $query ");
 	$recRows = $database->resultSet();
