@@ -46,7 +46,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
         
      </div><!-- kraj reda za select polje -->
      <div class="col-2"><!-- Dugme za reset -->
-          <a id="reset" class="btn btn-danger" data-toggle="button" aria-pressed="false">Resetuj sve filtere</a>
+          <a id="reset" class="btn btn-success" data-toggle="button" aria-pressed="false">Resetuj sve filtere</a>
      </div><!-- kraj dugme za reset -->
 </div>
 
