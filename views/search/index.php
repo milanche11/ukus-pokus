@@ -29,7 +29,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
   
 <form method="post"> <!-- Forma za pretragu po namirnicama - select polje --> 
 <div class="row text-center"><!-- Row select polja za pretragu po namirnicama -->
-          <div class="col-8 offset-2 "  >
+          <div class="col-7 offset-2 "  >
 
           
             <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Pretraga..." name="pretraga[]">
@@ -45,6 +45,9 @@ $catsAll = $queryInstance->allRows("categories",$query);
               </select> 
         
      </div><!-- kraj reda za select polje -->
+     <div class="col-2"><!-- Dugme za reset -->
+          <a id="reset" class="btn btn-danger" data-toggle="button" aria-pressed="false">Resetuj sve filtere</a>
+     </div><!-- kraj dugme za reset -->
 </div>
 
    <div class="row">
@@ -100,7 +103,6 @@ $catsAll = $queryInstance->allRows("categories",$query);
     		<hr><!-- ---------------------------------------------------------- -->
     		<br>
     		<p><strong>Pretraga po rejtingu</strong></p>
-
     		<div class="d-flex justify-content-left">
     			<div class="check-rejting">
     			<label class="custom-control custom-checkbox">
@@ -141,15 +143,13 @@ $catsAll = $queryInstance->allRows("categories",$query);
 			  <span class="custom-control-description"> 1 zvezdica</span>
 			</label>
     			</div>
-    			
-			
+    
     		</div>
     		<br>
     		<hr><!-- ---------------------------------------------------------- -->
     		<br>
 
     		<p><strong>Pretraga po dužini pripreme</strong></p>
-
     		<div class="d-flex justify-content-left">
 
     			<div class="check-rejting">
@@ -162,7 +162,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
     			 <div class="check-rejting">
     			<label class="custom-control custom-checkbox">
-			  <input type="checkbox" id="15-30" class="custom-control-input" value="1530" name="vreme">
+			  <input type="checkbox" id="15-30" class="custom-control-input" value="30" name="vreme">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description"> 15 - 30 min</span>
 			</label>
@@ -170,7 +170,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
     			
     			 <div class="check-rejting">
     			<label class="custom-control custom-checkbox">
-			  <input type="checkbox" id="30-45" class="custom-control-input" value="3045" name="vreme">
+			  <input type="checkbox" id="30-45" class="custom-control-input" value="45" name="vreme">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description"> 30 - 45 min</span>
 			</label>
@@ -178,7 +178,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
     			
     			 <div class="check-rejting">
     			<label class="custom-control custom-checkbox">
-			  <input type="checkbox" id="45-60" class="custom-control-input" value="4560" name="vreme">
+			  <input type="checkbox" id="45-60" class="custom-control-input" value="60" name="vreme">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description"> 45 - 60 min</span>
 			</label>
@@ -186,7 +186,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
     			
     			 <div class="check-rejting">
     			<label class="custom-control custom-checkbox">
-			  <input type="checkbox" id="60-120" class="custom-control-input" value="60120" name="vreme">
+			  <input type="checkbox" id="60-120" class="custom-control-input" value="120" name="vreme">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description"> 60 - 120 min</span>
 			</label>
@@ -198,7 +198,6 @@ $catsAll = $queryInstance->allRows("categories",$query);
     		<br>
 
     		<p><strong>Pretraga po broju isprljanih posuda</strong></p>
-
     		<div class="d-flex justify-content-left">
 
     			<div class="check-rejting">
@@ -240,201 +239,117 @@ $catsAll = $queryInstance->allRows("categories",$query);
 			  <span class="custom-control-description"> 5 i više posuda</span>
 			</label>
     			</div>
-    			
     		</div>
     		<br>
-
    	  </div>
      </div> 
-
- 
   </div><!-- Kraj diva za naprednu pretragu -->
 </form>
 
      <!-- Prikaz rezultata pretrage ako ih ima-->
-      
       <br><br>
       <div class="row">
       	<div class="col-12 text-center" id="result">
-      		
       	</div>
       </div> <!-- ubaceno da prikaže rezultate Ajax pretrage-->
-
 <!-- Kraj prikaza rezultata pretrage -->
-  
-
 </div><!--Kraj glavnog kontejnera na strani -->
 
-
+<!-- ---------------------------------------------------------- --><!-- ---------------------------------------------------------- -->
 
 <!-- jQuery for search field -->
 <script type="text/javascript">
 
- var select_val;  
-  var checkbox ;
-
-$("select").select2({            //seclec2 
-  minimumInputLength: 1,
-  placeholder: 'Unesite namirnice',
-  
-   
-  language: {
-
-    inputTooShort: function () {
-    return 'Krenite da kucate...';
-  },
-  
-   noResults: function () {
-    return 'Nije pronađen nijedan rezultat';
-  },
-  
-}
-});
-
-$("select").on("select2:select", function (evt) {
-  
-  select_val = $(evt.currentTarget).val();
- if(select_val != null && select_val !=""){ 
-
-    var n = $(".custom-control-input:checked").length;
-        if (n > 0){
-            checkbox =[];
-            $(".custom-control-input:checked").each(function(){
-                checkbox.push($(this).val());
-            });
-        }
-  
-  return ajax_call(select_val, checkbox);
-
- }
-});
-
-$("select").on("select2:unselect", function (evt) {
-    
-    select_val = $(evt.currentTarget).val();
-    checkbox =[];
-    $(".custom-control-input:checked").each(function(){
-                  
-               checkbox.push($(this).val());
-          });
-
- if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
-   
-   $("div#result").text("");
-     
-  } else {
- 
-      return ajax_call(select_val, checkbox);
-    
-  }
-});
-
-$(".custom-control-input").click(function(){
-
-      checkbox =[];
-     $(".custom-control-input:checked").each(function(){
-                checkbox.push($(this).val());
-            });
-      select_val = $("select").val();
-
-  if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
-
-      $("div#result").text("");
-     
-  } else {        
-            
-          return ajax_call(select_val, checkbox);        
-      }     
-    });
-
-
- function ajax_call() {               // ajax
-
-    $.post("assets/ajax.php", {data: select_val , cat: checkbox}, function(result){
-            $("div#result").html(result);
-    });
-
-    return select_val = [];
-}
-
-/*
+var select_val;  
+var checkbox;
+var posude;
 var kategorije;
+var vreme;
+var rejting;
 
+$("select").select2({             
+      minimumInputLength: 1,
+      placeholder: 'Unesite namirnice',
+      language: {
+            inputTooShort: function () {
+                   return 'Krenite da kucate...';
+            },
+            noResults: function () {
+                   return 'Nije pronađen nijedan rezultat';
+            },
+      }
+});
 
-if(kategorije == null || kategorije == undefined){
-        kategorije = "";
-}
+// Slanje odabranih namirnica
+$("select").on("select2:select", function (evt) {
+       select_val = $(evt.currentTarget).val();  
+       return ajax_call(select_val, posude, vreme, kategorije, rejting);       
+});
 
-console.log(select_val + "-" + kategorije);
+// Ponistavanje odabranih namirnica
+$("select").on("select2:unselect", function (evt) {
+       select_val = $(evt.currentTarget).val();  
+      return ajax_call(select_val, posude, vreme, kategorije, rejting);
+});
 
-*/
-
-/*
-$("input[name='kategorije']").click(function(){
-
-     var kategorije = [];
-     select_val = $("select").val();
-
-      $.each($("input[name='kategorije']:checked"), function(){            
-                kategorije.push($(this).val());
-                console.log(kategorije);
-       });
-
-       if(select_val ==null || kategorije ==null || select_val =="" || kategorije ==""){
-
-      $("div#result").text("");
-     
-      } else {        
-      
-          return ajax_call(select_val, kategorije);        
-      }  
-});      
-
-     
-
-
+// Slanje izabranih dugmica za broj posuda
 $("input[name='posude']").click(function(){
-
-     var posude = [];
-
-      $.each($("input[name='posude']:checked"), function(){            
+      posude =[];
+      $("input[name='posude']:checked").each(function(){
                 posude.push($(this).val());
-       });
-      //console.log("Izabrali ste: " + posude.join(", ") );
-});         
+      });
+      console.log(posude);
+       return ajax_call(select_val, posude, vreme, kategorije, rejting);            
+});
 
-
+// Slanje izabranih dugmica za vreme pripreme
 $("input[name='vreme']").click(function(){
-
-     var vreme = [];
-
-      $.each($("input[name='vreme']:checked"), function(){            
+      vreme =[];
+      $("input[name='vreme']:checked").each(function(){
                 vreme.push($(this).val());
-       });
-      //console.log("Izabrali ste: " + vreme.join(", ") );
-});  
+      });
+      console.log(vreme);
+       return ajax_call(select_val, posude, vreme, kategorije, rejting);           
+});
 
+// Slanje izabranih dugmica za kategorije
+$("input[name='kategorije']").click(function(){
+      kategorije =[];
+      $("input[name='kategorije']:checked").each(function(){
+                kategorije.push($(this).val());
+      });
+      console.log(kategorije);
+       return ajax_call(select_val, posude, vreme, kategorije, rejting);            
+});
 
+// Slanje izabranih dugmica za rejting
 $("input[name='rejting']").click(function(){
-
-     var rejting = [];
-
-      $.each($("input[name='rejting']:checked"), function(){            
+      rejting =[];
+      $("input[name='rejting']:checked").each(function(){
                 rejting.push($(this).val());
-       });
-      //console.log("Izabrali ste: " + rejting.join(", ") );
+      });
+      console.log(rejting);
+       return ajax_call(select_val, posude, vreme, kategorije, rejting);            
 });
 
 
 
- function ajax_call() {               // ajax
-    $.post("assets/ajax2.php", {data:select_val, kats: kategorije}, function(result){
-            $("div#result").html(result);
-    });
 
-    return select_val = [];
+
+function ajax_call() {             
+       $.post("assets/ajax2.php", {data: select_val, posude: posude, vreme: vreme, kategorije: kategorije, rejting: rejting}, function(result){
+            $("div#result").html(result);
+       });
 }
-*/
+
+
+
+// Dugme za reset
+$('#reset').click(function() {
+    location.reload();
+});
+
+
 
 </script>
 
