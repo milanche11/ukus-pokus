@@ -58,7 +58,7 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 		}	
 		$query = rtrim($query, "OR ");
 		$query .= ")";
-		echo $query;
+		//echo $query;
 		
 		$database->query("SELECT * FROM ratings WHERE (status = 1) $query  ORDER BY rating_name DESC");
 		$recRows = $database->resultSet();
@@ -176,8 +176,8 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 	foreach ($recRows as $key) {
 		array_push($nizIdpoRejtingu, $key['recipe_id']);
 	}
-	echo "Recepti koji imaju rejting koji trazite:" ;
-	print_r($nizIdpoRejtingu);
+	//echo "Recepti koji imaju rejting koji trazite:" ;
+	//print_r($nizIdpoRejtingu);
 
 	$query = " AND (";
 	foreach ($nizIdpoRejtingu as $row) {
@@ -186,7 +186,7 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 	$query= rtrim($query, "OR ");
 	$query .= ")";
 
-	echo $query;
+	//echo $query;
 
 	$database->query("SELECT * FROM recipes WHERE (status = 1) $query ");
 	$recRows = $database->resultSet();
