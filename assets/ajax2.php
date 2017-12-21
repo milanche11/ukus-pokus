@@ -17,6 +17,8 @@ if(isset($_POST['data']) && $_POST['data'] !="" && $_POST['data'] != null){
 	$data = $_POST['data'];
 	echo "Namirnice: ";
 	print_r($data);
+}else{
+	$data = "";
 }
 
 if(isset($_POST['posude']) && $_POST['posude'] !="" && $_POST['posude'] != null){
@@ -44,7 +46,7 @@ if(isset($_POST['rejting']) && $_POST['rejting'] !="" && $_POST['rejting'] != nu
 }
 
 
-if(isset($_POST['data'])){
+if(isset($_POST['data']) && is_array($_POST['data'])){
 
 	$query = "(";
 	foreach ($data as $row) {
@@ -52,6 +54,9 @@ if(isset($_POST['data'])){
  	}
 	$query= rtrim($query, "AND ");
 	$query .= ")";
+
+	echo $query;
+
 	$database->query("SELECT * FROM recipes WHERE (status = 1) AND $query ");
 	$recRows = $database->resultSet();
 	$numberRecipes = count($recRows);

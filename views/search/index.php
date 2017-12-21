@@ -51,7 +51,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 </div>
 
    <div class="row">
-   	<div class="col-8 offset-2 text-center">
+   	<div class="col-7 offset-2 text-center">
    		<small>Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
    	</div>
    </div><br><br>
@@ -154,7 +154,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
     			<div class="check-rejting">
     			<label class="custom-control custom-checkbox">
-			  <input type="checkbox" id="15min" class="custom-control-input" value="15" name="vreme">
+			  <input type="checkbox" id="15min" class="custom-control-input" value="15" name="vreme" >
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description"> manje od 15 min</span>
 			</label>
