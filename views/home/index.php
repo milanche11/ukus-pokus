@@ -49,11 +49,20 @@ $catsAll = $queryInstance->allRows("categories",$query);
       
     </div>
      <div class="col-2" >
-          <p>
-  <a class="btn btn-danger" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Dodatne opcije
+     <!-- <p>
+      <a class="btn btn-danger" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Dodatne opcije
+      </a>
+      </p> -->
+  <div id="ballMenuContainer">
+      <div id="menuBall2" class="menuBall">
+  <a href="#collapseExample" class="ball redball" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
+    <div class="menuText">
+        Dodatne opcije
+    </div>
   </a>
-  </p>
+</div>
+</div>
 </div>
 </div>
 <div class="collapse" id="collapseExample"> <!--collapse div -->
