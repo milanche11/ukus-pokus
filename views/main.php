@@ -37,7 +37,7 @@
               <nav class="navbar">
 
                 <!-- LOGO -->
-                <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
+                <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.png"></a>
 
               <!-- Navigacija -->
                <div>

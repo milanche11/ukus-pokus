@@ -50,9 +50,16 @@ font-family: 'Itim', cursive;
 */
 
 @font-face {
-	font-family: "SUNN Line";
-	src: url("fonts/SUNN-Line-Regular.otf") format("opentype");
-	src: url("fonts/SUNN-Line-Bold.otf") format("opentype");
+	font-family: "Crushine Brush Script";
+	src: url("fonts/Crushine Brush Script.otf") format("opentype");
+      font-family: "Summer";
+      src: url("fonts/Summer Font Regular.otf") format("opentype");
+      /*src: url("fonts/Summer Font Regular Italic.otf") format("opentype");
+      src: url("fonts/Summer Font Light.otf") format("opentype");      
+      src: url("fonts/Summer Font Light Italic.otf") format("opentype"); */
+      src: url("fonts/Summer Font Bold.otf") format("opentype");
+      /*src: url("fonts/Summer Font Bold Italic.otf") format("opentype"); */
+	
 }
 
 .btn-share {
@@ -61,7 +68,7 @@ font-family: 'Itim', cursive;
 
 body {
 	background-image: url('bgr.png') !important;
-             background-repeat: repeat;
+      background-repeat: repeat;
     	background-attachment: fixed;
     	background-position: left-top; 
 }
@@ -86,7 +93,7 @@ nav.navbar {
 	/* border-bottom: 1px solid #d4d4d4; */
 	margin: 32px -30px 0 0;
 	padding: 0 0 0 0;
-	font-family: 'SUNN Line', cursive;
+	font-family: 'Summer', cursive;
 	font-weight: bold;
 	border-bottom: 1px dotted #59b956 !important;
 
@@ -108,8 +115,15 @@ a.nav-link:hover, a.nav-link:active {
 	height: 90px;
 }
 
+li.nav-item {
+  margin-left: 0 !important;
+  margin-right: 5px !important;
+  padding-left: 0px !important;
+}
 
-
+ul.nav {
+    margin-right: 20px;
+}
 .neon {
   margin: 0 auto;
   text-align: center;
@@ -169,6 +183,11 @@ a.animated:hover {
 a.animated:hover:after {
    width: 100%;
 }
+ 
+ #main-logo {
+      margin-left: 20px !important;
+ }
+
 
 footer a.nav-link:link, footer a.nav-link:visited {
 	color: #59b956;

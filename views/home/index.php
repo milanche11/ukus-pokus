@@ -47,6 +47,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
        <!-- <button class="btn btn-success" type="submit" name="submit">Traži!</button> izbačeno zbog Ajax-a -->  
         </form>
       
+<small >Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br>
+
     </div>
      <div class="col-2" >
      <!-- <p>
@@ -65,6 +67,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
 </div>
 </div>
 </div>
+
+
 <div class="collapse" id="collapseExample"> <!--collapse div -->
   <div class="card card-body ">
     <div class="row no-gutters">
@@ -162,7 +166,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
   </div>
 </div>
 </div> <!--kraj collapse div-a -->
-<small >Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small>
+
       <!-- End form --> 
       <br><br>
       
