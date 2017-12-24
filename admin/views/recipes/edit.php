@@ -1,36 +1,112 @@
-<?php if(isset($_POST)){
+<?php 
+$query = new Query;
 
-	var_dump($_POST);
-
-}  ?>
+if(isset($_POST["submit"])){
+	$recipe_id = $recipe_title = $description = $prepere_time = $dirty_dishes = $recipe_ingrs_id = $old_ingredients = $new_ingredients = $recipe_cats = $instructions = $old_images = "";
+	
+	$recipe_id = $_GET['id'];
+	$recipe_title = strip_tags($_POST["name_recipes"]);
+	$description = strip_tags($_POST["descriptions"]);
+	$prepere_time = strip_tags($_POST["time"]);
+	$dirty_dishes = strip_tags($_POST["dirty_dishes"]);
+	if(isset($_POST["instructions"])){
+		$instructions = $_POST["instructions"];
+	}
+	if(isset($_POST["categories"])){
+		$cats = implode(",",$_POST["categories"]); //pretvaranje niza u string (elementi odvojeni zarezom)
+		$recipe_cats = strip_tags($cats);
+	}
+	
+	//izcitavanje starih i novih sastojaka
+		$num_of_old_ingrs = strip_tags($_POST["old_ingredients"]);// broj iteracija
+		$i=1;
+		while($i <= $num_of_old_ingrs){
+			if(isset($_POST["ingrs".$i])){
+				$ingr_id_array = explode(",",$_POST["ingrs".$i]); //pretvaranje stringa u niz
+				$recipe_ingrs_id .= ",".$ingr_id_array[0]; //pravljne stringa od id-jeva sastojaka
+				
+				$old_ingr = strip_tags($_POST["ingrs".$i])."/";
+				$old_ingredients .= $old_ingr; //postojece kombinacije id-sastojka,kolicina,jedinica-mere
+			}
+			$i++;
+		}
+		$recipe_ingrs_id = $recipe_ingrs_id.","; //dodavanje zareza na kraju stringa
+		
+		
+		$num_of_new_ingrs = strip_tags($_POST["new_ingredients"]); //broj iteracija 
+		$i=1;
+		while($i <= $num_of_new_ingrs){
+			if(isset($_POST["ingredients".$i])){
+				if($_POST["ingredients".$i] != "" && $_POST["kolicina".$i] != "" && $_POST["units".$i] != ""){
+					$new_ingr = strip_tags($_POST["ingredients".$i]).",".strip_tags($_POST["kolicina".$i]).",".strip_tags($_POST["units".$i])."/";
+					$new_ingredients .= $new_ingr;
+					
+					$recipe_ingrs_id .= $_POST["ingredients".$i].","; //dodavanje novih id-jeva u string za id-jeve sastojaka
+				}
+			}
+			$i++;
+		}
+		$new_ingredients = substr($new_ingredients, 0, -1);
+		
+		if($new_ingredients == ""){ //ako nema novih sastojaka skida se poslednji slesh
+			$old_ingredients = substr($old_ingredients, 0, -1);
+		}
+	
+	$recipe_ingrs = $old_ingredients.$new_ingredients;
+	
+	
+	//izcitavanje postojecih slika
+		$num_of_old_images = strip_tags($_POST["num_of_old_images"]);
+		$i=1;
+		while($i <= $num_of_old_images){
+			if(isset($_POST["old_image_id".$i])){
+				$old_img = strip_tags($_POST["old_image_id".$i]);
+				$old_images .= ",".$old_img;
+			}
+			$i++;
+		}
+		$old_images = substr($old_images, 1);
+	
+		$new_images = strip_tags($_POST["images_id"]); 
+		
+	$recipe_photos = $old_images.$new_images;
+	
+	
+	$query->update($recipe_id,$recipe_title,$description,$prepere_time,$dirty_dishes,$instructions,$recipe_cats,$recipe_ingrs,$recipe_ingrs_id,$recipe_photos);
+	
+	header("Refresh:0");
+} 
+ 
+?>
 
 <h1>Edit recipes</h1><hr>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
 
-<?php $query = new Query; ?>
+
 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
-    <label>Ime Recepta</label>
+	<input type="hidden" name="recipe_id" value="<?php echo $viewmodel['recipe_id'];?>">
+    <label><b>Ime Recepta</b></label>
   <div class="row">
     <div class="col">
       <input type="text" class="form-control" id="name_recipes" name="name_recipes" value="<?php echo $viewmodel['recipe_title'];?>" placeholder="Name recipes"><br>
     </div>
   </div>
-    <label>Kratak opis</label>
+    <label><b>Kratak opis</b></label>
   <div class="row">
     <div class="col">
-      <input type="text" class="form-control" name="descriptions" value="<?php echo $viewmodel['recipe_title'];?>" placeholder="Do 200 karaktera"><br>
+      <input type="text" class="form-control" name="descriptions" value="<?php echo $viewmodel['description'];?>" placeholder="Do 200 karaktera"><br>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <label>Vreme pripreme</label>
+      <label><b>Vreme pripreme</b></label>
       <input type="text" class="form-control" name="time" value="<?php echo $viewmodel['prep_time'];?>" placeholder="Preparation time min">
     </div>
     <div class="col">
-      <label>Prljavo posudje</label>
-      <input type="text" class="form-control" name="drty" value="<?php echo $viewmodel['dirty_dishes'];?>" placeholder="Drty dishes"><br>
+      <label><b>Prljavo posudje</b></label>
+      <input type="text" class="form-control" name="dirty_dishes" value="<?php echo $viewmodel['dirty_dishes'];?>" placeholder="Dirty dishes"><br>
     </div>
   </div> 
 
@@ -122,7 +198,7 @@
 <!--- END PETAR  -->
 
 
-    <label>Kategorije</label>
+    <label><b>Kategorije</b></label>
     <?php $viewmodel['recipe_cats'] ; ?>
 	<select class="form-control form-control-lg custom-select" name="categories[]" multiple aria-label="Search for...">
 		<?php $rezultat = explode(",", $viewmodel['recipe_cats']); ?>
@@ -140,12 +216,12 @@
 	</select> 
 
 	<div class="form-group">
-		<label>Opis recepta</label>
-		<textarea class="form-control" name="recept" id="exampleFormControlTextarea1" rows="10"><?php echo $viewmodel['instructions'];?></textarea>
+		<label><b>Opis recepta</b></label>
+		<textarea class="form-control" name="instructions" id="exampleFormControlTextarea1" rows="10"><?php echo $viewmodel['instructions'];?></textarea>
 	</div>
 	
 	
-	<label>Slike</label><br>	
+	<label><b>Slike</b></label><br>	
 	<?php
 
 		$soloimage = explode(",",$viewmodel['recipe_photos']);
@@ -163,7 +239,7 @@
 		}
 		
 		$num_of_old_images = $ii-1; //broj starih slika u receptu (broj iteracija koje petlja treba da izvrsi da izcita stare fotke)
-		echo "<input type='text' id='num_of_old_images' name='num_of_old_images' value='".$num_of_old_images."'>";
+		echo "<input type='hidden' id='num_of_old_images' name='num_of_old_images' value='".$num_of_old_images."'>";
 	?>
 	<div>	
 		<div>
@@ -174,7 +250,7 @@
 			<div id="added_images"></div>
 		</div>
 		
-		<input type="text" id="images_id" name="images_id" value=""><br>
+		<input type="hidden" id="images_id" name="images_id" value=""><br>
 	</div>
 	
 

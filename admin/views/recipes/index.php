@@ -11,7 +11,7 @@
   	</thead>
 <?php 
 $pagination = new Pagination();
-$paginationpage = $pagination->allres('recipes', 1, $viewmodel);
+$paginationpage = $pagination->allres('recipes', 10, $viewmodel);
 
 ?>
 <?php $i=1; foreach ($paginationpage[0] as $item) : ?>

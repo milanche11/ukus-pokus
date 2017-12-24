@@ -36,5 +36,23 @@ class Query extends Model {
 		
 		return strtr($string, $table);
 	}
+	
+	public function update($id,$val1,$val2,$val3,$val4,$val5,$val6,$val7,$val8,$val9){
+		$this->query('UPDATE recipes SET recipe_title = :val1, description = :val2, prep_time = :val3, dirty_dishes = :val4, instructions = :val5, recipe_cats = :val6, recipe_ingrs = :val7, recipe_ingrs_id = :val8, recipe_photos = :val9   WHERE recipe_id = :id');
+		
+		$this->bind(':val1', $val1);
+		$this->bind(':val2', $val2);
+		$this->bind(':val3', $val3);
+		$this->bind(':val4', $val4);
+		$this->bind(':val5', $val5);
+		$this->bind(':val6', $val6);
+		$this->bind(':val7', $val7);
+		$this->bind(':val8', $val8);
+		$this->bind(':val9', $val9);
+		$this->bind(':id', $id);
+		$this->execute();
+		
+	//	echo "<script>alert('".$id."<br>".$val1."');</script>";
+	}
 		
 }
