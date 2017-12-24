@@ -230,7 +230,8 @@ if(isset($_POST["submit"])){
 		foreach($soloimage as $id){
 
 			$imageprint = $query->soloquery('photos', 'photo_id', $id);
-			echo '<div id="image'.$ii.'">';
+			echo '<div id="image'.$ii.'">
+					<img src="../../../assets/images/'.$imageprint['photo_link'].'" width="150" alt="'.$imageprint['photo_alt'].'">';
 			echo 	$imageprint['photo_link'].'&nbsp <button class="btn btn-danger btn-sm" onclick="delPhoto('.$id.",'image".$ii."'".')"> Delete </button>';
 			echo	"<input type='hidden' name='old_image_id".$ii."' value='".$imageprint['photo_id']."' >";
 			echo '</div><br>';
