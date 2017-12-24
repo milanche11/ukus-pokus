@@ -144,7 +144,7 @@ if(isset($_POST["submit"])){
 		$b++;
 	}
 		$b = $b-1;
-		echo "<input type='text' name='old_ingredients' id='old_ingredients' value='".$b."'>";
+		echo "<input type='hidden' name='old_ingredients' id='old_ingredients' value='".$b."'>";
 	
 		//------------------  PETAR  ----------------
 
@@ -193,7 +193,7 @@ if(isset($_POST["submit"])){
 				</div>
 			</div>
 		</div>
-		<input type="text" id="new_ingredients" name="new_ingredients" value="1">
+		<input type="hidden" id="new_ingredients" name="new_ingredients" value="1">
 	</div>
 <!--- END PETAR  -->
 
