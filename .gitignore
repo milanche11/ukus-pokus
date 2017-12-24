@@ -9,3 +9,4 @@ comments.sql
 *.png
 *.jpg
 >>>>>>> ec3ed56362c75ab4af387d0c847a2bd286da4595
+admin/classes/Pagination.php
