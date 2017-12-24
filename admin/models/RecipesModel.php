@@ -1,26 +1,25 @@
 <?php
 class RecipesModel extends Model{
 	public function Index(){
-	if(isset($_POST['delete'])){
-		$this->query('UPDATE recipes SET status = :status WHERE recipe_id = :id');
-		$this->bind(':id', $_POST['delete']);
-		$this->bind(':status', 0);
-		$this->execute();
+		if(isset($_POST['delete'])){
+			$this->query('UPDATE recipes SET status = :status WHERE recipe_id = :id');
+			$this->bind(':id', $_POST['delete']);
+			$this->bind(':status', 0);
+			$this->execute();
 
-	}elseif(isset($_POST['activate'])){
-		$this->query('UPDATE recipes SET status = :status WHERE recipe_id = :id');
-		$this->bind(':id', $_POST['activate']);
-		$this->bind(':status', 1);
-		$this->execute();
-		// Redirect	
-		header('Location: '.ROOT_URL.'recipes');
+		}elseif(isset($_POST['activate'])){
+			$this->query('UPDATE recipes SET status = :status WHERE recipe_id = :id');
+			$this->bind(':id', $_POST['activate']);
+			$this->bind(':status', 1);
+			$this->execute();
+			// Redirect	
+			header('Location: '.ROOT_URL.'recipes');
+		}
 
-	}
-
-	$this->query("SELECT * FROM recipes"); //PETAR
-//	$this->query("SELECT * FROM recipes WHERE status >= 1"); // WHERE status >= 1
-			$rows = $this->resultSet();
-			return $rows;
+		$this->query("SELECT * FROM recipes"); //PETAR
+	//	$this->query("SELECT * FROM recipes WHERE status >= 1"); // WHERE status >= 1
+		$rows = $this->resultSet();
+		return $rows;
 
 	}
 	
@@ -79,22 +78,22 @@ class RecipesModel extends Model{
 			header('Location: '.ROOT_URL.'recipes');
 		}
 	}
+	
 	public function edit(){
-	if (isset($_POST)) {
-			//var_dump($_POST);
-		}
-	$id = $_GET['id'];
-	$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
+		if (isset($_POST)) {
+				//var_dump($_POST);
+			}
+		$id = $_GET['id'];
+		$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
 		$rows = $this->single();
 		return $rows;
 	}
 	
 	public function view(){		
-	$id = $_GET['id'];
-	$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
+		$id = $_GET['id'];
+		$this->query("SELECT * FROM recipes WHERE recipe_id = '$id'"); // WHERE status >= 1
 		$rows = $this->single();
 		return $rows;
-
 	}
 	
 }
