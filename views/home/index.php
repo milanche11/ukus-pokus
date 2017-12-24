@@ -46,7 +46,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
          <div class="row no-gutters">
           <div class="col-8 offset-1 text-center"  >
           <form>
-           <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..." >
+           <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..."  id="mySelect">
             <?php
                // Izlistavanje sastojaka - za unos u pretragu
                foreach ($viewmodel as $item) {
@@ -320,6 +320,15 @@ $(".custom-control-input").click(function(){
 
     return select_val = [];
 }
+
+$( window ).unload(function() {
+  document.getElementById('mySelect').options.length = 0;
+  $(".custom-control-input:checked").each(function(){
+                  
+               $(".custom-control-input:checked").prop('checked', false);
+          });
+   // return true;
+});
 
 </script>
 

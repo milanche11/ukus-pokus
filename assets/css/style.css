@@ -220,7 +220,7 @@ a.animated:hover:after {
 
 
 footer a.nav-link:link, footer a.nav-link:visited {
-	color: #59b956;
+	color: white;
 	font-size: 0.9rem;
 }
 
@@ -232,7 +232,7 @@ footer a.nav-link:hover, footer a.nav-link:active {
 footer {
 	padding-bottom: 20px;
 	padding-top: 0px;
-	background-color: #ead09f !important;
+	background-color: #8c7c5f !important;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -335,7 +335,7 @@ img.img-fluid {
 }
 
 div.beige {
-	background-color: #ead09f !important;
+	background-color: #8c7c5f !important;
 	height: 30px;
 	position: absolute;
 	top: 0;
@@ -376,7 +376,7 @@ div.row.beige img {
 	top: 0;
 	right: 15px;
 	text-align: right;
-	background-color: #ead09f !important;
+	background-color: #8c7c5f !important;
 }
 
 a.nav-link.animated {
@@ -406,13 +406,17 @@ a#reset {
 	color: #fff !important;
 }
 
+label.custom-checkbox {
+cursor: pointer;
+}
+
 
 /* new button */
 
 #ballMenuContainer {
     position: absolute;
     left:-35px;
-    top:-57px;
+    top:-50px;
     z-index: 898;
 }
 
