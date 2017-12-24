@@ -9,15 +9,26 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
 ?>
 
-
+ 
+<div class="cover">
+  <img src="<?php echo ROOT_URL; ?>assets/images/cover2.jpg" alt="cover" class="coverimg">
+</div>
 <!-- Gornji deo -->
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center">
+      
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-12 text-center">
       <br>
-      <h2>Dobrodošli na Ukus pokus!</h2>
-      <p class="lead">Ovde možete pronaći proverene brze recepte od namirnica koje imate u kući</p><br><br><br>
+      <h1 class="white text-shadow">Brzi i ukusni recepti za svaki dan,</h1>
+      <!-- 
+      <p class="lead white text-shadow">Ovde možete pronaći proverene brze recepte od namirnica koje imate u kući</p>
+      -->
+      <br><br><br>
     </div>
   </div> <!-- end row -->
 
@@ -28,7 +39,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
       <!-- Form search -->
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
-      <h4>Pretraga po namirnicama</h4>
+      <h2 class="white text-shadow">Pretraga po namirnicama</h2>
      <!-- <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">  
       
        <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." name="pretraga[]">  izbačeno zbog Ajax-a -->
@@ -47,7 +58,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
        <!-- <button class="btn btn-success" type="submit" name="submit">Traži!</button> izbačeno zbog Ajax-a -->  
         </form>
       
-<small >Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br>
+<small class="white text-shadow">Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br>
 
     </div>
      <div class="col-2" >
@@ -176,7 +187,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
   <div id="result"></div> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
 
 <!-- Kraj prikaza rezultata pretrage -->
-    <br><br>
+    <br><br><br><br>
     <h4>Najpopularniji recepti</h4><br>
     <div class="text-left">
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
