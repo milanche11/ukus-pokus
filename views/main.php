@@ -11,18 +11,6 @@
       <link rel="icon" type="image/png" sizes="96x96" href="<?php echo ROOT_URL; ?>assets/images/favicon/favicon-96x96.png">
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta http-equiv="pragma" content="no-cache"/>
-      <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="Cache-Control" content="no-store" />
-
-    <!-- Snow -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
-    <script src="<?php echo ROOT_URL; ?>assets/js/snow.js"></script>
-    <link rel="stylesheet" href=" <?php echo ROOT_URL; ?>assets/css/snow.css">" />
 
     <!-- Autocomplete search -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>        
@@ -31,20 +19,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">  
 </head>
 
-<body class="background">
-<<<<<<< HEAD
+<body>
+
 <div class="container-fluid nopadding"><!-- Glavni kontejner -->
-      <!-- Snow hidden
-      <span class="hidden" id="snowflake">&#10052;</span>-->
-=======
-
-
   <div class="container-fluid">
-      <!-- Snow -->
-<!-- <span class="hidden" id="snowflake">&#10052;</span> -->
->>>>>>> 1d7325e0a1bed353b98fe8a707ae284a77235b5d
     
-    <div class="row beige ">
+    <div class="row beige "><!-- Bez trakica sa ikonicama za drustvene mreze-->
       <div class="top-right">
         <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/fb.png" class="float-right"></a>&nbsp;
         <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/inst.png" class="float-right"></a>&nbsp;
