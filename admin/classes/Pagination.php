@@ -24,6 +24,7 @@ class Pagination extends Model {
 	public function printPagination(){
 
 		for ( $this->pageid=1; $this->pageid<=$this->brredova; $this->pageid++) {
+			
 		  $this->returnPagination .=  "<a class='page-link' href='".ROOT_URL. "" .$this->tablePagination."/".$this->pageid."'>" . $this->pageid . "</a>";
 		}
 		return $this->returnPagination;

@@ -13,7 +13,7 @@
 $pagination = new Pagination();
 
 
-$paginationpage = $pagination->allres('recipes', 5, $viewmodel);
+$paginationpage = $pagination->allres('recipes', 20, $viewmodel);
 
 
 ?>

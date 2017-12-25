@@ -16,7 +16,7 @@ class RecipesModel extends Model{
 			header('Location: '.ROOT_URL.'recipes');
 		}
 
-		$this->query("SELECT * FROM recipes"); //PETAR
+		$this->query("SELECT recipe_title,posting_time FROM recipes"); //PETAR
 	//	$this->query("SELECT * FROM recipes WHERE status >= 1"); // WHERE status >= 1
 		$rows = $this->resultSet();
 		return $rows;
