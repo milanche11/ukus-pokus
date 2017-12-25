@@ -11,10 +11,13 @@
   	</thead>
 <?php 
 $pagination = new Pagination();
-$paginationpage = $pagination->allres('recipes', 10, $viewmodel);
+
+
+$paginationpage = $pagination->allres('recipes', 5, $viewmodel);
+
 
 ?>
-<?php $i=1; foreach ($paginationpage[0] as $item) : ?>
+<?php $i=1; foreach ($paginationpage as $item) : ?>
 <?php $date = date_create($item['posting_time']);  // Formatiranje datuma dobijenog u bazi
 		$id = $item["recipe_id"];
 ?>

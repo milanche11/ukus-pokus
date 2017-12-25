@@ -46,7 +46,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
          <div class="row no-gutters">
           <div class="col-8 offset-1 text-center"  >
           <form>
-           <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..." >
+           <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..."  id="mySelect">
             <?php
                // Izlistavanje sastojaka - za unos u pretragu
                foreach ($viewmodel as $item) {
@@ -260,15 +260,7 @@ $("select").on("select2:select", function (evt) {
   select_val = $(evt.currentTarget).val();
  if(select_val != null && select_val !=""){ 
 
-    var n = $(".custom-control-input:checked").length;
-        if (n > 0){
-            checkbox =[];
-            $(".custom-control-input:checked").each(function(){
-                checkbox.push($(this).val());
-            });
-        }
-  
-  return ajax_call(select_val, checkbox);
+   return ajax_call(select_val, checkbox);
 
  }
 });
@@ -276,12 +268,7 @@ $("select").on("select2:select", function (evt) {
 $("select").on("select2:unselect", function (evt) {
     
     select_val = $(evt.currentTarget).val();
-    checkbox =[];
-    $(".custom-control-input:checked").each(function(){
-                  
-               checkbox.push($(this).val());
-          });
-
+   
  if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
    
    $("div#result").text("");
@@ -299,7 +286,7 @@ $(".custom-control-input").click(function(){
      $(".custom-control-input:checked").each(function(){
                 checkbox.push($(this).val());
             });
-      select_val = $("select").val();
+      
 
   if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
 
@@ -318,8 +305,36 @@ $(".custom-control-input").click(function(){
             $("div#result").html(result);
     });
 
-    return select_val = [];
+    
 }
+/*
+$( window ).unload(function() {
+  document.getElementById('mySelect').options.length = 0;
+  $(".custom-control-input:checked").each(function(){
+                  
+               $(".custom-control-input:checked").prop('checked', false);
+          });
+   // return true;
+});
+*/
+
+$( document ).ready(function() {
+       
+    checkbox =[];
+     $(".custom-control-input:checked").each(function(){
+                checkbox.push($(this).val());
+            });
+      select_val = $("select").val();
+
+  if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
+
+      $("div#result").text("");
+     
+  } else {        
+            
+          return ajax_call(select_val, checkbox);        
+      }     
+});
 
 </script>
 

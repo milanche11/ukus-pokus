@@ -32,9 +32,17 @@
 </head>
 
 <body class="background">
+<<<<<<< HEAD
 <div class="container-fluid nopadding"><!-- Glavni kontejner -->
       <!-- Snow hidden
       <span class="hidden" id="snowflake">&#10052;</span>-->
+=======
+
+
+  <div class="container-fluid">
+      <!-- Snow -->
+<!-- <span class="hidden" id="snowflake">&#10052;</span> -->
+>>>>>>> 1d7325e0a1bed353b98fe8a707ae284a77235b5d
     
     <div class="row beige ">
       <div class="top-right">

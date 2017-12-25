@@ -18,7 +18,7 @@ class Pagination extends Model {
 		$pocetak = ($this->pageid-1) * $brprikaza;
 		$this->query("SELECT * FROM $tablePagination LIMIT $pocetak , $brprikaza"); 
 		$this->allrowsPagination = $this->resultSet();
-		return array($this->allrowsPagination);
+		return $this->allrowsPagination;
 	}
 
 	public function printPagination(){
