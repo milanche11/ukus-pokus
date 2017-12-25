@@ -12,7 +12,14 @@
 <?php 
 $pagination = new Pagination();
 
+<<<<<<< HEAD
 $paginationpage = $pagination->allres('recipes', 5, $viewmodel);
+=======
+// $paginationpage = $pagination->allres('recipes', 5, $viewmodel);
+
+ $paginationpage = $pagination->allres('recipes', 10, $viewmodel);
+
+>>>>>>> d1bf8b9dbd684c1f02abde22b0513a54eae734d3
 
 ?>
 <?php $i=1; foreach ($paginationpage as $item) : ?>

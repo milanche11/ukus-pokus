@@ -36,7 +36,7 @@
 
   <div class="container-fluid">
       <!-- Snow -->
-<span class="hidden" id="snowflake">&#10052;</span>
+<!-- <span class="hidden" id="snowflake">&#10052;</span> -->
     
     <div class="row beige">
       <div class="top-right">
