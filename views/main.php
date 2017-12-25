@@ -3,83 +3,108 @@
 <head>
 	<title>Ukus pokus | Brzi recepti od onoga što imate u kući</title>
 
-      <!-- styling -->
-      <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>
-      <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/style.css">
-      <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo ROOT_URL; ?>assets/images/favicon/android-icon-192x192.png">
-      <link rel="icon" type="image/png" sizes="96x96" href="<?php echo ROOT_URL; ?>assets/images/favicon/favicon-96x96.png">
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- styling -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/style.css">
+  <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo ROOT_URL; ?>assets/images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="<?php echo ROOT_URL; ?>assets/images/favicon/favicon-96x96.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Autocomplete search -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>        
+  <!-- Autocomplete search -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>        
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">  
 </head>
 
 <body>
 
-<div class="container-fluid nopadding"><!-- Glavni kontejner -->
   <div class="container-fluid">
     
-    <div class="row beige "><!-- Bez trakica sa ikonicama za drustvene mreze-->
+    <div class="row beige">
       <div class="top-right">
         <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/fb.png" class="float-right"></a>&nbsp;
         <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/inst.png" class="float-right"></a>&nbsp;
         <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/twitter.png" class="float-right"></a>&nbsp;
       </div>
+      
     </div>
+    <div class="row navigacija">
+      <!-- Navigacija -->
+          <div class="col-12 nopadding">
+              <nav class="navbar">
 
-    <div class="row navigacija"><!-- Navigacija -->
-         <nav class="navbar d-flex">
+                <!-- LOGO -->
+                <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
 
-                <!-- Logo -->
-                <a class="navbar-brand mr-auto p-2" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.png"></a>
-              
-               <div><!-- Navigacija -->
+              <!-- Navigacija -->
+               <div>
                   <ul class="nav">
-                      <li class="nav-item"><a class="nav-link animated p-2" href="<?php echo ROOT_URL; ?>">Početna</a></li>
-                      <li class="nav-item"><a class="nav-link animated p-2" href="<?php echo ROOT_URL; ?>categories">Kategorije</a></li>
-                      <li class="nav-item"><a class="nav-link animated p-2" href="<?php echo ROOT_URL; ?>search">Pretraga</a></li>
+                      <li class="nav-item">
+                        <a class="nav-link animated" href="<?php echo ROOT_URL; ?>">Početna</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link animated" href="<?php echo ROOT_URL; ?>categories">Vidi šta sve ima!</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Pretraga</a>
+                      </li>
                   </ul>
                 </div> 
-          </nav>
-    </div><!-- Navigacija end -->
+              </nav>
+          </div>
+      </div>
+     <!-- Navigacija end -->
 
     <br><br>
 
     <!-- Main  -->
-    <div class="container-fluid nopadding">
+    <div class="container-fluid">
+      <div class="main">
        <div class="row justify-content-center">
-     	<?php require($view); ?>
+     	  <?php require($view); ?>
        </div> 
        <br><br>
        <div class="row justify-content-center">
-       <?php Messages::display(); ?>
+      <?php Messages::display(); ?>
        </div>
-       <br>
-   </div><!-- Main end -->
+    </div> 
 
-    
-    <footer><!-- Footer -->
-        <nav>
+    <br>
+
+    </div><!-- End main -->
+
+    <!-- Footer -->
+    <footer class="nopadding">
+        <nav >
+
           <ul class="nav justify-content-center">
-                 <li class="nav-item"><a class="nav-link" href="#"> © 2017 Ukus Pokus. Sva prava zadržana. </a></li>
-                 <li class="nav-item"><a class="nav-link" href="<?php echo ROOT_URL; ?>kontakt">Kontakt</a></li>
-                 <li class="nav-item"><a class="nav-link" href="https://www.kolezeeesolutions.com/" target="_blank"> Kreirao i održava Kolezeee Solutions</a></li>
-           </ul>
+                 <li class="nav-item">
+                      <a class="nav-link" href="#"> © 2017 Ukus Pokus. Sva prava zadržana. </a>
+                 </li>
+                 <li class="nav-item">
+                      <a class="nav-link" href="<?php echo ROOT_URL; ?>kontakt">Kontakt</a>
+                 </li>
+                 <li class="nav-item">
+                      <a class="nav-link" href="https://www.kolezeeesolutions.com/" target="_blank"> Kreirao i održava Kolezeee Solutions</a>
+                </li>
+          </ul>
         </nav>
-    </footer><!-- End footer -->
+    </footer>
+    <!-- End footer -->
 
-</div><!-- End glavni kontejner -->
+  </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery-1.9.1.js"></script> <!-- Skripta za funkcionisanje uploada slika preko ajax-a  -->
-</body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+	<script src="//code.jquery.com/jquery-1.9.1.js"></script> <!-- Skripta za funkcionisanje uploada slika preko ajax-a  -->
+
+  </body>
 </html>
