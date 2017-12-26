@@ -39,7 +39,7 @@
       <a class="navbar-brand mr-auto p-2" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.png" alt='logo' class="main-logo"></a><!-- kraj logo -->
 
       <!-- Dugme hamburger -->
-      <button class="navbar-toggler p-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><!-- kraj dugme -->
+      <button class="navbar-toggler p-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><img src="<?php echo ROOT_URL; ?>/assets/images/menu.png" alt='menu' class="menu"></span></button><!-- kraj dugme -->
 
       <!-- Menu items -->
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">

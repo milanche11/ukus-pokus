@@ -56,7 +56,6 @@ font-family: 'Itim', cursive;
       src: url("fonts/Summer Font Light Italic.otf") format("opentype"); */
       src: url("fonts/Summer Font Bold.otf") format("opentype");
       /*src: url("fonts/Summer Font Bold Italic.otf") format("opentype"); */
-	
 }
 
 body {
@@ -69,11 +68,9 @@ body {
 body p {
 	font-size: 1.1rem;
 	font-family: 'Nunito', sans-serif;
-	padding-left: 15px;
-	padding-right: 15px;
 }
 
-/* Braon pruga na vrhu */
+/* ************ Braon pruga na vrhu********** */
 .beige {
     background-color: #ba8c54 !important;
 }
@@ -81,32 +78,43 @@ div.beige {
   height: 30px;
  width: 100vw;
 }
-
 /* Ikonice za DM */
 img.soc{
     height: 20px;
     width: 20px;
-    margin: 3px 10px;
+    margin: 3px 15px 3px 0;
 }
-
-.coverimg {
-    width: 100%;
-}
-
-.cover {
-
-  }
+/* ********* kraj braon pruga ********** */
 
 
-/* navigacija */
+
+
+
+
+
+/* ********** Navigacija glavna *********** */
 .navbar {
-      width: 100%;
-	background-color: #fff !important;
-	/*margin: 0px -30px 0 0;*/
-	font-family: 'Summer', cursive;
-	font-weight: bold;
-	border-bottom: 3px solid #70b54a !important;
+  width: 100%;
+  background-color: #fff !important;
+  font-family: 'Summer', cursive;
+  font-weight: bold;
+  border-bottom: 3px solid #70b54a !important;
 }
+/* Hamburger ikonica */
+span.navbar-toggler-icon {
+  color: #59b956 !important;
+    width: 1.8em;
+    height: 1.8em;
+}
+img.menu {
+  height: 35px;
+  width: 35px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* kraj hamburger */
+
+
 
 /* Linkovi u glavnoj navigaciji */
 a.nav-link:link, a.nav-link:visited {
@@ -152,14 +160,26 @@ a.animated:hover:after {
 ul.nav {
     padding-right: 20px;
 }
-/* kraj naviacija */
-
- 
  /* Logo visina */
 img.main-logo {
-	height: 80px;
+  height: 80px;
 }
+/* ********* kraj navigacija ********** */
 
+ 
+
+
+/* ********* Cover slika div ********** */
+.coverimg {
+    width: 100%;
+    z-index: 100;
+}
+.cover {
+  position: relative;
+  top: 0;
+  float: left;
+  }
+/* ********* kraj cover slika div ********** */
 
 
 
@@ -167,30 +187,23 @@ img.main-logo {
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Crushine Brush Script', cursive;
 	color: #503723 !important;
-
 }
-
 h1 {
   font-size: 3.5rem !important;
 }
-
 h2 {
    font-size: 2.5rem !important;
 }
 
-h4 {
-  font-family: 'Cherry Swash', cursive;
-}
-
-.lead {
-	font-family: 'Englebert', cursive;
-}
 
 
 
 
 
-/* Polje za unos namirnica */
+
+
+
+/* ********* Polje za unos namirnica ********* */
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #d1e3d2;
 }
@@ -200,7 +213,7 @@ h4 {
   .select2-container--classic .select2-results__option--highlighted[aria-selected] {
   background-color: #28a745;
   color: white; }
-  /* kraj select */
+  /* ********* kraj select ************** */
 
 
 
@@ -219,9 +232,7 @@ h4 {
 	text-decoration: none !important;
 }
 
-a:active, a:hover {
-	text-decoration: none !important;
-}
+
 
 p.desc  {
 	text-align: left !important;
@@ -270,10 +281,7 @@ p.desc  {
 	background-color: #fff;
 }
 
-.margins {
-	margin-left: 20px !important;
-	margin-right: 20px !important;
-}
+
 
 img.img-fluid {
 	border: 1px solid #ddd;
@@ -281,40 +289,30 @@ img.img-fluid {
 
 
 
-
-.nopadding {
-	padding: 0 !important;
+.pretraga {
+  position: relative;
+  top: 0;
+  z-index: 200;
 }
 
 
 
 
 
-a.kats {
-	margin: 3px !important;
-	color: #ffffff !important;
 
-}
 
-a.kats-pretraga {
-	margin: 5px !important;
-	padding:  0 4px 1px 4px !important;
-	color: #ffffff !important;
-	background-color: #8e949a !important;
-	border: 1px solid #a9b0b6 !important;
-	
-}
 
 div.check-rejting {
 	margin-left: 15px !important;
 }
 
+/* dugme za reset filtera */
 a#reset {
 	color: #fff !important;
 }
 
 
-/* dugme za dodatne opcije - boris */
+/* ********** dugme za dodatne opcije - boris ********* */
 #ballMenuContainer {
     position: absolute;
     left:-35px;
@@ -327,9 +325,6 @@ a#reset {
     height: 95px;
     margin: 5px;
     display: inline-block;
-    z-index: 800;
-}
-#menuBall2{
     z-index: 800;
 }
 .ball {
@@ -385,15 +380,16 @@ a#reset {
     text-align: center;
     top: 17%;
 }
-/* kraj dugme za dodatne opcije pocetna */
+/* ********* kraj dugme za dodatne opcije pocetna *********** */
 
-/* aja klase razno */
+
+
+/* ******** Aja klase razno ********* */
 .white {
   color: #fff !important;
 }
 .green {
   color: #28a745 !important;
-  size: 2rem;
 }  
 .green a:hover {
   color: #ffffff !important;
@@ -401,12 +397,22 @@ a#reset {
 .text-shadow {
       text-shadow: 0 0 6px #bfbfbf;
 }
+.nopadding {
+  padding: 0 !important;
+}
+.lead {
+  font-family: 'Englebert', cursive;
+}
+a:active, a:hover {
+  text-decoration: none !important;
+}
+/* ************ kraj aja klase razno ************ */
 
 
 
 
 
-/* footer */
+/* ********** footer *********** */
 footer {
   background-color: #ba8c54 !important;
 }
@@ -418,7 +424,7 @@ footer a.nav-link:hover, footer a.nav-link:active {
   color: #ddd;
   font-size: 0.9rem;
 }
-/* kraj footer */
+/* ********** kraj footer ************** */
 
 
 

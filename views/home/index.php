@@ -12,22 +12,28 @@ $catsAll = $queryInstance->allRows("categories",$query);
 ?>
 
  
-<div class="cover">
-  <img src="<?php echo ROOT_URL; ?>assets/images/cover2.png" alt="cover" class="coverimg">
-</div>
+
 
 <!-- Gornji deo -->
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 text-center">
-      
-    </div>
-  </div>
+<div class="container-fluid"><!-- glavni kontejner-->
+  
+  <div class="row"><!-- cover slika i pretraga--> 
+     <div class="cover">
+        <img src="<?php echo ROOT_URL; ?>assets/images/cover2.png" alt="cover" class="coverimg">
+     </div>
+
+     <div class="col-12 text-center pretraga">
+       <h1 class="white text-shadow">Brzi i ukusni recepti za svaki dan</h1>
+     </div>
+  </div><!-- kraj cover slika i glavna pretraga -->
+
+
+
 
   <div class="row">
     <div class="col-12 text-center">
       <br>
-      <h1 class="white text-shadow">Brzi i ukusni recepti za svaki dan</h1>
+      
 
       <br><br><br>
     </div>
@@ -211,7 +217,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
       </div>
     </div> <!-- end row -->
 
-</div><!-- end container fluid -->
+</div><!-- end glavni container fluid -->
 
 
 <!-- jQuery for search field -->
