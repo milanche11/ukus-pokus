@@ -4,6 +4,7 @@ $queryInstance = new Query();
 
 // upit za dobijanje sastojaka za upis u formu za pretragu
 $ingrRows = $searchmodel->ingredients();
+
 //upit za dobijanje svih kategorija
 $query = " ";
 $catsAll = $queryInstance->allRows("categories",$query);

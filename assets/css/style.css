@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Caveat|Itim|Kalam|Patrick+Hand|Patrick+Hand+SC|Pangolin|Berkshire+Swash|Caveat+Brush|Shadows+Into+Light+Two|Tillana|Montserrat|Open+Sans+Condensed:300|Raleway|Source+Sans+Pro|Baloo|Cherry+Swash|Corben|Kelly+Slab|Modak|Mogra|Oregano|Ribeye+Marrow|Sacramento|Allura|Amatic+SC|Courgette|Dancing+Script|Didact+Gothic|Dosis|Englebert|Forum|Glass+Antiqua|Grand+Hotel|Great+Vibes|Kalam|Kaushan+Script|Life+Savers|Limelight|Marck+Script|Mukta+Malar|News+Cycle|Nunito|Pacifico|Patrick+Hand|Playball|Poiret+One|Rajdhani|Varela+Round');
-
-
 /*
-
 font-family: 'Dosis', sans-serif;
 font-family: 'Raleway', sans-serif;
 font-family: 'Montserrat', sans-serif;
@@ -62,14 +59,10 @@ font-family: 'Itim', cursive;
 	
 }
 
-.btn-share {
-	margin: 30px !important;
-}
-
 body {
 	background-image: url('bgr.png') !important;
       background-repeat: repeat;
-    	background-attachment: fixed;
+    	background-attachment: scroll;
     	background-position: left-top; 
 }
 
@@ -79,110 +72,55 @@ body p {
 	padding-left: 15px;
 	padding-right: 15px;
 }
+
+/* Braon pruga na vrhu */
+.beige {
+    background-color: #ba8c54 !important;
+}
+div.beige {
+  height: 30px;
+ width: 100vw;
+}
+
+/* Ikonice za DM */
+img.soc{
+    height: 20px;
+    width: 20px;
+    margin: 3px 10px;
+}
+
 .coverimg {
-   width: 100vw;
-    /*border: 1px solid black; */
-    object-fit: scale-down;
-
-
-  }
+    width: 100%;
+}
 
 .cover {
-background-image: url('cover2.png') !important;
-width: 100vw;
-    object-fit: scale-down;
-    position: absolute;
-    top: 120px;
-    left: 0;
+
   }
 
-.main {
-	background-color: #ffffff;
-	box-shadow: 0 0 6px #ddd;
-	margin: -50px 70px 0 70px;
-	padding: 10px 50px;
-  z-index: 5;
-}
 
-nav.navbar {
-      z-index: 20;
+/* navigacija */
+.navbar {
+      width: 100%;
 	background-color: #fff !important;
-	margin: 0px -30px 0 0;
-	padding: 0 0 0 0;
+	/*margin: 0px -30px 0 0;*/
 	font-family: 'Summer', cursive;
 	font-weight: bold;
-	border-bottom: 3px dashed #70b54a !important;
-
+	border-bottom: 3px solid #70b54a !important;
 }
 
-
+/* Linkovi u glavnoj navigaciji */
 a.nav-link:link, a.nav-link:visited {
 	color: #59b956;
 	font-size: 2.5rem;
 }
-
 a.nav-link:hover, a.nav-link:active {
 	color: #59b956;
 	font-size: 2.5rem;
 }
-
-
-.navbar img {
-	height: 90px;
+a.nav-link.animated {
+  padding-bottom: 3px;
+  padding-right: 20px !important;
 }
-
-li.nav-item {
-  margin-left: 0 !important;
-  margin-right: 5px !important;
-  padding-left: 0px !important;
-}
-
-ul.nav {
-    padding-right: 20px;
-}
-.neon {
-  margin: 0 auto;
-  text-align: center;
-  color: #ff02f6;
-  text-shadow: 0 0 10px #ff02f6, 0 0 15px #ff02f6;
-}
-
-#logging a:link, #logging a:visited {
-
-	font-size: 0.5 rem;
-	font-family: 'Nunito', sans-serif;
-	color: #fff;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 2px;
-	margin-right: 5px;
-	margin-left: 5px;
-
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Crushine Brush Script', cursive;
-	color: #503723 !important;
-
-}
-
-h1 {
-  font-size: 3.5rem !important;
-}
-
-h2 {
-   font-size: 2.5rem !important;
-}
-
-h4 {
-  font-family: 'Cherry Swash', cursive;
-}
-
-.lead {
-
-	font-family: 'Englebert', cursive;
-}
-
 a.animated{
     color:#59b956;
     text-decoration: none;
@@ -191,7 +129,6 @@ a.animated{
     position: relative;
     margin-bottom: 2px;
 }
-
 a.animated:after {
     width: 0%;
     height: 2px;
@@ -212,48 +149,60 @@ a.animated:hover {
 a.animated:hover:after {
    width: 100%;
 }
+ul.nav {
+    padding-right: 20px;
+}
+/* kraj naviacija */
+
  
- #main-logo {
-      margin-left: 20px !important;
- }
-
-
-footer a.nav-link:link, footer a.nav-link:visited {
-	color: #59b956;
-	font-size: 0.9rem;
+ /* Logo visina */
+img.main-logo {
+	height: 80px;
 }
 
-footer a.nav-link:hover, footer a.nav-link:active {
-	color: #2c9d29;
-	font-size: 0.9rem;
+
+
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Crushine Brush Script', cursive;
+	color: #503723 !important;
+
 }
 
-footer {
-	padding-bottom: 20px;
-	padding-top: 0px;
-	background-color: #ead09f !important;
+h1 {
+  font-size: 3.5rem !important;
 }
 
+h2 {
+   font-size: 2.5rem !important;
+}
+
+h4 {
+  font-family: 'Cherry Swash', cursive;
+}
+
+.lead {
+	font-family: 'Englebert', cursive;
+}
+
+
+
+
+
+/* Polje za unos namirnica */
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #d1e3d2;
 }
-
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #28a745 !important;
   color: white; }
-
   .select2-container--classic .select2-results__option--highlighted[aria-selected] {
   background-color: #28a745;
   color: white; }
+  /* kraj select */
 
-.green {
-	color: #28a745 !important;
-	size: 2rem;
-}  
 
-.green a:hover {
-	color: #ffffff !important;
-}
 
 .recipelist {
 	font-family: 'Nunito', sans-serif;
@@ -270,7 +219,6 @@ footer {
 	text-decoration: none !important;
 }
 
-
 a:active, a:hover {
 	text-decoration: none !important;
 }
@@ -280,7 +228,6 @@ p.desc  {
 	font-size: 0.9rem;
 	font-family: 'Montserrat', sans-serif;
 	font-style: italic;
-
 }
 
 .cats {
@@ -314,7 +261,6 @@ p.desc  {
 	text-transform: uppercase;
 }
 
-
 .razmak {
 	padding: 25px !important;
 	margin: 30px !important;
@@ -333,54 +279,16 @@ img.img-fluid {
 	border: 1px solid #ddd;
 }
 
-div.beige {
-	background-color: #ead09f !important;
-	height: 30px;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: 995;
 
-}
 
-.navigacija {
-	position: center;
-	z-index: 996;
-	width: 100%;
-}
 
 .nopadding {
 	padding: 0 !important;
 }
 
-footer {
-	margin: -15px !important;
-	margin-top: -25px !important;
-}
 
-.beige {
-	text-align: right;
-	width: 100%;
-}
 
-div.row.beige img {
-	
-	height: 20px;
-	width: 20px;
-	margin: 5px;
-}
 
-.top-right {
-	position: absolute;
-	top: 0;
-	right: 15px;
-	text-align: right;
-	background-color: #ead09f !important;
-}
-
-a.nav-link.animated {
-	padding-bottom: 3px;
-}
 
 a.kats {
 	margin: 3px !important;
@@ -406,16 +314,13 @@ a#reset {
 }
 
 
-/* new button */
-
+/* dugme za dodatne opcije - boris */
 #ballMenuContainer {
     position: absolute;
     left:-35px;
     top:-57px;
     z-index: 898;
 }
-
-
 .menuBall {
     position: relative;
     width: 95px;
@@ -424,11 +329,9 @@ a#reset {
     display: inline-block;
     z-index: 800;
 }
-
 #menuBall2{
     z-index: 800;
 }
-
 .ball {
     position:absolute;
     width:100%;
@@ -445,7 +348,6 @@ a#reset {
     -o-transition: -o-transform .2s linear;
     transition: transform .2s linear;
 }
-
 .ball:hover {
    /* -webkit-animation: pulse 1s ease 0s infinite normal;
     -o-animation: pulse 1s ease 0s infinite normal;
@@ -455,15 +357,13 @@ a#reset {
       -moz-transform: scale(1.05) ;
       -o-transform: scale(1.05) ; 
       transform: scale(1.05) ; 
-  }
-
-  .ball:active {
+}
+.ball:active {
      -webkit-transform: scale(1) ; 
      -moz-transform: scale(1) ;
      -o-transform: scale(1) ; 
       transform: scale(1) ; 
-  }
-
+}
 .redball {
     background-color: #d90e23;
     -moz-box-shadow: 0 0 0 3px #d90e23, 2px 1px 4px 4px rgba(10,10,0,.5);
@@ -476,7 +376,6 @@ a#reset {
     background-image: -o-linear-gradient(0deg, rgba(0,0,0,.25) 50%, transparent 10%),-o-linear-gradient(rgba(0,0,0,.25) 50%, transparent 50%);
     background-size:10px 10px;
 }
-
 .menuText {
     font-family: 'Pacifico', cursive ;
     font-size: 1.3rem;
@@ -486,40 +385,40 @@ a#reset {
     text-align: center;
     top: 17%;
 }
+/* kraj dugme za dodatne opcije pocetna */
 
-/*
-#menuBall2 {
-  -webkit-animation: bump 6s linear .5s infinite normal;
-}
-
-#menuBall2 {
-  -moz-animation: bump 6s linear .5s infinite normal;
-}
-
-#menuBall2 {
-  -o-animation: bump 6s linear .5s infinite normal;
-}
-#menuBall2 {
-  animation: bump 6s linear .5s infinite normal;
-}
-
-*/
-
+/* aja klase razno */
 .white {
   color: #fff !important;
 }
-
+.green {
+  color: #28a745 !important;
+  size: 2rem;
+}  
+.green a:hover {
+  color: #ffffff !important;
+}
 .text-shadow {
       text-shadow: 0 0 6px #bfbfbf;
 }
 
 
-input[type='checkbox'] {
-    display: none !important;
-  }
 
 
 
+/* footer */
+footer {
+  background-color: #ba8c54 !important;
+}
+footer a.nav-link:link, footer a.nav-link:visited {
+  color: #fff;
+  font-size: 0.9rem;
+}
+footer a.nav-link:hover, footer a.nav-link:active {
+  color: #ddd;
+  font-size: 0.9rem;
+}
+/* kraj footer */
 
 
 

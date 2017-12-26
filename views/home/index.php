@@ -1,8 +1,10 @@
 <?php
 $homemodel = new HomeModel();
 $queryInstance = new Query();
+
 // upit za dobijanje sastojaka za upis u formu za pretragu
 $ingrRows = $homemodel->ingredients();
+
 //upit za dobijanje svih kategorija
 $query = "";
 $catsAll = $queryInstance->allRows("categories",$query);
@@ -13,6 +15,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 <div class="cover">
   <img src="<?php echo ROOT_URL; ?>assets/images/cover2.png" alt="cover" class="coverimg">
 </div>
+
 <!-- Gornji deo -->
 <div class="container-fluid">
   <div class="row">
@@ -24,10 +27,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
   <div class="row">
     <div class="col-12 text-center">
       <br>
-      <h1 class="white text-shadow">Brzi i ukusni recepti za svaki dan,</h1>
-      <!-- 
-      <p class="lead white text-shadow">Ovde možete pronaći proverene brze recepte od namirnica koje imate u kući</p>
-      -->
+      <h1 class="white text-shadow">Brzi i ukusni recepti za svaki dan</h1>
+
       <br><br><br>
     </div>
   </div> <!-- end row -->
@@ -40,13 +41,12 @@ $catsAll = $queryInstance->allRows("categories",$query);
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
       <h2 class="white text-shadow">Pretraga po namirnicama</h2>
-     <!-- <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">  
-      
-       <select class="form-control form-control-lg custom-select" multiple style="width: 80%" placeholder="U kući imam..." aria-label="Search for..." name="pretraga[]">  izbačeno zbog Ajax-a -->
+
          <div class="row no-gutters">
           <div class="col-8 offset-1 text-center"  >
           <form>
            <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..." >
+            
             <?php
                // Izlistavanje sastojaka - za unos u pretragu
                foreach ($viewmodel as $item) {
@@ -54,8 +54,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
                   $item['ingredient_name'] . '</option>';
                 } 
              ?>
-          </select>
-       <!-- <button class="btn btn-success" type="submit" name="submit">Traži!</button> izbačeno zbog Ajax-a -->  
+          </select> 
         </form>
       
 <small class="white text-shadow">Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br>
@@ -195,21 +194,6 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
     </div>
 
-    <!-- ispis kategorija -->
-    <div class="col-3 offset-1 borderleft" style="display: none !important;">      
-       <h4>Pretraga po kategorijama</h4>
-       <br>
-      <?php
-      foreach ($catsAll as $item) {
-        $id = $item['cat_id'];
-        $catname = $item['cat_name'];
-        echo "<a class='btn btn-success btn-sm kats' href='category/$id' href='category/$id'>" . $catname . "</a><br>";
-      }
-      ?>
-    </div><!-- kraj ispisa kategorija -->
-
-
-
   </div><!-- end row -->
   <!-- Gornji deo kraj -->
 
@@ -237,22 +221,18 @@ $catsAll = $queryInstance->allRows("categories",$query);
   var select_val;  
   var checkbox ;
 
-$("select").select2({            //seclec2 
+$("select").select2({            //select2 
   minimumInputLength: 1,
   placeholder: 'Unesite namirnice',
-  
-   
   language: {
-
-    inputTooShort: function () {
-    return 'Krenite da kucate...';
-  },
+       inputTooShort: function () {
+       return 'Krenite da kucate...';
+       },
+      noResults: function () {
+       return 'Nije pronađen nijedan rezultat';
+      },
   
-   noResults: function () {
-    return 'Nije pronađen nijedan rezultat';
-  },
-  
-}
+   }
 });
 
 $("select").on("select2:select", function (evt) {
