@@ -11,7 +11,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
  
 <div class="cover">
-  <img src="<?php echo ROOT_URL; ?>assets/images/cover2.jpg" alt="cover" class="coverimg">
+  <img src="<?php echo ROOT_URL; ?>assets/images/cover2.png" alt="cover" class="coverimg">
 </div>
 <!-- Gornji deo -->
 <div class="container-fluid">

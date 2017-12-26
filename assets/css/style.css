@@ -88,9 +88,8 @@ body p {
   }
 
 .cover {
-background-image: url('cover2.jpg') !important;
+background-image: url('cover2.png') !important;
 width: 100vw;
-    /*border: 1px solid black;*/
     object-fit: scale-down;
     position: absolute;
     top: 120px;
