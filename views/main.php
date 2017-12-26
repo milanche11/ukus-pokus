@@ -53,7 +53,6 @@
 
    
     <!-- Main  -->
-    <div class="container-fluid">
        <div class="row justify-content-center">
      	  <?php require($view); ?>
        </div> 
@@ -62,8 +61,8 @@
 
        <div class="row justify-content-center">
       <?php Messages::display(); ?>
-       </div>
-    </div><!-- Kraj main -->
+       </div> <!-- Kraj main -->
+
     <br>
   
     <!-- Footer -->

@@ -11,213 +11,171 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
 ?>
 
- 
-
-
-<!-- Gornji deo -->
-<div class="container-fluid"><!-- glavni kontejner-->
-  
-  <div class="row"><!-- cover slika i pretraga--> 
-     <div class="cover">
-        <img src="<?php echo ROOT_URL; ?>assets/images/cover2.png" alt="cover" class="coverimg">
-     </div>
-
-     <div class="col-12 text-center pretraga">
-       <h1 class="white text-shadow">Brzi i ukusni recepti za svaki dan</h1>
-     </div>
-  </div><!-- kraj cover slika i glavna pretraga -->
-
-
-
-
-  <div class="row">
-    <div class="col-12 text-center">
-      <br>
-      
-
-      <br><br><br>
-    </div>
-  </div> <!-- end row -->
-
-  <div class="row">
-   
-    <div class="col-12 text-center">
-
       <!-- Form search -->
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
-      <h2 class="white text-shadow">Pretraga po namirnicama</h2>
 
-         <div class="row no-gutters">
-          <div class="col-8 offset-1 text-center"  >
-          <form>
-           <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..." >
-            
-            <?php
-               // Izlistavanje sastojaka - za unos u pretragu
-               foreach ($viewmodel as $item) {
-                  echo '<option value="' . $item['ingredient_id'] . '">' .
-                  $item['ingredient_name'] . '</option>';
-                } 
-             ?>
-          </select> 
-        </form>
-      
-<small class="white text-shadow">Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br>
+<!-- POCETAK STRANE -->
+   <div class="container-fluid cover"><!-- cover slika i pretraga--> 
 
-    </div>
-     <div class="col-2" >
-     <!-- <p>
-      <a class="btn btn-danger" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Dodatne opcije
-      </a>
-      </p> -->
-  <div id="ballMenuContainer">
-      <div id="menuBall2" class="menuBall">
-  <a href="#collapseExample" class="ball redball" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
-    <div class="menuText">
-        Dodatne opcije
-    </div>
-  </a>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="collapse" id="collapseExample"> <!--collapse div -->
-  <div class="card card-body ">
-    <div class="row no-gutters">
-    <div class="col-3">
-     <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="4">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 71px !important">Slana jela</span>
-      </label><br>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="3">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 67px !important;">Slatka jela</span>
-      </label><br>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="2">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 75px !important;">Ljuta jela</span>
-      </label><br>
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="15">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 35px !important;">Vegetarijansko</span>
-      </label>
-      
-
-    </div>
-    <div class="col-3">
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="1">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 18px !important;">U samo jednoj šerpi</span>
-      </label><br>
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="17">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Priprema za 15 minuta</span>
-      </label><br>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input"  value ="18">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Priprema za 30 minuta</span>
-      </label><br>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="19">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Priprema za 60 minuta</span>
-      </label>
-    </div>
-     <div class="col-3">
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="8">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 39px !important">Za bebe</span>
-      </label><br>
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="5">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 42px !important">Zimnica</span>
-      </label><br>
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="21">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 9px !important">Bez alkohola</span>
-      </label><br>
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input"  value ="9">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Sadrži alkohol</span>
-      </label>
-       
-    </div>
-    <div class="col-3">
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="20">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 89px !important;">Posna jela</span>
-      </label><br>
-      <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" value ="7">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 34px !important">Zgodno za poneti</span>
-      </label><br>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input"  value ="6">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Smooćkaj, popij i kreni</span>
-      </label><br>
-       <label class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input"  value ="12">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description" style="padding-right: 11px !important;">Prženo, spremi tiganj</span>
-      </label>
-    </div>
-  </div>
-</div>
-</div> <!--kraj collapse div-a -->
-
-      <!-- End form --> 
-      <br><br>
-      
-
- <!-- Prikaz rezultata pretrage ako ih ima-->
-  
-  <div id="result"></div> <!-- ubačeno da prikaže rezultate Ajax pretrage-->
-
-<!-- Kraj prikaza rezultata pretrage -->
-    <br><br><br><br>
-    <h4>Najpopularniji recepti</h4><br>
-    <div class="text-left">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-      </div>
-
-    </div>
-
-  </div><!-- end row -->
-  <!-- Gornji deo kraj -->
-
+    <!-- Naslov -->
     <div class="row">
-      <div class="col-12 text-center">
-        <br><br>
+       <div class="col-12 text-center">
+         <h1 class="white text-shadow">Brzi i ukusni recepti</h1>
+         <h1 class="white text-shadow">za svaki dan</h1><br><br>
+       </div>
+     </div>
+     
+     <!-- Pretraga -->
+     <div class="row">
+          <div class="col-12 text-center">
+               <h2 class="white text-shadow">Pretraga po namirnicama</h2><br>
+          </div>
+     </div>  
+
+      <div class="row text-center"><!-- pretraga -->
+        <div class="col-sm-7 offset-sm-2 justify-content-sm-center text-center" > <!-- polje za pretragu -->
+          <form>
+            <select class="form-control form-control-lg custom-select" multiple style="width: 100%" placeholder="U kući imam..." aria-label="Search for..." >
         
-      </div>
-    </div> <!-- end row -->
+              <?php                    
+                // Izlistavanje sastojaka - za unos u pretragu
+                foreach ($viewmodel as $item) {
+                    echo '<option value="' . $item['ingredient_id'] . '">' .
+                    $item['ingredient_name'] . '</option>';
+                } 
+                ?>
+            </select> 
+          </form>
+  
+          <small class="white text-shadow">Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br><br><br>
+        </div><!--kraj polje za pretragu -->
 
-        <div class="row">
-      <div class="col-12 text-center">
-        <h4>Najnoviji recepti</h4>
-        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-      </div>
-    </div> <!-- end row -->
+        <div class="col-sm-1 justify-content-sm-center text-center" ><!--dugme za dodatne opcije -->
+             <a class="btn btn-success mx-auto" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Dodatne opcije</a>
+        </div><!-- kraj dugme -->
+        <br><br>
+    </div><!-- kraj pretraga -->
+</div><!-- kraj cover slika i glavna pretraga -->
 
-</div><!-- end glavni container fluid -->
+<!-- Main -->
+<div class="container-fluid main">
+
+      <!-- Dodatne opcije koje se otvaraju na dugme -->
+      <div class="collapse" id="collapseExample"> 
+          <div class="card card-body ">
+            <div class="row">
+            <div class="col-3">
+             <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="4">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Slana jela</span>
+              </label><br>
+               <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="3">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Slatka jela</span>
+              </label><br>
+               <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="2">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Ljuta jela</span>
+              </label><br>
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="15">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Vegetarijansko</span>
+              </label>              
+            </div>
+            <div class="col-3">
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="1">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">U samo jednoj šerpi</span>
+              </label><br>
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="17">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Do 15 minuta</span>
+              </label><br>
+               <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input"  value ="18">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Do 30 minuta</span>
+              </label><br>
+               <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="19">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Do 60 minuta</span>
+              </label>
+            </div>
+             <div class="col-3">
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="8">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Za bebe</span>
+              </label><br>
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="5">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Zimnica</span>
+              </label><br>
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="21">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Bez alkohola</span>
+              </label><br>
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input"  value ="9">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Sadrži alkohol</span>
+              </label>               
+            </div>
+            <div class="col-3">
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="20">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Posno</span>
+              </label><br>
+              <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" value ="7">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Za poneti</span>
+              </label><br>
+               <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input"  value ="6">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Smooćkaj, i kreni</span>
+              </label><br>
+               <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input"  value ="12">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Pržena jela</span>
+              </label>
+            </div>
+            </div>
+          </div>
+        </div> <!--kraj dodatne opcije div-a -->
+
+     <!-- Prikaz rezultata Ajax pretrage ako ih ima-->
+     <div class= "row" id="result">
+     </div> <!-- Kraj prikaza rezultata pretrage -->
+
+
+
+
+</div><!-- kraj main -->
+
+
+
+
+
+
+      
+
+
+
+<!-- KRAJ STRANE -->
 
 
 <!-- jQuery for search field -->
