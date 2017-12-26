@@ -11,6 +11,18 @@
   <link rel="icon" type="image/png" sizes="96x96" href="<?php echo ROOT_URL; ?>assets/images/favicon/favicon-96x96.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="pragma" content="no-cache"/>
+  <meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-store" />
+
+  <!-- Snow -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+  <script src="<?php echo ROOT_URL; ?>assets/js/snow.js"></script>
+  <link rel="stylesheet" href=" <?php echo ROOT_URL; ?>assets/css/snow.css">" />
 
   <!-- Autocomplete search -->
   <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet"/>        
@@ -19,10 +31,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">  
 </head>
 
-<body>
+<body class="background">
+
 
   <div class="container-fluid">
-    
+   
     <div class="row beige">
       <div class="top-right">
         <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/fb.png" class="float-right"></a>&nbsp;
@@ -37,7 +50,7 @@
               <nav class="navbar">
 
                 <!-- LOGO -->
-                <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
+                <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>/assets/images/logo1.png"></a>
 
               <!-- Navigacija -->
                <div>
@@ -105,6 +118,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 	<script src="//code.jquery.com/jquery-1.9.1.js"></script> <!-- Skripta za funkcionisanje uploada slika preko ajax-a  -->
+
+
 
   </body>
 </html>

@@ -29,6 +29,11 @@ $recipeCats = ltrim($recipeCats, ",");
 $recipeIngrs = $receptPrikaz['recipe_ingrs'];
 $recipePhotos = $receptPrikaz['recipe_photos'];
 
+
+//upit za rejting trazenog recepta
+$query = "recipe_id = " . $recipeId;
+$recipeRejting = $queryInstance->singleRow("ratings",$query);
+
 if(($recipeStatus == 0) OR ($id == "")){
 	header('Location: ' . ROOT_URL);
 }else{	
@@ -131,7 +136,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
 			}?>
 		 	</small><br> <br>
-		 	<small><strong>Rejting: </strong>3.7 (156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
+		 	<small><strong>Rejting: <?php echo $recipeRejting['rating_name']; ?>  </strong>(156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
 		 	<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
 			<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br><br>
 		</div>
