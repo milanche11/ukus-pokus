@@ -127,13 +127,13 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 		//echo $query;
 	}
 
-	//echo $query;
+	echo $query;
 	$database->query("SELECT * FROM recipes WHERE (status = 1) $query ");
 	$recRows = $database->resultSet();
 	$numberRecipes = count($recRows);
-	echo "<div class='col-sm-8 offset-sm-2 text-center'>";
+	echo "<div class='col-sm-12 text-center'>";
 	echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
-	echo "</div>";
+	echo "</div><br><br>";
 	
 	if($numberRecipes > 0){	
 		foreach ($recRows as $item) {
@@ -172,11 +172,14 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
  	}
 	$query= rtrim($query, "OR ");
 	$query .= ")";
+	
 	//echo $query;
 	$database->query("SELECT * FROM recipes WHERE (status = 1) $query ");
 	$recRows = $database->resultSet();
 	$numberRecipes = count($recRows);
-	echo "<h4 class='text-center'>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4><br>";
+	echo "<div class='col-sm-12 text-center'>";
+	echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
+	echo "</div><br><br>";
 	if($numberRecipes > 0){	
 		foreach ($recRows as $item) {
 	    			echo '<p>';

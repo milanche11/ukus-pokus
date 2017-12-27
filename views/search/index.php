@@ -298,13 +298,6 @@ $("select").on("select2:unselect", function (evt) {
           return ajax_call(select_val, posude, vreme, kategorije, rejting);
 });
 
-//Sprecavanje skakanja strane na vrh na unselect
-$("select[name=pretraga]").on("select[name=pretraga]:focusout", function(){
-   preventDefault();
-    alert('ops');
-});
-
-
 // Slanje izabranih dugmica za broj posuda
 $("input[name='posude']").click(function(){
       posude =[];

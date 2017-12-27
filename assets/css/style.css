@@ -76,7 +76,8 @@ body p {
 }
 div.beige {
   height: 30px;
- width: 100vw;
+  width: 100vw;
+  padding-right: 30px;
 }
 /* Ikonice za DM */
 img.soc{
@@ -172,6 +173,8 @@ img.main-logo {
     width: 100%;
 }
 .cover {
+  margin: 0 !important;
+  padding: 0 !important;
     background: white url('cover2.png') no-repeat !important;
     background-size: cover !important;
     -webkit-background-size: cover;
@@ -224,7 +227,7 @@ div.card.card-body {
 
 
 
-h1, h2, h3, h4, h5, h6 {
+/*h1, h2, h3, h4, h5, h6 {
 	font-family: 'Crushine Brush Script', cursive;
 	color: #503723 !important;
 }
@@ -233,7 +236,7 @@ h1 {
 }
 h2 {
    font-size: 2.5rem !important;
-}
+}*/
 
 
 
@@ -247,24 +250,11 @@ h2 {
 
 
 
-.recipelist {
-	font-family: 'Nunito', sans-serif;
-	text-transform: uppercase;
-	font-weight: 500;
-}
-
-.recipelist a:link, .recipelist a:visited{
-	color: #212121 !important;
-}
-
-.recipelist a:hover, .recipelist a:active{
-	color: #28a745 !important;
-	text-decoration: none !important;
-}
 
 
 
-p.desc  {
+
+/*p.desc  {
 	text-align: left !important;
 	font-size: 0.9rem;
 	font-family: 'Montserrat', sans-serif;
@@ -309,7 +299,7 @@ p.desc  {
 	box-shadow: 0 0 6px #ddd;
 	text-align: center;
 	background-color: #fff;
-}
+}*/
 
 
 
@@ -326,9 +316,9 @@ p.desc  {
 
 
 
-div.check-rejting {
+/*div.check-rejting {
 	margin-left: 15px !important;
-}
+}*/
 
 /* dugme za reset filtera */
 a#reset {
@@ -389,6 +379,11 @@ footer a.nav-link:hover, footer a.nav-link:active {
 
 
 
+
+
+.row {
+  margin-right: -20px !important;
+}
 
 
 

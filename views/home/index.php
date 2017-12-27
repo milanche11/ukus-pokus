@@ -20,11 +20,11 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
     <!-- Naslov -->
     <div class="row">
-       <div class="col-12 text-center">
+       <div class="col-12 text-center"><br>
          <h1 class="white text-shadow">Brzi i ukusni recepti</h1>
          <h1 class="white text-shadow">za svaki dan</h1><br><br>
        </div>
-     </div>
+     </div><!-- naslov kraj -->
      
      <!-- Pretraga -->
      <div class="row">
@@ -48,13 +48,13 @@ $catsAll = $queryInstance->allRows("categories",$query);
             </select> 
           </form>
   
-          <small class="white text-shadow">Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br><br><br>
+          <small class="white text-shadow">Unesite prva dva slova namirnice, a zatim je izaberite iz padajućeg menija.</small><br><br>
         </div><!--kraj polje za pretragu -->
 
         <div class="col-sm-1 justify-content-sm-center text-center" ><!--dugme za dodatne opcije -->
              <a class="btn btn-success mx-auto" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Dodatne opcije</a>
         </div><!-- kraj dugme -->
-        <br><br>
+        <br><br><br>
     </div><!-- kraj pretraga -->
 </div><!-- kraj cover slika i glavna pretraga -->
 
@@ -166,15 +166,6 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
 </div><!-- kraj main -->
 
-
-
-
-
-
-      
-
-
-
 <!-- KRAJ STRANE -->
 
 
@@ -187,7 +178,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
 $("select").select2({            //select2 
   minimumInputLength: 1,
-  placeholder: 'Unesite namirnice',
+  placeholder: 'Unesite namirnice koje želite da upotrebite',
   language: {
        inputTooShort: function () {
        return 'Krenite da kucate...';
@@ -195,8 +186,7 @@ $("select").select2({            //select2
       noResults: function () {
        return 'Nije pronađen nijedan rezultat';
       },
-  
-   }
+     }
 });
 
 $("select").on("select2:select", function (evt) {
@@ -211,34 +201,25 @@ $("select").on("select2:select", function (evt) {
                 checkbox.push($(this).val());
             });
         }
-  
-  return ajax_call(select_val, checkbox);
-
+    return ajax_call(select_val, checkbox);
  }
 });
 
 $("select").on("select2:unselect", function (evt) {
-    
     select_val = $(evt.currentTarget).val();
     checkbox =[];
-    $(".custom-control-input:checked").each(function(){
-                  
+    $(".custom-control-input:checked").each(function(){    
                checkbox.push($(this).val());
           });
 
  if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
-   
-   $("div#result").text("");
-     
+      $("div#result").text("");
   } else {
- 
-      return ajax_call(select_val, checkbox);
-    
+       return ajax_call(select_val, checkbox); 
   }
 });
 
 $(".custom-control-input").click(function(){
-
       checkbox =[];
      $(".custom-control-input:checked").each(function(){
                 checkbox.push($(this).val());
@@ -248,20 +229,16 @@ $(".custom-control-input").click(function(){
   if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
 
       $("div#result").text("");
-     
   } else {        
-            
           return ajax_call(select_val, checkbox);        
       }     
     });
 
 
  function ajax_call() {               // ajax
-
     $.post("assets/ajax.php", {data: select_val , cat: checkbox}, function(result){
             $("div#result").html(result);
     });
-
     return select_val = [];
 }
 
