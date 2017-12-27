@@ -16,7 +16,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
       <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
 
 <!-- POCETAK STRANE -->
-   <div class="container-fluid cover"><!-- cover slika i pretraga--> 
+   <div class="cover"><!-- cover slika i pretraga--> 
 
     <!-- Naslov -->
     <div class="row">
@@ -158,7 +158,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
         </div> <!--kraj dodatne opcije div-a -->
 
      <!-- Prikaz rezultata Ajax pretrage ako ih ima-->
-     <div class= "row" id="result">
+     <div id="result">
      </div> <!-- Kraj prikaza rezultata pretrage -->
 
 
@@ -234,13 +234,28 @@ $(".custom-control-input").click(function(){
       }     
     });
 
-
- function ajax_call() {               // ajax
+//ajax funkcija
+ function ajax_call() {             
     $.post("assets/ajax.php", {data: select_val , cat: checkbox}, function(result){
             $("div#result").html(result);
     });
     return select_val = [];
 }
+
+//zadrzavanje vrednosti nakon dugmeta Back
+$(document).ready(function(){
+       checkbox =[];
+       $(".custom-control-input:checked").each(function(){
+            checkbox.push($(this).val());
+       });
+       select_val = $("select").val();
+       if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
+            $("div#result").text("");
+       } else {        
+            return ajax_call(select_val, checkbox);        
+      }     
+});
+
 
 </script>
 

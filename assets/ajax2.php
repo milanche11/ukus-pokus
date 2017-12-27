@@ -110,16 +110,16 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 				$query .= "(prep_time <=15) OR ";
 			}
 			if($row == "30"){
-				$query .= "(prep_time between 15 AND 30) OR ";
+				$query .= "(prep_time between 16 AND 30) OR ";
 			}
 			if($row == "45"){
-				$query .= "(prep_time between 30 AND 45) OR ";
+				$query .= "(prep_time between 31 AND 45) OR ";
 			}
 			if($row == "60"){
-				$query .= "(prep_time between 45 AND 60) OR ";
+				$query .= "(prep_time between 46 AND 60) OR ";
 			}
 			if($row == "120"){
-				$query .= "(prep_time between 60 AND 120) OR ";
+				$query .= "(prep_time between 61 AND 120) OR ";
 			}		
 	 	}
 		$query = rtrim($query, "OR ");

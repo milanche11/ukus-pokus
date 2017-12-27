@@ -173,8 +173,9 @@ img.main-logo {
     width: 100%;
 }
 .cover {
-  margin: 0 !important;
-  padding: 0 !important;
+  /*margin: 0 !important;
+  padding: 0 !important;*/
+  width: 100vw;
     background: white url('cover2.png') no-repeat !important;
     background-size: cover !important;
     -webkit-background-size: cover;
@@ -216,8 +217,8 @@ img.main-logo {
 #collapseExample {
   margin: 20px !important;
   padding: 0 20px !important;
-  border: 0.15em solid #ba8c54;
-  border-radius: 10px;
+  border: 3px solid #ba8c54;
+  border-radius: 0.40em;
 }
 div.card.card-body {
   border: none !important;
@@ -381,9 +382,6 @@ footer a.nav-link:hover, footer a.nav-link:active {
 
 
 
-.row {
-  margin-right: -20px !important;
-}
 
 
 

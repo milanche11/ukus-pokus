@@ -20,10 +20,10 @@
 </head>
 
 <body>
-  <div class="container-fluid no-gutters nopadding"><!-- Glavni kontejner za ceo sajt -->
+  <div class="container-fluid nopadding"><!-- Glavni kontejner za ceo sajt -->
     
       <!-- Braon trakica na vrhu -->
-      <div class="row nopadding no-gutters">
+      <div class="row">
         <div class="d-flex justify-content-end beige">
           <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/fb.png" class="soc"></a>
           <a><img src="<?php echo ROOT_URL; ?>/assets/images/soc/inst.png" class="soc"></a>
