@@ -72,80 +72,79 @@ echo "<br>";
 $query = " AND (recipe_id=$recipeId) ORDER BY comment_time DESC";
 $commentsAll = $queryInstance->allRows("comments",$query);
 ?>
-<!-- carousel -->
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-12 text-center">
-			<br><h1><?php  echo $recipeTitle;   ?></h1><br>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-8 offset-2">
-			<p class="desc"><?php echo $recipeDesc; ?> </p>
+<!-- POCETAK STRANE -->
+<div class="container-fluid main">
 
-			<!-- Carousel start-->
-			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			  	<ol class="carousel-indicators">
-			  	<li data-target="#carouselExampleIndicators" data-slide-to="0"  class="active"></li>
+	  <div class="row"><!-- Naslov -->
+	    <div class="col-12 text-center">
+	      <br>
+	      <br><h1><?php  echo $recipeTitle;   ?></h1><br>
+	     </div>
 
-		  	<?php
-		  	for ($i=1; $i < $counter; $i++) { 
-		  	    echo '<li data-target="#carouselExampleIndicators" data-slide-to="$i" ></li>';
-		  	}
-		  	?>
-		  </ol>
+	  </div><!-- kraj naslov-->
 
-		  <div class="carousel-inner">
+	  <div class="row"> <!-- karusel-->
+	      <div class="col-8 offset-2 text-center">
+		     <!-- Carousel start-->
+		     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0"  class="active"></li>
 
-		      <div class="carousel-item active">		  
-		      <img class="d-block w-100" src="<?php echo ROOT_URL; ?>assets/images/<?php echo $fotkeAll[0]['photo_link']?>" alt="<?php echo $fotkeAll[0]['photo_alt']?>">
-		      </div>
-		  	<?php
-		  	for ($i=1; $i < $counter; $i++) { 
-		  	    echo '<div class="carousel-item">';
-		  	    echo '<img class="d-block w-100" src=" '. ROOT_URL . '/assets/images/' . $fotkeAll[$i]['photo_link'] . ' " alt="' . $fotkeAll[$i]['photo_alt'] . '">
-		  	    </div>';		  	   
-		  	}
-		  	?>
-		  </div>
+			  	<?php
+			  	for ($i=1; $i < $counter; $i++) { 
+			  	    echo '<li data-target="#carouselExampleIndicators" data-slide-to="$i" ></li>';
+			  	}
+			  	?>
+		             </ol>
 
-		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Prethodna</span>
-		  </a>
+    			     <div class="carousel-inner">
 
-		  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Sledeća</span>
-		  </a>
+		     	         <div class="carousel-item active">		  
+		      		<img class="d-block w-100" src="<?php echo ROOT_URL; ?>assets/images/<?php echo $fotkeAll[0]['photo_link']?>" alt="<?php echo $fotkeAll[0]['photo_alt']?>">
+		      	        </div>
 
-		</div><!--Carousel end -->
-	</div>
-</div>
-<br>
+		  	        <?php
+		  	             for ($i=1; $i < $counter; $i++) { 
+		  	             echo '<div class="carousel-item">';
+		  	             echo '<img class="d-block w-100" src=" '. ROOT_URL . '/assets/images/' . $fotkeAll[$i]['photo_link'] . ' " alt="' . $fotkeAll[$i]['photo_alt'] . '"></div>';	  	   
+		  	             }
+		  	        ?>
+		                  </div> <!-- kraj karusel inner -->
 
-</div> <!-- container fluid end -->
+			     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Prethodna</span></a>
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-8 offset-2">
-			<small><strong>Nalazi se u kategorijama: </strong>
-			<?php foreach ($catAll as $key) {
-				$catId = $key['cat_id'];
-				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
-			}?>
-		 	</small><br> <br>
-		 	<small><strong>Rejting: <?php echo $recipeRejting['rating_name']; ?>  </strong>(156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
-		 	<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
-			<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br><br>
-		</div>
-	</div>
+			     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Sledeća</span></a>
+
+		     </div><!--Carousel end -->
+		     <br>
+	       </div>
+              </div><!-- kraj karusel-->
+
+	<div class="row"><!-- ispis kategorija, vreme, opis, rejting -->
+	     <div class="col-8 offset-2">
+		<small><strong>Nalazi se u kategorijama: </strong>
+		<?php foreach ($catAll as $key) {
+			$catId = $key['cat_id'];
+			echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
+		}?>
+	 	</small><br> <br>
+	 	<small><strong>Rejting: <?php echo $recipeRejting['rating_name']; ?>  </strong>(156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
+	 	<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
+		<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br>
+
+		<!-- opis-->
+		<p class="desc"><?php echo $recipeDesc; ?> </p>
+		<br><br>
+	     </div>
+	</div><!-- kraj opisa i ispisa vremena i rejtinga -->
 
 
 	<!-- Ispis liste sastojaka -->
 	<div class="row">
-		<div class="col-12 text-center">
+		<div class="col-6 offset-2 text-left">
 			<h4>Sastojci:  </h4><br>
 		</div>	
 	</div>
@@ -169,7 +168,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 				$particles = explode(",", $niz);
 
 				//ispis liste sastojaka i njihovih kolicina i jedinica mere
-				echo "<td  class='ingrlist' >";
+				echo "<td  class='ingrlist upper' >";
 				$ingrId = $particles[0]; 
 				$query = " ingredient_id=$ingrId";
 				
@@ -204,12 +203,12 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 
 	<!-- Ispis uputstva za pripremu -->
 	<div class="row">
-		<div class="col-12 text-center">
+		<div class="col-6 offset-2 text-left">
 			<h4>Uputstvo za pripremu: </h4>
 		</div>			
 	</div>
 	<div class="row">
-		<div class="col-10 offset-1">
+		<div class="col-5 offset-2">
 			<p><?php echo $recipeInst; ?> </p><br><br>
 		</div>
 	</div><!-- kraj uputstva za pripremu -->
@@ -220,6 +219,35 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 			<h4>Prijatno! </h4><br><br><br>
 		</div>	
 	</div>
+
+
+
+</div><!-- kraj main -->
+
+<!-- KRAJ STRANE -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+
+
+
+	
+
+	
 
 	<!-- ponovljene kategorije -->
 	<div class="row">

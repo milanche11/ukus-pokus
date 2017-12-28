@@ -251,7 +251,7 @@ $(document).ready(function(){
        select_val = $("select").val();
        if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
             $("div#result").text("");
-       } else {        
+       } else {  
             return ajax_call(select_val, checkbox);        
       }     
 });

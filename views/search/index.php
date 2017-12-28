@@ -17,9 +17,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
       <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
 <!-- end script za Ajax select2-->
 
-
-
-<div class="container-fluid"><!--Glavni kontejner na strani -->
+<!-- POCETAK STRANE -->
+<div class="container-fluid main">
 
 	  <div class="row"><!-- Row za naslov -->
 	    <div class="col-12 text-center">
@@ -247,17 +246,56 @@ $catsAll = $queryInstance->allRows("categories",$query);
   </div><!-- Kraj diva za naprednu pretragu -->
 </form>
 
-     <!-- Prikaz rezultata pretrage ako ih ima-->
-      <br><br>
-      <div class="row">
-      	<div class="col-12 text-center" id="result">
-      	</div>
-      </div> <!-- ubaceno da prikaže rezultate Ajax pretrage-->
-<!-- Kraj prikaza rezultata pretrage -->
-</div><!--Kraj glavnog kontejnera na strani -->
+     <!-- Prikaz rezultata Ajax pretrage ako ih ima-->
+     <div id="result">
+     </div> <!-- Kraj prikaza rezultata pretrage -->
+
+      
+</div><!-- kraj main -->
+
+<!-- KRAJ STRANE -->
 
 <!-- jQuery for search field -->
 <script type="text/javascript">
+
+//zadrzavanje vrednosti nakon dugmeta Back
+$(document).ready(function(){  
+
+    //skupljanje vrednosti iz selecta
+    select_val = $("select").val();
+    if(select_val ==null || select_val ==""){  
+            select_val = [];         
+           console.log(select_val);
+    }
+
+    //skupljanje vrednosti iz posude    
+      $("input[name='posude']:checked").each(function(){
+        posude =[];
+                posude.push($(this).val());
+      });
+
+      //skupljanje vrednosti iz vreme       
+      $("input[name='vreme']:checked").each(function(){
+        vreme =[];
+                vreme.push($(this).val());
+      });
+
+      //skupljanje vrednsoti iz kategorije      
+      $("input[name='kategorije']:checked").each(function(){
+        kategorije =[];
+                kategorije.push($(this).val());
+      });
+
+      //skupljanje vrednosti iz rejtinga      
+      $("input[name='rejting']:checked").each(function(){
+        rejting =[];
+                rejting.push($(this).val());
+      });
+      console.log(select_val,posude,vreme,kategorije, rejting);
+       return ajax_call(select_val, posude, vreme, kategorije, rejting); 
+
+});
+
 
 var select_val;  
 var posude;
@@ -267,9 +305,10 @@ var rejting;
 
 
 
+
 $("select").select2({             
       minimumInputLength: 1,
-      placeholder: 'Unesite namirnice',
+      placeholder: 'Unesite namirnice koje želite da upotrebite...',
       language: {
             inputTooShort: function () {
                    return 'Krenite da kucate...';
@@ -339,9 +378,7 @@ $("input[name='rejting']").click(function(){
 });
 
 
-
-
-
+//Poziv ajaxa
 function ajax_call() {             
        $.post("assets/ajax2.php", {data: select_val, posude: posude, vreme: vreme, kategorije: kategorije, rejting: rejting}, function(result){
             $("div#result").html(result);
@@ -349,12 +386,10 @@ function ajax_call() {
 }
 
 
-
 // Dugme za reset
 $('#reset').click(function() {
     location.reload();
 });
-
 
 
 

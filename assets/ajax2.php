@@ -49,7 +49,7 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 			$query .= "rating_name=". $key ." OR ";
 		}	
 		$query = rtrim($query, "OR ");
-		$query .= ")";
+		$query .= ") ";
 		//echo $query;
 		
 		$database->query("SELECT * FROM ratings WHERE (status = 1) $query  ORDER BY rating_name DESC");
@@ -127,24 +127,30 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 		//echo $query;
 	}
 
-	echo $query;
+	//echo $query;
 	$database->query("SELECT * FROM recipes WHERE (status = 1) $query ");
 	$recRows = $database->resultSet();
 	$numberRecipes = count($recRows);
+	echo "<div class='row'>";
 	echo "<div class='col-sm-12 text-center'>";
 	echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
-	echo "</div><br><br>";
+	echo "</div></div><br><br>";
 	
 	if($numberRecipes > 0){	
-		foreach ($recRows as $item) {
+		foreach ($recRows as $item) {			
+			echo "<div class='row'>";
+			echo "<div class='col-sm-12 text-center'>";
 	    			
 		             $id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 		             $id = str_replace(" ", "-", $id);
 		             $id = $ajax->convertExtendedToNormal($id);	        
-			echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a><br><br>";
-	    		}
-	    		echo "<hr><br><p>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
-	}
+	        			echo '<p>';
+				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
+	        			echo "</p>";
+	        		}
+	       		echo "<hr><br><p>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+	       		echo "</div></div><br><br>";
+    		}
 	
 // Upit za dobijanje svih recepata koji imaju trazene rejtinge
 }elseif ((isset($_POST['rejting']) && is_array($_POST['rejting'])) AND !(isset($_POST['data']) AND isset($_POST['posude']) AND isset($_POST['kategorije']) AND isset($_POST['vreme']))){
@@ -155,7 +161,7 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 		$query .= "rating_name=". $key ." OR ";
 	}	
 	$query = rtrim($query, "OR ");
-	$query .= ")";
+	$query .= ") ";
 	//echo $query;
 	
 	$database->query("SELECT * FROM ratings WHERE (status = 1) $query ");
@@ -177,17 +183,24 @@ if(isset($_POST['data']) OR isset($_POST['posude']) OR isset($_POST['kategorije'
 	$database->query("SELECT * FROM recipes WHERE (status = 1) $query ");
 	$recRows = $database->resultSet();
 	$numberRecipes = count($recRows);
+	echo "<div class='row'>";
 	echo "<div class='col-sm-12 text-center'>";
 	echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
-	echo "</div><br><br>";
+	echo "</div></div><br><br>";
+
 	if($numberRecipes > 0){	
 		foreach ($recRows as $item) {
-	    			echo '<p>';
+			echo "<div class='row'>";
+			echo "<div class='col-sm-12 text-center'>";
+	    			
 		             $id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 		             $id = str_replace(" ", "-", $id);
 		             $id = $ajax->convertExtendedToNormal($id);	        
-			echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a></p>";
-	    		}
-	    		echo "<hr><br><p class='text-center'>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
-	}		
+	        			echo '<p>';
+				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
+	        			echo "</p>";
+	        		}
+	       		echo "<hr><br><p>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+	       		echo "</div></div><br><br>";
+    		}		
 }

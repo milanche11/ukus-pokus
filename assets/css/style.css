@@ -254,14 +254,13 @@ h2 {
 
 
 
-
-/*p.desc  {
+/* ********* pojedinacni recept ************** */
+p.desc  {
 	text-align: left !important;
 	font-size: 0.9rem;
 	font-family: 'Montserrat', sans-serif;
 	font-style: italic;
 }
-
 .cats {
 	padding-right: 15px !important;
 	padding-left: 15px !important;
@@ -272,44 +271,45 @@ h2 {
 	color: #ffffff !important;
 	font-size: 0.6rem;
 }
-
 .cats:hover {
 	color: #ffffff !important;
 }
-
 .table td {
 	font-size: 1.1rem !important;
 	margin-left: -5px !important;
 }
-
 .table {
 	margin-left: -5px !important;
 }
-
 .ingrlist {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	font-size: 1rem;
-	text-transform: uppercase;
+
 }
+.capit {
+    text-transform: capitalize;
+}
+.upper {
+  text-transform: uppercase;
+}
+/* ********* kraj pojedinacni recept ************** */
+
+
+
+
+
+
+/* ??? */
 
 .razmak {
-	padding: 25px !important;
-	margin: 30px !important;
-	border: 1px solid #ddd;
-	box-shadow: 0 0 6px #ddd;
-	text-align: center;
-	background-color: #fff;
-}*/
-
-
-
-
-
-
-
-
-
+  padding: 25px !important;
+  margin: 30px !important;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 6px #ddd;
+  text-align: center;
+  background-color: #fff;
+}
 
 
 
