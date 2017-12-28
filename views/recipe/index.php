@@ -77,9 +77,10 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 <div class="container-fluid main">
 
 	  <div class="row"><!-- Naslov -->
-	    <div class="col-12 text-center">
-	      <br>
-	      <br><h1><?php  echo $recipeTitle;   ?></h1><br>
+	    <div class="col-12 text-center brown">
+	      <br><br>
+	      <h1 ><?php  echo $recipeTitle;   ?></h1><br>
+	      <img src="<?php echo ROOT_URL; ?>/assets/images/separator.png" alt="decor" class="separator">
 	     </div>
 
 	  </div><!-- kraj naslov-->
@@ -125,31 +126,38 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 
 	<div class="row"><!-- ispis kategorija, vreme, opis, rejting -->
 	     <div class="col-8 offset-2">
-		<small><strong>Nalazi se u kategorijama: </strong>
+		<small><!-- <strong>Nalazi se u kategorijama: </strong> -->
 		<?php foreach ($catAll as $key) {
 			$catId = $key['cat_id'];
-			echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
+			echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>&nbsp;&nbsp;";
 		}?>
 	 	</small><br> <br>
-	 	<small><strong>Rejting: <?php echo $recipeRejting['rating_name']; ?>  </strong>(156 glasova) &nbsp;<img src="<?php echo ROOT_URL; ?>/assets/images/5-star-rating.png" alt="5-star-rating">  </small><br>
-	 	<small>	<strong>Vreme pripreme: </strong><?php echo $recipePrep; ?> min</small><br>
-		<small>	<strong>Broj potrebnih posuda: </strong><?php echo $recipeDishes; ?> kom</small><br><br>
+	 	<p><!-- <strong>Rejting: <?php echo $recipeRejting['rating_name']; ?>  </strong>(156 glasova) &nbsp; -->
+	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
+	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
+	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
+	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
+	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-po.png" alt="rating" class='small-img'>&nbsp; (156 glasova)&nbsp;&nbsp;&nbsp;
+	 		<img src="<?php echo ROOT_URL; ?>/assets/images/sat.png" alt="sat" class='small-img'>&nbsp;&nbsp;<?php echo $recipePrep; ?>&nbsp; min&nbsp;&nbsp;&nbsp;&nbsp;
+			<img src="<?php echo ROOT_URL; ?>/assets/images/posuda.png" alt="posuda" class='small-img'>&nbsp;&nbsp;<?php echo $recipeDishes; ?>&nbsp;kom
+		</p>
 
 		<!-- opis-->
 		<p class="desc"><?php echo $recipeDesc; ?> </p>
-		<br><br>
+		
 	     </div>
 	</div><!-- kraj opisa i ispisa vremena i rejtinga -->
 
-
+<div class="sveska"><!-- dizajn sveske -->
+	<br><br>
 	<!-- Ispis liste sastojaka -->
 	<div class="row">
-		<div class="col-6 offset-2 text-left">
-			<h4>Sastojci:  </h4><br>
+		<div class="col-6 offset-1 green">
+			<h4><u>Sastojci: </u></h4>
 		</div>	
 	</div>
 	<div class="row">
-		<div class="col-5 offset-2">
+		<div class="col-5 offset-1">
 			<?php 
 			//upit za dobavljanje sastojaka
 			$sastojci = array();
@@ -178,7 +186,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 				
 				echo "<td class='ingrlist' style='width: 60px;'>";
 				$ammount = $particles[1]; 
-				echo $ammount;
+				echo "<strong>" . $ammount ."</strong>";
 				echo "</td>";
 				
 				$unitId = $particles[2]; 
@@ -188,7 +196,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 					$row = $measure;
 					//echo $red['unit_id'];
 					if ($row['unit_id'] == $unitId) {
-						echo $row['unit_name'];
+						echo "<strong>" . $row['unit_name'] ."</strong>";
 					}
 				}
 				echo "</td>";
@@ -203,16 +211,16 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 
 	<!-- Ispis uputstva za pripremu -->
 	<div class="row">
-		<div class="col-6 offset-2 text-left">
-			<h4>Uputstvo za pripremu: </h4>
+		<div class="col-6 offset-1 green">
+			<h4><u>Uputstvo za pripremu: </u></h4>
 		</div>			
 	</div>
 	<div class="row">
-		<div class="col-5 offset-2">
-			<p><?php echo $recipeInst; ?> </p><br><br>
+		<div class="col-8 offset-1">			
+			<p><?php echo $recipeInst; ?> </p>
 		</div>
 	</div><!-- kraj uputstva za pripremu -->
-
+</div><!-- kraj diva sveska -->
 	<!-- prijatno -->
 	<div class="row">
 		<div class="col-12 text-center">
@@ -220,54 +228,31 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 		</div>	
 	</div>
 
-
-
-</div><!-- kraj main -->
-
-<!-- KRAJ STRANE -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container-fluid">
-
-
-
-	
-
-	
-
-	<!-- ponovljene kategorije -->
+	<!-- kategorije ponovo-->
 	<div class="row">
-		<div class="col-10 offset-1">
-			<small><strong>&nbsp;&nbsp;&nbsp;&nbsp;Potražite i druge recepte u kategorijama: </strong>
+		<div class="col-8 offset-2">
+			<small><strong>Potražite i druge recepte u kategorijama: </strong> &nbsp;
 			<?php foreach ($catAll as $key) {
 				$catId = $key['cat_id'];
-				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>";
-			}?> <br> <br><br>
+				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>&nbsp;&nbsp;";
+			}?> <br> <br>
 			</small>
 		</div>
 	</div> <!-- kategorije kraj -->
-	<hr>
+	
 
+	<!-- naslov komentari -->
+	<div class="row">
+		<div class="col-12 text-center">
+			<br><br><br><h3>Komentari</h3>
+		</div>	
+	</div>
 
 	<!-- komentarisanje -->
 	<div class="row">
-		<div class="col-6 offset-2"><br>
-			<h5>Postavite svoj komentar :  </h5>
-			<small> Ispričajte kako je vama ispalo, da li ste nešto dodali ili drugačije uradili? Ideje za posluživanje i serviranje? Sa čim ste kombinovali?</small><br><br>
+		<div class="col-8 offset-2"><br>
+			<p> Ispričajte nam kako je vama ispalo, da li ste nešto dodali ili drugačije uradili? <br>
+			Ideje za posluživanje i serviranje? Sa čim ste kombinovali?</p><br>
 			<form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
 
 				<input type="hidden" name="recipeid" value="<?php echo $recipeId; ?>">
@@ -286,21 +271,21 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 				  <div class="form-group">
 				 <label for="exampleInputText1">Vaš komentar</label>
 				 <textarea class="form-control" rows="3" placeholder="Unesite svoj komentar..." name="komentar" required></textarea>
-				<br>
+				
 				  </div>	
-				  <button type="submit" class="btn btn-success" name="submit" value="submit">Pošalji</button>
+
+				  <div class="text-right">
+				         <button type="submit" class="btn btn-success" name="submit" value="submit">Pošalji</button>
+				  </div>
+				
 			</form>
-
-
-
-
 		</div>
 	</div><!-- kraj komentarisanja -->
-	<br><hr>
+	<br><br>
 
 	<!-- ispis postojećih komentara -->
 	<div class="row">
-		<div class="col-6 offset-2">
+		<div class="col-8 offset-2">
 			<?php
 			foreach ($commentsAll as $item) {	
 				$time = $item['comment_time'];
@@ -310,7 +295,7 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 				$name = $item['comment_name'];
 			
 			?>
-				<div class="card" style="width: 40rem;">
+				<div class="card">
 				  <div class="card-body">
 				    <h4 class="card-title"><?php echo $name; ?></h4>
 				    <h6 class="card-subtitle mb-2 text-muted"><?php echo $day; ?></h6>
@@ -321,11 +306,11 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 			}
 			?>
 		</div>
-	</div>
+	</div><!-- kraj ispisa postojecih komentara -->
 
-	
-			
-</div><!-- container fluid end -->
+</div><!-- kraj main -->
+
+<!-- KRAJ STRANE -->
 
 <?php
 }

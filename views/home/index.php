@@ -23,15 +23,16 @@ $catsAll = $queryInstance->allRows("categories",$query);
        <div class="col-12 text-center"><br>
          <h1 class="white text-shadow">Brzi i ukusni recepti</h1>
          <h1 class="white text-shadow">za svaki dan</h1><br><br>
+         <h2 class="white text-shadow">Pretraga po namirnicama</h2><br>
        </div>
      </div><!-- naslov kraj -->
      
      <!-- Pretraga -->
-     <div class="row">
+<!--      <div class="row">
           <div class="col-12 text-center">
-               <h2 class="white text-shadow">Pretraga po namirnicama</h2><br>
+               
           </div>
-     </div>  
+     </div>  --> 
 
       <div class="row text-center"><!-- pretraga -->
         <div class="col-sm-7 offset-sm-2 justify-content-sm-center text-center" > <!-- polje za pretragu -->

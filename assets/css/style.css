@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Caveat|Itim|Kalam|Patrick+Hand|Patrick+Hand+SC|Pangolin|Berkshire+Swash|Caveat+Brush|Shadows+Into+Light+Two|Tillana|Montserrat|Open+Sans+Condensed:300|Raleway|Source+Sans+Pro|Baloo|Cherry+Swash|Corben|Kelly+Slab|Modak|Mogra|Oregano|Ribeye+Marrow|Sacramento|Allura|Amatic+SC|Courgette|Dancing+Script|Didact+Gothic|Dosis|Englebert|Forum|Glass+Antiqua|Grand+Hotel|Great+Vibes|Kalam|Kaushan+Script|Life+Savers|Limelight|Marck+Script|Mukta+Malar|News+Cycle|Nunito|Pacifico|Patrick+Hand|Playball|Poiret+One|Rajdhani|Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Caveat|Itim|Encode+Sans|Kalam|Patrick+Hand|Patrick+Hand+SC|Pangolin|Berkshire+Swash|Caveat+Brush|Shadows+Into+Light+Two|Tillana|Montserrat|Open+Sans+Condensed:300|Raleway|Source+Sans+Pro|Baloo|Cherry+Swash|Corben|Kelly+Slab|Modak|Mogra|Oregano|Ribeye+Marrow|Sacramento|Allura|Amatic+SC|Courgette|Dancing+Script|Didact+Gothic|Dosis|Englebert|Forum|Glass+Antiqua|Grand+Hotel|Great+Vibes|Kalam|Kaushan+Script|Life+Savers|Limelight|Marck+Script|Mukta+Malar|News+Cycle|Nunito|Pacifico|Patrick+Hand|Playball|Poiret+One|Rajdhani|Varela+Round');
 /*
 font-family: 'Dosis', sans-serif;
+font-family: 'Encode Sans', sans-serif;
 font-family: 'Raleway', sans-serif;
 font-family: 'Montserrat', sans-serif;
 font-family: 'Source Sans Pro', sans-serif;
@@ -173,9 +174,9 @@ img.main-logo {
     width: 100%;
 }
 .cover {
-  /*margin: 0 !important;
-  padding: 0 !important;*/
-  width: 100vw;
+  margin: 0 0 20px 0 !important;
+  padding: 0 !important;
+  width: 99vw;
     background: white url('cover2.png') no-repeat !important;
     background-size: cover !important;
     -webkit-background-size: cover;
@@ -202,7 +203,7 @@ img.main-logo {
 /* ********* Main div ************** */
 .main{
   background-color: #fff;
-  margin-top: 40px !important;
+  margin-top: 20px !important;
   margin-right: 60px !important;
   margin-left: 60px !important;
   margin-bottom: 40px !important;
@@ -228,10 +229,11 @@ div.card.card-body {
 
 
 
-/*h1, h2, h3, h4, h5, h6 {
-	font-family: 'Crushine Brush Script', cursive;
-	color: #503723 !important;
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Grand Hotel', cursive !important;
 }
+
+/*
 h1 {
   font-size: 3.5rem !important;
 }
@@ -262,12 +264,12 @@ p.desc  {
 	font-style: italic;
 }
 .cats {
-	padding-right: 15px !important;
-	padding-left: 15px !important;
+	padding-right: 10px !important;
+	padding-left: 10px !important;
 	padding-top: 2px !important;
 	padding-bottom: 2px !important;
-	margin-left: 15px;
-	margin-right: 5px;
+/*	margin-left: 5px;
+	margin-right: 5px;*/
 	color: #ffffff !important;
 	font-size: 0.6rem;
 }
@@ -293,6 +295,34 @@ p.desc  {
 .upper {
   text-transform: uppercase;
 }
+/* dugmici za sat, posude i rejting */
+img.small-img{
+  height: 30px !important;
+  width: 30px !important;
+  margin-right: -3px;
+  padding-right: -3px;
+}
+.sveska {
+  margin: 20px 40px !important;
+  padding: 0 20px !important;
+  border: 3px solid #ba8c54;
+  border-radius: 0.40em;
+  background: #fdf8c9;
+  background: -webkit-linear-gradient(top, #DFE8EC 0%, #fdf8c9 8%) 0 50px;
+  background: -moz-linear-gradient(top, #DFE8EC 0%, #fdf8c9 8%) 0 50px;
+  background: linear-gradient(top, #DFE8EC 0%, #fdf8c9 8%) 0 50px;
+  -webkit-background-size: 100% 40px;
+  -moz-background-size: 100% 40px;
+  -ms-background-size: 100% 40px;
+  background-size: 100% 40px;
+}
+.title-rec {
+  font-family: 'Grand Hotel', cursive;
+}
+.separator {
+  height: 20px;
+}
+
 /* ********* kraj pojedinacni recept ************** */
 
 
@@ -331,6 +361,9 @@ a#reset {
 /* ******** Aja klase razno ********* */
 .white {
   color: #fff !important;
+}
+.brown {
+   color: #513724;
 }
 .green {
   color: #28a745 !important;
