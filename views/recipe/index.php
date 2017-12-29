@@ -79,9 +79,8 @@ $commentsAll = $queryInstance->allRows("comments",$query);
 	  <div class="row"><!-- Naslov -->
 	    <div class="col-12 text-center brown">
 	      <br><br>
-	      <h1 ><?php  echo $recipeTitle;   ?></h1><br>
-	      <img src="<?php echo ROOT_URL; ?>/assets/images/separator.png" alt="decor" class="separator">
-	     </div>
+	      <h2 ><?php  echo $recipeTitle;   ?></h2><br>
+	    </div>
 
 	  </div><!-- kraj naslov-->
 

@@ -21,7 +21,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 <div class="container-fluid main">
 
 	  <div class="row"><!-- Row za naslov -->
-	    <div class="col-12 text-center">
+	    <div class="col-12 text-center brown">
 	      <br>
 	      <h2>Napredna pretraga</h2><br><br>
 	     </div>

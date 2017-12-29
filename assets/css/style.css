@@ -15,8 +15,8 @@ font-family: 'Mukta Malar', sans-serif;
 font-family: 'Englebert', sans-serif;
 font-family: 'Dancing Script', cursive;
 font-family: 'Amatic SC', cursive;
-font-family: 'Poiret One', cursive;  naravno
-font-family: 'Courgette', cursive;
+font-family: 'Poiret One', cursive;  hmmmm
+font-family: 'Courgette', cursive; mozda
 font-family: 'Great Vibes', cursive;
 font-family: 'Kaushan Script', cursive;
 font-family: 'Kalam', cursive;
@@ -230,17 +230,28 @@ div.card.card-body {
 
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Grand Hotel', cursive !important;
-}
-
-/*
+	font-family: 'Life Savers', cursive !important;
+  font-weight: 900 !important;
+/*  letter-spacing: 2px;*/
+ }
 h1 {
   font-size: 3.5rem !important;
 }
 h2 {
    font-size: 2.5rem !important;
-}*/
-
+}
+h3 {
+  font-size: 2.1rem !important;
+}
+h4 {
+  font-size: 1.8rem !important;
+}
+h5 {
+  font-size: 1rem !important;
+}
+h6 {
+  font-size: .8rem !important;
+}
 
 
 
@@ -302,6 +313,7 @@ img.small-img{
   margin-right: -3px;
   padding-right: -3px;
 }
+/* sveska bgr */
 .sveska {
   margin: 20px 40px !important;
   padding: 0 20px !important;
@@ -316,13 +328,10 @@ img.small-img{
   -ms-background-size: 100% 40px;
   background-size: 100% 40px;
 }
+/* naslov recepta */
 .title-rec {
   font-family: 'Grand Hotel', cursive;
 }
-.separator {
-  height: 20px;
-}
-
 /* ********* kraj pojedinacni recept ************** */
 
 
@@ -343,8 +352,9 @@ img.small-img{
 
 
 
-
-
+.custom-control-input:checked ~ .custom-control-indicator {
+  background-color: #28a745 !important;
+}
 
 
 /*div.check-rejting {
@@ -372,7 +382,7 @@ a#reset {
   color: #ffffff !important;
 }
 .text-shadow {
-      text-shadow: 0 0 6px #bfbfbf;
+      text-shadow: 0 0 6px #534134;
 }
 .box-shadow {
     box-shadow: 0 0 6px #ddd;
