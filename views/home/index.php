@@ -161,8 +161,11 @@ $catsAll = $queryInstance->allRows("categories",$query);
      <!-- Prikaz rezultata Ajax pretrage ako ih ima-->
      <div id="result">
      </div> <!-- Kraj prikaza rezultata pretrage -->
+
      <!-- Prikaz 6 najnovijih recepata -->
-     <div class='row'>
+     <div class='row no-gutters'>
+     <div class="col-xl-5"> <hr/> </div> <div class="col-xl-2 text-center section-title"> Najnoviji recepti </div>  <div class="col-xl-5"> <hr/> </div>
+      <br> <br> <br> 
        <?php
         $upit = new Database();
         $upit->query("SELECT * FROM recipes WHERE (status = 1)  ORDER BY posting_time DESC LIMIT 6");
@@ -181,7 +184,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
           echo "</div>";
                 }
        ?>
-
+          <br> <br> 
      </div><!-- Kraj prikaz 6 najnovijih recepata -->
 
 
