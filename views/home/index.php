@@ -1,15 +1,15 @@
-<?php
+<!--  <?php
 $homemodel = new HomeModel();
 $queryInstance = new Query();
 
 // upit za dobijanje sastojaka za upis u formu za pretragu
-$ingrRows = $homemodel->ingredients();
+ $ingrRows = $homemodel->ingredients();
 
 //upit za dobijanje svih kategorija
 $query = "";
 $catsAll = $queryInstance->allRows("categories",$query);
 
-?>
+?> -->
 
       <!-- Form search -->
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
@@ -161,6 +161,28 @@ $catsAll = $queryInstance->allRows("categories",$query);
      <!-- Prikaz rezultata Ajax pretrage ako ih ima-->
      <div id="result">
      </div> <!-- Kraj prikaza rezultata pretrage -->
+     <!-- Prikaz 6 najnovijih recepata -->
+     <div class='row'>
+       <?php
+        $upit = new Database();
+        $upit->query("SELECT * FROM recipes WHERE (status = 1)  ORDER BY posting_time DESC LIMIT 6");
+        $recepiesNewest = $upit->resultSet();
+        $mouseover = '"#28a745"';
+        $mouseout = '"#212121"';
+
+        foreach ($recepiesNewest as $item) {               
+          $id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
+          $id = str_replace(" ", "-", $id);
+          $id = $upit->convertExtendedToNormal($id);
+          echo "<div class='col-sm-12 col-xl-4 text-center'>";
+                  echo '<p>';
+          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
+          echo "</p>";
+          echo "</div>";
+                }
+       ?>
+
+     </div><!-- Kraj prikaz 6 najnovijih recepata -->
 
 
 
