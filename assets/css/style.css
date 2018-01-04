@@ -264,8 +264,13 @@ hr {
   border-bottom: 0.03rem solid #000000 !important;
        margin-bottom:5px !important; 
        margin-top:15px !important;
- 
-}
+     }
+
+hr.center-hr {
+  border-bottom: 0.03rem solid #000000 !important;
+       margin-bottom:5px !important; 
+       margin-top:27px !important;
+     }
 
 .section-title {
   box-sizing: border-box;

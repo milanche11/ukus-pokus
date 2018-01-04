@@ -164,7 +164,7 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
      <!-- Prikaz 6 najnovijih recepata -->
      <div class='row no-gutters'>
-     <div class="col-xl-5"> <hr/> </div> <div class="col-xl-2 text-center section-title"> Najnoviji recepti </div>  <div class="col-xl-5"> <hr/> </div>
+     <div class="col-xl-5"> <hr> </div> <div class="col-xl-2 text-center section-title"> Najnoviji recepti </div>  <div class="col-xl-5"> <hr> </div>
       <br> <br> <br> 
        <?php
         $upit = new Database();
@@ -184,8 +184,40 @@ $catsAll = $queryInstance->allRows("categories",$query);
           echo "</div>";
                 }
        ?>
-          <br> <br> 
+          <br> <br> <br> <br> 
      </div><!-- Kraj prikaz 6 najnovijih recepata -->
+
+      <!-- Prikaz 6 najpopularnijih recepata -->
+     <div class='row no-gutters'>
+     <div class="col-xl-5"> <hr class="center-hr"> </div> <div class="col-xl-2 text-center section-title"> Najpopularniji recepti </div>  <div class="col-xl-5"> <hr class="center-hr"> </div>
+      <br> <br> <br> <br> 
+       <?php
+        $queryInstance = new Query();
+        $upit = new Database();
+        $upit->query("SELECT * FROM ratings WHERE (status = 1)  ORDER BY rating_name DESC LIMIT 6");
+        $categoriesTop = $upit->resultSet();
+        
+        $mouseover = '"#28a745"';
+        $mouseout = '"#212121"';
+        
+
+        foreach ($categoriesTop as $item) { 
+          $idR=$item['recipe_id'];
+          $query = "recipe_id=".$idR;
+          $upit->query("SELECT * FROM recipes WHERE (status = 1) AND ($query)");   
+          $queryInstance = $upit->single();         
+          $id= mb_strtolower($queryInstance['recipe_id']." ".$queryInstance['recipe_title'], 'UTF-8');
+          $id = str_replace(" ", "-", $id);
+          $id = $upit->convertExtendedToNormal($id);
+          echo "<div class='col-sm-12 col-xl-4 text-center'>";
+                  echo '<p>';
+          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $queryInstance['recipe_title'] . " </a>";
+          echo "</p>";
+          echo "</div>";
+                }
+       ?>
+          <br> <br> <br> <br> 
+     </div><!-- Kraj prikaz 6 najpopularnijih recepata -->
 
 
 
