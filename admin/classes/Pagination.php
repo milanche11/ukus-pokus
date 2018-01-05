@@ -57,7 +57,7 @@ class Pagination extends Model {
 		if ($_GET['id'] < $this->brredova) { 
 			  if ($_GET['id'] < $this->brredova - 3) { $this->returnPagination .=  "<a class='page-link'> ... </a>";}
 			 $this->returnPagination .=  "<a class='page-link' title='Next' href='".ROOT_URL. "" .$this->tablePagination."/".($_GET['id']+1)."'> > </a>";
-			 $this->returnPagination .=  "<a class='page-link' href='".ROOT_URL. "" .$this->tablePagination."/".$this->brredova."'> Poslednja <span class='badge badge-light'>". $this->brredova ."</span></a>";
+			 $this->returnPagination .=  "<a class='page-link' href='".ROOT_URL. "" .$this->tablePagination."/".$this->brredova."'> Poslednja <span class='badge badge-primary'>". $this->brredova ."</span></a>";
 		}
 
 		return $this->returnPagination;
