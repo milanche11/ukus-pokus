@@ -276,10 +276,13 @@ hr.center-hr {
   box-sizing: border-box;
   font-size: 1.3rem;
   font-family: 'Courgette', cursive;
-  
+  }
 
+.result-img{
+  font-weight: 550;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-
 
 
 

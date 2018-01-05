@@ -178,10 +178,28 @@ $catsAll = $queryInstance->allRows("categories",$query);
           $id = str_replace(" ", "-", $id);
           $id = $upit->convertExtendedToNormal($id);
           echo "<div class='col-sm-12 col-xl-4 text-center'>";
-                  echo '<p>';
+          echo "<div class='row'>";
+          echo "<div class='col-sm-12 col-xl-12 text-center'>";
+          echo "<p>";
           echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
           echo "</p>";
           echo "</div>";
+          echo "<div class='col-sm-12 col-xl-12'>";
+          $img = explode( "," , $item['recipe_photos']);
+          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout><img class='d-block w-100' src='".ROOT_URL."assets/images/".$img[0]."' alt='".$item['recipe_title']."' > </a>";           
+          echo "</div>";
+          echo "<div class='col-sm-12 col-xl-12 result-img'>";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/5-star-rating.png' alt='stars' >";
+          echo "</div></div>";
+          echo "<div class='col-sm-12 col-xl-12 result-img'>";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/sat.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$item['prep_time']."&nbsp;min";
+          echo "</div></div>";
+          echo "<div class='col-sm-12 col-xl-12 result-img'>";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/posuda.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$item['dirty_dishes']."&nbsp;posuda";
+          echo "</div></div>";
+          echo "</div>";
+          echo "</div>";
+          
                 }
        ?>
           <br> <br> <br> <br> 
@@ -192,7 +210,6 @@ $catsAll = $queryInstance->allRows("categories",$query);
      <div class="col-xl-5"> <hr class="center-hr"> </div> <div class="col-xl-2 text-center section-title"> Najpopularniji recepti </div>  <div class="col-xl-5"> <hr class="center-hr"> </div>
       <br> <br> <br> <br> 
        <?php
-        $queryInstance = new Query();
         $upit = new Database();
         $upit->query("SELECT * FROM ratings WHERE (status = 1)  ORDER BY rating_name DESC LIMIT 6");
         $categoriesTop = $upit->resultSet();
@@ -202,17 +219,34 @@ $catsAll = $queryInstance->allRows("categories",$query);
         
 
         foreach ($categoriesTop as $item) { 
-          $idR=$item['recipe_id'];
-          $query = "recipe_id=".$idR;
+          $query = "recipe_id=".$item['recipe_id'];
           $upit->query("SELECT * FROM recipes WHERE (status = 1) AND ($query)");   
           $queryInstance = $upit->single();         
           $id= mb_strtolower($queryInstance['recipe_id']." ".$queryInstance['recipe_title'], 'UTF-8');
           $id = str_replace(" ", "-", $id);
           $id = $upit->convertExtendedToNormal($id);
+
           echo "<div class='col-sm-12 col-xl-4 text-center'>";
-                  echo '<p>';
+          echo "<div class='row'>";
+          echo "<div class='col-sm-12 col-xl-12 text-center'>";
+          echo "<p>";
           echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $queryInstance['recipe_title'] . " </a>";
           echo "</p>";
+          echo "</div>";
+          echo "<div class='col-sm-12 col-xl-12'>";
+          $img = explode( "," , $queryInstance['recipe_photos']);
+          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout><img class='d-block w-100' src='".ROOT_URL."assets/images/".$img[0]."' alt='".$queryInstance['recipe_title']."' > </a>";           
+          echo "</div>";
+          echo "<div class='col-sm-12 col-xl-12 result-img'>";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/5-star-rating.png' alt='stars' >";
+          echo "</div></div>";
+          echo "<div class='col-sm-12 col-xl-12 result-img'>";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/sat.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$queryInstance['prep_time']."&nbsp;min";
+          echo "</div></div>";
+          echo "<div class='col-sm-12 col-xl-12 result-img'>";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/posuda.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$queryInstance['dirty_dishes']."&nbsp;posuda";
+          echo "</div></div>";
+          echo "</div>";
           echo "</div>";
                 }
        ?>
