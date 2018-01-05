@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 24, 2017 at 12:57 PM
--- Server version: 5.7.20-log
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Jan 05, 2018 at 11:08 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,15 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
-  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories` (
+  `cat_id` int(11) NOT NULL,
   `cat_name` varchar(255) NOT NULL,
   `cat_link` varchar(255) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`cat_id`),
-  UNIQUE KEY `cat_name_UNIQUE` (`cat_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
@@ -69,17 +64,15 @@ INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_link`, `status`) VALUES
 -- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `comments`;
-CREATE TABLE IF NOT EXISTS `comments` (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
   `comment_name` varchar(255) NOT NULL,
   `comment_email` varchar(255) NOT NULL,
   `comment_text` text NOT NULL,
   `comment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '2' COMMENT 'default status is 2, means that it is new and waits approval, 1 is approved and visible, 0 is unapproved',
-  `recipe_id` int(11) NOT NULL,
-  PRIMARY KEY (`comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  `recipe_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `comments`
@@ -88,9 +81,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
 INSERT INTO `comments` (`comment_id`, `comment_name`, `comment_email`, `comment_text`, `comment_time`, `status`, `recipe_id`) VALUES
 (1, 'Aja', 'aja@aja.com', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\n\r\n', '2017-12-08 12:25:50', 0, 5),
 (2, 'Petar', 'pepa@pepa.com', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n\r\n', '2017-12-08 12:25:50', 2, 5),
-(3, 'Boris', 'boris@boris.com', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\n', '2017-12-08 12:27:10', 1, 5),
+(3, 'Boris', 'boris@boris.com', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.\r\n\r\n', '2017-12-08 12:27:10', 1, 5),
 (4, 'Iva', 'iva@iva.com', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\r\n\r\n', '2017-12-08 12:27:10', 1, 5),
-(5, 'Milan', 'milan@milan.com', 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\r\n\r\n', '2017-12-08 12:27:30', 1, 5),
+(5, 'Milan', 'milan@milan.com', 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\r\n\r\n', '2017-12-08 12:27:30', 1, 5),
 (6, 'Jovana', 'jovana@jovana.com', 'Gulp is a tool that can be of great help to any web designer, but it can be intimidating for beginners. In this course you’re going to learn what Gulp is, how to set it up, and how to use it for creating an awesome front-end workflow—even as a beginner.', '2017-12-08 12:58:46', 2, 3),
 (7, 'Ivan', 'ivan@ivan.com', 'But Gravit is a lot more than just accessible; it’s also packed with professional-level features that position it as the next big up-and-coming graphics app. Whether you’re a UI designer, an illustrator, or any other kind of digital artist, Gravit could quickly find a regular place in your design workflows.\r\n\r\n', '2017-12-08 12:58:46', 2, 2),
 (8, 'Mica', 'mica@mica.com', 'Micin komentar', '2017-12-09 23:46:38', 1, 5),
@@ -102,14 +95,11 @@ INSERT INTO `comments` (`comment_id`, `comment_name`, `comment_email`, `comment_
 -- Table structure for table `ingredients`
 --
 
-DROP TABLE IF EXISTS `ingredients`;
-CREATE TABLE IF NOT EXISTS `ingredients` (
-  `ingredient_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ingredients` (
+  `ingredient_id` int(11) NOT NULL,
   `ingredient_name` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`ingredient_id`),
-  UNIQUE KEY `ingredient_name_UNIQUE` (`ingredient_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ingredients`
@@ -209,15 +199,13 @@ INSERT INTO `ingredients` (`ingredient_id`, `ingredient_name`, `status`) VALUES
 -- Table structure for table `photos`
 --
 
-DROP TABLE IF EXISTS `photos`;
-CREATE TABLE IF NOT EXISTS `photos` (
-  `photo_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `photos` (
+  `photo_id` int(11) NOT NULL,
   `photo_title` varchar(255) NOT NULL,
   `photo_alt` varchar(255) NOT NULL,
   `photo_link` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`photo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `photos`
@@ -244,16 +232,13 @@ INSERT INTO `photos` (`photo_id`, `photo_title`, `photo_alt`, `photo_link`, `sta
 -- Table structure for table `ratings`
 --
 
-DROP TABLE IF EXISTS `ratings`;
-CREATE TABLE IF NOT EXISTS `ratings` (
-  `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ratings` (
+  `rating_id` int(11) NOT NULL,
   `rating_name` enum('1','2','3','4','5') NOT NULL,
   `rating_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '1',
-  `recipe_id` int(11) NOT NULL,
-  PRIMARY KEY (`rating_id`),
-  KEY `recipe_id_fk6_idx` (`recipe_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `recipe_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ratings`
@@ -269,7 +254,8 @@ INSERT INTO `ratings` (`rating_id`, `rating_name`, `rating_time`, `status`, `rec
 (7, '1', '2017-12-20 09:57:35', 1, 7),
 (8, '5', '2017-12-20 09:57:35', 1, 8),
 (9, '4', '2017-12-20 09:57:35', 1, 9),
-(10, '2', '2017-12-20 09:57:35', 1, 10);
+(10, '2', '2017-12-20 09:57:35', 1, 10),
+(11, '1', '2018-01-04 00:15:21', 1, 11);
 
 -- --------------------------------------------------------
 
@@ -277,9 +263,8 @@ INSERT INTO `ratings` (`rating_id`, `rating_name`, `rating_time`, `status`, `rec
 -- Table structure for table `recipes`
 --
 
-DROP TABLE IF EXISTS `recipes`;
-CREATE TABLE IF NOT EXISTS `recipes` (
-  `recipe_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `recipes` (
+  `recipe_id` int(11) NOT NULL,
   `recipe_title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `prep_time` int(11) NOT NULL,
@@ -291,10 +276,8 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `recipe_ingrs` varchar(255) NOT NULL COMMENT 'string: ingr_id, ammount, unit_id/ingr_id, ammount, unit_id/.... double explode',
   `recipe_ingrs_id` varchar(255) NOT NULL,
   `recipe_photos` varchar(255) NOT NULL COMMENT 'string explode photo_ids',
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`recipe_id`),
-  KEY `user_id_fk_idx` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `user_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `recipes`
@@ -305,8 +288,13 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, 
 (2, 'Torta od šargarepe', 'Zekina omiljena', 46, 3, 'dfjhjkhkhjkhjkhjk', '2017-11-23 10:45:11', 1, ',2,4,5,8,', '2,5,9/5,7,8/9,5,6', ',2,5,9,', '3,4,5', 2),
 (3, 'Krempite', 'Mamin specijalitet', 15, 5, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, ',7,10,', '1,3,2/3,5,9/4,5,/9,5,6/6,5,6', ',1,3,4,9,6,', '6,7,8', 1),
 (4, 'Jagode sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, ',7,8,9,', '2,3,11/3,80,5/7,6,11', ',2,3,7,', '9,10', 3),
-(5, 'Američke palačinke sa medom i šumskim voćem', 'Omiljeni doručak ili užina onima koji žure, a dosadili su im sendviči i kaše od pahuljica. Odlične i sa slanim i sa slatkim nadevima. Nije vam potrebno puno iskustva da bi vam ispale odlično.', 15, 2, '<br><br><strong>Korak 1:</strong><br>U jednoj većoj posudi umutiti sve sastojke zajedno.\r\n\r\n<br><br><strong>Korak 2:</strong><br>Tiganj srednje veličine podmazati sa vrlo malo ulja, zagrejati na najjačoj temperaturi i manjom kutlačom razlivati palačinkice prečnika oko 15 cm. Čim dobije zlatno braon boju sa jedne strane odmah okretati i pržiti kratko i sa druge strane. \r\n\r\n<br><br><strong>Korak 3:</strong><br>Filovati slanim ili slatkim nadevima, i služiti tople.', '2017-12-01 00:28:56', 1, ',3,12,16,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,17', ',4,8,5,1,23,', '9,10,11,12,13', 1),
-(6, 'Ananas sa šlagom i keksom', 'Njam njam pojesti sveeeee', 5, 1, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2017-11-23 10:45:11', 1, ',7,8,9,11,', '2,5,8/3,5,4/7,1,2/6,6,6/12,5,6', ',2,3,7,6,12,', '9,10', 3);
+(5, 'Američke palačinke sa medom i šumskim voćem', 'Omiljeni doručak ili užina onima koji žure, a dosadili su im sendviči i kaše od pahuljica. Odlične i sa slanim i sa slatkim nadevima. Nije vam potrebno puno iskustva da bi vam ispale odlično.', 15, 2, '<br><br><strong>Korak 1:</strong><br>U jednoj većoj posudi umutiti sve sastojke zajedno.\r\n\r\n<br><br><strong>Korak 2:</strong><br>Tiganj srednje veličine podmazati sa vrlo malo ulja, zagrejati na najjačoj temperaturi i manjom kutlačom razlivati palačinkice prečnika oko 15 cm. Čim dobije zlatno braon boju sa jedne strane odmah okretati i pržiti kratko i sa druge strane. \r\n\r\n<br><br><strong>Korak 3:</strong><br>Filovati slanim ili slatkim nadevima, i služiti tople.', '2017-12-01 00:28:56', 1, ',3,12,16,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,17', ',4,8,5,1,23,', '11,12,13', 1),
+(6, 'Ananas sa šlagom i keksom', 'Njam njam pojesti sveeeee', 5, 1, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2017-11-23 10:45:11', 1, ',7,8,9,11,', '2,5,8/3,5,4/7,1,2/6,6,6/12,5,6', ',2,3,7,6,12,', '12,13', 3),
+(7, 'Slatke palačinke', 'Divne slatke palačinke', 30, 3, 'sjakdhsakjdhsakjdhsajkdhsakjdhsajkjsjsjkhdasjdhsakjdhsajkdhsakjdhsajdkhsajkdhsajkdhsjakdhakdjsadsad', '2017-12-31 15:11:26', 1, ',7,1,3,4,5,', '2,3,11/3,80,5/7,6,11', ',1,2,3,4,5,6,7,8,9,11,', '1', 1),
+(8, 'Šnenokle', 'Preslatki slatkiš', 45, 5, 'fdddsfsdfdsfjdskfjdsklfjleijfeifjcmxnverignvm', '2017-12-31 15:11:26', 1, ',7,1,3,4,5,9,2,', '2,3,11/3,80,5/7,6,11,5', ',1,2,3,4,5,6,7,8,9,11,', '2', 1),
+(9, 'Avokado creme torta', 'Vegasnska torta', 60, 7, 'ksdlaskdsalkdjskadjkslasakl\r\nbal bla Avokado', '2017-12-31 16:11:09', 1, ',1,3,6,9,17,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',2,3,7,6,12,5,', '1', 1),
+(10, 'Čokoladni mus', 'Slatkiš od poslastice', 55, 7, 'csacdcdcdsc\r\ncds\r\nc\r\ndsc\r\nsd\r\nvfgfdgfdgfdg', '2018-01-04 00:18:49', 1, ',5,9,2,1,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',1,2,3,4,5,6,7,8,9,11,', '2', 2),
+(11, 'Piletina sa kikirikijem', 'Kineska piletina sa kikirikijem', 45, 5, 'dfwkfwlf\r\nwefwe\r\ncwefć\r\nwefwefewfwef', '2018-01-04 00:20:51', 1, ',7,1,3,4,5,9,2', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',1,2,3,4,5,6,7,8,9,', '5', 1);
 
 -- --------------------------------------------------------
 
@@ -314,13 +302,11 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, 
 -- Table structure for table `units`
 --
 
-DROP TABLE IF EXISTS `units`;
-CREATE TABLE IF NOT EXISTS `units` (
-  `unit_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `units` (
+  `unit_id` int(11) NOT NULL,
   `unit_name` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`unit_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `units`
@@ -363,18 +349,14 @@ INSERT INTO `units` (`unit_id`, `unit_name`, `status`) VALUES
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1' COMMENT '0 = off\n1 = superadmin\n2 = admin\n3 = editor',
-  PRIMARY KEY (`user_id`,`user_email`),
-  UNIQUE KEY `user_email_UNIQUE` (`user_email`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `status` int(11) NOT NULL DEFAULT '1' COMMENT '0 = off\n1 = superadmin\n2 = admin\n3 = editor'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
@@ -386,8 +368,109 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `username`, `password
 (3, 'Milan', 'mirkovicmilan0211@gmail.com', 'milanche', 'f0aeddf5d2e8e0eac746ba986b7f0080', 3),
 (4, 'Ivana', 'sapic.iva@gmail.com', 'sapiciva', 'f0aeddf5d2e8e0eac746ba986b7f0080', 1),
 (5, 'Boris', 'bvatovec@gmail.com', 'bvatovec', 'f0aeddf5d2e8e0eac746ba986b7f0080', 1);
-COMMIT;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`cat_id`),
+  ADD UNIQUE KEY `cat_name_UNIQUE` (`cat_name`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Indexes for table `ingredients`
+--
+ALTER TABLE `ingredients`
+  ADD PRIMARY KEY (`ingredient_id`),
+  ADD UNIQUE KEY `ingredient_name_UNIQUE` (`ingredient_name`);
+
+--
+-- Indexes for table `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`photo_id`);
+
+--
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`rating_id`),
+  ADD KEY `recipe_id_fk6_idx` (`recipe_id`);
+
+--
+-- Indexes for table `recipes`
+--
+ALTER TABLE `recipes`
+  ADD PRIMARY KEY (`recipe_id`),
+  ADD KEY `user_id_fk_idx` (`user_id`);
+
+--
+-- Indexes for table `units`
+--
+ALTER TABLE `units`
+  ADD PRIMARY KEY (`unit_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`,`user_email`),
+  ADD UNIQUE KEY `user_email_UNIQUE` (`user_email`),
+  ADD UNIQUE KEY `username_UNIQUE` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `ingredients`
+--
+ALTER TABLE `ingredients`
+  MODIFY `ingredient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+--
+-- AUTO_INCREMENT for table `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `photo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `recipes`
+--
+ALTER TABLE `recipes`
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `units`
+--
+ALTER TABLE `units`
+  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
