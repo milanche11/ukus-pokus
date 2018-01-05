@@ -13,7 +13,7 @@
 $pagination = new Pagination();
 
 
-$paginationpage = $pagination->allres('recipes', 20, $viewmodel);
+$paginationpage = $pagination->allres('recipes', 10, $viewmodel);
 
 
 ?>
@@ -49,7 +49,9 @@ $paginationpage = $pagination->allres('recipes', 20, $viewmodel);
 <hr>
   <ul class="pagination">
 		<?php echo $pagination->printPagination(); ?>
+
   </ul>
+  Ukupno stranica : <?php echo $pagination->tsetPagination(); ?>
 
 <br>Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
 
