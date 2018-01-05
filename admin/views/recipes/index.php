@@ -2,7 +2,7 @@
 <table class="table table-sm"><!-- Pocetak crtanja tabele -->
   	<thead>
 	    <tr>
-		  <th scope="col"></th>
+		  <th scope="col">#</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Datum objave</th>
 	      <th scope="col"></th>
@@ -11,11 +11,8 @@
   	</thead>
 <?php 
 $pagination = new Pagination();
-
-
 $paginationpage = $pagination->allres('recipes', 10, $viewmodel);
-
-
+$brojac = (($_GET['id']-1) * 10) + 1;
 ?>
 <?php $i=1; foreach ($paginationpage as $item) : ?>
 <?php $date = date_create($item['posting_time']);  // Formatiranje datuma dobijenog u bazi
@@ -25,9 +22,7 @@ $paginationpage = $pagination->allres('recipes', 10, $viewmodel);
 	<tbody>
 	    <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
 	    <tr>
-			 
-
-				<td><?php  //echo $i.'.'; $i++ ?></td>
+				<td><?php echo $brojac."."; ?></td>
 				<td><a href="<?PHP ROOT_URL ?>view/<?php echo $item['recipe_id']; ?>"><?php echo $item['recipe_title']; ?></a></td>
 				<td><?php echo date_format($date, 'Y-m-d'); ?></td>
 				<td></td>
@@ -43,14 +38,14 @@ $paginationpage = $pagination->allres('recipes', 10, $viewmodel);
 				</td>
 	    </tr>
 	</form>
-	<?php endforeach; ?>
+	<?php $brojac++; endforeach; ?>
 	</tbody>
 </table><!-- Kraj crtanja tabele -->
 <hr>
-  <ul class="pagination">
+  <ul class="pagination pagination-sm justify-content-center">
 		<?php echo $pagination->printPagination(); ?>
-
   </ul>
+
   Ukupno stranica : <?php echo $pagination->tsetPagination(); ?>
 
 <br>Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
