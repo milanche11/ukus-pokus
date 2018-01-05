@@ -46,8 +46,6 @@ $brojac = (($_GET['id']-1) * 10) + 1;
 		<?php echo $pagination->printPagination(); ?>
   </ul>
 
-  Ukupno stranica : <?php echo $pagination->tsetPagination(); ?>
-
 <br>Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.<br><br>
 
 <a type="button" href="<?PHP ROOT_URL ?>insert" class="btn btn-primary btn-sm" name="insert">UNESI RECEPT</a><br><br><br>
