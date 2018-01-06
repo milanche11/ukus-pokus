@@ -1,9 +1,9 @@
 <?php
 
-include '../config.php';
-include '../classes/Database.php';
-
-$upit = new Database();
+include ('../config.php');
+include ('../classes/Model.php');
+include ('../classes/Query.php');
+$upit = new Query();
 
 if ($_POST['data'] !=null && $_POST['data'] !="") {
 
@@ -20,7 +20,7 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
        		}
 
         		$query= rtrim($query, "AND ");
-		$upit->query("SELECT * FROM recipes WHERE ". $query );
+		$upit->query("SELECT recipe_id,recipe_title FROM recipes WHERE ". $query );
 		$recRows = $upit->resultSet();
 		$numberRecipes = count($recRows);
 		echo "<div class='row'>";
@@ -53,7 +53,7 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 			$query .= "recipe_ingrs_id like '%" . "," .$row. "," . "%' AND ";
    		}
 	  	$query= rtrim($query, "AND ");
-		$upit->query("SELECT * FROM recipes WHERE ". $query );
+		$upit->query("SELECT recipe_id,recipe_title FROM recipes WHERE ". $query );
 		$recRows = $upit->resultSet();
 		$numberRecipes = count($recRows);
 
@@ -88,7 +88,7 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 		      			$query .= "recipe_cats like '%" . "," .$row. "," . "%' AND ";
 		       		}
 		       		$query= rtrim($query, "AND ");
-				$upit->query("SELECT * FROM recipes WHERE ". $query );
+				$upit->query("SELECT recipe_id,recipe_title FROM recipes WHERE ". $query );
 				$recRows = $upit->resultSet();
 				$numberRecipes = count($recRows);
 
