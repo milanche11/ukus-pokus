@@ -1,4 +1,4 @@
-<!--  <?php
+<?php
 $homemodel = new HomeModel();
 $queryInstance = new Query();
 
@@ -9,7 +9,7 @@ $queryInstance = new Query();
 $query = "";
 $catsAll = $queryInstance->allRows("categories",$query);
 
-?> -->
+?>
 
       <!-- Form search -->
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
@@ -167,16 +167,16 @@ $catsAll = $queryInstance->allRows("categories",$query);
      <div class="col-xl-5"> <hr> </div> <div class="col-xl-2 text-center section-title"> Najnoviji recepti </div>  <div class="col-xl-5"> <hr> </div>
       <br> <br> <br> 
        <?php
-        $upit = new Database();
-        $upit->query("SELECT * FROM recipes WHERE (status = 1)  ORDER BY posting_time DESC LIMIT 6");
-        $recepiesNewest = $upit->resultSet();
+        
+        $queryInstance->query("SELECT recipe_id,recipe_title,prep_time,recipe_photos,dirty_dishes FROM recipes WHERE (status = 1)  ORDER BY posting_time DESC LIMIT 6");
+        $recepiesNewest = $queryInstance->resultSet();
         $mouseover = '"#28a745"';
         $mouseout = '"#212121"';
 
         foreach ($recepiesNewest as $item) {               
           $id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
           $id = str_replace(" ", "-", $id);
-          $id = $upit->convertExtendedToNormal($id);
+          $id = $queryInstance->convertExtendedToNormal($id);
           echo "<div class='col-sm-12 col-xl-4 text-center'>";
           echo "<div class='row'>";
           echo "<div class='col-sm-12 col-xl-12 text-center'>";
@@ -210,9 +210,9 @@ $catsAll = $queryInstance->allRows("categories",$query);
      <div class="col-xl-5"> <hr class="center-hr"> </div> <div class="col-xl-2 text-center section-title"> Najpopularniji recepti </div>  <div class="col-xl-5"> <hr class="center-hr"> </div>
       <br> <br> <br> <br> 
        <?php
-        $upit = new Database();
-        $upit->query("SELECT * FROM ratings WHERE (status = 1)  ORDER BY rating_name DESC LIMIT 6");
-        $categoriesTop = $upit->resultSet();
+        
+        $queryInstance->query("SELECT recipe_id FROM ratings WHERE (status = 1)  ORDER BY rating_name DESC LIMIT 6");
+        $categoriesTop = $queryInstance->resultSet();
         
         $mouseover = '"#28a745"';
         $mouseout = '"#212121"';
@@ -220,31 +220,31 @@ $catsAll = $queryInstance->allRows("categories",$query);
 
         foreach ($categoriesTop as $item) { 
           $query = "recipe_id=".$item['recipe_id'];
-          $upit->query("SELECT * FROM recipes WHERE (status = 1) AND ($query)");   
-          $queryInstance = $upit->single();         
-          $id= mb_strtolower($queryInstance['recipe_id']." ".$queryInstance['recipe_title'], 'UTF-8');
+          $queryInstance->query("SELECT recipe_id,recipe_title,prep_time,recipe_photos,dirty_dishes FROM recipes WHERE (status = 1) AND ($query)");   
+          $singleRecipe = $queryInstance->single();         
+          $id= mb_strtolower($singleRecipe['recipe_id']." ".$singleRecipe['recipe_title'], 'UTF-8');
           $id = str_replace(" ", "-", $id);
-          $id = $upit->convertExtendedToNormal($id);
+          $id = $queryInstance->convertExtendedToNormal($id);
 
           echo "<div class='col-sm-12 col-xl-4 text-center'>";
           echo "<div class='row'>";
           echo "<div class='col-sm-12 col-xl-12 text-center'>";
           echo "<p>";
-          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $queryInstance['recipe_title'] . " </a>";
+          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $singleRecipe['recipe_title'] . " </a>";
           echo "</p>";
           echo "</div>";
           echo "<div class='col-sm-12 col-xl-12'>";
-          $img = explode( "," , $queryInstance['recipe_photos']);
-          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout><img class='d-block w-100' src='".ROOT_URL."assets/images/".$img[0]."' alt='".$queryInstance['recipe_title']."' > </a>";           
+          $img = explode( "," , $singleRecipe['recipe_photos']);
+          echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout><img class='d-block w-100' src='".ROOT_URL."assets/images/".$img[0]."' alt='".$singleRecipe['recipe_title']."' > </a>";           
           echo "</div>";
           echo "<div class='col-sm-12 col-xl-12 result-img'>";
           echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/5-star-rating.png' alt='stars' >";
           echo "</div></div>";
           echo "<div class='col-sm-12 col-xl-12 result-img'>";
-          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/sat.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$queryInstance['prep_time']."&nbsp;min";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/sat.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$singleRecipe['prep_time']."&nbsp;min";
           echo "</div></div>";
           echo "<div class='col-sm-12 col-xl-12 result-img'>";
-          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/posuda.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$queryInstance['dirty_dishes']."&nbsp;posuda";
+          echo "<div class='float-left '><img src='".ROOT_URL."/assets/images/posuda.png' alt='sat' class='small-img '>&nbsp;&nbsp;".$singleRecipe['dirty_dishes']."&nbsp;posuda";
           echo "</div></div>";
           echo "</div>";
           echo "</div>";
