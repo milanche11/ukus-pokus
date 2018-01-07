@@ -12,7 +12,7 @@ class SetingsModel extends Model{
 
 			for ($ia=0; $ia < 32000 ; $ia++) { 
 			// Ime recepta
-			$recipe_name = 'Recept broj - '.$brojac;
+			$recipe_name = 'Recept broj - '. mt_rand();
 			// Kratak opis recepta
 			$recipe_description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum elit sit amet aliquet interdum. Phasellus pharetra sit amet lacus et tristique. In ac purus libero. Phasellus ac sagittis lorem.';
 			// Vreme pripreme
@@ -61,8 +61,8 @@ class SetingsModel extends Model{
 			$this->execute();
 
 			$brojac++;
+			
 			}
 		}
-
 	}
 }

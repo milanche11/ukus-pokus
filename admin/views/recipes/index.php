@@ -3,7 +3,7 @@
 <table class="table table-sm"><!-- Pocetak crtanja tabele -->
   	<thead>
 	    <tr>
-		  <th scope="col">#</th>
+		  <th scope="col">Br.</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Datum objave</th>
 	      <th scope="col" class="text-right">Options</th>
@@ -12,13 +12,11 @@
 <?php 
 $pagination = new Pagination();
 $paginationpage = $pagination->allres('recipes', 10, $viewmodel);
-$brojac = (($_GET['id']-1) * 10) + 1;
-?>
+$brojac = (($_GET['id']-1) * 10) + 1;?>
 <?php $i=1; foreach ($paginationpage as $item) : ?>
 <?php $date = date_create($item['posting_time']);  // Formatiranje datuma dobijenog u bazi
 		$id = $item["recipe_id"];
-?>
-	
+?>	
 	<tbody>
 	    <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
 	    <tr>
@@ -46,7 +44,3 @@ $brojac = (($_GET['id']-1) * 10) + 1;
   </ul>
 
 <a type="button" href="<?PHP ROOT_URL ?>insert" class="btn btn-primary btn-sm" name="insert">UNESI RECEPT</a> <span class='badge badge-dark'>Ukupno pronadjeno : <?php echo count($viewmodel);  ?> recepata.</span><br><br><br>
-
-<?php 
-
-
