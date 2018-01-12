@@ -23,6 +23,20 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 		$upit->query("SELECT recipe_id,recipe_title FROM recipes WHERE ". $query );
 		$recRows = $upit->resultSet();
 		$numberRecipes = count($recRows);
+		if(isset($_POST['page'])) {
+       			if ($_POST['page'] !=null && $_POST['page'] !="") {
+       			$page = $_POST['page'];
+
+       			$start = ($page-1)*4;
+       			     			
+       		} 
+       	}else {
+       		$start = 0;
+        		}
+        $end = 4; 
+
+      	$recRowsSliced = array_slice($recRows,$start,$end);
+
 		echo "<div class='row'>";
 		echo "<div class='col-sm-12 text-center'>";
 		echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
@@ -34,7 +48,7 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 
 			echo "<div class='row'>";
 			echo "<div class='col-sm-12 text-center'>";
-			foreach ($recRows as $item) {	        			
+			foreach ($recRowsSliced as $item) {	        			
 				$id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 				$id = str_replace(" ", "-", $id);
 				$id = $upit->convertExtendedToNormal($id);
@@ -42,7 +56,9 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
 	        			echo "</p>";
 	        		}
-	       		echo "<hr><br><p>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+	       		echo " <ul class='pagination pagination-sm justify-content-center'>";
+	       		echo printPagination($numberRecipes);
+	       		echo "</ul>";
 	       		echo "</div></div><br><br>";
     		}
 
@@ -56,10 +72,23 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 		$upit->query("SELECT recipe_id,recipe_title FROM recipes WHERE ". $query );
 		$recRows = $upit->resultSet();
 		$numberRecipes = count($recRows);
+		if(isset($_POST['page'])) {
+       			if ($_POST['page'] !=null && $_POST['page'] !="") {
+       			$page = $_POST['page'];
+
+       			$start = ($page-1)*4;
+       			     			
+       		} 
+       	}else {
+       			$start = 0;
+       		}
+       	$end = 4; 
+
+      	$recRowsSliced = array_slice($recRows,$start,$end);
 
 		echo "<div class='row'>";
 		echo "<div class='col-sm-12 text-center'>";
-		echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
+		echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>".$numberRecipes ."</span></h4>";
 		echo "</div></div><br><br>";
 
 			if($numberRecipes > 0){	
@@ -68,7 +97,7 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 
 			echo "<div class='row'>";
 			echo "<div class='col-sm-12 text-center'>";
-			foreach ($recRows as $item) {	        			
+			foreach ($recRowsSliced as $item) {	        			
 				$id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 				$id = str_replace(" ", "-", $id);
 				$id = $upit->convertExtendedToNormal($id);
@@ -76,7 +105,9 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
 	        			echo "</p>";
 	        		}
-	       		echo "<hr><br><p>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+	       		echo " <ul class='pagination pagination-sm justify-content-center'>";
+	       		echo printPagination($numberRecipes);
+	       		echo "</ul>";
 	       		echo "</div></div><br><br>";
     		}
     	}
@@ -91,6 +122,19 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 				$upit->query("SELECT recipe_id,recipe_title FROM recipes WHERE ". $query );
 				$recRows = $upit->resultSet();
 				$numberRecipes = count($recRows);
+				if(isset($_POST['page'])) {
+       			if ($_POST['page'] !=null && $_POST['page'] !="") {
+       			$page = $_POST['page'];
+
+       			$start = ($page-1)*4;
+       			     			
+       		} 
+       	}else {
+       			$start = 0;
+       		}
+       		$end = 4; 
+
+      	$recRowsSliced = array_slice($recRows,$start,$end);
 
 				echo "<div class='row'>";
 				echo "<div class='col-sm-12 text-center'>";
@@ -103,7 +147,7 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 
 			echo "<div class='row'>";
 			echo "<div class='col-sm-12 text-center'>";
-			foreach ($recRows as $item) {	        			
+			foreach ($recRowsSliced as $item) {	        			
 				$id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 				$id = str_replace(" ", "-", $id);
 				$id = $upit->convertExtendedToNormal($id);
@@ -111,7 +155,9 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
 	        			echo "</p>";
 	        		}
-	       		echo "<hr><br><p>Ovde dođe paginacija &nbsp; <strong> 1 ... 5 6 7 8 9 10 11 ... 153 </strong></p>";
+	       		echo " <ul class='pagination pagination-sm justify-content-center'>";
+	       		echo printPagination($numberRecipes);
+	       		echo "</ul>";
 	       		echo "</div></div><br><br>";
 	    			}
         			}
@@ -121,7 +167,22 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 		
 
 
+       		function printPagination($numberRecipes){
+       			
+					$returnPagination="";
+       				
+       				$pages =ceil($numberRecipes / 4);
 
+       			for ($pageid=1; $pageid<=$pages; $pageid++) {
+
+
+			
+				$returnPagination .=  "<a class='page-link' style='color: red; cursor:pointer;' id ='".$pageid."'>" . $pageid . "</a>";
+			
+		 
+		}
+			return $returnPagination;
+       		}
 
 
 

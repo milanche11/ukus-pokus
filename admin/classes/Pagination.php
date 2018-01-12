@@ -51,6 +51,7 @@ class Pagination extends Model {
 			}else{
 				 $this->returnPagination .=  "<a class='page-link' href='".ROOT_URL. "" .$this->tablePagination."/".$this->pageid."'>" . $this->pageid . "</a>";
 			}
+		 
 		}
 
 		if ($_GET['id'] < $this->brredova) { 

@@ -266,7 +266,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
 <script type="text/javascript">
 
   var select_val;  
-  var checkbox ;
+  var checkbox;
+  var pagination;
 
 $("select").select2({            //select2 
   minimumInputLength: 1,
@@ -285,6 +286,7 @@ $("select").on("select2:select", function (evt) {
   
   select_val = $(evt.currentTarget).val();
  if(select_val != null && select_val !=""){ 
+
 
     var n = $(".custom-control-input:checked").length;
         if (n > 0){
@@ -326,9 +328,21 @@ $(".custom-control-input").click(function(){
       }     
     });
 
+$("div#result").on("click",".page-link", function(event){
+  pagination = event.target.id;
+ 
+   checkbox =[];
+     $(".custom-control-input:checked").each(function(){
+                checkbox.push($(this).val());
+            });
+      select_val = $("select").val();
+      return ajax_call(select_val, checkbox, pagination); 
+});
+
+
 //ajax funkcija
  function ajax_call() {             
-    $.post("assets/ajax.php", {data: select_val , cat: checkbox}, function(result){
+    $.post("assets/ajax.php", {data: select_val , cat: checkbox, page: pagination}, function(result){
             $("div#result").html(result);
     });
     return select_val = [];
