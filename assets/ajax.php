@@ -187,14 +187,26 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
        				$pages =ceil($numberRecipes / 12);
 
        			if ($page > 1) { 
-       			$pageidl = $page-1;
+       			
 				$returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='1'> Prva </a>";
-			    $returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='".$pageidl."'> < </a>";
-			 	if ($page > 4) { 
-			 	$returnPagination .=  "<a class='page-link'> ... </a>";}
+			    $returnPagination .=  "<a class='page-link' title='Back' style='cursor:pointer;' id ='".($page-1)."'> < </a>";
+			 	if ($page > 5) { 
+			 	$returnPagination .=  "<a class='page-link' id='point'> ... </a>";}
 					}
+				if ($page>3) {
+							if ($page>($pages-3)){
+								$startt = $page - 3;
+						 		$endd = $pages;
+							} else {
+								$startt = $page - 3;
+						 		$endd = $page + 3;
+							}	
+						 } else {
+						 	$startt = 1;
+						 	$endd = 7;
+						 }
 
-       			for ($pageid=1; $pageid<=$pages; $pageid++) {
+       			for ($pageid=$startt; $pageid<=$endd; $pageid++) {
 
        			if ($pageid == $page){
        				$returnPagination .=  "<a class='page-link' style='color: red; font-weight:700;cursor:pointer;' id ='".$pageid."'>" . $pageid . "</a>";
@@ -205,6 +217,14 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 			
 		 
 				}
+
+
+				if ($page< $pages) { 
+				  if ($page < $pages - 3) { $returnPagination .=  "<a class='page-link' id='pointa'> ... </a>";}
+				 $returnPagination .=  "<a class='page-link' style='cursor:pointer;' title='Next' id ='".($page+1)."'> > </a>";
+				 $returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='".$pages."' > Poslednja <span class='badge badge-primary'>". $pages ."</span></a>";
+		}
+
 			return $returnPagination;
        			}
 
