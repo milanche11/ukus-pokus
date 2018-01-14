@@ -27,39 +27,44 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
        			if ($_POST['page'] !=null && $_POST['page'] !="") {
        			$page = $_POST['page'];
 
-       			$start = ($page-1)*4;
+       			$start = ($page-1)*12;
        			     			
        		} 
        	}else {
+       		$page =1;
        		$start = 0;
         		}
-        $end = 4; 
+        $end = 12; 
 
       	$recRowsSliced = array_slice($recRows,$start,$end);
 
-		echo "<div class='row'>";
-		echo "<div class='col-sm-12 text-center'>";
+		
+		echo "<div class='col-sm-12 col-xl-12 text-center'>";
 		echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
-		echo "</div></div><br><br>";
+		echo "</div><br><br>";
 
 		if($numberRecipes > 0){	
 			$mouseover = '"#28a745"';
 			$mouseout = '"#212121"';
 
-			echo "<div class='row'>";
-			echo "<div class='col-sm-12 text-center'>";
-			foreach ($recRowsSliced as $item) {	        			
+			
+			
+			foreach ($recRowsSliced as $item) {	  
+				     			
 				$id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 				$id = str_replace(" ", "-", $id);
 				$id = $upit->convertExtendedToNormal($id);
-	        			echo '<p>';
+				echo "<div class='col-sm-12 col-xl-4 text-center'>"; 
+	        	echo '<p>';
 				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
-	        			echo "</p>";
+	        	echo "</p>";
+	        	echo "</div>";
 	        		}
+	        	echo "<div class='col-sm-12 col-xl-12 text-center'>";
 	       		echo " <ul class='pagination pagination-sm justify-content-center'>";
-	       		echo printPagination($numberRecipes);
+	       		echo printPagination($numberRecipes, $page);
 	       		echo "</ul>";
-	       		echo "</div></div><br><br>";
+	       		echo "</div><br><br>";
     		}
 
              } else {
@@ -76,39 +81,43 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
        			if ($_POST['page'] !=null && $_POST['page'] !="") {
        			$page = $_POST['page'];
 
-       			$start = ($page-1)*4;
+       			$start = ($page-1)*12;
        			     			
        		} 
        	}else {
+       			$page =1;
        			$start = 0;
        		}
-       	$end = 4; 
+       	$end = 12; 
 
       	$recRowsSliced = array_slice($recRows,$start,$end);
 
-		echo "<div class='row'>";
-		echo "<div class='col-sm-12 text-center'>";
+		
+		echo "<div class='col-sm-12 col-xl-12 text-center'>";
 		echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>".$numberRecipes ."</span></h4>";
-		echo "</div></div><br><br>";
+		echo "</div><br><br>";
 
 			if($numberRecipes > 0){	
 			$mouseover = '"#28a745"';
 			$mouseout = '"#212121"';
 
-			echo "<div class='row'>";
-			echo "<div class='col-sm-12 text-center'>";
+			
+			
 			foreach ($recRowsSliced as $item) {	        			
 				$id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 				$id = str_replace(" ", "-", $id);
 				$id = $upit->convertExtendedToNormal($id);
-	        			echo '<p>';
+				echo "<div class='col-sm-12 col-xl-4 text-center'>";
+	        	echo '<p>';
 				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
-	        			echo "</p>";
+	        	echo "</p>";
+	        	echo "</div>";
 	        		}
+	        	echo "<div class='col-sm-12 col-xl-12 text-center'>";
 	       		echo " <ul class='pagination pagination-sm justify-content-center'>";
-	       		echo printPagination($numberRecipes);
+	       		echo printPagination($numberRecipes, $page);
 	       		echo "</ul>";
-	       		echo "</div></div><br><br>";
+	       		echo "</div><br><br>";
     		}
     	}
 		} else {
@@ -126,39 +135,43 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
        			if ($_POST['page'] !=null && $_POST['page'] !="") {
        			$page = $_POST['page'];
 
-       			$start = ($page-1)*4;
+       			$start = ($page-1)*12;
        			     			
        		} 
        	}else {
        			$start = 0;
+       			$page =1;
        		}
-       		$end = 4; 
+       		$end = 12; 
 
       	$recRowsSliced = array_slice($recRows,$start,$end);
 
-				echo "<div class='row'>";
-				echo "<div class='col-sm-12 text-center'>";
+				
+				echo "<div class='col-sm-12 col-xl-12 text-center'>";
 				echo "<h4>Ukupno recepata koji ispunjavaju tražene kriterijume : " . "<span style='color: #28a745 !important; font-size: 2rem;'>" . $numberRecipes ."</span></h4>";
-				echo "</div></div><br><br>";
+				echo "</div><br><br>";
 
 				if($numberRecipes > 0){	
 					$mouseover = '"#28a745"';
 					$mouseout = '"#212121"';
 
-			echo "<div class='row'>";
-			echo "<div class='col-sm-12 text-center'>";
+			
+			
 			foreach ($recRowsSliced as $item) {	        			
 				$id= mb_strtolower($item['recipe_id']." ".$item['recipe_title'], 'UTF-8');
 				$id = str_replace(" ", "-", $id);
 				$id = $upit->convertExtendedToNormal($id);
-	        			echo '<p>';
+				echo "<div class='col-sm-12 col-xl-4 text-center'>";
+	        	echo '<p>';
 				echo "<a href='recipe/$id' class='recipelist' style='color: #212121 !important;' onMouseOver=this.style.color=$mouseover onMouseOut=this.style.color=$mouseout>" . $item['recipe_title'] . " </a>";
-	        			echo "</p>";
+	        	echo "</p>";
+	        	echo "</div>";
 	        		}
+	        	echo "<div class='col-sm-12 col-xl-12 text-center'>";
 	       		echo " <ul class='pagination pagination-sm justify-content-center'>";
-	       		echo printPagination($numberRecipes);
+	       		echo printPagination($numberRecipes, $page);
 	       		echo "</ul>";
-	       		echo "</div></div><br><br>";
+	       		echo "</div><br><br>";
 	    			}
         			}
        		}
@@ -167,22 +180,33 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 		
 
 
-       		function printPagination($numberRecipes){
+       		function printPagination($numberRecipes, $page){
        			
 					$returnPagination="";
        				
-       				$pages =ceil($numberRecipes / 4);
+       				$pages =ceil($numberRecipes / 12);
+
+       			if ($page > 1) { 
+       			$pageidl = $page-1;
+				$returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='1'> Prva </a>";
+			    $returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='".$pageidl."'> < </a>";
+			 	if ($page > 4) { 
+			 	$returnPagination .=  "<a class='page-link'> ... </a>";}
+					}
 
        			for ($pageid=1; $pageid<=$pages; $pageid++) {
 
-
+       			if ($pageid == $page){
+       				$returnPagination .=  "<a class='page-link' style='color: red; font-weight:700;cursor:pointer;' id ='".$pageid."'>" . $pageid . "</a>";
+       			}else {
 			
-				$returnPagination .=  "<a class='page-link' style='color: red; cursor:pointer;' id ='".$pageid."'>" . $pageid . "</a>";
+				$returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='".$pageid."'>" . $pageid . "</a>";
+				}
 			
 		 
-		}
+				}
 			return $returnPagination;
-       		}
+       			}
 
 
 

@@ -159,7 +159,8 @@ $catsAll = $queryInstance->allRows("categories",$query);
         </div> <!--kraj dodatne opcije div-a -->
 
      <!-- Prikaz rezultata Ajax pretrage ako ih ima-->
-     <div id="result">
+     <div id="result" class='row'>
+
      </div> <!-- Kraj prikaza rezultata pretrage -->
 
      <!-- Prikaz 6 najnovijih recepata -->
@@ -328,7 +329,8 @@ $(".custom-control-input").click(function(){
       }     
     });
 
-$("div#result").on("click",".page-link", function(event){
+//  slanje ID-a strane na koju je korisnik kliknuo
+$("div#result").on("click","a.page-link", function(event){
   pagination = event.target.id;
  
    checkbox =[];
@@ -336,6 +338,7 @@ $("div#result").on("click",".page-link", function(event){
                 checkbox.push($(this).val());
             });
       select_val = $("select").val();
+     
       return ajax_call(select_val, checkbox, pagination); 
 });
 
