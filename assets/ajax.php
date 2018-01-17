@@ -211,8 +211,13 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 						 		$endd = $page + 3;
 							}	
 						 } else {
+						 	if ($pages >= 7){
 						 	$startt = 1;
 						 	$endd = 7;
+						 }else {
+						 	$startt = 1;
+						 	$endd = $pages;
+						 }
 						 }
 
        			for ($pageid=$startt; $pageid<=$endd; $pageid++) {
