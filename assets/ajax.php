@@ -29,7 +29,10 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 
        			$start = ($page-1)*12;
        			     			
-       		} 
+       		} else {
+       		$page =1;
+       		$start = 0;
+        		}
        	}else {
        		$page =1;
        		$start = 0;
@@ -83,7 +86,10 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 
        			$start = ($page-1)*12;
        			     			
-       		} 
+       		} else {
+       		$page =1;
+       		$start = 0;
+        		}
        	}else {
        			$page =1;
        			$start = 0;
@@ -137,7 +143,10 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 
        			$start = ($page-1)*12;
        			     			
-       		} 
+       		} else {
+       		$page =1;
+       		$start = 0;
+        		}
        	}else {
        			$start = 0;
        			$page =1;
@@ -222,7 +231,7 @@ if ($_POST['data'] !=null && $_POST['data'] !="") {
 				if ($page< $pages) { 
 				  if ($page < $pages - 3) { $returnPagination .=  "<a class='page-link' id='pointa'> ... </a>";}
 				 $returnPagination .=  "<a class='page-link' style='cursor:pointer;' title='Next' id ='".($page+1)."'> > </a>";
-				 $returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='".$pages."' > Poslednja <span class='badge badge-primary'>". $pages ."</span></a>";
+				 $returnPagination .=  "<a class='page-link' style='cursor:pointer;' id ='".$pages."' > Poslednja <span class='badge badge-warning text-center' id ='".$pages."'>". $pages ."</span></a>";
 		}
 
 			return $returnPagination;

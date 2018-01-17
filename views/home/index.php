@@ -331,15 +331,17 @@ $(".custom-control-input").click(function(){
 
 //  slanje ID-a strane na koju je korisnik kliknuo
 $("div#result").on("click","a.page-link", function(event){
+  
   pagination = event.target.id;
- if (pagination == 'point' || pagination == 'pointa' ){}
-  else{
-   checkbox =[];
+  
+  if (pagination == 'point' || pagination == 'pointa' ){}
+   else{
+     checkbox =[];
      $(".custom-control-input:checked").each(function(){
                 checkbox.push($(this).val());
             });
       select_val = $("select").val();
-     alert (pagination);
+    
       return ajax_call(select_val, checkbox, pagination); 
  }
 
