@@ -296,7 +296,7 @@ $("select").on("select2:select", function (evt) {
                 checkbox.push($(this).val());
             });
         }
-    return ajax_call(select_val, checkbox);
+    return ajax_call(select_val, checkbox, pagination =1);
  }
 });
 
@@ -310,7 +310,8 @@ $("select").on("select2:unselect", function (evt) {
  if(select_val ==null && checkbox ==null || select_val =="" && checkbox =="" || select_val ==null && checkbox =="" || select_val =="" && checkbox ==null){
       $("div#result").text("");
   } else {
-       return ajax_call(select_val, checkbox); 
+       
+       return ajax_call(select_val, checkbox, pagination =1); 
   }
 });
 
@@ -325,7 +326,8 @@ $(".custom-control-input").click(function(){
 
       $("div#result").text("");
   } else {        
-          return ajax_call(select_val, checkbox);        
+          
+          return ajax_call(select_val, checkbox,pagination =1);        
       }     
     });
 
