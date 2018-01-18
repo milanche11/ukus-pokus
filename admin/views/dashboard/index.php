@@ -28,5 +28,11 @@
 	</div>
 
 </div>
+<?php
 
+		
+		var_dump($viewmodel);
+
+
+?>
 </div>
