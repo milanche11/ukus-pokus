@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 23, 2018 at 12:22 PM
+-- Generation Time: Feb 26, 2018 at 09:27 PM
 -- Server version: 5.7.20-log
 -- PHP Version: 7.1.9
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ingredient_id`),
   UNIQUE KEY `ingredient_name_UNIQUE` (`ingredient_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ingredients`
@@ -242,7 +242,9 @@ INSERT INTO `ingredients` (`ingredient_id`, `ingredient_name`, `status`) VALUES
 (108, 'papaja', 1),
 (109, 'avokado', 1),
 (110, 'crno grožđe', 1),
-(111, 'belo grožđe', 1);
+(111, 'belo grožđe', 1),
+(112, 'šljive', 1),
+(113, 'kukuruzni griz', 1);
 
 -- --------------------------------------------------------
 
@@ -257,16 +259,16 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `photo_alt` varchar(255) NOT NULL,
   `photo_link` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
-  `recipe_id` int(11) DEFAULT NULL,
+  `recipe_id` int(11) DEFAULT '0',
   PRIMARY KEY (`photo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `photos`
 --
 
 INSERT INTO `photos` (`photo_id`, `photo_title`, `photo_alt`, `photo_link`, `status`, `recipe_id`) VALUES
-(1, 'pita sa mesom', 'pita sa mesom', '1.jpg', 1, 1),
+(1, 'default', 'default', 'default.jpg', 1, 0),
 (2, 'pita sa mesom', 'pita sa mesom', '2.jpg', 1, 2),
 (3, 'torta od šargarepe', 'torta od šargarepe', '3.jpg', 1, 3),
 (4, 'torta od šargarepe', 'torta od šargarepe', '4.jpg', 1, 4),
@@ -277,14 +279,14 @@ INSERT INTO `photos` (`photo_id`, `photo_title`, `photo_alt`, `photo_link`, `sta
 (9, 'američke palačinke', 'američke palačinke', '9.jpg', 1, 9),
 (10, 'američke palačinke', 'američke palačinke', '10.jpg', 1, 10),
 (11, 'američke palačinke', 'američke palačinke', '11.jpg', 1, 11),
-(12, 'američke palačinke', 'američke palačinke', '12.jpg', 1, 12),
+(12, 'američke palačinke', 'američke palačinke', '12.jpg', 1, 196055),
 (13, 'američke palačinke', 'američke palačinke', '13.jpg', 1, 12),
 (15, 'pita sa mesom', 'pita sa mesom', '15.jpg', 1, 1),
 (16, 'krempite', 'krempite', '16.jpg', 1, 1),
 (17, 'američke palačinke', 'američke palačinke', '17.jpg', 1, 2),
 (18, 'američke palačinke', 'američke palačinke', '18.jpg', 1, 2),
 (19, 'pita sa mesom', 'pita sa mesom', '19.jpg', 1, 3),
-(20, 'američke palačinke', 'američke palačinke', '20.jpg', 1, 3),
+(20, 'američke palačinke', 'američke palačinke', '20.jpg', 1, 196055),
 (21, 'američke palačinke', 'američke palačinke', '21.jpg', 1, 4),
 (22, 'torta od šargarepe', 'torta od šargarepe', '22.jpg', 1, 4),
 (23, 'američke palačinke', 'američke palačinke', '23.jpg', 1, 5),
@@ -342,7 +344,8 @@ INSERT INTO `photos` (`photo_id`, `photo_title`, `photo_alt`, `photo_link`, `sta
 (38, 'američke palačinke', 'američke palačinke', '38.jpg', 1, 12),
 (76, 'pita sa jabukama', 'pita sa jabukama', '112.jpg', 1, 25),
 (77, 'kavijar sa orasima', 'kavijar sa orasima', 'kavijar115.png', 1, 13),
-(78, 'supa od povrća', 'supa od povrća', 'supaodpovrca.jpg', 1, NULL);
+(78, 'supa od povrća', 'supa od povrća', 'supaodpovrca.jpg', 1, NULL),
+(79, 'sufle', 'sufle', 'sufle.jpg', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -437,22 +440,22 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `recipe_id` int(11) NOT NULL AUTO_INCREMENT,
   `recipe_title` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `prep_time` int(11) NOT NULL,
-  `dirty_dishes` int(11) NOT NULL,
+  `prep_time` int(11) NOT NULL DEFAULT '5',
+  `dirty_dishes` int(11) NOT NULL DEFAULT '1',
   `instructions` text NOT NULL,
   `posting_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '1',
   `recipe_cats` varchar(255) NOT NULL COMMENT 'string explode cat_ids',
   `recipe_ingrs` varchar(255) NOT NULL COMMENT 'string: ingr_id, ammount, unit_id/ingr_id, ammount, unit_id/.... double explode',
   `recipe_ingrs_id` varchar(255) NOT NULL,
-  `recipe_photos` varchar(255) NOT NULL COMMENT 'string explode photo_ids',
+  `recipe_photos` varchar(255) NOT NULL DEFAULT '1' COMMENT 'string explode photo_ids',
   `user_id` int(11) NOT NULL,
-  `avg_rating` decimal(10,1) DEFAULT NULL,
-  `no_votes` int(11) DEFAULT NULL,
+  `avg_rating` decimal(10,1) NOT NULL DEFAULT '0.0',
+  `no_votes` int(11) NOT NULL DEFAULT '0',
   `recipe_permalink` varchar(255) NOT NULL,
   PRIMARY KEY (`recipe_id`),
   KEY `user_id_fk_idx` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=196054 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=196059 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `recipes`
@@ -484,7 +487,7 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, 
 (26, 'Jabuke sa šlagom', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, ',7,8,9,', '2,3,11/3,80,5/7,6,11', ',2,3,7,', '9,10,13', 3, '2.3', 5, 'jabuke-sa-slagom'),
 (27, 'Pekarski krompir', 'Slatkiš od poslastice', 55, 4, 'csacdcdcdsc\r\ncds\r\nc\r\ndsc\r\nsd\r\nvfgfdgfdgfdg', '2018-01-04 00:18:49', 1, ',5,9,21,1,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',4,8,5,1,23,', '37,1,12', 4, '1.6', 62, 'pekarski-krompir'),
 (13, 'Kesten pire sa šlagom', 'Mamin specijalitet', 15, 5, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, ',7,10,', '1,3,2/3,5,9/4,5,/9,5,6/6,5,6', ',1,3,4,9,6,', '7,6,8', 1, '3.2', 15, 'kesten-pire'),
-(14, 'Kolač sa urmama', 'Veganska torta', 60, 6, 'ksdlaskdsalkdjskadjkslasakl\r\nbal bla Avokado', '2017-12-31 16:11:09', 1, ',1,3,6,9,17,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',2,3,7,6,12,5,', '3,4,6', 1, '2.6', 26, 'kolac-sa-urmama'),
+(14, 'Kolač sa urmama', 'Veganska torta', 60, 5, 'ksdlaskdsalkdjskadjkslasakl\r\nbal bla Avokado', '2017-12-31 16:11:09', 1, ',1,3,6,9,17,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',2,3,7,6,12,5,', '3,4,6', 1, '2.6', 26, 'kolac-sa-urmama'),
 (15, 'Pita sa jabukama', 'Njam njam', 5, 1, 'sadgdfgdfsgdfg', '2017-11-23 10:45:11', 1, ',7,8,9,', '2,3,11/3,80,5/7,6,11', ',2,3,7,', '20,10,13', 5, '2.3', 5, 'pita-sa-jabukama'),
 (28, 'Pikantni krompir', 'Slatkiš od poslastice', 55, 4, 'csacdcdcdsc\r\ncds\r\nc\r\ndsc\r\nsd\r\nvfgfdgfdgfdg', '2018-01-04 00:18:49', 1, ',5,9,21,1,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',4,8,5,1,23,', '38,1,12', 2, '1.6', 62, 'pikantni-krompir'),
 (29, 'Pita sa mesom', 'Hladno predjelo na brzaka', 30, 2, 'fgdsfgsdfgdf', '2017-11-23 10:26:42', 1, ',1,3,6,9,17,', '1,5,9/2,5,9/6,5,12/5,6,8', ',1,2,6,5,', '39,1,2', 1, '4.1', 10, 'pita-sa-mesom'),
@@ -511,7 +514,7 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, 
 (50, 'Pita sa sirom', 'Hladno predjelo na brzaka', 30, 2, 'fgdsfgsdfgdf', '2017-11-23 10:26:42', 1, ',1,3,6,9,17,', '1,5,9/2,5,9/6,5,12/5,6,8', ',1,2,6,5,', '8,1,2', 4, '4.1', 10, 'pita-sa-sirom'),
 (51, 'Nebuloze', 'Preslatki slatkiš', 45, 5, 'fdddsfsdfdsfjdskfjdsklfjleijfeifjcmxnverignvm', '2017-12-31 15:11:26', 1, ',7,1,3,4,5,9,2,', '2,3,11/3,80,5/7,6,11,5', ',1,2,3,4,5,6,7,8,9,11,', '2,5,6', 4, '3.6', 25, 'nebuloze'),
 (52, 'Kesten torta', 'Mamin specijalitet', 15, 5, 'sdgdsfgdfg', '2017-11-23 10:45:11', 1, ',7,10,', '1,3,2/3,5,9/4,5,/9,5,6/6,5,6', ',1,3,4,9,6,', '7,6,8', 5, '3.2', 15, 'kesten-torta'),
-(53, 'Avokado namaz', 'Veganska torta', 60, 6, 'ksdlaskdsalkdjskadjkslasakl\r\nbal bla Avokado', '2017-12-31 16:11:09', 1, ',1,3,6,9,17,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',2,3,7,6,12,5,', '3,4,6', 1, '2.6', 26, 'avokado-namaz'),
+(53, 'Avokado namaz', 'Veganska torta', 60, 5, 'ksdlaskdsalkdjskadjkslasakl\r\nbal bla Avokado', '2017-12-31 16:11:09', 1, ',1,3,6,9,17,', '4,50,1/8,95,5/5,600,3/1,200,5/23,60,1', ',2,3,7,6,12,5,', '3,4,6', 1, '2.6', 26, 'avokado-namaz'),
 (54, 'Zeleni smoothie sa đumbirom, krastavcem i limunom', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type.', 13, 1, '<strong>Korak 1:</strong><br>U jednoj većoj posudi umutiti sve sastojke zajedno. <br><br><strong>Korak 2:</strong><br>Tiganj srednje veličine podmazati sa vrlo malo ulja, zagrejati na najjačoj temperaturi i manjom kutlačom razlivati palačinkice prečnika oko 15 cm. Čim dobije zlatno braon boju sa jedne strane odmah okretati i pržiti kratko i sa druge strane. <br><br><strong>Korak 3:</strong><br>Filovati slanim ili slatkim nadevima, i služiti tople.', '2018-02-18 22:29:08', 1, ',5,6,7,8,9,', '1,5,9/2,5,9/6,5,12/5,6,8', ',2,5,9,', '14,13,12', 3, '5.0', 34, 'tuna-u-sosu-od-meda'),
 (55, 'Krofnice sa vanila kremom i šafranom', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 200, 2, '<strong>Korak 1:</strong><br>U jednoj većoj posudi umutiti sve sastojke zajedno. <br><br><strong>Korak 2:</strong><br>Tiganj srednje veličine podmazati sa vrlo malo ulja, zagrejati na najjačoj temperaturi i manjom kutlačom razlivati palačinkice prečnika oko 15 cm. Čim dobije zlatno braon boju sa jedne strane odmah okretati i pržiti kratko i sa druge strane. <br><br><strong>Korak 3:</strong><br>Filovati slanim ili slatkim nadevima, i služiti tople.', '2018-02-18 22:29:08', 1, ',10,11,12,13,14,', '1,5,9/2,5,9/6,5,12/5,6,8', ',2,5,9,', '24,23,22,21,20', 6, '2.0', 47, 'cokoladna-gitara-torta'),
 (56, 'Čokoladna gitara torta', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type.', 89, 4, '<strong>Korak 1:</strong><br>U jednoj posudi umutiti Prva tri sastojka. <br><br><strong>Korak 2:</strong><br>Poređati sve u veliki pleh i peći na 180 C. Čim dobije zlatno braon boju sa jedne strane odmah okretati i peći kratko i sa druge strane. <br><br><strong>Korak 3:</strong><br>Umutiti u drugu posudu ostale sastojke i preliti preko ispečene osnove. Ohladiti i iseći na kocke. Služiti sa omiljenim kavijarom.', '2018-02-18 22:29:08', 1, ',15,16,17,18,', '1,3,2/3,5,9/4,5,5/9,5,6/6,5,6', ',1,3,4,9,6,', '50, 49,48,47', 6, '2.0', 79, 'krofnice-sa-vanila-kremom'),
@@ -660,7 +663,12 @@ INSERT INTO `recipes` (`recipe_id`, `recipe_title`, `description`, `prep_time`, 
 (197, 'Vruć kolač od jabuka, urmi i sladoleda', 'Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model.', 144, 1, '<strong>Korak 1:</strong><br>Pripremite 4 posude, po jednu za svaku boju fila. Umutite sva četiri fila.<br><br><strong>Korak 2:</strong><br>Ispecite pravougaoni patišpan od jaja, brašna i oraha, i namažite ga omiljenim džemom. <br><br><strong>Korak 3:</strong><br>Isecite patišpan na 4 dela i namažite svaki deo po jednom bojom fila. Premazati šlagom i postaviti figuricu mašne na vrh torte. Odlično se slaže sa šampanjcem.', '2018-02-18 22:29:08', 1, ',1,2,3,4,', '2,5,9/5,7,8/9,5,6', ',1,2,6,5,', '50, 49,48,47', 2, '5.0', 55, 'pogacice-sa-cvarcima'),
 (198, 'Čokoladna gitara torta', 'Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model.', 171, 3, '<strong>Korak 1:</strong><br>Pripremite 4 posude, po jednu za svaku boju fila. Umutite sva četiri fila.<br><br><strong>Korak 2:</strong><br>Ispecite pravougaoni patišpan od jaja, brašna i oraha, i namažite ga omiljenim džemom. <br><br><strong>Korak 3:</strong><br>Isecite patišpan na 4 dela i namažite svaki deo po jednom bojom fila. Premazati šlagom i postaviti figuricu mašne na vrh torte. Odlično se slaže sa šampanjcem.', '2018-02-18 22:29:08', 1, ',5,6,7,8,9,', '3,5,11/7,5,9/9,5,12/21,65,11', ',1,2,6,5,', '37,36,35', 2, '2.0', 32, 'tuna-u-sosu-od-meda'),
 (199, 'Krofnice sa vanila kremom i šafranom', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 268, 4, '<strong>Korak 1:</strong><br>U jednoj posudi umutiti Prva tri sastojka. <br><br><strong>Korak 2:</strong><br>Poređati sve u veliki pleh i peći na 180 C. Čim dobije zlatno braon boju sa jedne strane odmah okretati i peći kratko i sa druge strane. <br><br><strong>Korak 3:</strong><br>Umutiti u drugu posudu ostale sastojke i preliti preko ispečene osnove. Ohladiti i iseći na kocke. Služiti sa omiljenim kavijarom.', '2018-02-18 22:29:08', 1, ',15,16,17,18,', '3,5,11/7,5,9/9,5,12/21,65,11', ',3,7,9,21,', '50, 49,48,47', 7, '3.0', 13, 'krofnice-sa-vanila-kremom'),
-(200, 'Krofnice sa vanila kremom i šafranom', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type.', 73, 4, '<strong>Korak 1:</strong><br>U jednoj većoj posudi umutiti sve sastojke zajedno. <br><br><strong>Korak 2:</strong><br>Tiganj srednje veličine podmazati sa vrlo malo ulja, zagrejati na najjačoj temperaturi i manjom kutlačom razlivati palačinkice prečnika oko 15 cm. Čim dobije zlatno braon boju sa jedne strane odmah okretati i pržiti kratko i sa druge strane. <br><br><strong>Korak 3:</strong><br>Filovati slanim ili slatkim nadevima, i služiti tople.', '2018-02-18 22:29:08', 1, ',15,16,17,18,', '4,50,1/8,95,5/6,600,3/1,200,5/23,60,17', ',2,5,9,', '46,45,44,43,42', 7, '4.0', 71, 'krofnice-sa-vanila-kremom');
+(200, 'Krofnice sa vanila kremom i šafranom', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type.', 73, 4, '<strong>Korak 1:</strong><br>U jednoj većoj posudi umutiti sve sastojke zajedno. <br><br><strong>Korak 2:</strong><br>Tiganj srednje veličine podmazati sa vrlo malo ulja, zagrejati na najjačoj temperaturi i manjom kutlačom razlivati palačinkice prečnika oko 15 cm. Čim dobije zlatno braon boju sa jedne strane odmah okretati i pržiti kratko i sa druge strane. <br><br><strong>Korak 3:</strong><br>Filovati slanim ili slatkim nadevima, i služiti tople.', '2018-02-18 22:29:08', 1, ',15,16,17,18,', '4,50,1/8,95,5/6,600,3/1,200,5/23,60,17', ',2,5,9,', '46,45,44,43,42', 7, '4.0', 71, 'krofnice-sa-vanila-kremom'),
+(196054, 'Neki novi recept', 'Kraći opis recepta u max. 2 rečenice... tra la la', 30, 2, '&lt;strong&gt;Korak 1&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 2&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 3&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;', '2018-02-26 15:37:47', 1, ',16,17,', '102,1,8/109,2,5/58,5,5', ',102,109,58,', '6,8,', 1, '5.0', 1, 'neki-novi-recept'),
+(196055, 'Kiflice sa kukuruzom', 'Kraći opis recepta u max. 2 rečenice...', 68, 1, '&lt;strong&gt;Korak 1&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 2&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 3&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;', '2018-02-26 15:43:26', 1, ',14,21,13,18,', '102,1,22/60,2,20/32,6,5', ',102,60,32,', '12,20', 1, '0.0', 0, 'novi-receptic'),
+(196056, 'Knedle sa šljivama', 'Kraći opis recepta u max. 2 rečenice...', 45, 1, '&lt;strong&gt;Korak 1&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 2&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 3&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;', '2018-02-26 21:52:41', 1, ',10,14,', '102,46,18/24,15,8/60,2,23', ',102,24,60,', '12,13,17,18', 1, '0.0', 0, 'knedle-sa-sljivama'),
+(196057, 'Papazjanija', 'Kraći opis recepta u max. 2 rečenice...', 5, 1, '&lt;strong&gt;Korak 1&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 2&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 3&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;', '2018-02-26 21:56:55', 1, ',14,', '48,5,23', ',48,', '18', 1, '0.0', 0, 'papazjanija'),
+(196058, 'Čorba od kokosa', 'Kraći opis &lt;b&gt;recepta &lt;/b&gt;u max. 2 rečenice...', 10, 1, '&lt;strong&gt;Korak 1&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 2&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;&lt;strong&gt;Korak 3&lt;/strong&gt;:&lt;br&gt;bla bla..&lt;br&gt;&lt;br&gt;', '2018-02-26 22:00:36', 1, ',10,', '109,15,32/49,20,23', ',109,49,', '12,20', 1, '0.0', 0, 'corba-od-kokosa');
 
 -- --------------------------------------------------------
 
