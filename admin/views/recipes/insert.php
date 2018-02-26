@@ -1,187 +1,225 @@
-<h1>Insert recipes</h1><hr>
+<?php 
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
+$ingredients = $viewmodel[0];  //spisak svih namirnica
+$units = $viewmodel[1];  //spisak svih jedinica mere
+$cats = $viewmodel[2];  //spisak svih kategorija
 
-<?php $query = new Query; ?>
-<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
-    <label>Ime Recepta</label>
-  <div class="row">
-    <div class="col">
-      <input type="text" class="form-control" name="name_recipes" placeholder="Name recipes"><br>
-    </div>
-  </div>
-    <label>Kratak opis</label>
-  <div class="row">
-    <div class="col">
-      <input type="text" class="form-control" name="descriptions" placeholder="Do 200 karaktera"><br>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <label>Vreme pripreme</label>
-      <input type="text" class="form-control" name="time" placeholder="Preparation time min">
-    </div>
-    <div class="col">
-      <label>Prljavo posudje</label>
-      <input type="text" class="form-control" name="drty" placeholder="Drty dishes"><br>
-    </div>
-  </div>
+$ingsAllOption = "<select name='ingredients[]' class='select2'>";
+foreach ($ingredients as $ingredient) {
+	$id = $ingredient['ingredient_id'];
+	$name = $ingredient['ingredient_name'];
+
+	$ingsAllOption .= "<option value='" . $id . "'>" . $name . "</option>";	
+}
+
+$ingsAllOption .= "</select>";
+//echo $ingsAllOption;
+
+$unitsAllOption = "<select name='units[]' class='select2'>";
+foreach ($units as $unit) {
+	$id = $unit['unit_id'];
+	$name = $unit['unit_name'];
+
+	$unitsAllOption .= "<option value='" . $id . "'>" . $name . "</option>";	
+}
+
+$unitsAllOption .= "</select>";
+//echo $unitsAllOption;
 
 
 
 
-  
-<!-- PETAR  -->
-	<?php 
-		$b=1; 
-		$ingr_options = $units_options = $ingrs = $units = "";
+
+?>
+ <script src="<?php echo ROOT_URL; ?>assets/js/lib/jquery/jquery-3.2.1.min.js"></script>
+
+<?php
+if(($superadmin || $admin || $editor) === true){
+
+?>
+<style>
+
+
+</style>
+<div class="box-typical box-typical-padding">				
+	<h5 class="m-t-lg with-border text-center"><i class="font-icon red fas fa-utensils"></i>&nbsp;&nbsp;&nbsp;<strong>Unos novog recepta</strong>&nbsp;&nbsp;&nbsp;<i class="font-icon red fas fa-utensils"></i></h5><br>
+
+
+	<!-- forma za unos recepta -->
+	<form method="POST" action="<?php echo ROOT_URL; ?>recipes/insert" name="newrecipe" enctype='multipart/form-data'>
+		
+		<!-- hidden, admin id -->
+		<input type="hidden" name="authorid" value="<?php echo $_SESSION['user_id'] ; ?>" >
 	
-		foreach($query->allquery('ingredients') as $item){
-			$ingr_options .= '<option value="'. $item['ingredient_id'] .'">'. $item['ingredient_name'] .'</option>';
-			$ingrs .= $item['ingredient_id'].','.$item['ingredient_name'].'/';
-		}
+		<!-- naziv -->
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label">Naziv</label>
+			<div class="col-sm-9">
+				<p class="form-control-static"><input type="text" class="form-control" id="recipetitle" placeholder='Početno slovo mora biti veliko, npr. "Američke palačinke"... ' name="recipetitle"></p>
+			</div>
+		</div>
 
-		foreach($query->allquery('units') as $item){
-			$units_options .= '<option value="'. $item['unit_id'] .'">'. $item['unit_name'] .'</option>';
-			$units .= $item['unit_id'] .','. $item['unit_name'] .'/';
-		}
-
-	?>
-	
-	<label>Sastojci</label>
-	<div id="sastojakall">
-		<div id="sastojak">
-			<div class="row" id="noviSastojak<?php echo $b; ?>"> <!-- Java script kopira od ovog mesta class="row" --> 
+		<!-- permalink -->
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label">Permalink</label>
+			<div class="col-sm-9">
+				<p class="form-control-static"><input type="text" class="form-control" id="permalink" placeholder='Samo mala slova i crtice "-", npr. "americke-palacinke"... ' name="permalink"></p>
+			</div>
+		</div>
+		
+		<!-- kratak opis -->
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label">Kratak opis</label>
+			<div class="col-sm-9 summernote-theme-1">
+				<textarea rows="6" class="summernote" id="description" placeholder="Kraći opis recepta u max. 2 rečenice..." name="description">Kraći opis recepta u max. 2 rečenice...</textarea>
+			</div>
 			
-				<div class="col-4">
-					<select class="form-control" name="ingredients<?php echo $b; ?>" id="">
-						<?php echo $ingr_options; ?>
-					</select>
-				</div>
-				
-				<div class="col-3">
-				  <input type="text" class="form-control" name="kolicina<?php echo $b; ?>" placeholder="kolicina">
-				</div>
-				
-				<div class="col-3">
-					<select class="form-control" name="units<?php echo $b; ?>" >
-						<?php echo $units_options; ?>	
-					</select>
-				</div>
-				
-				<div id="button-div<?php echo $b; ?>" class="col-2">
-					<button type="button" class="button-del" id='button-del<?php echo $b; ?>' onclick="closeDiv('noviSastojak<?php echo $b;?>')"'>-</button>
-					<button type="button" id='button<?php echo $b; ?>' onclick='cloneFunction("<?php echo $b; ?>","<?php echo $ingrs; ?>","<?php echo $units; ?>")'>+</button>
-				</div>
-				
-			<?php $b++ ?>
-			</div> <!-- Zavrsetak kopiranja java scripta -->
-
-
-
 		</div>
-	</div>
-<!--- END PETAR  -->
 
-
-    <label>Kategorije</label>
-	<select class="form-control form-control-lg custom-select" name="categories[]" multiple aria-label="Search for...">
-
-		<?php foreach($query->allquery('categories') as $item) :?>
-		  <option value="<?php echo $item['cat_id']; ?>"> <?php echo $item['cat_name']; ?> </option>
-		<?php endforeach; ?>
-
-	</select> 
-
-	<div class="form-group">
-		<label for="exampleFormControlTextarea1">Opis recepta</label>
-		<textarea class="form-control" name="recept" id="exampleFormControlTextarea1" rows="3"></textarea>
-	</div>
-	
-	
-	<label>Slike</label>
-	
-	<div>	
-		<div>
-			<button type="button" id="add_photo" onclick="addImage()" class="">Add image</button>	
+		<!-- vreme pripreme -->
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label">Vreme pripreme</label>
+			<div class="col-sm-3">
+				<p class="form-control-static"><input type="number" class="form-control" id="preptime" name="preptime" placeholder='Samo brojevi, npr. "30"... '></p>
+			</div>
+			
+			<!-- broj prljavih sudova -->
+			<label for="dirtydishes" class="col-sm-2 form-control-label">Isprljani sudovi</label>
+			<div class="col-sm-3">
+				<select id="dirtydishes" class="form-control" name="dirtydishes">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5 i više</option>
+				</select>
+			</div>		
 		</div>
 		
-		<div>
-			<div id="added_images"></div>
+	
+		<!-- sastojci / kolicina / jedinica mere 1 -->
+		<div class="form-group row addafterthis">
+			<label for='ingredients' class='col-sm-2 form-control-label'>Sastojci, količine i jedinice mere</label>
+			<!-- sastojci -->
+			<div class='col-sm-4'><?php echo $ingsAllOption; ?></div>	
+			<!-- kolicina -->		
+			<div class='col-sm-2'>
+				<p class='form-control-static'><input type='number' class='form-control'  name='ammount[]' placeholder='Samo brojevi, npr. "300"...' ></p>
+			</div>
+			<!-- jedinica mere -->	
+			<div class='col-sm-2'><?php echo $unitsAllOption; ?></div>
+			<!-- dugme + -->
+			<div class='col-sm-1'>
+				<p class='form-control-static'><a class='addfields'><i class='green fas fa-plus-square fa-2x'></i></a></p>
+			</div>
+		</div>
+
+		<!-- sastojci / kolicina / jedinica mere 2 -->
+		<div class="form-group row addthis">
+			<label for='ingredients' class='col-sm-2 form-control-label'></label>
+			<!-- sastojci -->
+			<div class='col-sm-4'><?php echo $ingsAllOption; ?></div>	
+			<!-- kolicina -->		
+			<div class='col-sm-2'>
+				<p class='form-control-static'><input type='number' class='form-control'  name='ammount[]' placeholder='Samo brojevi, npr. "300"...' ></p>
+			</div>
+			<!-- jedinica mere -->	
+			<div class='col-sm-2'><?php echo $unitsAllOption; ?></div>
+			<!-- dugme + -->
+			<!-- <div class='col-sm-1'>
+				<p class='form-control-static'><a class='addfields'><i class='green fas fa-plus-square fa-2x'></i></a></p>
+			</div> -->
+		</div><div class="here"></div>
+
+
+			
+				
+		<!-- uputstvo za pravljenje -->
+		<div  class="form-group row">
+			<label class="col-sm-2 form-control-label">Uputstvo</label>
+			<div class="col-sm-9 summernote-theme-1">
+				<textarea rows="10" class="summernote" id="instructions" placeholder="Uputstvo za pripremu, po koracima..." name="instructions"><strong>Korak 1</strong>:<br>bla bla..<br><br><strong>Korak 2</strong>:<br>bla bla..<br><br><strong>Korak 3</strong>:<br>bla bla..<br><br></textarea>
+			</div>			
 		</div>
 		
-		<input type="hidden" id="images_id" name="images_id" value=""><br>
-	</div>
-	
-
-   
-	<div class="row"> 
-		<div class="col">
-			<input class="btn btn-primary" name="submit" type="submit" value="Add" />
+		<!-- kategorije -->
+		<div  class="form-group row">
+			<label for="cats" class="col-sm-2 form-control-label">Kategorije</label>
+			<div class="col-sm-9">
+				<select id="cats" name="cats[]" class="select2" multiple="multiple">
+					<?php 
+					foreach ($cats as $cat) {
+						$catId = $cat['cat_id'];
+						$catName = $cat['cat_name'];
+						echo '<option value="'. $catId .'">'. $catName .'</option>';
+					}
+					 ?>
+				</select>
+			</div>			
 		</div>
-	</div>
+	<br>
+		<!-- galerija slika -->
+		<div  class="form-group row">
+			<label class="col-sm-2 form-control-label">Galerija slika</label>
+			<div class="col-sm-9">
+				<p>prikaz slika iz galerije, one koje su vec uploadovane</p>
+			</div>			
+		</div>	
 	
-	<input type="hidden" name="ime" value="<?php echo $_SESSION['user_data']['user_id'];?>">
-	<input type="hidden" id="num_of_ingredients" name="num_of_ingredients" value="">
-</form><br><br>
-
-
-
+		<!-- submit -->	
+		<div class="text-center">
+			<button type="text" name="submit" value="submit" class="btn btn-rounded btn-success">Sačuvaj</button>
+		</div>
+	</form>
+</div><!--.box-typical-->
 
 <script>
- $("select").select2();
 
-$("select").on("select2:unselect", function (evt) {
-  if (!evt.params.originalEvent) {
-    return;
-  }
-  
-  evt.params.originalEvent.stopPropagation();
+var cloned;
+
+
+$(".addfields").click(function() {
+	//alert('hello');
+	$('.addthis').addClass('original').clone().insertAfter('.here').addClass('cloned').removeClass('addthis');
 });
 
 </script>
 
 
-<script>
+<?php 
 
-function cloneFunction(b,ingrs,units) {
-    var c = Number(b) + 1 ;
-    var ingr_array = ingrs.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (ingredient_id i ingredient_name) u niz
-    var unit_array = units.split('/'); //rasturanje stringa u kome se nalaze podaci za <option> (unit_id i unit_name) u niz
 
-    var ingr_arrayLength = ingr_array.length-1;
-    var options_ingredient = "";
-    
-    for (var i = 0; i < ingr_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "ingredients"
-      var options_ingr = ingr_array[i].split(',');
-      
-      var option_ingredient = '<option value="' +options_ingr[0]+ '">'+options_ingr[1]+'</option>';
-      var options_ingredient = options_ingredient + option_ingredient; // variabla koja sadrzi sve ingredient <options>
-    }
-  
-  
-	var unit_arrayLength = unit_array.length-1;
-	var options_unit = "";
 
-	for (var i = 0; i < unit_arrayLength; i++) { //petlja koja pravi string u kome se nalaze svi <option> za <select> "units"
-		var options_un = unit_array[i].split(',');
+if(isset($_POST['submit'])){
+	
+	print_r($_POST);
+	echo '<br>';
+	
+}	
 
-		var option_unit = '<option value="' +options_un[0]+ '">'+options_un[1]+'</option>';
-		var options_unit = options_unit + option_unit; // variabla koja sadrzi sve unit <options>
-	}
+ ?>
 
-//  alert (options_unit);
+  <script src="<?php echo ROOT_URL; ?>assets/js/lib/jquery/jquery-3.2.1.min.js"></script>
 
-	$("#sastojak").append("<div class='row'  id='sastojak"+c+"'></div>");
 
-	var select_ingredient = '<div class="col-4"><select class="form-control" name="ingredients'+c+'" id="">'+options_ingredient+'</select></div>';
-	var kolicina = '<div class="col-3"><input type="text" class="form-control" name="kolicina'+c+'" placeholder="kolicina"></div>';
-	var select_unit = '<div class="col-4"><select class="form-control" name="units'+c+'" >'+options_unit+'</select></div>';
-	var button = "<div class='col-1'><button type='button' id='button"+c+"' onclick='cloneFunction(" +c+ ',"' +ingrs+ '","' +units+ '"' +")'>+</button></div>";
 
-	$("#sastojak"+c).append(select_ingredient + kolicina + select_unit + button);
-	$("#button"+b).css("display", "none");
-	$("#num_of_ingredients").val(c);
+
+
+
+
+
+
+<?php
+}elseif ($demo === true) {
+?>
+
+
+
+
+<?php	
 }
-</script>
+
+
+?>
+
+

@@ -1,324 +1,437 @@
-<?php
- $recipemodel = new RecipeModel();
- $queryInstance = new Query();
-
- $recipemodel->comments();
-
-//upit za jedinice mere
-$units = $queryInstance->allRows("units","");
-
-//povlacenje get parametra
+<?php 
+$recipemodel = new recipeModel();
 $id = $recipemodel->getid();
-
-//upit za jedan recept
-$query = "recipe_id=$id";
-$receptPrikaz = $queryInstance->singleRow("recipes",$query);
-
-//promenljive koje sluze za prikazivanje trazenog recepta
-$recipeId = $receptPrikaz['recipe_id'];
-$recipeTitle = $receptPrikaz['recipe_title'];
-$recipeDesc = $receptPrikaz['description'];
-$recipePrep = $receptPrikaz['prep_time'];
-$recipeDishes = $receptPrikaz['dirty_dishes'];
-$recipeInst = $receptPrikaz['instructions'];
-$recipeTime = $receptPrikaz['posting_time'];
-$recipeStatus = $receptPrikaz['status'];
-$recipeCats = $receptPrikaz['recipe_cats'];
-$recipeCats = rtrim($recipeCats,",");
-$recipeCats = ltrim($recipeCats, ",");
-$recipeIngrs = $receptPrikaz['recipe_ingrs'];
-$recipePhotos = $receptPrikaz['recipe_photos'];
-
-
-//upit za rejting trazenog recepta
-$query = "recipe_id = " . $recipeId;
-$recipeRejting = $queryInstance->singleRow("ratings",$query);
-
-if(($recipeStatus == 0) OR ($id == "")){
-	header('Location: ' . ROOT_URL);
-}else{	
-
-//upit za slike
-$slike = array();
-$slike = explode(",", $recipePhotos);
- $query = ' AND (';
- 
-foreach ($slike as $item) {
-	$query .=  " photo_id=" . $item . " OR ";
+if(($_GET['id']) == NULL){
+	header('Location: ' . ROOT_URL); //preusmeravanje na pocetnu ako nema unetog id-ja
 }
- $query = rtrim($query, "OR ");
- $query = $query . ")";
-$fotkeAll = $queryInstance->allRows("photos",$query);
-$counter = count($fotkeAll);
+$recipe = $viewmodel[0];  //ceo recept ali samo iz tabele recepti
+$categoriesAll = $viewmodel[1];  //sve kategorije kojima pripada ovaj recept, iz tabele kategorije
+$ingrsMainArray = $viewmodel[2];  //svi sastojci iz tabela sastojci i jedinice mere
+$commentsAll = $viewmodel[3];  //svi komentari koji su odobreni a pripadaju ovom receptu
+$photosAll = $viewmodel[4];  //sve fotke koje pripadaju ovom receptu
 
-//upit za kategorije
-$kategorije = array();
-$kategorije = explode(",", $recipeCats);
-$query = 'AND (';
-foreach ($kategorije as $key) {
-	$query .= "cat_id=" . $key . " OR ";
-}
-$query = rtrim($query, "OR ");
-$query = $query . ")";
-$catAll = $queryInstance->allRows("categories", $query);
+$nrPhotos = count($photosAll);
 
-//upit za dobavljanje sastojaka
-$sastojci = array();
-//razbijanje po slash-u
-$sastojci = explode("/", $recipeIngrs);
-echo "<br>";
-
-//upit za komentare
-$query = " AND (recipe_id=$recipeId) ORDER BY comment_time DESC";
-$commentsAll = $queryInstance->allRows("comments",$query);
 ?>
 
 <!-- POCETAK STRANE -->
-<div class="container-fluid main">
+<div class="main">
+    <div class="container bestRecipes">
+          <br>
+              <div class="col"><hr></div>
+              <div class="col"><h1 class="text-center"><?php echo $recipe['recipe_title'] ?></h1></div>
+              <div class="col"><hr></div>
+          <br>
+    </div>
 
-	  <div class="row"><!-- Naslov -->
-	    <div class="col-12 text-center brown">
-	      <br><br>
-	      <h2 ><?php  echo $recipeTitle;   ?></h2><br>
-	    </div>
-
-	  </div><!-- kraj naslov-->
-
-	  <div class="row"> <!-- karusel-->
-	      <div class="col-8 offset-2 text-center">
-		     <!-- Carousel start-->
-		     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"  class="active"></li>
-
-			  	<?php
-			  	for ($i=1; $i < $counter; $i++) { 
-			  	    echo '<li data-target="#carouselExampleIndicators" data-slide-to="$i" ></li>';
-			  	}
-			  	?>
-		             </ol>
-
-    			     <div class="carousel-inner">
-
-		     	         <div class="carousel-item active">		  
-		      		<img class="d-block w-100" src="<?php echo ROOT_URL; ?>assets/images/<?php echo $fotkeAll[0]['photo_link']?>" alt="<?php echo $fotkeAll[0]['photo_alt']?>">
-		      	        </div>
-
-		  	        <?php
-		  	             for ($i=1; $i < $counter; $i++) { 
-		  	             echo '<div class="carousel-item">';
-		  	             echo '<img class="d-block w-100" src=" '. ROOT_URL . '/assets/images/' . $fotkeAll[$i]['photo_link'] . ' " alt="' . $fotkeAll[$i]['photo_alt'] . '"></div>';	  	   
-		  	             }
-		  	        ?>
-		                  </div> <!-- kraj karusel inner -->
-
-			     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Prethodna</span></a>
-
-			     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Sledeća</span></a>
-
-		     </div><!--Carousel end -->
-		     <br>
-	       </div>
-              </div><!-- kraj karusel-->
-
-	<div class="row"><!-- ispis kategorija, vreme, opis, rejting -->
-	     <div class="col-8 offset-2">
-		<small><!-- <strong>Nalazi se u kategorijama: </strong> -->
-		<?php foreach ($catAll as $key) {
-			$catId = $key['cat_id'];
-			echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>&nbsp;&nbsp;";
-		}?>
-	 	</small><br> <br>
-	 	<p><!-- <strong>Rejting: <?php echo $recipeRejting['rating_name']; ?>  </strong>(156 glasova) &nbsp; -->
-	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
-	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
-	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
-	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-pu.png" alt="rating" class='small-img'>
-	 		<img src="<?php echo ROOT_URL; ?>/assets/images/zv-po.png" alt="rating" class='small-img'>&nbsp; (156 glasova)&nbsp;&nbsp;&nbsp;
-	 		<img src="<?php echo ROOT_URL; ?>/assets/images/sat.png" alt="sat" class='small-img'>&nbsp;&nbsp;<?php echo $recipePrep; ?>&nbsp; min&nbsp;&nbsp;&nbsp;&nbsp;
-			<img src="<?php echo ROOT_URL; ?>/assets/images/posuda.png" alt="posuda" class='small-img'>&nbsp;&nbsp;<?php echo $recipeDishes; ?>&nbsp;kom
-		</p>
-
-		<!-- opis-->
-		<p class="desc"><?php echo $recipeDesc; ?> </p>
-		
-	     </div>
-	</div><!-- kraj opisa i ispisa vremena i rejtinga -->
-
-<div class="sveska"><!-- dizajn sveske -->
-	<br><br>
-	<!-- Ispis liste sastojaka -->
-	<div class="row">
-		<div class="col-6 offset-1 green">
-			<h4><u>Sastojci: </u></h4>
-		</div>	
-	</div>
-	<div class="row">
-		<div class="col-5 offset-1">
-			<?php 
-			//upit za dobavljanje sastojaka
-			$sastojci = array();
-			//razbijanje po slash-u
-			$sastojci = explode("/", $recipeIngrs);
-
-			echo "<div>";
-			//ispis liste sastojaka
-			echo '<table class="table  sastojci table-sm"><tbody>';
-			foreach ($sastojci as $set) {
-				$niz = $set;			
-				echo "<tr>";
-
-				//razbijanje po zarezu
-				$particles = array();
-				$particles = explode(",", $niz);
-
-				//ispis liste sastojaka i njihovih kolicina i jedinica mere
-				echo "<td  class='ingrlist upper' >";
-				$ingrId = $particles[0]; 
-				$query = " ingredient_id=$ingrId";
-				
-				$ingAll = $queryInstance->singleRow("ingredients",$query);
-				echo $ingAll['ingredient_name'];  
-				echo "</td>";
-				
-				echo "<td class='ingrlist' style='width: 60px;'>";
-				$ammount = $particles[1]; 
-				echo "<strong>" . $ammount ."</strong>";
-				echo "</td>";
-				
-				$unitId = $particles[2]; 
-				echo "<td  class='ingrlist' style='width: 120px;'>";
-				//upit za naziv jedinice mere
-				foreach ($units as $measure) {
-					$row = $measure;
-					//echo $red['unit_id'];
-					if ($row['unit_id'] == $unitId) {
-						echo "<strong>" . $row['unit_name'] ."</strong>";
-					}
-				}
-				echo "</td>";
-				echo "</tr>";		
+<!-- Carousel -->
+ <section id="carousel">
+    <div class="row">
+    	<div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+    		
+    	      <div id="carouselRecipe" class="carousel slide" data-ride="carousel">
+	            <ol class="carousel-indicators">
+    		        <?php 
+			for ($i = 0; $i < $nrPhotos; $i++) {
+				if ($i == 0) {
+				     echo '<li data-target="#carouselRecipe" data-slide-to="0" class="active"></li>';
+				}else{
+				      echo '<li data-target="#carouselRecipe" data-slide-to=" '. $i .' "></li>';
+				}	
 			}
-			echo "</tbody></table>";
-			echo "</div>";
-			?> 
-			<br><br>
-		</div>
-	</div><!-- Kraj liste sastojaka -->
+		         ?>
+	             </ol>
 
-	<!-- Ispis uputstva za pripremu -->
-	<div class="row">
-		<div class="col-6 offset-1 green">
-			<h4><u>Uputstvo za pripremu: </u></h4>
-		</div>			
-	</div>
-	<div class="row">
-		<div class="col-8 offset-1">			
-			<p><?php echo $recipeInst; ?> </p>
-		</div>
-	</div><!-- kraj uputstva za pripremu -->
-</div><!-- kraj diva sveska -->
-	<!-- prijatno -->
-	<div class="row">
-		<div class="col-12 text-center">
-			<h4>Prijatno! </h4><br><br><br>
-		</div>	
-	</div>
+	         <div class="carousel-inner">
+		<?php 
 
-	<!-- kategorije ponovo-->
-	<div class="row">
-		<div class="col-8 offset-2">
-			<small><strong>Potražite i druge recepte u kategorijama: </strong> &nbsp;
-			<?php foreach ($catAll as $key) {
-				$catId = $key['cat_id'];
-				echo "<a class='btn btn-success btn-sm cats' href=' ". ROOT_URL ."category/$catId'>" . $key['cat_name'] . " </a>&nbsp;&nbsp;";
-			}?> <br> <br>
-			</small>
-		</div>
-	</div> <!-- kategorije kraj -->
-	
-
-	<!-- naslov komentari -->
-	<div class="row">
-		<div class="col-12 text-center">
-			<br><br><br><h3>Komentari</h3>
-		</div>	
-	</div>
-
-	<!-- komentarisanje -->
-	<div class="row">
-		<div class="col-8 offset-2"><br>
-			<p> Ispričajte nam kako je vama ispalo, da li ste nešto dodali ili drugačije uradili? <br>
-			Ideje za posluživanje i serviranje? Sa čim ste kombinovali?</p><br>
-			<form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
-
-				<input type="hidden" name="recipeid" value="<?php echo $recipeId; ?>">
-
-				 <div class="form-group">
-				 <label for="exampleInputIme1">Vaše ime</label>
-				 <input type="text" class="form-control" name="ime" placeholder="Vaše ime" required>
-				  </div>	
-
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Vaša email adresa</label>
-				    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Unesite email" name="email" required>
-				    <small id="emailHelp" class="form-text text-muted">Nikada nećemo proslediti vaš email bilo kome, niti ga zloupotrebiti na drugi način.</small>
-				  </div>
-
-				  <div class="form-group">
-				 <label for="exampleInputText1">Vaš komentar</label>
-				 <textarea class="form-control" rows="3" placeholder="Unesite svoj komentar..." name="komentar" required></textarea>
-				
-				  </div>	
-
-				  <div class="text-right">
-				         <button type="submit" class="btn btn-success" name="submit" value="submit">Pošalji</button>
-				  </div>
-				
-			</form>
-		</div>
-	</div><!-- kraj komentarisanja -->
-	<br><br>
-
-	<!-- ispis postojećih komentara -->
-	<div class="row">
-		<div class="col-8 offset-2">
-			<?php
-			foreach ($commentsAll as $item) {	
-				$time = $item['comment_time'];
-				$date = date_create($time);				
-				$day = date_format($date, "d.m.Y");
-				$comment = $item['comment_text'];
-				$name = $item['comment_name'];
-			
-			?>
-				<div class="card">
-				  <div class="card-body">
-				    <h4 class="card-title"><?php echo $name; ?></h4>
-				    <h6 class="card-subtitle mb-2 text-muted"><?php echo $day; ?></h6>
-				    <p class="card-text"><?php echo $comment; ?></p>
-				  </div>
-				</div><br><br>
-			<?php
+		for ($i = 0; $i < $nrPhotos; $i++) {
+			if($i == 0){
+				echo '<div class="carousel-item active"><img class="d-block w-100" src=" ' . ROOT_URL. 'assets/img/'. $photosAll[$i]['photo_link'] . ' " alt="'. $photosAll[$i]['photo_alt'] .'"></div>';
+			}else{
+				echo '<div class="carousel-item"><img class="d-block w-100" src=" ' . ROOT_URL. 'assets/img/'. $photosAll[$i]['photo_link'] . ' " alt="'. $photosAll[$i]['photo_alt'] .'"></div>';
 			}
-			?>
-		</div>
-	</div><!-- kraj ispisa postojecih komentara -->
+		}
+		?>
 
-</div><!-- kraj main -->
+	           </div>
+	             <a class="carousel-control-prev" href="#carouselRecipe" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Prethodna</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselRecipe" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Sledeća</span>
+		</a>
+	</div>
 
-<!-- KRAJ STRANE -->
+	<p class="mt-1 mb-1 mx-2"><em><?php echo $recipe['description']; ?></em></p>
+         </div>
+    </div>
+     <div class="row"><!-- dugmici za kategorije ispod carousela --> 
+    	<div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+		<?php 
+		foreach ($categoriesAll as $category) {
+			$name = $category['cat_name'];
+			$id = $category['cat_id'];
+			$link = $category['cat_permalink'];
+			echo '<a href=" '. ROOT_URL . 'category/' . $id .'/' . $link . ' " class="btn btn-success btn-sm my-2 mx-2">'. $name .'</a>';
+		}
+		?>
+    	</div>
+     </div><!-- kraj dugmici za kategorije ispod carousela --> 
+      <div class="row"><!-- dugmici za kategorije ispod carousela --> 
+    	<div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+    		<div class="mx-2">
+<?php 
+$recipeRating = $recipe['avg_rating']. "";  
+$nFullStars = $recipeRating[0]; 
+$halfOrEmptyStar = $recipeRating[2];
 
-<?php
+if ($recipe['avg_rating'] < 5.0) {
+  for ($e = 0; $e < $nFullStars; $e++) {
+    echo '<img src="' . ROOT_URL . 'assets/img/zv-pu.png" alt="rejting" class="smallImg">';
+  }
+  if ($halfOrEmptyStar < 5) {
+    echo '<img src="' . ROOT_URL . 'assets/img/zv-pr.png" alt="rejting" class="smallImg">';
+  }elseif ($halfOrEmptyStar >= 5) {
+    echo '<img src="' . ROOT_URL . 'assets/img/zv-po.png" alt="rejting" class="smallImg">';
+  }
+  for ($e = 0; $e < (4-$nFullStars); $e++) {
+    echo '<img src="' . ROOT_URL . 'assets/img/zv-pr.png" alt="rejting" class="smallImg">';
+  }
+
+}elseif ($recipe['avg_rating'] == 5.0) {
+  for ($e = 0; $e < 5; $e++) {
+    echo '<img src="' . ROOT_URL . 'assets/img/zv-pu.png" alt="rejting" class="smallImg">';
+  }
 }
 ?>
+		 &nbsp; <?php echo $recipe['avg_rating']; ?> &nbsp; (<?php echo $recipe['no_votes']; ?> &nbsp; glasova)<br>
+		<img src="<?php echo ROOT_URL; ?>assets/img/sat.png" alt="vreme pripreme" class="smallImg"> &nbsp; <?php echo $recipe['prep_time']; ?> &nbsp; min<br>
+		<img src="<?php echo ROOT_URL; ?>assets/img/posuda.png" alt="posuda" class="smallImg"> &nbsp; <?php echo $recipe['dirty_dishes']; ?> &nbsp; kom prljavog posuđa
+                  </div>
+    	</div>
+      </div>
+      <br>	
+ </section><!-- kraj carousel i detalji ispod njega-->   	
+
+<!-- Ispis sastojaka i uputstva-->
+<section>
+     <div class="notebook col-xs-12 col-sm-10 offset-sm-1">
+     	<h1 class="subtitlesRec">Sastojci</h1>
+ 	<div class="row">
+	    <div class="col-sm-6  justify-content-start d-flex flex-wrap">
+	       <table class="table ingredients-table">
+	       	<tbody>
+<?php  
+//print_r($ingrsMainArray);
+$ni = count($ingrsMainArray); // $ni = number of ingredients
+
+$i = 0;
+while ($i < $ni) {
+    $ingrName = $ingrsMainArray[$i][0]['ingredient_name'];
+    $ammount = $ingrsMainArray[$i][1];
+    $unit = $ingrsMainArray[$i][2]['unit_name'];
+?>
+			    <tr class="my-0">
+			      <td class="my-0 pl-1 pr-2"><span class="text-uppercase"><?php echo $ingrName; ?></span></td>
+			      <td class="my-0 pl-1 pr-2"><span><?php echo $ammount; ?></span></td>
+			      <td class="my-0 pl-1 pr-2"><span><?php echo $unit; ?></span></td>
+			    </tr>
+
+<?php
+    $i++;
+}
+?>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+     	<h1 class="subtitlesRec">Priprema</h1>
+     	<div class="row">
+     		<div class="col-md-10">
+     			<p><?php echo $recipe['instructions']; ?></p>
+     		</div>
+     	</div>
+     </div>
+</section><!-- Ispis sastojaka -->
+<div class="container bestRecipes">
+      <br>
+          <div class="col"><hr></div>
+          <div class="col"><h2 class="text-center">Ocene i komentari</h2></div>
+          <div class="col"><hr></div>
+      <br>
+</div>
+
+<!-- Sekcija komentari - postavljanje i ispis -->
+<section class="comments">
+     <div class="row">
+	<div class="col-md-8 offset-md-2 col-xs-10 offset-xs-1">
+	      <div id="rating-form">
+	      	<p class="mx-2"> Kako biste ocenili ovaj recept?</p>
+		<div class="row">
+			<div class="col-sm-7 text-left" id="rating-stars"> 
+				<div class="cont">
+				   <div class="stars">
+				        <form method="POST" name="rating">
+					  <input class="star star-5" id="star-5" type="radio" name="star" value="5">
+					  <label class="star star-5" for="star-5"></label>
+					  <input class="star star-4" id="star-4" type="radio" name="star" value="4">
+					  <label class="star star-4" for="star-4"></label>
+					  <input class="star star-3" id="star-3" type="radio" name="star" value="3">
+					  <label class="star star-3" for="star-3"></label>
+					  <input class="star star-2" id="star-2" type="radio" name="star" value="2">
+					  <label class="star star-2" for="star-2"></label>
+					  <input class="star star-1" id="star-1" type="radio" name="star" value="1">
+					  <label class="star star-1" for="star-1"></label>
+				          </form>
+				      </div>
+				 </div>				
+			</div>
+			<div class="col-sm-2 text-center">
+				<button type="button" class="btn btn-success my-1" id="ratingsubmit" name="ratingsubmit">Pošalji</button>
+			</div>
+			<div class="text-center" id="ratingvalidation"></div>
+
+		</div>
+	      </div>
+<script>
+
+var rating = "";
+var id = <?php echo $recipe['recipe_id']; ?>;
+
+$("input[name='star']").click(function(){
+	var rating = $("input[name='star']:checked").val();
+	$("#ratingvalidation").text ("");
+	//alert(rating);
+
+});
+
+$("#ratingsubmit").click(function(){
+	var rating = $("input[name='star']:checked").val();
+	if(rating == undefined){
+		$("#ratingvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Niste označili nijednu ocenu' + "</div>");
+	}else{
+		$("#ratingvalidation").text ("");
+		//alert(rating + "idemo");
+		return ajax_call_rating(rating, id);
+	}
+});
+
+//ajax funkcija
+function ajax_call_rating (rating, id){
+    $.post("<?php echo ROOT_URL; ?>assets/ajax4.php", {rating:rating, id: id}, function(result){
+            $("div#rating-form").html(result);
+    });
+}
+
+</script>
+
+	       <hr>
+
+	      <div id="comment-form">
+	           <p class="mx-2"> Ispričajte nam kako je vama ispalo, da li ste nešto dodali ili drugačije uradili? Ideje za posluživanje i serviranje? Sa čim ste kombinovali?</p>
+	      
+	         <form method="POST" name="comments">
+
+		<div class="form-group mx-2">
+		    <!-- <label for="nameUser">Vaše ime</label> -->
+		    <input type="text" class="form-control" id="nameUser" placeholder="Vaše ime..." required>
+		  </div>
+
+		<div class="form-group mx-2">
+		    <!-- <label for="emailUser">Vaša email</label> -->
+		    <input type="email" class="form-control" id="emailUser" aria-describedby="emailHelp" placeholder="Vaša email adresa..." required>
+		    <small id="emailHelp" class="form-text text-muted">Nikada nećemo proslediti vaše podatke bilo kome, niti ih zloupotrebiti na bilo kakav način.</small>
+		  </div>
+		  <div class="form-group mx-2">
+		    <textarea class="form-control" id="commentText" rows="3" name="commenttext" required></textarea>
+		  </div>
+		  <div>
+		  	<input type="text" name="honeypot" id="honeypot">
+		  </div>
+		  <div class="form-group mx-2">
+		       <button type="button" class="btn btn-success my-1" id="commentsubmit" name="commentsubmit">Pošalji</button>
+		  </div>
+		  <div class="text-center" id="namevalidation"></div>
+		  <div class="text-center" id="emailvalidation"></div>
+		  <div class="text-center" id="commentvalidation"></div>
+
+	      </form>
+	      </div>
+	</div>
+      </div>
+
+      <hr class="mx-2">
+
+       <!-- Prikaz komentara koji su odobreni -->
+      <div class="row">
+      	<div class="col-md-8 offset-md-2 col-xs-10 offset-xs-1">
+<?php
+foreach ($commentsAll as $comment) {
+	$commentName = $comment['comment_name'];
+	$commentDate = date_create($comment['comment_time']);	
+	$commentDate = date_format($commentDate, "d.m.Y");			
+	$commentText = $comment['comment_text'];			
+?>	
+
+      		<div class="card card-comments my-3 mx-2">
+		  <div class="card-body">
+		    <h5 class="card-title green cursive"><?php echo $commentName; ?></h5>
+		    <h6 class="card-subtitle mb-2 text-muted"><strong><?php echo $commentDate; ?></strong></h6>
+		    <p class="card-text"><?php echo $commentText; ?></p>
+		  </div>
+		</div>
+<?php
+}
+?>		
+      	</div>
+      </div><!-- kraj prikaz komentara koji su odobreni -->
+	<br>
+	<br>
+</section><!-- kraj sekcije komentari -->
+
+
+    </div>
+</div><!-- KRAJ STRANE -->
 
 
 
+<script type="text/javascript">
+var id = <?php echo $recipe['recipe_id']; ?>;	
+var name = "";
+var email = "";
+var comment = "";
+var hidden = "";
+
+$("#nameUser").keyup(function(){
+	var name = $(this).val();
+	var probe = isLetters(name);
+	console.log(probe);
+	var x = name.length;
+	if(x == 0){
+		$("#namevalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za ime je obavezno' + "</div>");
+	}
+	if(x < 3){
+		$("#namevalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Ime mora imati 3 i više slova' + "</div>");
+		var name = "";
+	}else if(x > 50){
+		$("#namevalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Ime je ograničeno na 50 karaktera' + "</div>");
+		var name = "";
+	}else if(x == 0){
+		$("#namevalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za ime je obavezno' + "</div>");
+	}else if(probe == false){
+		$("#namevalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'U polje za ime možete uneti samo velika i mala slova, razmak i crtice' + "</div>");
+	}else{
+		$("#namevalidation").text ("");
+		var name = $(this).val();
+	}
+});
+
+$("#nameUser").focusout(function(){
+	var name = $(this).val();
+	var x = name.length;
+	if(x == 0){
+		$("#namevalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za ime je obavezno' + "</div>");
+	}
+});	
+
+$("#emailUser").keyup(function(){
+	var email = $(this).val();
+	var test = isEmail(email);
+	if(test == false){
+		$("#emailvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Unesite ispravan email' + "</div>");
+		var email = "";
+	}else{
+		var y = email.length;
+		if(y > 50){
+			$("#emailvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Email je ograničen na 50 karaktera' + "</div>");
+		var email = "";
+	             }else if(y == 0){
+	             	$("#emailvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za email je obavezno' + "</div>");
+	             }else{
+		$("#emailvalidation").text ("");
+		var email = $(this).val();
+	             }
+	}
+ });
+
+$("#emailUser").focusout(function(){
+	var email = $(this).val();
+	var y = email.length;
+	if(y == 0){
+	             	$("#emailvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za email je obavezno' + "</div>");
+	             }
+});
+
+$("#commentText").keyup(function(){
+	var comment = $(this).val();
+	var z = comment.length;
+	if(z > 3000){
+		$("#commentvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Za komentar je predviđeno maksimalno 3000 karaktera' + "</div>");
+		var comment = "";
+	}else if(z == 0){
+		$("#commentvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za komentar je obavezno' + "</div>");
+		var comment = "";
+	}else{
+		$("#commentvalidation").text ("");	
+		var comment = $(this).val();
+	}
+});
+
+$("#commentText").focusout(function(){
+	var comment = $(this).val();
+	var z = comment.length;
+	if(z == 0){
+		$("#commentvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za komentar je obavezno' + "</div>");
+	}
+
+});
 
 
+$("#commentsubmit").click(function(){
 
+	var name = $('#nameUser').val();
+	var email = $('#emailUser').val();
+	var comment = $('#commentText').val();
+	var hidden = $('#honeypot').val();
 
+	if(name == ""){
+		$("#namevalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za ime je obavezno' + "</div>");
+	}
+	if(email == ""){
+		$("#emailvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za email je obavezno' + "</div>");
+	}
+	if(comment == ""){
+		$("#commentvalidation").html ('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 'Polje za komentar je obavezno' + "</div>");
+	}
 
+	//poziv ajaxa ako je se u redu
+	if(($("#namevalidation").text () == "") && ($("#emailvalidation").text () == "") && ($("#commentvalidation").text () == "") && (hidden == "") && (id != null) && (name != "") && (email != "") && (comment != "")){
+		//alert(id + " " + name + " " + email + " " + comment + " " + hidden);
+		return ajax_call(id, name, email, comment, hidden);
+	}
+		
+});
+
+//ajax funkcija
+function ajax_call(id, name, email, comment, hidden) {             
+    $.post("<?php echo ROOT_URL; ?>assets/ajax3.php", {id: id, name: name , email: email, comment: comment, hidden: hidden}, function(result){
+            $("div#comment-form").html(result);
+    });
+}
+
+//validacija emaila
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,10})$/;
+  return regex.test(email);
+}
+
+//validacija imena
+function isLetters(name) {
+  var regex1 = /^[a-zA-Z šŠćĆčČđĐžŽ_-]+$/;
+    return regex1.test(name);
+}
+
+</script>
