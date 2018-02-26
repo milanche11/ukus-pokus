@@ -65,7 +65,7 @@ $nrPhotos = count($photosAll);
 		</a>
 	</div>
 
-	<p class="mt-1 mb-1 mx-2"><em><?php echo $recipe['description']; ?></em></p>
+	<p class="mt-1 mb-1 mx-2"><em><?php echo htmlspecialchars_decode($recipe['description']); ?></em></p>
          </div>
     </div>
      <div class="row"><!-- dugmici za kategorije ispod carousela --> 
@@ -151,7 +151,7 @@ while ($i < $ni) {
      	<h1 class="subtitlesRec">Priprema</h1>
      	<div class="row">
      		<div class="col-md-10">
-     			<p><?php echo $recipe['instructions']; ?></p>
+     			<p><?php echo htmlspecialchars_decode($recipe['instructions']); ?></p>
      		</div>
      	</div>
      </div>
