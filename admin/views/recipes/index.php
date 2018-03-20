@@ -1,7 +1,7 @@
 <?php 
 
 $recipes = $viewmodel[0];  //spisak svih recepata
-$users = $viewmodel[1];  //spisak svih recepata
+$users = $viewmodel[1];  //spisak svih korisnika
 
 $nrUsers = count($users);
 
