@@ -158,7 +158,7 @@ ourRequest.onerror = function () {
  function ajax_call(keyword, number, page) {
     $.post("<?php echo ROOT_URL; ?>assets/ajaxUnits.php", {keyword: keyword, number: number, page: page}, function(result){
             $("#units-index").html(result);
-            numberUnitsWrt();
+            numberUnitsWrt()
     });
 }
 
