@@ -1,110 +1,112 @@
-<!DOCTYPE html>
+ <!doctype html>
 <html lang="sr">
 <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86840721-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  <!-- styling -->
-	<title>Ukus pokus | Brzi recepti od onoga što imate u kući</title>
-  
-	<link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href=" <?php echo ROOT_URL; ?>assets/css/style.css">
-  <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo ROOT_URL; ?>assets/images/favicon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="<?php echo ROOT_URL; ?>assets/images/favicon/favicon-96x96.png">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      gtag('config', 'UA-86840721-6');
+    </script>
+    
 
-       <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Ukus pokus | Brzi recepti od onoga što imate u kući">
+    <meta name="author" content="Kolezeee Solutions">
+    <link rel="icon" href="<?php echo ROOT_URL; ?>assets/img/favicon/favicon.ico">
+
+    <title>Ukus pokus | Brzi recepti od onoga što imate u kući</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<?php echo ROOT_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
+ 
+      <!-- Form search -->
+      <script src="<?php echo ROOT_URL; ?>assets/js/jquery-2.1.3.min.js"></script>
+      <script src="<?php echo ROOT_URL; ?>assets/js/select2.full.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <link rel="stylesheet" href="<?php echo ROOT_URL; ?>assets/css/select2.min.css">
+    <link rel="stylesheet" href="<?php echo ROOT_URL; ?>assets/css/select2-bootstrap4.min.css">
+
+    <!-- Font awesome -->
+    <script defer src="<?php echo ROOT_URL; ?>assets/js/all.js"></script>
+
+        <!-- Custom styles for this template -->
+    <link href="<?php echo ROOT_URL; ?>assets/css/starter-template.css" rel="stylesheet">
 </head>
-<body>
-  <div class="container-fluid">
-    <nav class="navbar">
-      <a class="navbar-brand" id="main-logo" href="<?php echo ROOT_URL; ?>">
-          <img src="<?php echo ROOT_URL; ?>/assets/images/logo1.jpg"></a>
 
-      <div>
-        <ul class="nav">
-          <li class="nav-item">
+<body>
+
+
+
+<!-- Braon trakica na vrhu -->
+<div class="beige d-flex  justify-content-end">
+      <a href="#"><img src="<?php echo ROOT_URL; ?>assets/img/soc/fb.png" class="soc"></a>
+      <a href="#"><img src="<?php echo ROOT_URL; ?>assets/img/soc/inst.png" class="soc"></a>
+      <a href="#"><img src="<?php echo ROOT_URL; ?>assets/img/soc/twitter.png" class="soc"></a>
+ </div><!-- Kraj braon trakice -->
+
+<!-- Navigacija -->   
+<nav class="navbar navbar-expand-md">
+      <!-- Logo -->
+      <a class="navbar-brand" href="<?php echo ROOT_URL; ?>"><img src="<?php echo ROOT_URL; ?>assets/img/logozasajt1.png" alt='logo' class="main-logo"></a><!-- kraj logo -->
+      <!-- Dugme hamburger -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsUkusPokus" aria-controls="navbarsUkusPokus" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><img src="<?php echo ROOT_URL; ?>assets/img/menu.png" alt='menu' class="menu"></span>
+      </button><!-- kraj dugme -->
+      <!-- Menu items -->
+      <div class="collapse navbar-collapse" id="navbarsUkusPokus">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
             <a class="nav-link animated" href="<?php echo ROOT_URL; ?>">Početna</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>recipes">Vidi šta sve ima!</a>
+            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>categories">Kategorije</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Pretraga</a>
+            <a class="nav-link animated" href="<?php echo ROOT_URL; ?>search">Loodilo pretraga</a>
           </li>
         </ul>
-      </div> 
-
-        <!-- Admin linkovi
-
-              <div>
-                <ul class="nav" id="logging">
-                  <?php 
-                    if(isset($_SESSION['is_logged_in'])) : ?>
-
-                      <li class="nav-item"><a type="button" class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>">Dobrodošli, <?php echo $_SESSION['user_data']['name']; ?></a>
-                      </li>
-                      <li class="nav-item"><a type="button" class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>users/logout">Izloguj se</a>
-                      </li>
-
-                  <?php else : ?>
-
-                      <li><a class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>users/login">Uloguj se</a>
-                      </li>
-                      <li ><a class="btn btn-success btn-sm" href="<?php echo ROOT_URL; ?>users/register">Registruj se</a>
-                      </li>
-
-                  <?php endif; ?> 
-                </ul>
-              </div>    
-          
-        -->
-    </nav>
-
-    <br><br>
-
-    <div class="container-fluid">
-      <div class="row justify-content-center">
-     	  <?php require($view); ?>
-      </div> 
-      <br><br>
-      <div class="row justify-content-center">
-        <?php Messages::display(); ?>
-      </div>
-    </div><!-- /.container -->
-
-    <br>
-    <hr>
-
-   
+      </div><!-- Kraj menu items -->
+</nav><!-- Kraj navigacija -->
 
 
-    <footer>
-      <nav >
+<!-- Main  -->
+<?php require($view); ?>
 
-      <ul class="nav justify-content-center">
-        
-        <li class="nav-item">
-                  <a class="nav-link" href="#"> © 2017 Ukus Pokus. Sva prava zadržana. </a>
-        </li>
-        <li class="nav-item">
-                  <a class="nav-link" href="<?php echo ROOT_URL; ?>kontakt">Kontakt</a>
-        </li>
-        <li class="nav-item">
-                  <a class="nav-link" href="https://www.kolezeeesolutions.com/" target="_blank"> Kreirao i održava Kolezeee Solutions</a>
-        </li>
-        
-      </ul>
-      </nav>
 
-    </footer>
-  </div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+<!-- Footer -->
+<footer id="footer-main">
+  <nav >
+          <ul class="nav justify-content-center">
+                 <li class="nav-item"><a class="nav-link" href="<?php echo ROOT_URL; ?>"> © 2018 Ukus Pokus. Sva prava zadržana. </a></li>
+                 <li class="nav-item"><a class="nav-link" href="<?php echo ROOT_URL; ?>contact">Kontakt</a></li>
+                 <li class="nav-item"><a class="nav-link" href="<?php echo ROOT_URL; ?>terms">Pravila</a></li>
+                 <li class="nav-item"><a class="nav-link" href="https://www.kolezeeesolutions.com/" target="_blank"> Kreirao i održava Kolezeee Solutions</a> </li>
+          </ul>
+  </nav>
+</footer><!-- End footer -->
+
+
+
+
+    <!-- Bootstrap core JavaScript (jQuery, Popper and Bootstrap)
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="<?php echo ROOT_URL; ?>assets/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="<?php echo ROOT_URL; ?>assets/js/popper.min.js"></script>
+    <script src="<?php echo ROOT_URL; ?>assets/js/bootstrap.min.js"></script>
+    
+      <!-- Form search -->
+      <script src="<?php echo ROOT_URL; ?>assets/js/jquery-2.1.3.min.js"></script>
+      <script src="<?php echo ROOT_URL; ?>assets/js/select2.full.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 </body>
 </html>
